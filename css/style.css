@@ -1,0 +1,405 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23 de ago de 2021, 15:16:44
+    Author     : Emanuelle
+*/
+
+.fundo_tela {
+    background-color: #f5f5f5 !important;
+}
+
+.barra-titulo{
+    box-shadow: 0 0px 5px 0px #4682B4;
+     background-color: #f8f9fa;
+     color:#084d6e !important;
+}
+.link-atual:link{
+    text-decoration: none;
+    color: #4682B4;
+}
+.link-atual:visited{
+    text-decoration: none;
+    color: #4682B4;
+}
+.icone-painel {
+    font-size:35px;
+   
+}
+
+.thead-tabela{
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: #785aa2;
+}
+
+.linha-hover{
+    border-bottom: 1px solid #785aa2 !important;
+}
+.linha-hover:hover{
+    background-color: rgba(255, 127, 80,0.1);
+    color: #01004c;  
+}
+
+.barras {
+  color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: #3d0a91;  
+}
+
+
+
+.navegacao, .nav-link{
+   text-decoration: none; 
+   color: #ffffff;
+}
+
+.navegacao, .nav-link:hover{
+   text-decoration: none; 
+   color: #ffffff;
+   
+}
+
+nav > .nav.nav-tabs{
+    border: none;
+    color:#fff;
+    background:#F6F9FC;
+
+}
+nav > div a.nav-item.nav-link,
+nav > div a.nav-item.nav-link.active
+{
+  border: none;
+    padding: 10px 10px;
+    color:#000000;
+    background:#F6F9FC;
+    font-weight:700;
+}
+nav > div a.nav-item.nav-link.active:after
+ {
+  content: "";
+  position: relative;
+  bottom: -50px;
+  left: -10%;
+  border: 15px solid transparent;
+  border-top-color: #F58322 ;
+}
+
+.tab-content{
+  background: #ffffff;
+    line-height: 25px;
+    padding:30px 25px;
+    border: 3px solid #f8f9fa;
+    
+}
+
+nav > div a.nav-item.nav-link:hover,
+nav > div a.nav-item.nav-link:focus
+{
+  border: none;
+    background: #4682B4;
+    color:#ffffff;
+    transition:background 0.20s linear;
+}
+
+.btn span.fa-check {    			
+	opacity: 0;				
+}
+.btn.active span.fa-check {				
+	opacity: 1;				
+}
+
+
+
+.hori-timeline .events {
+    border-top: 3px solid #e9ecef;
+}
+.hori-timeline .events .event-list {
+    display: block;
+    position: relative;
+    text-align: center;
+    padding-top: 70px;
+    margin-right: 0;
+}
+.hori-timeline .events .event-list:before {
+    content: "";
+    position: absolute;
+    height: 36px;
+    border-right: 2px dashed #dee2e6;
+    top: 0;
+}
+.hori-timeline .events .event-list .event-date {
+    position: absolute;
+    top: 38px;
+    left: 0;
+    right: 0;
+    width: 120px;
+    margin: 0 auto;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+@media (min-width: 1140px) {
+    .hori-timeline .events .event-list {
+        display: inline-block;
+        width: 24%;
+        padding-top: 45px;
+    }
+    .hori-timeline .events .event-list .event-date {
+        top: -12px;
+    }
+}
+.form-select{
+ text-transform: uppercase;
+  border: 0;
+  border-bottom: 2px solid lightgrey;
+  text-transform: uppercase; 
+}
+
+
+.form-floating textarea{
+   text-transform: uppercase;
+  border: 0;
+  border-bottom: 2px solid lightgrey;
+  text-transform: uppercase; 
+}
+
+.form-floating textarea:focus{
+outline: none; 
+box-shadow: 0 0 5px 0 #ffffff;
+border-bottom: 2px solid #6f42c1;
+                
+}
+.form-floating input{
+  text-transform: uppercase;
+  border: 0;
+  border-bottom: 2px solid lightgrey;
+  text-transform: uppercase;
+ 
+}
+
+.form-floating input:focus{
+outline: none; 
+box-shadow: 0 0 5px 0 #ffffff;
+border-bottom: 2px solid #6f42c1;
+                
+}
+
+.form-floating input:invalid{ 
+                outline: none; 
+                border-bottom: 2px solid #dc3545;
+            }
+
+            .labelInput{
+                color: #6f42c1;
+            }
+.tamanhoInput{
+                padding:10px 10px 10px 15px;
+                height: 40px;
+                color: #01004c;
+                font-weight: 600;
+                border-radius: 10px;
+                border: none;
+                width: 100%;
+                font-weight: 400;
+                border: none;
+                background: #f8f9fa;
+            }
+            .tamanhoInput:focus{ 
+                outline: none; 
+                box-shadow: 0 0 5px 0 #ff7f50;
+                border: 1px solid #ff7f50;
+            }
+            
+            .tamanhoInput:invalid{ 
+                outline: none; 
+                box-shadow: 0 0 5px 0 #dc3545;
+                border: 1px solid #ff7f50;
+            }
+            .tamanhoInput:valid{ 
+                outline: none; 
+                box-shadow: 0 0 5px 0 #6c757d;
+                
+            }
+            .tamanhotextarea{
+                 padding:10px 10px 10px 15px;
+                color: #084d6e;
+                font-weight: 600;
+                border-radius: 10px;
+                border: none;
+                width: 100%;
+                font-weight: 400;
+                background: #f8f9fa;
+            }
+            
+            .tamanhotextarea:focus{ 
+                outline:none; 
+                box-shadow: 0 -5px 10px -5px #ff7f50;
+            }
+            
+            
+            .modalTitulo{
+                background:#3d0a91;
+                color: #ffffff;
+                text-decoration: none;
+            }
+            
+            .ca:link{
+                text-decoration: none;
+            }
+            
+            .ca:hover{
+                text-decoration: none;
+                color: #ffffff;
+            }
+                        
+            .icone-acao{
+                font-size: 20px;
+            }
+            
+            .maiusculas {
+                text-transform: capitalize;
+            }
+            
+            .card-rapido{
+                height: 80px;
+                border-radius: 20px;
+        
+            }
+            
+            .card-rapido:hover{
+                height: 80px;
+                border-radius: 20px; 
+            }
+            .card-rapido-body{
+                border-radius: 15px;
+            }
+            
+ 
+
+.imgVeiculo{
+    border-radius: 50%;
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    background-color: #3d0a91;
+    color: #ffffff;
+    font-size: 45px;
+    cursor: pointer;
+}
+
+
+.imgVeiculo:hover{
+    color: #ffffff;
+    background: #ff7f50;
+}
+
+.icone-camera{
+    margin-top: -7px;
+    margin-left: -22px;
+    position: absolute;
+}
+
+.header-filtro{
+    background-color: #785aa2;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.header-filtro:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.input-group-text{
+    background-color: #785aa2;
+    color: #FFD70F;
+    font-size: 18px;
+    height: 45px;
+    width: 45px;
+}
+
+.digitacao{
+    height: 45px;
+    border: 1px solid #785aa2;
+    font-size: 18px;
+    font-weight: 600;
+    color: #785aa2;
+}
+
+.digitacao:focus{
+    height: 45px;
+    border: 1px dashed #785aa2;
+    outline: 0;
+    box-shadow: 0 0 0 0;
+    color: #785aa2;
+    
+}
+
+.card-fundo-body{
+    background-color: #f5f5f5 !important;
+}
+
+.select2-container .select2-selection--single {
+                height: 45px;
+                border: 1px solid #785aa2;
+                font-size: 18px;
+                font-weight: 600;
+                color: #785aa2;
+
+                
+            }
+
+            .select2-selection--single:focus{
+                color: #785aa2;
+                height: 45px;
+                border: 1px dashed #785aa2;
+                outline: 0;
+                box-shadow: 0 0 0 0;
+            }
+            .destaque{
+                color: #785aa2;
+            }         
+
+
+.acesso-rapido {
+    background-color: #ffffff;
+    border-radius: 8px;
+    height: 80px;
+
+}
+
+.acesso-rapido:hover{
+    background-color: #785aa240;
+    
+    
+}
+.link-acesso:link{
+    color: #343a40 !important;
+    text-decoration: none; 
+}
+
+.texto-acessorapido{
+    font-size: 14px;
+    color: #003153;
+    padding-left: 10px;
+}
+@media only screen and (max-width: 768px) {
+    /* esconde o elemento de controlo caso em Mobile */
+    .texto-acessorapido { 
+    font-size: 14px;
+    color: #003153;
+    }
+}
+
+.titulo-acesso-rapido{
+    font-size: 25px;
+    color: #785aa2;
+    padding-left: 10px;
+}
