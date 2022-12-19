@@ -23,10 +23,10 @@ if($_GET['id']){
     $sql_buscaDocs = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria WHERE categoria_documento = '$categoria_documento'  LIMIT $inicio, $itens_por_pagina ");
     $numeroLinhas = mysqli_num_rows($sql_buscaDocs);
     
-}else if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
-    $nome = $_POST['nome'];
-    $fcooperativa = $_POST['fcooperativa'];
-    $sql_buscaDocs = mysqli_query($conexao, "SELECT * FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop WHERE nome LIKE '%$nome%' and cod_coop LIKE '%$fcooperativa%'");
+}else if(isset($_GET['titulo_doc'] , $_GET['cod_categoria_doc'])) {
+    $titulo_doc = $_POST['titulo_doc'];
+    $categoria_documento = $_POST['cod_categoria_doc'];
+    $sql_buscaDocs = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria WHERE titulo_documento LIKE '%$titulo_doc%' and categoria_documento = '$categoria_documento'");
     $numeroLinhas = mysqli_num_rows($sql_buscaDocs);
 }
 ?>
@@ -156,24 +156,12 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
         </button>
       </div>
       <div class="modal-body card-fundo-body">
-          <form action="" method="POST">
+          <form action="" method="GET">
               <div class="form-group col-md-12">
-               <label for="fnome">Nome</label>
-                                <input type="text" name="nome" id="fnome" class="form-control digitacao" placeholder="Insira um nome" autocomplete="off">
+               <label for="titulo_doc">Título do Documento</label>
+                                <input type="text" name="titulo_doc" id="titulo_doc" class="form-control digitacao" placeholder="Insira o título do documento" autocomplete="off">
+                                <input type="hidden" name="cod_categoria_doc" id="cod_categoria_doc" class="form-control digitacao" value="<?php echo $categoria_documento;?>">
               </div>
-                                <div class="form-group col-md-12">
-                                                            <label for="fcooperativa">Cooperativa</label><br>
-                                                            <select id="fcooperativa" name="fcooperativa" class="digitacao pesquisa-select">
-                                                                <option value="">Selecione</option>
-                                                                   <?php 
-                                                                   $buscaCoop = mysqli_query($conexao, "SELECT * FROM cooperativas");
-                                                                   while($resultadoCoop = mysqli_fetch_assoc($buscaCoop)){
-                                                                      ?>
-                                                                    <option value="<?php echo $resultadoCoop['cod_coop']?>"><?php echo $resultadoCoop['cooperativa']?></option>
-                                                                    <?php
-                                                                   }
-                                                                   ?>                                                                </select>
-                                                            </div>
       </div>
       <div class="modal-footer card-fundo-body p-1">
         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar <i class="uil uil-times"></i></button>
@@ -184,82 +172,7 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
     </div>
   </div>
 </div>
-                       
-                                              <!-- Modal adiciona usuario -->
-<div class="modal fade" id="adicionaDoc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header header-filtro">
-        <h5 class="modal-title" id="exampleModalLabel">Cadastrar Usuário</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body card-fundo-body">
-          <form action="../ferramentas/adiciona-usuario.php" method="POST">
-               <!-- info obrigatoria -->
-<div class="form-row">
-                                <div class="col-md-12">
-                                                <div class="card-body card-fundo-body">
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label for="nome">Nome<span class="text-danger"> *</span></label>
-                                                            <input type="text" class="form-control digitacao" id="nome" name="nome" required>
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label for="sobrenome">Sobrenome<span class="text-danger"> *</span></label>
-                                                            <input type="text" class="form-control digitacao" id="sobrenome" name="sobrenome" required>
-                                                        </div>
-                                                        
-                                                        <div class="form-group col-md-6">
-                                                            <label for="cooperativa">Cooperativa <span class="text-danger"> *</span></label><br>
-                                                            <select id="cooperativa" name="cooperativa" class="digitacao pesquisa-select" required>
-                                                                   <?php 
-                                                                   $buscaCoop = mysqli_query($conexao, "SELECT * FROM cooperativas");
-                                                                   while($resultadoCoop = mysqli_fetch_assoc($buscaCoop)){
-                                                                      ?>
-                                                                    <option value="<?php echo $resultadoCoop['cod_coop']?>"><?php echo $resultadoCoop['cooperativa']?></option>
-                                                                    <?php
-                                                                   }
-                                                                   ?>                                                                </select>
-                                                            </div>
 
-                                                        <div class="form-group col-md-6">
-                                                            <label for="email">Email <span class="text-danger">*</span></label></label>
-                                                            <input type="email" class="form-control digitacao" id="email" name="email" required>
-                                                        </div>
-
-                                                        <div class="form-group col-md-6">
-                                                            <label for="usuario">Usuário<span class="text-danger"> *</span></label>
-                                                            <input type="text" class="form-control digitacao" id="usuario" name="usuario" required>
-                                                        </div>
-                                                        
-                                                        <div class="form-group col-md-6">
-                                                            <label for="nivel">Perfil de Acesso <span class="text-danger"> *</span></label><br>
-                                                            <select id="nivel" name="nivel" class="digitacao pesquisa-select" required>
-                                                                   <?php 
-                                                                   $buscaNivel = mysqli_query($conexao, "SELECT * FROM perfis_usuarios");
-                                                                   while($resultadoNivel = mysqli_fetch_assoc($buscaNivel)){
-                                                                      ?>
-                                                                    <option value="<?php echo $resultadoNivel['p_cod']?>"><?php echo $resultadoNivel['perfil']?></option>
-                                                                    <?php
-                                                                   }
-                                                                   ?>                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                </div>
-                                    <div class="form-group col-md-12">
-                                        <button type="submit" class="btn btn-success loading float-right">Adicionar <i class="uil uil-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>                           
-                            <!-- info obrigatoria -->
-        
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
                        <!--fim conteudo da tela aqui!-->
                     </div>
                 </main>
