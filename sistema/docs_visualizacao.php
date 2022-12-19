@@ -24,8 +24,8 @@ if($_GET['id']){
     $numeroLinhas = mysqli_num_rows($sql_buscaDocs);
     
 }else if(isset($_GET['titulo_doc'] , $_GET['cod_categoria_doc'])) {
-    $titulo_doc = $_POST['titulo_doc'];
-    $categoria_documento = $_POST['cod_categoria_doc'];
+    $titulo_doc = $_GET['titulo_doc'];
+    $categoria_documento = $_GET['cod_categoria_doc'];
     $sql_buscaDocs = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria WHERE titulo_documento LIKE '%$titulo_doc%' and categoria_documento = '$categoria_documento'");
     $numeroLinhas = mysqli_num_rows($sql_buscaDocs);
 }
