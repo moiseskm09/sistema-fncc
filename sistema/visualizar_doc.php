@@ -3,18 +3,18 @@ require_once '../config/sessao.php';
 require_once '../config/conexao.php';
 require_once '../config/config_geral.php';
 
-if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
-    $nome = $_POST['nome'];
-    $fcooperativa = $_POST['fcooperativa'];
-    $sql_buscaUsuarios = mysqli_query($conexao, "SELECT * FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop WHERE nome LIKE '%$nome%' and cod_coop LIKE '%$fcooperativa%'");
-    $numeroLinhas = mysqli_num_rows($sql_buscaUsuarios);
+if (isset($_POST['titulo_cat'])) {
+    $titulo_cat = $_POST['titulo_cat'];
+    $sql_buscaCat = mysqli_query($conexao, "SELECT cod_categoria, categoria, COUNT(categoria_documento) AS qtd_arquivos FROM categoria_documentos INNER JOIN modelos_de_documentos ON cod_categoria = categoria_documento WHERE categoria LIKE '%$titulo_cat%' GROUP BY categoria_documento");
+    $numeroLinhas = mysqli_num_rows($sql_buscaCat);
+    $filtroON = 1;
 } else{
 
     //verifica a página atual caso seja informada na URL, senão atribui como 1ª página 
     $pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1; 
 
     //pegar todos os registros do banco de dados
-    $sql = mysqli_query($conexao, "SELECT id_usuario FROM usuarios WHERE u_status != '0'");
+    $sql = mysqli_query($conexao, "SELECT cod_categoria, categoria, COUNT(categoria_documento) AS qtd_arquivos FROM categoria_documentos INNER JOIN modelos_de_documentos ON cod_categoria = categoria_documento GROUP BY categoria_documento");
     $numeroTotalLinhas = mysqli_num_rows($sql);
 
     //define o numero de itens por pagina
@@ -25,8 +25,9 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
     
     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
 
-    $sql_buscaUsuarios = mysqli_query($conexao, "SELECT id_usuario, nome, sobrenome, email, cooperativa FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop WHERE u_status != '0' ORDER BY nome LIMIT $inicio, $itens_por_pagina ");
-    $numeroLinhas = mysqli_num_rows($sql_buscaUsuarios);
+    $sql_buscaCat = mysqli_query($conexao, "SELECT cod_categoria, categoria, COUNT(categoria_documento) AS qtd_arquivos FROM categoria_documentos INNER JOIN modelos_de_documentos ON cod_categoria = categoria_documento GROUP BY categoria_documento ORDER BY categoria LIMIT $inicio, $itens_por_pagina ");
+    $numeroLinhas = mysqli_num_rows($sql_buscaCat);
+    $filtroON = 0;
 }
 ?>
 
@@ -57,8 +58,7 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
         <script src="../js/busca-cep.js"></script>
         <script src="../js/loading.js"></script>
         <link href="../css/style.css" rel="stylesheet" />
-        <style>
-            </style>
+        <link href="../css/visualizar_doc.css" rel="stylesheet" />
     </head>
     <body class="sb-nav-fixed fundo_tela">
        <?php include_once "../ferramentas/navbar.php";?>
@@ -73,6 +73,9 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i>Voltar</a>
+                                    <?php if($filtroON === 1){ ?>
+                                    <a class="btn btn-sm btn-dark" href="visualizar_doc.php"><i class="uil uil-filter-slash"></i>Limpar Filtro</a>
+                                    <?php } ?>
                                     <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro">Filtrar <i class="uil uil-filter"></i></a>
                                 </div>
                             </div>
@@ -81,10 +84,10 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                        
                        <div class="row">
                            <?php 
-                           $buscaCategoriasDocumentos = mysqli_query($conexao, "SELECT cod_categoria, categoria, COUNT(categoria_documento) AS qtd_arquivos FROM categoria_documentos INNER JOIN modelos_de_documentos ON cod_categoria = categoria_documento GROUP BY categoria_documento");
+                           //$buscaCategoriasDocumentos = mysqli_query($conexao, "SELECT cod_categoria, categoria, COUNT(categoria_documento) AS qtd_arquivos FROM categoria_documentos INNER JOIN modelos_de_documentos ON cod_categoria = categoria_documento GROUP BY categoria_documento");
                            
-                           if(mysqli_num_rows($buscaCategoriasDocumentos) > 0 ){
-                               while($categorias = mysqli_fetch_assoc($buscaCategoriasDocumentos)){
+                           if(mysqli_num_rows($sql_buscaCat) > 0 ){
+                               while($categorias = mysqli_fetch_assoc($sql_buscaCat)){
                                    
                            ?>
                            <div class="col-lg-6 col-md-6 col-12">
@@ -117,22 +120,9 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
       <div class="modal-body card-fundo-body">
           <form action="" method="POST">
               <div class="form-group col-md-12">
-               <label for="fnome">Nome</label>
-                                <input type="text" name="nome" id="fnome" class="form-control digitacao" placeholder="Insira um nome" autocomplete="off">
+               <label for="titulo_cat">Título da Categoria</label>
+                                <input type="text" name="titulo_cat" id="titulo_cat" class="form-control digitacao" placeholder="Insira o Título da Categoria" autocomplete="off">
               </div>
-                                <div class="form-group col-md-12">
-                                                            <label for="fcooperativa">Cooperativa</label><br>
-                                                            <select id="fcooperativa" name="fcooperativa" class="digitacao pesquisa-select">
-                                                                <option value="">Selecione</option>
-                                                                   <?php 
-                                                                   $buscaCoop = mysqli_query($conexao, "SELECT * FROM cooperativas");
-                                                                   while($resultadoCoop = mysqli_fetch_assoc($buscaCoop)){
-                                                                      ?>
-                                                                    <option value="<?php echo $resultadoCoop['cod_coop']?>"><?php echo $resultadoCoop['cooperativa']?></option>
-                                                                    <?php
-                                                                   }
-                                                                   ?>                                                                </select>
-                                                            </div>
       </div>
       <div class="modal-footer card-fundo-body p-1">
         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar <i class="uil uil-times"></i></button>

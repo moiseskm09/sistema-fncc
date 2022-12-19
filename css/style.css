@@ -156,18 +156,14 @@ nav > div a.nav-item.nav-link:focus
     }
 }
 .form-select{
- text-transform: uppercase;
   border: 0;
   border-bottom: 2px solid lightgrey;
-  text-transform: uppercase; 
 }
 
 
 .form-floating textarea{
-   text-transform: uppercase;
   border: 0;
   border-bottom: 2px solid lightgrey;
-  text-transform: uppercase; 
 }
 
 .form-floating textarea:focus{
@@ -177,17 +173,18 @@ border-bottom: 2px solid #6f42c1;
                 
 }
 .form-floating input{
-  text-transform: uppercase;
   border: 0;
   border-bottom: 2px solid lightgrey;
-  text-transform: uppercase;
- 
+  color:#785aa2;
+ font-weight: 600;
 }
 
 .form-floating input:focus{
 outline: none; 
 box-shadow: 0 0 5px 0 #ffffff;
-border-bottom: 2px solid #6f42c1;
+border-bottom: 1px dashed #6f42c1;
+color:#785aa2;
+font-weight: 600;
                 
 }
 
@@ -366,40 +363,3 @@ border-bottom: 2px solid #6f42c1;
             .destaque{
                 color: #785aa2;
             }         
-
-
-.acesso-rapido {
-    background-color: #ffffff;
-    border-radius: 8px;
-    height: 80px;
-
-}
-
-.acesso-rapido:hover{
-    background-color: #785aa240;
-    
-    
-}
-.link-acesso:link{
-    color: #343a40 !important;
-    text-decoration: none; 
-}
-
-.texto-acessorapido{
-    font-size: 14px;
-    color: #003153;
-    padding-left: 10px;
-}
-@media only screen and (max-width: 768px) {
-    /* esconde o elemento de controlo caso em Mobile */
-    .texto-acessorapido { 
-    font-size: 14px;
-    color: #003153;
-    }
-}
-
-.titulo-acesso-rapido{
-    font-size: 25px;
-    color: #785aa2;
-    padding-left: 10px;
-}

@@ -22,12 +22,14 @@ if($_GET['id']){
 
     $sql_buscaDocs = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria WHERE categoria_documento = '$categoria_documento'  LIMIT $inicio, $itens_por_pagina ");
     $numeroLinhas = mysqli_num_rows($sql_buscaDocs);
+    $filtroON = 0;
     
 }else if(isset($_GET['titulo_doc'] , $_GET['cod_categoria_doc'])) {
     $titulo_doc = $_GET['titulo_doc'];
     $categoria_documento = $_GET['cod_categoria_doc'];
     $sql_buscaDocs = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria WHERE titulo_documento LIKE '%$titulo_doc%' and categoria_documento = '$categoria_documento'");
     $numeroLinhas = mysqli_num_rows($sql_buscaDocs);
+    $filtroON = 1;
 }
 ?>
 
@@ -73,6 +75,9 @@ if($_GET['id']){
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i>Voltar</a>
+                                    <?php if($filtroON === 1){ ?>
+                                    <a class="btn btn-sm btn-dark" href="docs_visualizacao.php?id=<?php echo $categoria_documento; ?>"><i class="uil uil-filter-slash"></i>Limpar Filtro</a>
+                                    <?php } ?>
                                     <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro">Filtrar <i class="uil uil-filter"></i></a>
                                 </div>
                             </div>

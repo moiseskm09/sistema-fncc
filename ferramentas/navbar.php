@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-row text-center">
                     <div class="col-md-6 col-12">
-                        <a class="btn btn-success form-control text-white mb-1"><i class="uil uil-user-circle"></i> Meu Perfil</a>
+                        <a class="btn btn-success form-control text-white mb-1" href="meus-dados.php?id=<?php echo $CODIGOUSUARIO;?>"><i class="uil uil-user-circle"></i> Meu Perfil</a>
                     </div>
                 <div class="col-md-6 col-12">
                     <a class="btn btn-primary form-control text-white mb-1"><i class="uil uil-lock-alt"></i> Mudar Senha</a>

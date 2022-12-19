@@ -1,0 +1,45 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 19/12/2022, 11:43:39
+    Author     : Moises
+*/
+
+
+.acesso-rapido {
+    background-color: #ffffff;
+    border-radius: 8px;
+    height: 80px;
+
+}
+
+.acesso-rapido:hover{
+    background-color: #785aa240;
+    
+    
+}
+.link-acesso:link{
+    color: #343a40 !important;
+    text-decoration: none; 
+}
+
+.texto-acessorapido{
+    font-size: 14px;
+    color: #003153;
+    padding-left: 10px;
+}
+@media only screen and (max-width: 768px) {
+    /* esconde o elemento de controlo caso em Mobile */
+    .texto-acessorapido { 
+    font-size: 14px;
+    color: #003153;
+    }
+}
+
+.titulo-acesso-rapido{
+    font-size: 25px;
+    color: #785aa2;
+    padding-left: 10px;
+}
