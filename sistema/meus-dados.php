@@ -106,13 +106,13 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                            <label for="usuario">Nível de Acesso</label>
                                             </div>  
                                            </div>
-                                           <div class="col-lg-3 col-md-3 col-6">
+                                           <div class="col-lg-3 col-md-3 col-12">
                                              <div class="form-floating mb-3">
                                            <input type="text" name="status" class="form-control" id="status" placeholder="Seu status" value="<?php if($resultadoBuscaInfo["u_status"] == 1){ echo "Ativo"; }else{ echo "Desativado"; } ?>" disabled>
                                            <label for="usuario">Status</label>
                                             </div>  
                                            </div>
-                                           <div class="col-lg-3 col-md-3 col-6">
+                                           <div class="col-lg-3 col-md-3 col-12">
                                              <div class="form-floating mb-3">
                                            <input type="date" name="dtcadastro" class="form-control" id="dtcadastro" placeholder="Data de Cadastro" value="<?php echo $resultadoBuscaInfo["data_cadastro"] ?>" disabled>
                                            <label for="dtcadastro">Data de Cadastro</label>
