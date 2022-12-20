@@ -36,7 +36,6 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
         <script src="../js/busca-cep.js"></script>
         <script src="../js/loading.js"></script>
         <link href="../css/style.css" rel="stylesheet" />
-        <link href="../css/visualizar_doc.css" rel="stylesheet" />
     </head>
     <body class="sb-nav-fixed fundo_tela">
        <?php include_once "../ferramentas/navbar.php";?>
@@ -146,23 +145,23 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                         <a href="" data-dismiss="modal" aria-label="Fechar"><i class="fas fa-times text-white"></i></a>
                         </button>
                     </div>
-                    <form action="" method="POST">
+                    <form action="" method="POST" id="FormSenha" name="FormSenha">
                         <div class="modal-body card-fundo-body">
                             <p>Por favor, informe abaixo a sua nova senha!</p>
                             <p>Lembre-se, ela precisa conter uma letra <span class="destaque fw-bold">MAIÚSCULA</span>, uma letra <span class="destaque fw-bold">MINÚSCULA</span>, um <span class="destaque fw-bold">NÚMERO</span>, um <span class="destaque fw-bold">CARACTER ESPECIAL</span> e pelo menos <span class="destaque fw-bold">8 DIGÍTOS</span>.</p>
                             <p>Exemplo de Senha: <span class="destaque fw-bold">Fncc@2022</span></p>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil uil-key-skeleton-alt"></i></span>
-                                <input type="password" name="senha_nova" class="form-control digitacao" placeholder="Nova Senha" aria-label="senha" aria-describedby="basic-addon1" required>
+                                <input type="password" name="senha_nova" id="senha_nova" class="form-control digitacao" placeholder="Nova Senha" aria-label="senha" aria-describedby="basic-addon1" required minlength="8" maxlength="12" onKeyUp="verificaForcaSenha();">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil uil-key-skeleton-alt"></i></span>
-                                <input type="password" name="senha_nova_confirma" class="form-control digitacao" placeholder="Confirme a Senha" aria-label="senha_nova_confirma" aria-describedby="basic-addon1" required>
+                                <input type="password" name="senha_nova_confirma" id="senha_nova_confirma" class="form-control digitacao" placeholder="Confirme a Senha" aria-label="senha_nova_confirma" aria-describedby="basic-addon1" required>
                             </div>
-
+<span id="password-status"></span>
                         </div>
                         <div class="modal-footer border-0">
-                            <button type="submit" class="btn-success btn btn-sm">Confirmar</button>
+                            <button type="button" class="btn-success btn btn-sm" onClick="validarSenha()">Confirmar</button>
 
                         </div>
                     </form>
@@ -184,6 +183,39 @@ $( '.pesquisa-select' ).select2( {
                 toast.show()
             }
         </script>
+        
+        <script>
+        function validarSenha(){
+   NovaSenha = document.getElementById('senha_nova').value;
+   CNovaSenha = document.getElementById('senha_nova_confirma').value;
+   if (NovaSenha != CNovaSenha) {
+      alert("As senhas digitadas não são iguais!\nPor favor, verifique e tente novamente!"); 
+   }else{
+      document.FormSenha.submit();
+   }
+}
+        </script>
+        
+        <script>
+function verificaForcaSenha() 
+{
+	var numeros = /([0-9])/;
+	var alfabeto = /([a-zA-Z])/;
+	var chEspeciais = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+
+	if($('#senha_nova').val().length<8) 
+	{
+		$('#password-status').html("<span style='color:red'>Fraca, Insira no mínimo 8 caracteres</span>");
+	} else {  	
+		if($('#senha_nova').val().match(numeros) && $('#senha_nova').val().match(alfabeto) && $('#senha_nova').val().match(chEspeciais))
+		{            
+			$('#password-status').html("<span style='color:green'><b>Senha Forte</b></span>");
+		} else {
+			$('#password-status').html("<span style='color:orange'>Média, Insira um caracter especial</span>");
+		}
+	}
+}
+</script>
         <script src="../js/campos_adicionais.js"></script>
         <script src="../js/cp_mascaras.js"></script>
         <script src="../js/scripts.js"></script>

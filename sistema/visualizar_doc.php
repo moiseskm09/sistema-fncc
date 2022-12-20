@@ -3,8 +3,8 @@ require_once '../config/sessao.php';
 require_once '../config/conexao.php';
 require_once '../config/config_geral.php';
 
-if (isset($_POST['titulo_cat'])) {
-    $titulo_cat = $_POST['titulo_cat'];
+if (isset($_GET['titulo_cat'])) {
+    $titulo_cat = $_GET['titulo_cat'];
     $sql_buscaCat = mysqli_query($conexao, "SELECT cod_categoria, categoria, COUNT(categoria_documento) AS qtd_arquivos FROM categoria_documentos INNER JOIN modelos_de_documentos ON cod_categoria = categoria_documento WHERE categoria LIKE '%$titulo_cat%' GROUP BY categoria_documento");
     $numeroLinhas = mysqli_num_rows($sql_buscaCat);
     $filtroON = 1;
@@ -118,7 +118,7 @@ if (isset($_POST['titulo_cat'])) {
         </button>
       </div>
       <div class="modal-body card-fundo-body">
-          <form action="" method="POST">
+          <form action="" method="GET">
               <div class="form-group col-md-12">
                <label for="titulo_cat">Título da Categoria</label>
                                 <input type="text" name="titulo_cat" id="titulo_cat" class="form-control digitacao" placeholder="Insira o Título da Categoria" autocomplete="off">
