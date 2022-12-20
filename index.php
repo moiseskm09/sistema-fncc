@@ -8,6 +8,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
         <link href="css/login.css" rel="stylesheet" />
+        <link rel="manifest" href="css/manifest.json">
     </head>
     <body>
 
