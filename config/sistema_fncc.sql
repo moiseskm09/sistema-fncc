@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Dez-2022 às 14:30
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.2
+-- Tempo de geração: 21-Dez-2022 às 20:13
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,8 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `teste`
+-- Banco de dados: `sistema_fncc`
 --
+CREATE DATABASE IF NOT EXISTS `sistema_fncc` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `sistema_fncc`;
 
 -- --------------------------------------------------------
 
@@ -57,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `cooperativas` (
   `cod_coop` int(10) NOT NULL AUTO_INCREMENT,
   `cooperativa` char(100) NOT NULL,
   `logo_coop` varchar(50) NOT NULL DEFAULT 'logo_fncc.png',
+  `coop_status` int(1) NOT NULL DEFAULT 1 COMMENT '1-ativo 0-inativo',
   PRIMARY KEY (`cod_coop`)
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4;
 
@@ -64,64 +67,64 @@ CREATE TABLE IF NOT EXISTS `cooperativas` (
 -- Extraindo dados da tabela `cooperativas`
 --
 
-INSERT INTO `cooperativas` (`cod_coop`, `cooperativa`, `logo_coop`) VALUES
-(1, 'COGEM', 'logo_fncc.png'),
-(2, 'COOP FECOM/ SESC/ SENAC', 'logo_fncc.png'),
-(3, 'COOPERFEMSA', 'logo_fncc.png'),
-(4, 'CREDI SG', 'logo_fncc.png'),
-(5, 'COOPERICSSON', 'logo_fncc.png'),
-(6, 'COOPCARGILL', 'logo_fncc.png'),
-(7, 'COOP RB', 'logo_fncc.png'),
-(8, 'CREDIBASF', 'logo_fncc.png'),
-(9, 'COOPERMC', 'logo_fncc.png'),
-(10, 'COOP SCHAEFFLER', 'logo_fncc.png'),
-(11, 'CREDIVISTA', 'logo_fncc.png'),
-(12, 'COOPERJOHNSON', 'logo_fncc.png'),
-(13, 'COOPERABRIL', 'logo_fncc.png'),
-(14, 'COOPUNESP', 'logo_fncc.png'),
-(15, 'COOPOWENS', 'logo_fncc.png'),
-(16, 'COOPRICLAN', 'logo_fncc.png'),
-(17, 'COOPERFEIS', 'logo_fncc.png'),
-(18, 'COOPOIB', 'logo_fncc.png'),
-(19, 'COOPERBOMBRIL', 'logo_fncc.png'),
-(20, 'COOPAZ', 'logo_fncc.png'),
-(21, 'COOPERPPG', 'logo_fncc.png'),
-(22, 'COOPERPLASCAR', 'logo_fncc.png'),
-(23, 'CREDITA', 'logo_fncc.png'),
-(24, 'COOP AKZONOBEL', 'logo_fncc.png'),
-(25, 'COOPERJSS', 'logo_fncc.png'),
-(26, 'COOPERTEL', 'logo_fncc.png'),
-(27, 'COOPERNITRO', 'logo_fncc.png'),
-(28, 'COOPERFAC', 'logo_fncc.png'),
-(29, 'COOP MWM', 'logo_fncc.png'),
-(30, 'CREDICEBRACE', 'logo_fncc.png'),
-(31, 'CREDISCOOP', 'logo_fncc.png'),
-(32, 'COOPER-SEKURIT', 'logo_fncc.png'),
-(33, 'CREDIAFAM', 'logo_fncc.png'),
-(34, 'COOPERALESP', 'logo_fncc.png'),
-(35, 'COOPERCRED-CBA', 'logo_fncc.png'),
-(36, 'COOPER AVIBRAS', 'logo_fncc.png'),
-(37, 'COOPASPACER', 'logo_fncc.png'),
-(38, 'COOPERALPINA', 'logo_fncc.png'),
-(39, 'COOPERPILKINGTON', 'logo_fncc.png'),
-(40, 'COOPERMEL', 'logo_fncc.png'),
-(41, 'PILONCRED', 'logo_fncc.png'),
-(42, 'CREDCOL', 'logo_fncc.png'),
-(43, 'TENARIS', 'logo_fncc.png'),
-(44, 'COOPERPAK', 'logo_fncc.png'),
-(45, 'COOPHARMA', 'logo_fncc.png'),
-(46, 'COOPSELENE', 'logo_fncc.png'),
-(47, 'CREDI NESTLÉ\n', 'logo_fncc.png'),
-(48, 'CREDIUNIFI', 'logo_fncc.png'),
-(49, 'COOPERCREDI GRUPO FLEURY', 'logo_fncc.png'),
-(50, 'COOPINCOR', 'logo_fncc.png'),
-(51, 'COOPLUIZA', 'logo_fncc.png'),
-(52, 'COOPERSKF', 'logo_fncc.png'),
-(53, 'USICRED', 'logo_fncc.png'),
-(54, 'VILLARES METALS', 'logo_fncc.png'),
-(55, 'CREDMIL', 'logo_fncc.png'),
-(56, 'CREDIFISCO', 'logo_fncc.png'),
-(57, 'FNCC', 'logo_fncc.png');
+INSERT INTO `cooperativas` (`cod_coop`, `cooperativa`, `logo_coop`, `coop_status`) VALUES
+(1, 'COGEM', 'logo_fncc.png', 1),
+(2, 'COOP FECOM/ SESC/ SENAC', 'logo_fncc.png', 1),
+(3, 'COOPERFEMSA', 'logo_fncc.png', 1),
+(4, 'CREDI SG', 'logo_fncc.png', 1),
+(5, 'COOPERICSSON', 'logo_fncc.png', 1),
+(6, 'COOPCARGILL', 'logo_fncc.png', 1),
+(7, 'COOP RB', 'logo_fncc.png', 1),
+(8, 'CREDIBASF', 'logo_fncc.png', 1),
+(9, 'COOPERMC', 'logo_fncc.png', 1),
+(10, 'COOP SCHAEFFLER', 'logo_fncc.png', 1),
+(11, 'CREDIVISTA', 'logo_fncc.png', 1),
+(12, 'COOPERJOHNSON', 'logo_fncc.png', 1),
+(13, 'COOPERABRIL', 'logo_fncc.png', 1),
+(14, 'COOPUNESP', 'logo_fncc.png', 1),
+(15, 'COOPOWENS', 'logo_fncc.png', 1),
+(16, 'COOPRICLAN', 'logo_fncc.png', 1),
+(17, 'COOPERFEIS', 'logo_fncc.png', 1),
+(18, 'COOPOIB', 'logo_fncc.png', 1),
+(19, 'COOPERBOMBRIL', 'logo_fncc.png', 1),
+(20, 'COOPAZ', 'logo_fncc.png', 1),
+(21, 'COOPERPPG', 'logo_fncc.png', 1),
+(22, 'COOPERPLASCAR', 'logo_fncc.png', 1),
+(23, 'CREDITA', 'logo_fncc.png', 1),
+(24, 'COOP AKZONOBEL', 'logo_fncc.png', 1),
+(25, 'COOPERJSS', 'logo_fncc.png', 1),
+(26, 'COOPERTEL', 'logo_fncc.png', 1),
+(27, 'COOPERNITRO', 'logo_fncc.png', 1),
+(28, 'COOPERFAC', 'logo_fncc.png', 1),
+(29, 'COOP MWM', 'logo_fncc.png', 1),
+(30, 'CREDICEBRACE', 'logo_fncc.png', 1),
+(31, 'CREDISCOOP', 'logo_fncc.png', 1),
+(32, 'COOPER-SEKURIT', 'logo_fncc.png', 1),
+(33, 'CREDIAFAM', 'logo_fncc.png', 1),
+(34, 'COOPERALESP', 'logo_fncc.png', 1),
+(35, 'COOPERCRED-CBA', 'logo_fncc.png', 1),
+(36, 'COOPER AVIBRAS', 'logo_fncc.png', 1),
+(37, 'COOPASPACER', 'logo_fncc.png', 1),
+(38, 'COOPERALPINA', 'logo_fncc.png', 1),
+(39, 'COOPERPILKINGTON', 'logo_fncc.png', 1),
+(40, 'COOPERMEL', 'logo_fncc.png', 1),
+(41, 'PILONCRED', 'logo_fncc.png', 1),
+(42, 'CREDCOL', 'logo_fncc.png', 1),
+(43, 'TENARIS', 'logo_fncc.png', 1),
+(44, 'COOPERPAK', 'logo_fncc.png', 1),
+(45, 'COOPHARMA', 'logo_fncc.png', 1),
+(46, 'COOPSELENE', 'logo_fncc.png', 1),
+(47, 'CREDI NESTLÉ\n', 'logo_fncc.png', 1),
+(48, 'CREDIUNIFI', 'logo_fncc.png', 1),
+(49, 'COOPERCREDI GRUPO FLEURY', 'logo_fncc.png', 1),
+(50, 'COOPINCOR', 'logo_fncc.png', 1),
+(51, 'COOPLUIZA', 'logo_fncc.png', 1),
+(52, 'COOPERSKF', 'logo_fncc.png', 1),
+(53, 'USICRED', 'logo_fncc.png', 1),
+(54, 'VILLARES METALS', 'logo_fncc.png', 1),
+(55, 'CREDMIL', 'logo_fncc.png', 1),
+(56, 'CREDIFISCO', 'logo_fncc.png', 1),
+(57, 'FNCC', 'logo_fncc.png', 1);
 
 -- --------------------------------------------------------
 
@@ -368,7 +371,7 @@ INSERT INTO `submenu` (`cod_submenu`, `submenu`, `cod_menu`, `icone_sub`, `camin
 (3, 'ATENDIMENTOS', 2, '', 'atendimentos.php'),
 (4, 'SATISFAÇÃO', 2, '', 'satisfacao.php'),
 (5, 'USUÁRIOS', 3, 'uil uil-users-alt', 'cad-usuarios.php'),
-(6, 'COOPERATIVAS', 3, '', 'cooperativas'),
+(6, 'COOPERATIVAS', 3, 'uil uil-sitemap', 'cad-cooperativas.php'),
 (7, 'GERENCIAMENTO DE RISCOS', 2, '', 'GRS'),
 (8, 'CANAL DE INDÍCIOS DE ILICITUDE', 2, '', 'canaldenuncias'),
 (9, 'BOLETO', 4, '', 'BOLETO'),
@@ -406,8 +409,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nome`, `sobrenome`, `email`, `usuario`, `senha`, `user_coop`, `user_nivel`, `u_status`, `data_cadastro`) VALUES
-(1, 'Moises', 'Pequeno', 'moiseskm09@gmail.com', 'moises', '90f80b22f53a5d4d72f7b126ef4b1f44', 34, 1, 1, '2022-12-16'),
-(2, 'Karina', 'Pequeno', 'nina.rocha91@gmail.com', 'karina', '90f80b22f53a5d4d72f7b126ef4b1f44', 57, 1, 1, '2022-12-16'),
+(1, 'Moises', 'Pequeno do Rosário', 'moiseskm09@gmail.com', 'moises', '5a07992136c4e91e5cc618f4020dfa90', 34, 1, 1, '2022-12-16'),
+(2, 'Karina', 'Pequeno', 'nina.rocha91@gmail.com', 'karina', '64df84fb0c1de0070b106566b3bf70b6', 57, 1, 1, '2022-12-16'),
 (3, 'Emanuelle', 'Pequeno', 'emanuelle@gmail.com', 'emanuelle', '90f80b22f53a5d4d72f7b126ef4b1f44', 57, 1, 1, '2022-12-16'),
 (4, 'Benício', 'Pequeno', 'benicio@gmail.com', 'benicio', '90f80b22f53a5d4d72f7b126ef4b1f44', 57, 2, 1, '2022-12-16'),
 (5, 'Adriana', 'Caldeira', 'moiseskm09@gmail.com', 'adriana', '90f80b22f53a5d4d72f7b126ef4b1f44', 57, 1, 0, '2022-12-17'),

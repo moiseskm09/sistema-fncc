@@ -86,7 +86,7 @@ if (isset($_GET['id'])) {
                                                                         } else {
                                                                             ?>
                                                                             <option value="<?php echo $perfis["p_cod"]; ?>"><?php echo $perfis["perfil"]; ?></option>   
-                                                                        <?php
+                                                                            <?php
                                                                         }
                                                                     }
                                                                 } else {
@@ -106,34 +106,34 @@ if (isset($_GET['id'])) {
                                 <div class="accordion" id="permissoes">
                                     <div class="card border-0" style="border-radius: 10px;">
                                         <a href="#perfilpermissoes" data-toggle="collapse"  aria-expanded="true" aria-controls="perfilpermissoes" class="text-center header-filtro p-2 borda">Permissões <?php
-                                                                if (isset($perfil_option)) {
-                                                                    echo "do Perfil <span style='color: #FFD70F'>" . $perfil_option . "</span>";
-                                                                } else {
-                                                                    
-                                                                }
-                                                                ?></a>
+                                            if (isset($perfil_option)) {
+                                                echo "do Perfil <span style='color: #FFD70F'>" . $perfil_option . "</span>";
+                                            } else {
+                                                
+                                            }
+                                            ?></a>
 
                                         <div id="perfilpermissoes" class="collapse show" aria-labelledby="headingOne" data-parent="#permissoes">
                                             <div class="card-body bg-white" style="max-height: 395px; overflow-y: scroll;">
                                                 <div class="">
-<?php
-if ($clicado_perfil == null) {
-    echo '<div class="alert-info">';
-    echo '<p class="alert font-weight-bold p-2">Selecione um perfil para visualizar as permissões!</p>';
-} else {
-    ?>
+                                                    <?php
+                                                    if ($clicado_perfil == null) {
+                                                        echo '<div class="alert-info">';
+                                                        echo '<p class="alert font-weight-bold p-2">Selecione um perfil para visualizar as permissões!</p>';
+                                                    } else {
+                                                        ?>
 
                                                         <ul class="list-unstyled">
-    <?php
-    $seleciona_menu_permissao = mysqli_query($conexao, "SELECT * FROM menu");
-    while ($resultado_permissao = mysqli_fetch_assoc($seleciona_menu_permissao)) {
-        $idMenuPermissao = $resultado_permissao["id_menu"];
-        ?>
+                                                            <?php
+                                                            $seleciona_menu_permissao = mysqli_query($conexao, "SELECT * FROM menu");
+                                                            while ($resultado_permissao = mysqli_fetch_assoc($seleciona_menu_permissao)) {
+                                                                $idMenuPermissao = $resultado_permissao["id_menu"];
+                                                                ?>
 
                                                                 <li>
                                                                     <div class="p-2 destaque mb-2 mt-2">
                                                                         <strong class="">
-                                                                    <?php echo $resultado_permissao['menu']; ?>
+                                                                            <?php echo $resultado_permissao['menu']; ?>
                                                                         </strong>
                                                                     </div>                    
 
@@ -148,45 +148,45 @@ if ($clicado_perfil == null) {
                                                                             <form action="../ferramentas/atualiza_permissao_usuario.php" method="POST">
 
                                                                                 <div class="form-row">
-            <?php
-            while ($resultado_submenu_permissao = mysqli_fetch_assoc($seleciona_submenu_permissao)) {
+                                                                                    <?php
+                                                                                    while ($resultado_submenu_permissao = mysqli_fetch_assoc($seleciona_submenu_permissao)) {
 
-                if ($resultado_submenu_permissao['marcado'] == 1) {
-                    ?>
+                                                                                        if ($resultado_submenu_permissao['marcado'] == 1) {
+                                                                                            ?>
                                                                                             <li>
                                                                                                 <div class="col-md-12">
                                                                                                     <div class="form-check">
                                                                                                         <input class="form-check-input" type="checkbox" name="permissao_menu[]" value="<?php echo $resultado_submenu_permissao['cod_submenu']; ?>" id="<?php echo $resultado_submenu_permissao['cod_submenu']; ?>" checked>
                                                                                                         <label class="form-check-label" for="<?php echo $resultado_submenu_permissao['cod_submenu']; ?>">
-                                                                                            <?php echo $resultado_submenu_permissao['submenu']; ?>
+                                                                                                            <?php echo $resultado_submenu_permissao['submenu']; ?>
                                                                                                         </label>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </li>
 
-                    <?php
-                } else {
-                    ?>
+                                                                                            <?php
+                                                                                        } else {
+                                                                                            ?>
                                                                                             <li>
                                                                                                 <div class="col-md-12">
                                                                                                     <div class="form-check">
                                                                                                         <input class="form-check-input" type="checkbox" name="permissao_menu[]" value="<?php echo $resultado_submenu_permissao['cod_submenu']; ?>" id="<?php echo $resultado_submenu_permissao['cod_submenu']; ?>">
                                                                                                         <label class="form-check-label" for="<?php echo $resultado_submenu_permissao['cod_submenu']; ?>">
-                                                                                            <?php echo $resultado_submenu_permissao['submenu']; ?>
+                                                                                                            <?php echo $resultado_submenu_permissao['submenu']; ?>
                                                                                                         </label>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </li>
-                                                                                <?php
-                                                                            }
-                                                                        }
-                                                                        ?>
+                                                                                            <?php
+                                                                                        }
+                                                                                    }
+                                                                                    ?>
                                                                                 </div>
                                                                         </ul>
-        <?php } ?>
+                                                                    <?php } ?>
                                                                 </li>
-    <?php }
-    ?>
+                                                            <?php }
+                                                            ?>
                                                             <div class="text-right col-md-12">
                                                                 <li>
 
@@ -197,7 +197,7 @@ if ($clicado_perfil == null) {
                                                             <input type="hidden" id="id" name="id" value="<?php echo $clicado_perfil; ?>">
                                                             </form>
                                                         </ul>       
-<?php } ?>             
+                                                    <?php } ?>             
 
                                                 </div>
                                             </div>
@@ -250,7 +250,7 @@ if ($clicado_perfil == null) {
                         <!--fim conteudo da tela aqui!-->
                     </div>
                 </main>
-<?php include_once "../ferramentas/rodape.php"; ?>
+                <?php include_once "../ferramentas/rodape.php"; ?>
             </div>
         </div>
         <script>
@@ -259,17 +259,11 @@ if ($clicado_perfil == null) {
             });
 
         </script>  
-        <script>
-            window.onload = (event) => {
-                var toastLiveExample = document.getElementById('liveToast')
-                var toast = new bootstrap.Toast(toastLiveExample)
-                toast.show()
-            }
-        </script>
+        <script src="../js/toast.js"></script>
         <script src="../js/scripts.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>       
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>       
     </body>
 </html>

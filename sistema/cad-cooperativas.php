@@ -6,8 +6,8 @@ require_once '../config/config_geral.php';
 if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
     $nome = $_POST['nome'];
     $fcooperativa = $_POST['fcooperativa'];
-    $sql_buscaUsuarios = mysqli_query($conexao, "SELECT * FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop WHERE nome LIKE '%$nome%' and cod_coop LIKE '%$fcooperativa%'");
-    $numeroLinhas = mysqli_num_rows($sql_buscaUsuarios);
+    $sql_buscaCoops = mysqli_query($conexao, "SELECT * FROM cooperativas  where cooperativa LIKE '%$nome%' and cod_coop LIKE '%$fcooperativa%'");
+    $numeroLinhas = mysqli_num_rows($sql_buscaCoops);
     $filtroON = 1;
 } else{
 
@@ -15,7 +15,7 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
     $pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1; 
 
     //pegar todos os registros do banco de dados
-    $sql = mysqli_query($conexao, "SELECT id_usuario FROM usuarios WHERE u_status != '0'");
+    $sql = mysqli_query($conexao, "SELECT cod_coop FROM cooperativas");
     $numeroTotalLinhas = mysqli_num_rows($sql);
 
     //define o numero de itens por pagina
@@ -26,8 +26,8 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
     
     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
 
-    $sql_buscaUsuarios = mysqli_query($conexao, "SELECT id_usuario, nome, sobrenome, email, u_status, cooperativa FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop ORDER BY u_status DESC, nome LIMIT $inicio, $itens_por_pagina ");
-    $numeroLinhas = mysqli_num_rows($sql_buscaUsuarios);
+    $sql_buscaCoops = mysqli_query($conexao, "SELECT cod_coop, cooperativa, coop_status FROM cooperativas ORDER BY coop_status, cooperativa LIMIT $inicio, $itens_por_pagina ");
+    $numeroLinhas = mysqli_num_rows($sql_buscaCoops);
     $filtroON = 0;
 }
 ?>
@@ -70,12 +70,12 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                 <main>
                     <div class="container-fluid">
                        <!--conteudo da tela aqui!-->
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h5 class="titulo">Usuários</h5>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-2 border-bottom">
+                            <h5 class="titulo">Cooperativas</h5>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i>Voltar</a>
-                                    <a class="btn btn-sm btn-success" href="#adicionaUsuario" data-toggle="modal" data-target="#adicionaUsuario">Adicionar <i class="uil uil-plus"></i></a>
+                                    <a class="btn btn-sm btn-success" href="#adicionaCoop" data-toggle="modal" data-target="#adicionaCoop">Adicionar <i class="uil uil-plus"></i></a>
                                     <?php if($filtroON === 1){ ?>
                                     <a class="btn btn-sm btn-dark" href="cad-usuarios.php"><i class="uil uil-filter-slash"></i>Limpar Filtro</a>
                                     <?php } ?>
@@ -89,10 +89,7 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                                 <thead class="thead-tabela">
                                     <tr>
                                         <th>Código</th>
-                                        <th>Nome</th>
-                                        <th>Sobrenome</th>
                                         <th>Cooperativa</th>
-                                        <th>E-mail</th>
                                         <th>Status</th>
                                         <th class="text-center">Ações</th>
                                     </tr>
@@ -100,18 +97,15 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                                 <tbody class="bg-white p-0">
                                     <?php
                                     if ($numeroLinhas > 0) {
-                                        while ($resultadoUsuario = mysqli_fetch_assoc($sql_buscaUsuarios)) {
+                                        while ($resultadoCoop = mysqli_fetch_assoc($sql_buscaCoops)) {
                                             ?>
                                             <tr class="linha-hover">
-                                                <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoUsuario['id_usuario']; ?></span></td>
-                                                <td><?php echo ucwords(strtolower($resultadoUsuario['nome']));?></td>
-                                                <td><?php echo $resultadoUsuario['sobrenome'];?></td>
-                                                <td><?php echo $resultadoUsuario['cooperativa'];?></td>
-                                                <td><?php echo $resultadoUsuario['email'];?></td>
-                                                <td><?php if($resultadoUsuario['u_status'] == 1){ echo  '<span class="badge badge-success rounded-pill d-inline">Ativo</span>';}else{echo  '<span class="badge badge-danger rounded-pill d-inline">Inativo</span>';}?></td>
+                                                <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoCoop['cod_coop']; ?></span></td>
+                                                <td><?php echo $resultadoCoop['cooperativa'];?></td>
+                                                <td><?php if($resultadoCoop['coop_status'] == 1){ echo  '<span class="badge badge-success rounded-pill d-inline">Ativo</span>';}else{echo  '<span class="badge badge-danger rounded-pill d-inline">Inativo</span>';}?></td>
                                                 <td class="text-center">
-                                                    <a href="editar-usuario.php?id=<?php echo $resultadoUsuario['id_usuario']; ?>" class=""><i class="uil uil-edit text-warning"></i></a>
-                                                    <a href="../ferramentas/desativa-usuario.php?id=<?php echo $resultadoUsuario['id_usuario']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-trash text-danger"></i></a>
+                                                    <a href="editar-cooperativa.php?id=<?php echo $resultadoCoop['id_usuario']; ?>" class=""><i class="uil uil-edit text-warning"></i></a>
+                                                    <a href="../ferramentas/desativa-cooperativa.php?id=<?php echo $resultadoCoop['id_usuario']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-trash text-danger"></i></a>
                                                 </td> 
                                             </tr>
                                             <?php
@@ -199,7 +193,7 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
 </div>
                        
                                               <!-- Modal adiciona usuario -->
-<div class="modal fade" id="adicionaUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="adicionaCoop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header header-filtro">

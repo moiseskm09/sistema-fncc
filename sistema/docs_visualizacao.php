@@ -220,13 +220,7 @@ $( '.pesquisa-select' ).select2( {
     theme: 'bootstrap-5'
 } );
         </script>  
-        <script>
-            window.onload = (event) => {
-                var toastLiveExample = document.getElementById('liveToast')
-                var toast = new bootstrap.Toast(toastLiveExample)
-                toast.show()
-            }
-        </script>
+<script src="../js/toast.js"></script>
         <script src="../js/campos_adicionais.js"></script>
         <script src="../js/cp_mascaras.js"></script>
         <script src="../js/scripts.js"></script>
