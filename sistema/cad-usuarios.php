@@ -25,7 +25,7 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
     
     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
 
-    $sql_buscaUsuarios = mysqli_query($conexao, "SELECT id_usuario, nome, sobrenome, email, cooperativa FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop WHERE u_status != '0' ORDER BY nome LIMIT $inicio, $itens_por_pagina ");
+    $sql_buscaUsuarios = mysqli_query($conexao, "SELECT id_usuario, nome, sobrenome, email, u_status, cooperativa FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop ORDER BY u_status DESC, nome LIMIT $inicio, $itens_por_pagina ");
     $numeroLinhas = mysqli_num_rows($sql_buscaUsuarios);
 }
 ?>
@@ -80,28 +80,30 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-borderless table-sm" style= "white-space: nowrap;">
-                                <thead class="border thead-tabela">
+                            <table class="table table-borderless table-sm bg-white">
+                                <thead class="thead-tabela">
                                     <tr>
                                         <th>Código</th>
                                         <th>Nome</th>
                                         <th>Sobrenome</th>
                                         <th>Cooperativa</th>
                                         <th>E-mail</th>
+                                        <th>Status</th>
                                         <th class="text-center">Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody class="border bg-white">
+                                <tbody class="bg-white p-0">
                                     <?php
                                     if ($numeroLinhas > 0) {
                                         while ($resultadoUsuario = mysqli_fetch_assoc($sql_buscaUsuarios)) {
                                             ?>
                                             <tr class="linha-hover">
-                                                <td><?php echo $resultadoUsuario['id_usuario']; ?></td>
+                                                <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoUsuario['id_usuario']; ?></span></td>
                                                 <td><?php echo ucwords(strtolower($resultadoUsuario['nome']));?></td>
                                                 <td><?php echo $resultadoUsuario['sobrenome'];?></td>
                                                 <td><?php echo $resultadoUsuario['cooperativa'];?></td>
                                                 <td><?php echo $resultadoUsuario['email'];?></td>
+                                                <td><?php if($resultadoUsuario['u_status'] == 1){ echo  '<span class="badge badge-success rounded-pill d-inline">Ativo</span>';}else{echo  '<span class="badge badge-danger rounded-pill d-inline">Inativo</span>';}?></td>
                                                 <td class="text-center">
                                                     <a href="editar-usuario.php?id=<?php echo $resultadoUsuario['id_usuario']; ?>" class=""><i class="uil uil-edit text-warning"></i></a>
                                                     <a href="../ferramentas/desativa-usuario.php?id=<?php echo $resultadoUsuario['id_usuario']; ?>" onclick="return confirm('Tem certeza que deseja desativar o usuário?');"><i class="uil uil-trash text-danger"></i></a>
@@ -118,13 +120,13 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                                     }
                                     ?>
                                 </tbody>
-                                <tfoot>
+                                <tfoot class="p-0">
                                     <tr>
                                         <td colspan="3"><?php echo "Mostrando ".$numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
                                         <td colspan="4">
                                             <nav>
                                     <ul class="pagination pagination-sm justify-content-end">
-                                        <li class="page-item ">
+                                        <li class="page-item">
                                             <a class="page-link" href="?pagina=1" tabindex="-1"><span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Primeira</span></a>
                                         </li>

@@ -95,7 +95,7 @@ if (isset($_GET['titulo_cat'])) {
                                <div class="card border-0 mb-1 mt-1">
   <div class="card-body acesso-rapido p-1">
       <h5 class="card-title titulo-acesso-rapido"><?php echo $categorias["categoria"];?></h5>
-      <h6 class="card-text texto-acessorapido"><?php echo $categorias["qtd_arquivos"];?> DOCUMENTOS</h6>
+      <h6 class="card-text texto-acessorapido"><span class="badge rounded-pill text-bg-light"><?php echo $categorias["qtd_arquivos"];?> DOCUMENTOS</span></span></h6>
   </div>
 </div>
                                </a>

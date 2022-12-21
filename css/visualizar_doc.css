@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .acesso-rapido {
     background-color: #ffffff;
     border-radius: 8px;
-    height: 80px;
+    min-height: 80px;
 
 }
 

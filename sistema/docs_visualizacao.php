@@ -99,7 +99,7 @@ if($_GET['id']){
                                         while ($resultadoDoc = mysqli_fetch_assoc($sql_buscaDocs)) {
                                             ?>
                                             <tr class="linha-hover">
-                                                <td><?php echo $resultadoDoc['cod_documento']; ?></td>
+                                                <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoDoc['cod_documento']; ?></span></td>
                                                 <td><?php echo ucwords(strtolower($resultadoDoc['titulo_documento']));?></td>
                                                 <td><?php echo $resultadoDoc['categoria'];?></td>
                                                 <td class="text-center">
