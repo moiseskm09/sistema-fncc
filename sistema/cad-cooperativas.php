@@ -6,7 +6,7 @@ require_once '../config/config_geral.php';
 if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
     $nome = $_POST['nome'];
     $fcooperativa = $_POST['fcooperativa'];
-    $sql_buscaCoops = mysqli_query($conexao, "SELECT * FROM cooperativas  where cooperativa LIKE '%$nome%' and cod_coop LIKE '%$fcooperativa%'");
+    $sql_buscaCoops = mysqli_query($conexao, "SELECT * FROM cooperativas  where cooperativa LIKE '%$nome%' and cooperativa LIKE '%$fcooperativa%'");
     $numeroLinhas = mysqli_num_rows($sql_buscaCoops);
     $filtroON = 1;
 } else{
@@ -26,7 +26,7 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
     
     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
 
-    $sql_buscaCoops = mysqli_query($conexao, "SELECT cod_coop, cooperativa, coop_status FROM cooperativas ORDER BY coop_status, cooperativa LIMIT $inicio, $itens_por_pagina ");
+    $sql_buscaCoops = mysqli_query($conexao, "SELECT cod_coop, cooperativa, coop_cnpj, coop_telefone, coop_status FROM cooperativas ORDER BY coop_status DESC, cooperativa LIMIT $inicio, $itens_por_pagina ");
     $numeroLinhas = mysqli_num_rows($sql_buscaCoops);
     $filtroON = 0;
 }
@@ -77,7 +77,7 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                                     <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i>Voltar</a>
                                     <a class="btn btn-sm btn-success" href="#adicionaCoop" data-toggle="modal" data-target="#adicionaCoop">Adicionar <i class="uil uil-plus"></i></a>
                                     <?php if($filtroON === 1){ ?>
-                                    <a class="btn btn-sm btn-dark" href="cad-usuarios.php"><i class="uil uil-filter-slash"></i>Limpar Filtro</a>
+                                    <a class="btn btn-sm btn-dark" href="cad-cooperativas.php"><i class="uil uil-filter-slash"></i>Limpar Filtro</a>
                                     <?php } ?>
                                     <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro">Filtrar <i class="uil uil-filter"></i></a>
                                 </div>
@@ -90,6 +90,8 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                                     <tr>
                                         <th>Código</th>
                                         <th>Cooperativa</th>
+                                        <th>CNPJ</th>
+                                        <th>Telefone</th>
                                         <th>Status</th>
                                         <th class="text-center">Ações</th>
                                     </tr>
@@ -102,10 +104,12 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                                             <tr class="linha-hover">
                                                 <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoCoop['cod_coop']; ?></span></td>
                                                 <td><?php echo $resultadoCoop['cooperativa'];?></td>
+                                                <td><?php echo $resultadoCoop['coop_cnpj'];?></td>
+                                                <td><?php echo $resultadoCoop['coop_telefone'];?></td>
                                                 <td><?php if($resultadoCoop['coop_status'] == 1){ echo  '<span class="badge badge-success rounded-pill d-inline">Ativo</span>';}else{echo  '<span class="badge badge-danger rounded-pill d-inline">Inativo</span>';}?></td>
                                                 <td class="text-center">
-                                                    <a href="editar-cooperativa.php?id=<?php echo $resultadoCoop['id_usuario']; ?>" class=""><i class="uil uil-edit text-warning"></i></a>
-                                                    <a href="../ferramentas/desativa-cooperativa.php?id=<?php echo $resultadoCoop['id_usuario']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-trash text-danger"></i></a>
+                                                    <a href="editar-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>" class=""><i class="uil uil-edit text-warning"></i></a>
+                                                    <a href="../ferramentas/desativa-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-trash text-danger"></i></a>
                                                 </td> 
                                             </tr>
                                             <?php
@@ -165,8 +169,8 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
       <div class="modal-body card-fundo-body">
           <form action="" method="POST">
               <div class="form-group col-md-12">
-               <label for="fnome">Nome</label>
-                                <input type="text" name="nome" id="fnome" class="form-control digitacao" placeholder="Insira um nome" autocomplete="off">
+               <label for="fnome">Nome Cooperativa</label>
+                                <input type="text" name="nome" id="fnome" class="form-control digitacao" placeholder="Insira o nome de uma Cooperativa" autocomplete="off">
               </div>
                                 <div class="form-group col-md-12">
                                                             <label for="fcooperativa">Cooperativa</label><br>
@@ -176,7 +180,7 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
                                                                    $buscaCoop = mysqli_query($conexao, "SELECT * FROM cooperativas");
                                                                    while($resultadoCoop = mysqli_fetch_assoc($buscaCoop)){
                                                                       ?>
-                                                                    <option value="<?php echo $resultadoCoop['cod_coop']?>"><?php echo $resultadoCoop['cooperativa']?></option>
+                                                                    <option value="<?php echo $resultadoCoop['cooperativa']?>"><?php echo $resultadoCoop['cooperativa']?></option>
                                                                     <?php
                                                                    }
                                                                    ?>                                                                </select>
@@ -284,7 +288,7 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body" style="background-color: #a3cfbb; color: #1c1d3c;"">
-                    <span> Usuário criado com sucesso!</span>
+                    <span> Cooperativa criada com sucesso!</span>
                 </div>
             </div>
         </div>';
@@ -297,7 +301,7 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body" style="background-color: #fff3cd; color: #1c1d3c;"">
-                    <span> Usuário desativado com sucesso!</span>
+                    <span> Cooperativa desativada com sucesso!</span>
                 </div>
             </div>
         </div>';
