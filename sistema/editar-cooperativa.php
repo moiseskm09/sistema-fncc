@@ -21,15 +21,12 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
         <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
         <!-- Styles -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
         <!-- Or for RTL support -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
-
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
         <script src="../js/mask.js"></script>
@@ -54,8 +51,8 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="card mb-3" style="border-radius: 15px; height: 100%;">
+                            <div class="col-lg-4 col-md-4 col-12 mb-3">
+                                <div class="card" style="border-radius: 15px; height: 100%;">
                                     <div class="card-body text-center">
                                         <img itle="Foto Perfil" src="../img/foto_perfil/cooperativas/<?php echo $LOGO_COOP; ?>" alt="foto perfil"
                                              class="rounded-circle img-fluid bg-light" style="width: 165px;">
@@ -81,11 +78,10 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                         </h5>
                                         <p class="text-muted mb-1"><?php echo ucwords(strtolower($resultadoBuscaInfo["coop_razao"])); ?></p>
                                         <p class="text-muted mb-4"><?php echo "<span class='destaque'>CNPJ:</span> ".$resultadoBuscaInfo["coop_cnpj"]; ?></p>
-                                        <!--<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#alterasenha">Alterar Senha</button>-->
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-8 col-md-8 col-12">
+                            <div class="col-lg-8 col-md-8 col-12 mb-3">
                                 <div class="card" style="border-radius: 15px; height: 100%;">
                                     <form action="" method="POST">
                                         <div class="card-body">
@@ -197,7 +193,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
 
                             <div class="col-lg-12 col-md-12 col-12">
                                 <div class="card mb-3 mt-3" style="border-radius: 15px;">
-                                    <div class="card-header header-filtro text-center" style="border-top-left-radius:15px; border-top-right-radius:15px;">
+                                    <div class="card-header header-filtro text-center fw-bold" style="border-top-left-radius:15px; border-top-right-radius:15px;">
                                         Contatos
                                     </div>
                                     <div class="card-body text-center">
@@ -227,11 +223,14 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                             
                             <div class="col-lg-12 col-md-12 col-12">
                                 <div class="card mb-3 mt-2" style="border-radius: 15px;">
-                                    <div class="card-header header-filtro text-center" style="border-top-left-radius:15px; border-top-right-radius:15px;">
+                                    <div class="card-header header-filtro text-center fw-bold" style="border-top-left-radius:15px; border-top-right-radius:15px;">
                                         Diretoria / Conselho Administração
                                     </div>
                                     <div class="card-body text-center">
                                         <div class="row">
+                                            <div class="col-12">
+                                                <button type="button" class="float-end btn btn-sm btn-outline-success p-1"><i class="uil uil-plus"></i> Adicionar</button>
+                                            </div>
                                             <div class="col-lg-3 col-md-3 col-12">
                                                     <div class="form-floating mb-3">
                                                         <input type="text" name="dca_nome" class="form-control" id="dca_nome" placeholder="Nome" value="<?php echo $resultadoBuscaInfo["dca_telefone"]; ?>">
@@ -268,11 +267,14 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                             </div>
                             <div class="col-lg-12 col-md-12 col-12">
                                 <div class="card mb-3 mt-2" style="border-radius: 15px;">
-                                    <div class="card-header header-filtro text-center" style="border-top-left-radius:15px; border-top-right-radius:15px;">
+                                    <div class="card-header header-filtro text-center fw-bold" style="border-top-left-radius:15px; border-top-right-radius:15px;">
                                         Conselho Fiscal
                                     </div>
                                     <div class="card-body text-center">
                                         <div class="row">
+                                            <div class="col-12">
+                                                <button type="button" class="float-end btn btn-sm btn-outline-success p-1"><i class="uil uil-plus"></i> Adicionar</button>
+                                            </div>
                                             <div class="col-lg-3 col-md-3 col-12">
                                                     <div class="form-floating mb-3">
                                                         <input type="text" name="cf_nome" class="form-control" id="cf_nome" placeholder="Nome" value="<?php echo $resultadoBuscaInfo["cf_telefone"]; ?>">
@@ -309,11 +311,14 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                             </div>
                             <div class="col-lg-12 col-md-12 col-12">
                                 <div class="card mb-3 mt-2" style="border-radius: 15px;">
-                                    <div class="card-header header-filtro text-center" style="border-top-left-radius:15px; border-top-right-radius:15px;">
-                                        Colaboradores
+                                    <div class="card-header header-filtro text-center fw-bold" style="border-top-left-radius:15px; border-top-right-radius:15px;">
+                                        <span>Colaboradores</span> 
                                     </div>
                                     <div class="card-body text-center">
                                         <div class="row">
+                                            <div class="col-12">
+                                                <button type="button" class="float-end btn btn-sm btn-outline-success p-1"><i class="uil uil-plus"></i> Adicionar</button>
+                                            </div>
                                             <div class="col-lg-4 col-md-4 col-12">
                                                     <div class="form-floating mb-3">
                                                         <input type="text" name="col_nome" class="form-control" id="col_nome" placeholder="Nome" value="<?php echo $resultadoBuscaInfo["col_nome"]; ?>">
