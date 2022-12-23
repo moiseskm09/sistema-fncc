@@ -50,7 +50,9 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                 </div>
                             </div>
                         </div>
+                        <form action="">
                         <div class="row">
+                            
                             <div class="col-lg-4 col-md-4 col-12 mb-3">
                                 <div class="card" style="border-radius: 15px; height: 100%;">
                                     <div class="card-body text-center">
@@ -229,8 +231,13 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                     <div class="card-body text-center">
                                         <div class="row">
                                             <div class="col-12">
-                                                <button type="button" class="float-end btn btn-sm btn-outline-success p-1"><i class="uil uil-plus"></i> Adicionar</button>
+                                                <button type="button" id="btn-dca" class="float-end btn btn-sm btn-outline-success p-1"><i class="uil uil-plus"></i> Adicionar</button>
                                             </div>
+                                        </div>
+                                            <div id="dcaadicionais">
+                              
+                                            </div>
+                                        <div class="row">
                                             <div class="col-lg-3 col-md-3 col-12">
                                                     <div class="form-floating mb-3">
                                                         <input type="text" name="dca_nome" class="form-control" id="dca_nome" placeholder="Nome" value="<?php echo $resultadoBuscaInfo["dca_telefone"]; ?>">
@@ -273,8 +280,15 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                     <div class="card-body text-center">
                                         <div class="row">
                                             <div class="col-12">
-                                                <button type="button" class="float-end btn btn-sm btn-outline-success p-1"><i class="uil uil-plus"></i> Adicionar</button>
+                                                <button type="button" id="btn-cf" class="float-end btn btn-sm btn-outline-success p-1"><i class="uil uil-plus"></i> Adicionar</button>
                                             </div>
+                                        </div>
+                                            <div id="cfadicionais">
+                              
+                                            </div>
+                                        
+                                        <div class="row">
+                                           
                                             <div class="col-lg-3 col-md-3 col-12">
                                                     <div class="form-floating mb-3">
                                                         <input type="text" name="cf_nome" class="form-control" id="cf_nome" placeholder="Nome" value="<?php echo $resultadoBuscaInfo["cf_telefone"]; ?>">
@@ -317,8 +331,13 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                     <div class="card-body text-center">
                                         <div class="row">
                                             <div class="col-12">
-                                                <button type="button" class="float-end btn btn-sm btn-outline-success p-1"><i class="uil uil-plus"></i> Adicionar</button>
+                                                <button type="button" id="btn-col" class="float-end btn btn-sm btn-outline-success p-1"><i class="uil uil-plus"></i> Adicionar</button>
                                             </div>
+                                        </div>
+                                            <div id="coladicionais">
+                              
+                                            </div>
+                                        <div class="row">
                                             <div class="col-lg-4 col-md-4 col-12">
                                                     <div class="form-floating mb-3">
                                                         <input type="text" name="col_nome" class="form-control" id="col_nome" placeholder="Nome" value="<?php echo $resultadoBuscaInfo["col_nome"]; ?>">
@@ -341,6 +360,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                     </div>
                                 </div>
                             </div>
+                        </form>
                         </div>
 
 
@@ -406,8 +426,9 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                             <button type="button" class="btn-success btn btn-sm" onClick="validarSenha()">Confirmar</button>
 
                         </div>
-                    </form>
+                    
                 </div>
+                </form>
             </div>
         </div>
 
@@ -478,6 +499,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                 }
             }
         </script>
+        <script src="../js/adiciona_campos_dca_cf_col.js"></script>
         <script src="../js/toast.js"></script>
         <script src="../js/campos_adicionais.js"></script>
         <script src="../js/cp_mascaras.js"></script>
