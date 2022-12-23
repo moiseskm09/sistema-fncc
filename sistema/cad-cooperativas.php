@@ -26,7 +26,7 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
     
     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
 
-    $sql_buscaCoops = mysqli_query($conexao, "SELECT cod_coop, cooperativa, coop_cnpj, coop_telefone, coop_status FROM cooperativas ORDER BY coop_status DESC, cooperativa LIMIT $inicio, $itens_por_pagina ");
+    $sql_buscaCoops = mysqli_query($conexao, "SELECT cod_coop, coop_matricula, cooperativa, coop_cnpj, coop_telefone, coop_status FROM cooperativas ORDER BY coop_status DESC, cooperativa LIMIT $inicio, $itens_por_pagina ");
     $numeroLinhas = mysqli_num_rows($sql_buscaCoops);
     $filtroON = 0;
 }
@@ -88,7 +88,7 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                             <table class="table table-borderless table-sm bg-white">
                                 <thead class="thead-tabela">
                                     <tr>
-                                        <th>Código</th>
+                                        <th>Mátricula</th>
                                         <th>Cooperativa</th>
                                         <th>CNPJ</th>
                                         <th>Telefone</th>
@@ -102,7 +102,7 @@ if (isset($_POST['nome'] , $_POST['fcooperativa'])) {
                                         while ($resultadoCoop = mysqli_fetch_assoc($sql_buscaCoops)) {
                                             ?>
                                             <tr class="linha-hover">
-                                                <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoCoop['cod_coop']; ?></span></td>
+                                                <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoCoop['coop_matricula']; ?></span></td>
                                                 <td><?php echo $resultadoCoop['cooperativa'];?></td>
                                                 <td><?php echo $resultadoCoop['coop_cnpj'];?></td>
                                                 <td><?php echo $resultadoCoop['coop_telefone'];?></td>
