@@ -115,45 +115,6 @@ nav > div a.nav-item.nav-link:focus
 	opacity: 1;				
 }
 
-
-
-.hori-timeline .events {
-    border-top: 3px solid #e9ecef;
-}
-.hori-timeline .events .event-list {
-    display: block;
-    position: relative;
-    text-align: center;
-    padding-top: 70px;
-    margin-right: 0;
-}
-.hori-timeline .events .event-list:before {
-    content: "";
-    position: absolute;
-    height: 36px;
-    border-right: 2px dashed #dee2e6;
-    top: 0;
-}
-.hori-timeline .events .event-list .event-date {
-    position: absolute;
-    top: 38px;
-    left: 0;
-    right: 0;
-    width: 120px;
-    margin: 0 auto;
-    border-radius: 4px;
-    padding: 2px 4px;
-}
-@media (min-width: 1140px) {
-    .hori-timeline .events .event-list {
-        display: inline-block;
-        width: 24%;
-        padding-top: 45px;
-    }
-    .hori-timeline .events .event-list .event-date {
-        top: -12px;
-    }
-}
 .form-select{
   border: 0;
   border-bottom: 2px solid lightgrey;
@@ -276,32 +237,6 @@ font-weight: 600;
             .card-rapido-body{
                 border-radius: 15px;
             }
-            
- 
-
-.imgVeiculo{
-    border-radius: 50%;
-    display: inline-block;
-    height: 60px;
-    width: 60px;
-    background-color: #3d0a91;
-    color: #ffffff;
-    font-size: 45px;
-    cursor: pointer;
-}
-
-
-.imgVeiculo:hover{
-    color: #ffffff;
-    background: #ff7f50;
-}
-
-.icone-camera{
-    margin-top: -7px;
-    margin-left: -22px;
-    position: absolute;
-}
-
 .header-filtro{
     background-color: #785aa2;
     color: #ffffff;

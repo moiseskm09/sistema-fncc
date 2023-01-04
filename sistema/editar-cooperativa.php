@@ -94,6 +94,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-12">
                                                         <div class="form-floating mb-3">
+                                                            <input type="hidden" name="cooperativaid" value="<?php echo $cooperativa;?>">
                                                             <input type="text" name="coop_razao" class="form-control" id="coop_razao" placeholder="Razão Social" value="<?php
                                                             echo ucwords(strtolower($resultadoBuscaInfo["coop_razao"]));
                                                             ;
@@ -228,6 +229,8 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                                     ?>
                                                     <div class="row mt-2 mb-2">
                                                         <div class="col-lg-4 col-md-4 col-12">
+                                                            <input type="hidden" name="dca_id[]" value="<?php echo $resultadoDCA["dca_id"]; ?>">
+                                                            <input type="hidden" name="dca_coop[]" value="<?php echo $cooperativa; ?>">
                                                             <div class="form-floating mb-3">
                                                                 <input type="text" name="dca_nome[]" class="form-control" id="dca_nome" placeholder="Nome" value="<?php echo $resultadoDCA["dca_nome"]; ?>">
                                                                 <label for="dca_nome">Nome</label>

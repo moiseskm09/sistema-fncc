@@ -17,7 +17,7 @@ and open the template in the editor.
  background-color: #1c1d3c;
 }
 .fundo-submenu {
-    background-color: #abb8c3;
+    background-color: #e7f1ff;
 }
 .link-menu {
     color:#1c1d3c !important;
@@ -38,6 +38,7 @@ and open the template in the editor.
     color:#1c1d3c !important;
     font-size: 16px;
     font-weight: 400;
+    border-bottom: 1px solid #785aa240 !important;
     
 }
 .link-submenu:hover{
@@ -60,7 +61,7 @@ and open the template in the editor.
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 10px;
 }
   
 ::-webkit-scrollbar-thumb {
