@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/12/2022 às 03:37
+-- Tempo de geração: 04/01/2023 às 11:57
 -- Versão do servidor: 10.4.22-MariaDB
 -- Versão do PHP: 8.1.2
 
@@ -85,7 +85,15 @@ CREATE TABLE IF NOT EXISTS `colaboradores_coop` (
   `col_email` varchar(50) NOT NULL,
   `col_coop` int(10) NOT NULL,
   PRIMARY KEY (`cod_col`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `colaboradores_coop`
+--
+
+INSERT INTO `colaboradores_coop` (`cod_col`, `col_nome`, `col_area`, `col_email`, `col_coop`) VALUES
+(1, 'EMANUELLE ROCHA PEQUENO', 'FINANCEIRO', 'MANUZINHA1213@GMAIL.COM', 1),
+(2, 'BENÍCIO ROCHA PEQUENO', 'TECNOLOGIA', 'BENICIO@BE-MK.COM', 1);
 
 -- --------------------------------------------------------
 
@@ -103,7 +111,14 @@ CREATE TABLE IF NOT EXISTS `conselho_fiscal` (
   `cf_mandato` date NOT NULL,
   `cf_coop` int(10) NOT NULL,
   PRIMARY KEY (`cf_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `conselho_fiscal`
+--
+
+INSERT INTO `conselho_fiscal` (`cf_id`, `cf_nome`, `cf_cargo`, `cf_telefone`, `cf_email`, `cf_mandato`, `cf_coop`) VALUES
+(1, 'KARINA JORDÃO ROCHA PEQUENO', 'FISCAL', '(11) 9 6178-4667', 'NINA.ROCHA91@GMAIL.COM', '2023-12-31', 1);
 
 -- --------------------------------------------------------
 
@@ -217,7 +232,14 @@ CREATE TABLE IF NOT EXISTS `diretoria_conselhoadm` (
   `dca_mandato` date NOT NULL,
   `dca_coop` int(10) NOT NULL,
   PRIMARY KEY (`dca_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `diretoria_conselhoadm`
+--
+
+INSERT INTO `diretoria_conselhoadm` (`dca_id`, `dca_nome`, `dca_cargo`, `dca_telefone`, `dca_email`, `dca_mandato`, `dca_coop`) VALUES
+(1, 'MOISES PEQUENO DO ROSÁRIO', 'DIRETOR EXECUTIVO', '(11) 9 6303-3778', 'MOISES@BE-MK.COM', '2023-12-31', 1);
 
 -- --------------------------------------------------------
 
