@@ -212,62 +212,68 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
           <form action="../ferramentas/adiciona-usuario.php" method="POST">
                <!-- info obrigatoria -->
 <div class="form-row">
-                                <div class="col-md-12">
-                                                <div class="card-body card-fundo-body">
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label for="nome">Nome<span class="text-danger"> *</span></label>
-                                                            <input type="text" class="form-control digitacao" id="nome" name="nome" required>
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label for="sobrenome">Sobrenome<span class="text-danger"> *</span></label>
-                                                            <input type="text" class="form-control digitacao" id="sobrenome" name="sobrenome" required>
-                                                        </div>
-                                                        
-                                                        <div class="form-group col-md-6">
-                                                            <label for="cooperativa">Cooperativa <span class="text-danger"> *</span></label><br>
-                                                            <select id="cooperativa" name="cooperativa" class="digitacao pesquisa-select" required>
-                                                                   <?php 
-                                                                   $buscaCoop = mysqli_query($conexao, "SELECT * FROM cooperativas");
-                                                                   while($resultadoCoop = mysqli_fetch_assoc($buscaCoop)){
-                                                                      ?>
-                                                                    <option value="<?php echo $resultadoCoop['cod_coop']?>"><?php echo $resultadoCoop['cooperativa']?></option>
-                                                                    <?php
-                                                                   }
-                                                                   ?>                                                                </select>
-                                                            </div>
-
-                                                        <div class="form-group col-md-6">
-                                                            <label for="email">Email <span class="text-danger">*</span></label></label>
-                                                            <input type="email" class="form-control digitacao" id="email" name="email" required>
-                                                        </div>
-
-                                                        <div class="form-group col-md-6">
-                                                            <label for="usuario">Usuário<span class="text-danger"> *</span></label>
-                                                            <input type="text" class="form-control digitacao" id="usuario" name="usuario" required>
-                                                        </div>
-                                                        
-                                                        <div class="form-group col-md-6">
-                                                            <label for="nivel">Perfil de Acesso <span class="text-danger"> *</span></label><br>
-                                                            <select id="nivel" name="nivel" class="digitacao pesquisa-select" required>
-                                                                   <?php 
-                                                                   $buscaNivel = mysqli_query($conexao, "SELECT * FROM perfis_usuarios");
-                                                                   while($resultadoNivel = mysqli_fetch_assoc($buscaNivel)){
-                                                                      ?>
-                                                                    <option value="<?php echo $resultadoNivel['p_cod']?>"><?php echo $resultadoNivel['perfil']?></option>
-                                                                    <?php
-                                                                   }
-                                                                   ?>                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                </div>
-                                    <div class="form-group col-md-12">
-                                        <button type="submit" class="btn btn-success loading float-right">Adicionar <i class="uil uil-plus"></i></button>
-                                    </div>
-                                </div>
+  <div class="col-lg-6 col-md-6 col-12">
+    <div class="form-floating mb-3">
+      <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" autocomplete="off" required>
+      <label for="nome">Nome</label>
+    </div>  
+  </div>
+  <div class="col-lg-6 col-md-6 col-12">
+    <div class="form-floating mb-3">
+      <input type="text" name="sobrenome" class="form-control" id="sobrenome" placeholder="Sobrenome" autocomplete="off" required>
+      <label for="sobrenome">Sobrenome</label>
+    </div>  
+  </div>
+  <div class="col-lg-6 col-md-6 col-12">
+    <div class="form-floating mb-3">
+      <select class="form-select pesquisa-select" id="cooperativa" name="cooperativa" required>
+        <option selected>Selecione</option>
+        <?php
+        $buscaCoop = mysqli_query($conexao, "SELECT * FROM cooperativas");
+        while ($resultadoCoop = mysqli_fetch_assoc($buscaCoop)) {
+            ?>
+            <option value="<?php echo $resultadoCoop['cod_coop'] ?>"><?php echo $resultadoCoop['cooperativa'] ?></option>
+            <?php
+        }
+        ?>
+      </select>
+      <label for="floatingSelect">Cooperativa</label>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-12">
+                              <div class="form-floating mb-3">
+                                <input type="email" name="email" class="form-control" id="email" placeholder="E-mail" autocomplete="off" required>
+                                <label for="email">E-mail</label>
+                              </div>  
+                            </div>
+  <div class="col-lg-6 col-md-6 col-12">
+    <div class="form-floating mb-3">
+      <input type="text" name="usuario" class="form-control" id="usuario" placeholder="Usuário" autocomplete="off" required>
+      <label for="usuario">Usuário</label>
+    </div>  
+  </div>
+  <div class="col-lg-6 col-md-6 col-12">
+    <div class="form-floating mb-3">
+      <select class="form-select pesquisa-select" id="nivel" name="nivel" required>
+        <option selected>Selecione</option>
+        <?php
+        $buscaNivel = mysqli_query($conexao, "SELECT * FROM perfis_usuarios");
+        while ($resultadoNivel = mysqli_fetch_assoc($buscaNivel)) {
+            ?>
+            <option value="<?php echo $resultadoNivel['p_cod'] ?>"><?php echo $resultadoNivel['perfil'] ?></option>
+            <?php
+        }
+        ?> 
+      </select>
+      <label for="floatingSelect">Perfil de Acesso</label>
+    </div>
+  </div>
+   
+  <div class="col-12 text-left">
+                          <button type="submit" class="btn btn-success btn-md"><i class="uil uil-plus"></i> Adicionar</button>
+                        </div>
                             </div>                           
                             <!-- info obrigatoria -->
-        
         </form>
       </div>
     </div>
@@ -312,7 +318,7 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
         </div>
         <script>
 $( '.pesquisa-select' ).select2( {
-    theme: 'bootstrap-5'
+    theme: 'bootstrap-5';
 } );
         </script>  
         <script src="../js/toast.js"></script>
