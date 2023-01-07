@@ -3,18 +3,19 @@ require_once '../config/sessao.php';
 require_once '../config/conexao.php';
 require_once '../config/config_geral.php';
 
-if (isset($_GET['nome'])) {
-    $nome = $_GET['nome'];
-    $sql_buscaUsuarios = mysqli_query($conexao, "SELECT * FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop WHERE nome LIKE '%$nome%'");
-    $numeroLinhas = mysqli_num_rows($sql_buscaUsuarios);
-    $filtroON = 1;
-} else{
 
+if($_GET['titulo_doc']){
+     $titulo_doc = $_GET['titulo_doc'];
+    $sql_buscaDocs = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria WHERE titulo_documento LIKE '%$titulo_doc%'");
+    $numeroLinhas = mysqli_num_rows($sql_buscaDocs);
+    $filtroON = 1;
+       
+}else{
+   $categoria_documento = $_GET['id'];
     //verifica a página atual caso seja informada na URL, senão atribui como 1ª página 
     $pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1; 
-
     //pegar todos os registros do banco de dados
-    $sql = mysqli_query($conexao, "SELECT id_usuario FROM usuarios WHERE u_status != '0'");
+    $sql = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria");
     $numeroTotalLinhas = mysqli_num_rows($sql);
 
     //define o numero de itens por pagina
@@ -25,8 +26,8 @@ if (isset($_GET['nome'])) {
     
     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
 
-    $sql_buscaUsuarios = mysqli_query($conexao, "SELECT id_usuario, nome, sobrenome, email, u_status, cooperativa FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop ORDER BY u_status DESC, nome LIMIT $inicio, $itens_por_pagina ");
-    $numeroLinhas = mysqli_num_rows($sql_buscaUsuarios);
+    $sql_buscaDocs = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria LIMIT $inicio, $itens_por_pagina ");
+    $numeroLinhas = mysqli_num_rows($sql_buscaDocs);
     $filtroON = 0;
 }
 ?>
@@ -53,7 +54,6 @@ if (isset($_GET['nome'])) {
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
         <script src="../js/mask.js"></script>
         <script src="../js/busca-cep.js"></script>
         <script src="../js/loading.js"></script>
@@ -69,48 +69,42 @@ if (isset($_GET['nome'])) {
                 <main>
                     <div class="container-fluid">
                        <!--conteudo da tela aqui!-->
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h5 class="titulo">Usuários</h5>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+                            <h5 class="titulo">Inclusão de Documentos</h5>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
-                                    <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
-                                    <a class="btn btn-sm btn-success" href="#adicionaUsuario" data-toggle="modal" data-target="#adicionaUsuario"><i class="uil uil-plus"></i> Adicionar</a>
+                                    <a class="btn btn-sm btn-warning mb-1" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
+                                    <a class="btn btn-sm btn-success mb-1" href="#adicionaUsuario" data-toggle="modal" data-target="#adicionaUsuario"><i class="uil uil-plus"></i> Adicionar Documento</a>
+                                    <a class="text-white btn btn-sm btn-info mb-1" href="#adicionaUsuario" data-toggle="modal" data-target="#adicionaUsuario"><i class="uil uil-plus"></i> Adicionar Categoria</a>
                                     <?php if($filtroON === 1){ ?>
-                                    <a class="btn btn-sm btn-dark" href="cad-usuarios.php"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
+                                    <a class="btn btn-sm btn-dark mb-1" href="incluir-doc.php"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
                                     <?php } ?>
-                                    <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro"><i class="uil uil-filter"></i> Filtrar</a>
+                                    <a class="btn btn-sm btn-primary mb-1" href="#filtro" data-toggle="modal" data-target="#filtro"><i class="uil uil-filter"></i> Filtrar</a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-borderless table-sm bg-white">
-                                <thead class="thead-tabela">
+                            <table class="table table-borderless table-sm" style= "white-space: nowrap;">
+                                <thead class="border thead-tabela">
                                     <tr>
                                         <th>Código</th>
-                                        <th>Nome</th>
-                                        <th>Sobrenome</th>
-                                        <th>Cooperativa</th>
-                                        <th>E-mail</th>
-                                        <th>Status</th>
+                                        <th>Título</th>
+                                        <th>Categoria</th>
                                         <th class="text-center">Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white p-0">
+                                <tbody class="border bg-white">
                                     <?php
                                     if ($numeroLinhas > 0) {
-                                        while ($resultadoUsuario = mysqli_fetch_assoc($sql_buscaUsuarios)) {
+                                        while ($resultadoDoc = mysqli_fetch_assoc($sql_buscaDocs)) {
                                             ?>
                                             <tr class="linha-hover">
-                                                <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoUsuario['id_usuario']; ?></span></td>
-                                                <td><?php echo ucwords(strtolower($resultadoUsuario['nome']));?></td>
-                                                <td><?php echo $resultadoUsuario['sobrenome'];?></td>
-                                                <td><?php echo $resultadoUsuario['cooperativa'];?></td>
-                                                <td><?php echo $resultadoUsuario['email'];?></td>
-                                                <td><?php if($resultadoUsuario['u_status'] == 1){ echo  '<span class="badge badge-success rounded-pill d-inline">Ativo</span>';}else{echo  '<span class="badge badge-danger rounded-pill d-inline">Inativo</span>';}?></td>
+                                                <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoDoc['cod_documento']; ?></span></td>
+                                                <td style="font-size:15px;"><?php echo ucwords(strtolower($resultadoDoc['titulo_documento']));?></td>
+                                                <td style="font-size:15px;"><?php echo $resultadoDoc['categoria'];?></td>
                                                 <td class="text-center">
-                                                    <a href="editar-usuario.php?id=<?php echo $resultadoUsuario['id_usuario']; ?>" class=""><i class="uil uil-edit text-white btn-sm btn-primary"></i></a>
-                                                    <a href="../ferramentas/desativa-usuario.php?id=<?php echo $resultadoUsuario['id_usuario']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-trash text-white btn-sm btn-danger"></i></a>
+                                                <a title="Fazer Download" href="../ferramentas/download_documento.php?cod_categoria=<?php echo $resultadoDoc['categoria_documento']; ?>&nome_doc=<?php echo $resultadoDoc['nome_documento']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-trash text-white btn-sm btn-danger"></i></a>
                                                 </td> 
                                             </tr>
                                             <?php
@@ -124,14 +118,14 @@ if (isset($_GET['nome'])) {
                                     }
                                     ?>
                                 </tbody>
-                                <tfoot class="p-0">
+                                <tfoot>
                                     <tr>
                                         <td colspan="3"><?php echo "Mostrando ".$numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
                                         <td colspan="4">
                                             <nav>
                                     <ul class="pagination pagination-sm justify-content-end">
-                                        <li class="page-item">
-                                            <a class="page-link" href="?pagina=1" tabindex="-1"><span aria-hidden="true">&laquo;</span>
+                                        <li class="page-item ">
+                                            <a class="page-link" href="<?php echo "?id=".$categoria_documento?>&pagina=1" tabindex="-1"><span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Primeira</span></a>
                                         </li>
 <?php
@@ -141,11 +135,11 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
         $estilo = 'active';
     }
     ?>
-                                            <li class="page-item <?php echo $estilo; ?>"><a class="page-link" href="?pagina=<?php echo $i;?>"><?php echo $i;?></a></li>
+                                            <li class="page-item <?php echo $estilo; ?>"><a class="page-link" href="<?php echo "?id=".$categoria_documento?>&pagina=<?php echo $i;?>"><?php echo $i;?></a></li>
                                         <?php }
                                         ?>
                                         <li class="page-item">
-                                            <a class="page-link" href="?pagina=<?php echo $numero_paginas?>"><span aria-hidden="true">&raquo;</span>
+                                            <a class="page-link" href="<?php echo "?id=".$categoria_documento?>&pagina=<?php echo $numero_paginas?>"><span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Última</span></a>
                                         </li>
                                     </ul>
@@ -170,10 +164,11 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
       <div class="modal-body card-fundo-body">
           <form action="" method="GET">
             <div class="row">
+              <input type="hidden" name="cod_categoria_doc" id="cod_categoria_doc" class="form-control digitacao" value="<?php echo $categoria_documento;?>">
                 <div class="col-lg-12 col-md-12 col-12">
                           <div class="form-floating mb-3">
-                            <input type="text" name="nome" id="fnome" class="form-control" placeholder="Nome" autocomplete="off" required>
-                            <label for="fnome">Nome</label>
+                            <input type="text" name="titulo_doc" id="titulo_doc" class="form-control" placeholder="Insira o título do documento" autocomplete="off" required>
+                            <label for="nome">Título do Documento</label>
                           </div>  
                         </div>
             </div>
@@ -187,88 +182,7 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
     </div>
   </div>
 </div>
-                       
-                                              <!-- Modal adiciona usuario -->
-<div class="modal fade" id="adicionaUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header header-filtro">
-        <h5 class="modal-title" id="exampleModalLabel">Cadastrar Usuário</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body card-fundo-body">
-          <form action="../ferramentas/adiciona-usuario.php" method="POST">
-               <!-- info obrigatoria -->
-<div class="form-row">
-  <div class="col-lg-6 col-md-6 col-12">
-    <div class="form-floating mb-3">
-      <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" autocomplete="off" required>
-      <label for="nome">Nome</label>
-    </div>  
-  </div>
-  <div class="col-lg-6 col-md-6 col-12">
-    <div class="form-floating mb-3">
-      <input type="text" name="sobrenome" class="form-control" id="sobrenome" placeholder="Sobrenome" autocomplete="off" required>
-      <label for="sobrenome">Sobrenome</label>
-    </div>  
-  </div>
-  <div class="col-lg-6 col-md-6 col-12">
-    <div class="form-floating mb-3">
-      <select class="form-select pesquisa-select" id="cooperativa" name="cooperativa" required>
-        <option selected>Selecione</option>
-        <?php
-        $buscaCoop = mysqli_query($conexao, "SELECT * FROM cooperativas");
-        while ($resultadoCoop = mysqli_fetch_assoc($buscaCoop)) {
-            ?>
-            <option value="<?php echo $resultadoCoop['cod_coop'] ?>"><?php echo $resultadoCoop['cooperativa'] ?></option>
-            <?php
-        }
-        ?>
-      </select>
-      <label for="floatingSelect">Cooperativa</label>
-    </div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-12">
-                              <div class="form-floating mb-3">
-                                <input type="email" name="email" class="form-control" id="email" placeholder="E-mail" autocomplete="off" required>
-                                <label for="email">E-mail</label>
-                              </div>  
-                            </div>
-  <div class="col-lg-6 col-md-6 col-12">
-    <div class="form-floating mb-3">
-      <input type="text" name="usuario" class="form-control" id="usuario" placeholder="Usuário" autocomplete="off" required>
-      <label for="usuario">Usuário</label>
-    </div>  
-  </div>
-  <div class="col-lg-6 col-md-6 col-12">
-    <div class="form-floating mb-3">
-      <select class="form-select pesquisa-select" id="nivel" name="nivel" required>
-        <option selected>Selecione</option>
-        <?php
-        $buscaNivel = mysqli_query($conexao, "SELECT * FROM perfis_usuarios");
-        while ($resultadoNivel = mysqli_fetch_assoc($buscaNivel)) {
-            ?>
-            <option value="<?php echo $resultadoNivel['p_cod'] ?>"><?php echo $resultadoNivel['perfil'] ?></option>
-            <?php
-        }
-        ?> 
-      </select>
-      <label for="floatingSelect">Perfil de Acesso</label>
-    </div>
-  </div>
-   
-  <div class="col-12 text-left">
-                          <button type="submit" class="btn btn-success btn-md"><i class="uil uil-plus"></i> Adicionar</button>
-                        </div>
-                            </div>                           
-                            <!-- info obrigatoria -->
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
                        <!--fim conteudo da tela aqui!-->
                     </div>
                 </main>
@@ -308,10 +222,10 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
         </div>
         <script>
 $( '.pesquisa-select' ).select2( {
-    theme: 'bootstrap-5';
+    theme: 'bootstrap-5'
 } );
         </script>  
-        <script src="../js/toast.js"></script>
+<script src="../js/toast.js"></script>
         <script src="../js/campos_adicionais.js"></script>
         <script src="../js/cp_mascaras.js"></script>
         <script src="../js/scripts.js"></script>
@@ -319,6 +233,6 @@ $( '.pesquisa-select' ).select2( {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
-    <script src="../js/desativar.js"></script>
+<script src="../js/desativar.js"></script>
     </body>
 </html>

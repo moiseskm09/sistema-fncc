@@ -3,10 +3,9 @@ require_once '../config/sessao.php';
 require_once '../config/conexao.php';
 require_once '../config/config_geral.php';
 
-if (isset($_GET['nome'], $_GET['fcooperativa'])) {
+if (isset($_GET['nome'])) {
     $nome = $_GET['nome'];
-    $fcooperativa = $_GET['fcooperativa'];
-    $sql_buscaCoops = mysqli_query($conexao, "SELECT * FROM cooperativas  where cooperativa LIKE '%$nome%' and cooperativa LIKE '%$fcooperativa%'");
+    $sql_buscaCoops = mysqli_query($conexao, "SELECT * FROM cooperativas where cooperativa LIKE '%$nome%'");
     $numeroLinhas = mysqli_num_rows($sql_buscaCoops);
     $filtroON = 1;
 } else {
@@ -172,26 +171,17 @@ if (isset($_GET['nome'], $_GET['fcooperativa'])) {
                   </div>
                   <div class="modal-body card-fundo-body">
                     <form action="" method="GET">
-                      <div class="form-group col-md-12">
-                        <label for="fnome">Nome Cooperativa</label>
-                        <input type="text" name="nome" id="fnome" class="form-control digitacao" placeholder="Insira o nome de uma Cooperativa" autocomplete="off">
-                      </div>
-                      <div class="form-group col-md-12">
-                        <label for="fcooperativa">Cooperativa</label><br>
-                        <select id="fcooperativa" name="fcooperativa" class="digitacao pesquisa-select">
-                          <option value="">Selecione</option>
-                          <?php
-                          $buscaCoop = mysqli_query($conexao, "SELECT * FROM cooperativas");
-                          while ($resultadoCoop = mysqli_fetch_assoc($buscaCoop)) {
-                              ?>
-                              <option value="<?php echo $resultadoCoop['cooperativa'] ?>"><?php echo $resultadoCoop['cooperativa'] ?></option>
-    <?php
-}
-?>                                                                </select>
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-12">
+    <div class="form-floating mb-3">
+      <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" autocomplete="off" required>
+      <label for="nome">Nome da Cooperativa</label>
+    </div>  
+  </div>                   
                       </div>
                   </div>
                   <div class="modal-footer card-fundo-body p-1">
-                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i>Cancelar</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
                     <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-filter"></i> Filtrar</button>
 
                     </form>

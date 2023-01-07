@@ -70,15 +70,15 @@ if($_GET['id']){
                 <main>
                     <div class="container-fluid">
                        <!--conteudo da tela aqui!-->
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
                             <h5 class="titulo">Documentos</h5>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
-                                    <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i>Voltar</a>
+                                    <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
                                     <?php if($filtroON === 1){ ?>
-                                    <a class="btn btn-sm btn-dark" href="docs_visualizacao.php?id=<?php echo $categoria_documento; ?>"><i class="uil uil-filter-slash"></i>Limpar Filtro</a>
+                                    <a class="btn btn-sm btn-dark" href="docs_visualizacao.php?id=<?php echo $categoria_documento; ?>"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
                                     <?php } ?>
-                                    <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro">Filtrar <i class="uil uil-filter"></i></a>
+                                    <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro"><i class="uil uil-filter"></i> Filtrar</a>
                                 </div>
                             </div>
                         </div>
@@ -100,10 +100,10 @@ if($_GET['id']){
                                             ?>
                                             <tr class="linha-hover">
                                                 <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoDoc['cod_documento']; ?></span></td>
-                                                <td><?php echo ucwords(strtolower($resultadoDoc['titulo_documento']));?></td>
-                                                <td><?php echo $resultadoDoc['categoria'];?></td>
+                                                <td style="font-size:15px;"><?php echo ucwords(strtolower($resultadoDoc['titulo_documento']));?></td>
+                                                <td style="font-size:15px;"><?php echo $resultadoDoc['categoria'];?></td>
                                                 <td class="text-center">
-                                                <a title="Fazer Download" href="../ferramentas/download_documento.php?cod_categoria=<?php echo $resultadoDoc['categoria_documento']; ?>&nome_doc=<?php echo $resultadoDoc['nome_documento']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-import text-info"></i></i></a>
+                                                <a title="Fazer Download" href="../ferramentas/download_documento.php?cod_categoria=<?php echo $resultadoDoc['categoria_documento']; ?>&nome_doc=<?php echo $resultadoDoc['nome_documento']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-import text-dark btn-sm btn-info"></i></a>
                                                 </td> 
                                             </tr>
                                             <?php
@@ -162,15 +162,19 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
       </div>
       <div class="modal-body card-fundo-body">
           <form action="" method="GET">
-              <div class="form-group col-md-12">
-               <label for="titulo_doc">Título do Documento</label>
-                                <input type="text" name="titulo_doc" id="titulo_doc" class="form-control digitacao" placeholder="Insira o título do documento" autocomplete="off">
-                                <input type="hidden" name="cod_categoria_doc" id="cod_categoria_doc" class="form-control digitacao" value="<?php echo $categoria_documento;?>">
-              </div>
+            <div class="row">
+              <input type="hidden" name="cod_categoria_doc" id="cod_categoria_doc" class="form-control digitacao" value="<?php echo $categoria_documento;?>">
+                <div class="col-lg-12 col-md-12 col-12">
+                          <div class="form-floating mb-3">
+                            <input type="text" name="titulo_doc" id="titulo_doc" class="form-control" placeholder="Insira o título do documento" autocomplete="off" required>
+                            <label for="nome">Título do Documento</label>
+                          </div>  
+                        </div>
+            </div>
       </div>
       <div class="modal-footer card-fundo-body p-1">
-        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar <i class="uil uil-times"></i></button>
-        <button type="submit" class="btn btn-success loading btn-sm">Filtrar <i class="uil uil-filter"></i></button>
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
+        <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-filter"></i> Filtrar</button>
         
         </form>
       </div>

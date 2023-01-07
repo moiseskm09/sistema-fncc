@@ -72,11 +72,11 @@ if (isset($_GET['titulo_cat'])) {
                             <h5 class="titulo">Modelos de Documentos</h5>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
-                                    <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i>Voltar</a>
+                                    <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
                                     <?php if ($filtroON === 1) { ?>
-                                        <a class="btn btn-sm btn-dark" href="visualizar_doc.php"><i class="uil uil-filter-slash"></i>Limpar Filtro</a>
+                                        <a class="btn btn-sm btn-dark" href="visualizar_doc.php"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
                                     <?php } ?>
-                                    <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro">Filtrar <i class="uil uil-filter"></i></a>
+                                    <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro"><i class="uil uil-filter"></i> Filtrar</a>
                                 </div>
                             </div>
                         </div>
@@ -118,14 +118,18 @@ if (isset($_GET['titulo_cat'])) {
                                     </div>
                                     <div class="modal-body card-fundo-body">
                                         <form action="" method="GET">
-                                            <div class="form-group col-md-12">
-                                                <label for="titulo_cat">Título da Categoria</label>
-                                                <input type="text" name="titulo_cat" id="titulo_cat" class="form-control digitacao" placeholder="Insira o Título da Categoria" autocomplete="off">
-                                            </div>
+                                          <div class="row">
+                                              <div class="col-lg-12 col-md-12 col-12">
+                          <div class="form-floating mb-3">
+                            <input type="text" name="titulo_cat" id="titulo_cat" class="form-control" placeholder="Título da Categoria" autocomplete="off" required>
+                            <label for="titulo_cat">Título da Categoria</label>
+                          </div>  
+                        </div>
+                                          </div>
                                     </div>
                                     <div class="modal-footer card-fundo-body p-1">
                                         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar <i class="uil uil-times"></i></button>
-                                        <button type="submit" class="btn btn-success loading btn-sm">Filtrar <i class="uil uil-filter"></i></button>
+                                        <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-filter"></i> Filtrar</button>
 
                                         </form>
                                     </div>

@@ -43,31 +43,47 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                         <!--conteudo da tela aqui!-->
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                             <h4 class="titulo">Editando <span class="destaque"><?php echo $resultadoBuscaInfo['nome']; ?></span></h4>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                                <div class="mr-2">
+                                    <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
+                                </div>
+                            </div>
                         </div>
                         <form id="formulario" method="POST" action="">
                             <!-- info obrigatoria -->
-                            <input type="hidden" value="<?php echo $usuario; ?>" id="codMoradorPrincipal" name="idUsuario">
-                            <div class="form-row mt-3">
-                                <div class="col-md-12">
-                                    <div class="accordion" id="selecioneperfil">
-                                        <div class="card border-0 mb-2" style="border-radius: 10px;">
-                                            <a href="#infoobrigatoria" data-toggle="collapse"  aria-expanded="true" aria-controls="informacoesObrigatorias" class="text-center header-filtro p-2 borda">Informações Obrigatórias</a>
-
-                                            <div id="infoobrigatoria" class="collapse show" aria-labelledby="headingOne" data-parent="#infoobrigatoria">
-                                                <div class="card-body card-fundo-body">
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label for="nome">Nome<span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control digitacao" id="nome" name="nome" value="<?php echo $resultadoBuscaInfo['nome']; ?>">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label for="sobrenome">Sobrenome<span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control digitacao" id="sobrenome" name="sobrenome" value="<?php echo $resultadoBuscaInfo['sobrenome']; ?>">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label for="cooperativa">Cooperativa</label><br>
-                                                            <select id="cooperativa" name="cooperativa" class="form-control digitacao pesquisa-select">
-                                                                <option value="<?php echo $resultadoBuscaInfo['cod_coop']; ?>"><?php echo $resultadoBuscaInfo['cooperativa']; ?></option>
+                            <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <span class="destaque fw-bold">Informações Obrigatórias</span>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="row">
+          <input type="hidden" value="<?php echo $usuario; ?>" name="idUsuario">
+                <div class="col-lg-6 col-md-6 col-12">
+                          <div class="form-floating mb-3">
+                            <input type="text" name="nome" id="nome" class="form-control" value="<?php echo $resultadoBuscaInfo['nome']; ?>" placeholder="Nome" autocomplete="off" required>
+                            <label for="nome">Nome</label>
+                          </div>  
+                        </div>
+          <div class="col-lg-6 col-md-6 col-12">
+                          <div class="form-floating mb-3">
+                            <input type="text" name="sobrenome" id="sobrenome" class="form-control" value="<?php echo $resultadoBuscaInfo['sobrenome']; ?>" placeholder="Sobrenome" autocomplete="off" required>
+                            <label for="sobrenome">Sobrenome</label>
+                          </div>  
+                        </div>
+          <div class="col-lg-6 col-md-6 col-12">
+                              <div class="form-floating mb-3">
+                                <input type="email" name="email" class="form-control" id="email"  value="<?php echo $resultadoBuscaInfo['email']; ?>"placeholder="E-mail" autocomplete="off" required>
+                                <label for="email">E-mail</label>
+                              </div>  
+                            </div>
+          <div class="col-lg-6 col-md-6 col-12">
+    <div class="form-floating mb-3">
+      <select class="form-select pesquisa-select" id="cooperativa" name="cooperativa" required>
+        <option value="<?php echo $resultadoBuscaInfo['cod_coop']; ?>"><?php echo $resultadoBuscaInfo['cooperativa']; ?></option>
                                                                 <?php
                                                                 $buscaCoop = mysqli_query($conexao, "SELECT * FROM cooperativas where cod_coop !=" . $resultadoBuscaInfo['cod_coop'] . "");
                                                                 while ($resultadoCoop = mysqli_fetch_assoc($buscaCoop)) {
@@ -75,21 +91,21 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                                                     <option value="<?php echo $resultadoCoop['cod_coop'] ?>"><?php echo $resultadoCoop['cooperativa'] ?></option>
                                                                     <?php
                                                                 }
-                                                                ?>                                                                </select>
-                                                        </div>                                       
-                                                        <div class="form-group col-md-6">
-                                                            <label for="email">Email <span class="text-danger">*</span></label></label>
-                                                            <input type="email" class="form-control digitacao" id="email" name="email" value="<?php echo $resultadoBuscaInfo['email']; ?>">
-                                                        </div>
-
-                                                        <div class="form-group col-md-4 col-12">
-                                                            <label for="usuario">Usuário <span class="text-danger"> *</span></label></label>
-                                                            <input type="text" class="form-control digitacao" id="usuario" name="usuario" value="<?php echo $resultadoBuscaInfo['usuario']; ?>">
-                                                        </div>
-                                                        <div class="form-group col-md-4 col-12">
-                                                            <label for="nivel">Nível de Acesso</label><br>
-                                                            <select id="nivel" name="nivel" class="form-control digitacao pesquisa-select">
-                                                                <option value="<?php echo $resultadoBuscaInfo['p_cod']; ?>"><?php echo $resultadoBuscaInfo['perfil']; ?></option>
+                                                                ?> 
+      </select>
+      <label for="cooperativa">Cooperativa</label>
+    </div>
+  </div>
+          <div class="col-lg-4 col-md-4 col-12">
+    <div class="form-floating mb-3">
+      <input type="text" name="usuario" class="form-control" id="usuario" value="<?php echo $resultadoBuscaInfo['usuario']; ?>" placeholder="Usuário" autocomplete="off" required>
+      <label for="usuario">Usuário</label>
+    </div>  
+  </div>
+          <div class="col-lg-4 col-md-4 col-12">
+    <div class="form-floating mb-3">
+      <select class="form-select pesquisa-select" id="nivel" name="nivel" required>
+        <option value="<?php echo $resultadoBuscaInfo['p_cod']; ?>"><?php echo $resultadoBuscaInfo['perfil']; ?></option>
                                                                 <?php
                                                                 $buscaNivel = mysqli_query($conexao, "SELECT * FROM perfis_usuarios where p_cod !=" . $resultadoBuscaInfo['user_nivel'] . "");
                                                                 while ($resultadoNivel = mysqli_fetch_assoc($buscaNivel)) {
@@ -97,12 +113,16 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                                                     <option value="<?php echo $resultadoNivel['p_cod'] ?>"><?php echo $resultadoNivel['perfil'] ?></option>
                                                                     <?php
                                                                 }
-                                                                ?>                                                                </select>
-                                                        </div>
-                                                        <div class="form-group col-md-4 col-12">
-                                                            <label for="status">Status</label><br>
-                                                            <select id="status" name="status" class="form-control digitacao pesquisa-select">
-                                                                <?php
+                                                                ?>
+      </select>
+      <label for="floatingSelect">Perfil de Acesso</label>
+    </div>
+  </div>
+          
+          <div class="col-lg-4 col-md-4 col-12">
+    <div class="form-floating mb-3">
+      <select class="form-select pesquisa-select" id="status" name="status" required>
+        <?php
                                                                 if ($resultadoBuscaInfo['u_status'] == 1) {
                                                                     echo "<option selected value='" . $resultadoBuscaInfo['u_status'] . "'>Ativo</option>";
                                                                     echo "<option value='0'>Inativo</option>";
@@ -110,20 +130,33 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                                                     echo "<option selected value='" . $resultadoBuscaInfo['u_status'] . "'>Inativo</option>";
                                                                     echo "<option value='1'>Ativo</option>";
                                                                 }
-                                                                ?>                                                               
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                           
+                                                                ?>
+      </select>
+      <label for="status">Status</label>
+    </div>
+  </div>
+          <div class="col-12 text-left">
+                          <button type="submit" class="btn btn-success btn-md"><i class="uil uil-sync"></i> Atualizar Dados</button>
+                        </div>
+            </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                                                     
                             <!-- info obrigatoria -->
-
-                            <button type="submit" class="btn btn-success loading">Atualizar cadastro</button>
                         </form>
                         <?php include_once "../ferramentas/modal_loading.php"; ?> 
                         <!--fim conteudo da tela aqui!-->
@@ -158,7 +191,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body" style="background-color: #a3cfbb; color: #1c1d3c;"">
-                    <span> Sucesso!</span>
+                    <span>Dados Atualizados com Sucesso!</span>
                 </div>
             </div>
         </div>';
@@ -166,7 +199,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
         ?>
         <script>
             $('.pesquisa-select').select2({
-                theme: 'bootstrap-5'
+                theme: 'bootstrap-5';
             });
 
         </script>  
