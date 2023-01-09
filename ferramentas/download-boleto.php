@@ -1,9 +1,9 @@
 <?php
 
-if (isset($_GET['cod_categoria'], $_GET['nome_doc'])) {
-    $cod_categoria = $_GET['cod_categoria'];
-    $nome_doc = $_GET['nome_doc'];
-    $local_file = "../arquivos/modelos_documentos/categoria_$cod_categoria/$nome_doc";
+if (isset($_GET['cod_coop'], $_GET['nome_doc'])) {
+    $cod_cooperativa = $_GET['cod_coop'];
+    $nome_boleto = $_GET['nome_doc'];
+    $local_file = "../arquivos/boletos/boletos_coop_$cod_cooperativa/$nome_boleto";
 
 //set the download rate limit (=> 20,5 kb/s)
     $download_rate = 5000;

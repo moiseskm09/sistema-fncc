@@ -13,12 +13,7 @@ $NOME = $_SESSION["nome"];
 $NIVEL = $_SESSION["user_nivel"];
 $CODIGOUSUARIO = $_SESSION['CodUser'];
 $LOGO_COOP = $_SESSION['logo_coop'];
-
-if(!empty($_SESSION["cred_id"])){
-   $CREDENCIADO = $_SESSION["cred_id"]; 
-}else {
-    $CREDENCIADO = "1"; 
-}
+$COOPERATIVA = $_SESSION['user_coop'];
 
 if (!isset($EMAIL) || !isset ($NOME) || !isset ($NIVEL)) {
 	header("Location: ../index.php");

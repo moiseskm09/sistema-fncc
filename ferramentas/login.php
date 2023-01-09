@@ -6,16 +6,8 @@ if(isset($_POST['usuario'], $_POST['senha'])){
 $emailLogin = $_POST['usuario'];
 $senhaLogin = md5($_POST['senha']);   
 
-    $sqlUsuario = mysqli_query($conexao, "SELECT id_usuario, email, senha, nome, sobrenome, user_nivel, logo_coop FROM usuarios INNER JOIN cooperativas on user_coop = cod_coop WHERE usuario = '$emailLogin' and senha = '$senhaLogin' and u_status = '1' LIMIT 1");
-    
-    //$sqlCredenciado = mysqli_query($conexao, "SELECT cred_id, cred_email, cred_senha, cred_nome, cred_sobrenome, cred_status, cred_nivel FROM credenciados WHERE cred_email = '$emailLogin' and cred_senha = '$senhaLogin' LIMIT 1");
-    
-   // $sqlFuncionario = mysqli_query($conexao, "SELECT func_cod ,func_email, func_senha, func_nome, func_status, func_credenciado, func_nivel FROM funcionarios WHERE func_email = '$emailLogin' and func_senha = '$senhaLogin' and func_status = '1' LIMIT 1");
-
+    $sqlUsuario = mysqli_query($conexao, "SELECT id_usuario, email, senha, nome, sobrenome, user_nivel, logo_coop, user_coop FROM usuarios INNER JOIN cooperativas on user_coop = cod_coop WHERE usuario = '$emailLogin' and senha = '$senhaLogin' and u_status = '1' LIMIT 1");
     $num_linhasUsuario = mysqli_num_rows($sqlUsuario);
-    //$num_linhasCredenciado = mysqli_num_rows($sqlCredenciado);
-    //$num_linhasFuncionario = mysqli_num_rows($sqlFuncionario);
-    
     if($num_linhasUsuario == 1){
    // echo "usuario";
         $resultadoUsuario = mysqli_fetch_assoc($sqlUsuario);
@@ -26,6 +18,7 @@ $senhaLogin = md5($_POST['senha']);
         $_SESSION['user_nivel']=$resultadoUsuario['user_nivel'];
         $_SESSION['CodUser']=$resultadoUsuario['id_usuario'];
         $_SESSION['logo_coop']=$resultadoUsuario['logo_coop'];
+        $_SESSION['user_coop']=$resultadoUsuario['user_coop'];
 	header("Location: ../sistema/home.php");
         //fim usuario
     }else if($num_linhasCredenciado == 1){
