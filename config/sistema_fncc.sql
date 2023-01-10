@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06/01/2023 às 21:20
+-- Tempo de geração: 10/01/2023 às 21:47
 -- Versão do servidor: 10.4.24-MariaDB
 -- Versão do PHP: 8.1.6
 
@@ -22,6 +22,57 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `sistema_fncc` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `sistema_fncc`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `boletos`
+--
+
+DROP TABLE IF EXISTS `boletos`;
+CREATE TABLE IF NOT EXISTS `boletos` (
+  `cod_boleto` int(255) NOT NULL AUTO_INCREMENT,
+  `bol_competencia` varchar(15) NOT NULL,
+  `bol_vencimento` date NOT NULL,
+  `arquivo` varchar(100) NOT NULL,
+  `bol_situacao` char(30) NOT NULL DEFAULT 'AGUARDANDO PAGAMENTO',
+  `bol_coop` int(255) NOT NULL,
+  PRIMARY KEY (`cod_boleto`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `boletos`
+--
+
+INSERT INTO `boletos` (`cod_boleto`, `bol_competencia`, `bol_vencimento`, `arquivo`, `bol_situacao`, `bol_coop`) VALUES
+(1, 'JANEIRO/2023', '2023-01-31', 'boleto_teste_janeiro_2023.pdf', '1', 1),
+(2, 'FEVEREIRO/2023', '2023-02-28', 'boleto_teste_janeiro_2023.pdf', '2', 1),
+(3, 'MARÇO/2023', '2023-03-30', 'boleto_teste_janeiro_2023.pdf', '3', 1),
+(4, 'JANEIRO/2023', '2023-01-31', 'boleto_teste_janeiro_2023.pdf', '2', 57),
+(5, 'JANEIRO/2023', '2023-01-05', 'boleto_teste_janeiro_2023.pdf', '4', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `boleto_situacao`
+--
+
+DROP TABLE IF EXISTS `boleto_situacao`;
+CREATE TABLE IF NOT EXISTS `boleto_situacao` (
+  `cod_bol_s` int(255) NOT NULL AUTO_INCREMENT,
+  `situacao` char(30) NOT NULL,
+  PRIMARY KEY (`cod_bol_s`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `boleto_situacao`
+--
+
+INSERT INTO `boleto_situacao` (`cod_bol_s`, `situacao`) VALUES
+(1, 'PAGAMENTO CONFIRMADO'),
+(2, 'CONFIRMANDO PAGAMENTO'),
+(3, 'AGUARDANDO PAGAMENTO'),
+(4, 'VENCIDO');
 
 -- --------------------------------------------------------
 
@@ -57,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `categoria_documentos` (
   `cod_categoria` int(10) NOT NULL AUTO_INCREMENT,
   `categoria` char(50) NOT NULL,
   PRIMARY KEY (`cod_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `categoria_documentos`
@@ -69,7 +120,8 @@ INSERT INTO `categoria_documentos` (`cod_categoria`, `categoria`) VALUES
 (3, 'Estatuto Social'),
 (4, 'Manuais / Regulamentos'),
 (5, 'Políticas / Código de Ética e Conduta'),
-(6, 'Relatórios');
+(6, 'Relatórios'),
+(7, 'Teste');
 
 -- --------------------------------------------------------
 
@@ -85,18 +137,7 @@ CREATE TABLE IF NOT EXISTS `colaboradores_coop` (
   `col_email` varchar(50) NOT NULL,
   `col_coop` int(10) NOT NULL,
   PRIMARY KEY (`cod_col`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `colaboradores_coop`
---
-
-INSERT INTO `colaboradores_coop` (`cod_col`, `col_nome`, `col_area`, `col_email`, `col_coop`) VALUES
-(2, 'BENÍCIO ROCHA PEQUENO', 'TECNOLOGIA', 'BENICIO@BE-MK.COM', 1),
-(4, 'EMANUELLE ROCHA PEQUENO', 'FINANCEIRO', 'MANUZINHA121213@GMAIL.COM', 1),
-(5, 'JOHN DOE', 'ADMINISTRATIVO', 'JOHN@DOE.COM.BR', 58),
-(6, 'JOHN DOE', 'ADMINISTRATIVO', 'JOHN@DOE.COM.BR', 1),
-(7, 'EMANUELLE ROCHA PEQUENO', 'TECNOLOGIA', 'MANUZINHA121213@GMAIL.COM', 58);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -114,15 +155,7 @@ CREATE TABLE IF NOT EXISTS `conselho_fiscal` (
   `cf_mandato` date NOT NULL,
   `cf_coop` int(10) NOT NULL,
   PRIMARY KEY (`cf_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `conselho_fiscal`
---
-
-INSERT INTO `conselho_fiscal` (`cf_id`, `cf_nome`, `cf_cargo`, `cf_telefone`, `cf_email`, `cf_mandato`, `cf_coop`) VALUES
-(1, 'KARINA JORDÃO ROCHA PEQUENO', 'FISCAL', '(11) 9 6178-4667', 'NINA.ROCHA91@GMAIL.COM', '2023-12-31', 1),
-(3, 'JANE DOE', 'FISCAL', '(11) 9 9999-9999', 'JANE@DOE.COM.BR', '0000-00-00', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -239,17 +272,7 @@ CREATE TABLE IF NOT EXISTS `diretoria_conselhoadm` (
   `dca_mandato` date NOT NULL,
   `dca_coop` int(10) NOT NULL,
   PRIMARY KEY (`dca_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `diretoria_conselhoadm`
---
-
-INSERT INTO `diretoria_conselhoadm` (`dca_id`, `dca_nome`, `dca_cargo`, `dca_telefone`, `dca_email`, `dca_mandato`, `dca_coop`) VALUES
-(1, 'MOISES', 'DIRETOR ADMINISTRATIVO', '(11) 9 6303-3778', 'MOISES@BEMKTECH.COM', '2023-12-31', 1),
-(2, 'MOISES PEQUENO DO ROSÁRIO', 'DIRETOR EXECUTIVO', '(11) 9 6303-3778', '', '2023-12-31', 0),
-(4, 'JANE DOE', 'ADMINISTRADORA', '(11) 9 9999-555', 'JANE@DOE.COM.BR', '2023-12-31', 1),
-(6, 'JOHN DOE', 'ANALISTA', '(11) 9 6303-3778', 'JOHN@DOE.COM.BR', '2023-12-31', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -274,10 +297,10 @@ CREATE TABLE IF NOT EXISTS `menu` (
 INSERT INTO `menu` (`id_menu`, `menu`, `caminho_drop`, `icone`, `caminho_submenu`) VALUES
 (1, 'CHAMADOS', 'chamados', 'uil uil-ticket', ''),
 (2, 'RELATÓRIOS', 'relatorios', 'uil uil-file-info-alt', ''),
-(3, 'CADASTRO', 'cadastro', 'uil uil-user-plus', ''),
-(4, 'FINANCEIRO', 'financeiro', 'uil uil-bill', ''),
-(5, 'MODELOS DE DOCUMENTOS', 'modelo_documentos', 'uil uil-file-edit-alt', ''),
-(6, 'CONFIGURAÇÕES', 'configuracoes', 'uil uil-setting', '');
+(3, 'CADASTRO', 'cadastro', 'bi bi-person-vcard', ''),
+(4, 'FINANCEIRO', 'financeiro', 'bi bi-cash-coin', ''),
+(5, 'MODELOS DE DOCUMENTOS', 'modelo_documentos', 'bi bi-file-earmark-font', ''),
+(6, 'CONFIGURAÇÕES', 'configuracoes', 'bi bi-gear-wide-connected', '');
 
 -- --------------------------------------------------------
 
@@ -357,11 +380,11 @@ INSERT INTO `nivel_acesso` (`cod_perfil`, `codMenu`, `codSubmenu`, `marcado`) VA
 (1, 3, 6, 1),
 (1, 2, 7, 0),
 (1, 2, 8, 0),
-(1, 4, 9, 0),
+(1, 4, 9, 1),
 (1, 4, 10, 0),
 (1, 4, 11, 0),
 (1, 5, 12, 1),
-(1, 5, 13, 0),
+(1, 5, 13, 1),
 (1, 5, 14, 0),
 (1, 5, 15, 0),
 (1, 5, 16, 0),
@@ -443,7 +466,8 @@ INSERT INTO `nivel_acesso` (`cod_perfil`, `codMenu`, `codSubmenu`, `marcado`) VA
 (5, 5, 16, 1),
 (5, 5, 17, 1),
 (5, 6, 18, 0),
-(5, 6, 19, 0);
+(5, 6, 19, 0),
+(1, 4, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -484,7 +508,7 @@ CREATE TABLE IF NOT EXISTS `submenu` (
   `caminho` varchar(50) NOT NULL,
   PRIMARY KEY (`cod_submenu`),
   KEY `cod_menu` (`cod_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `submenu`
@@ -495,17 +519,18 @@ INSERT INTO `submenu` (`cod_submenu`, `submenu`, `cod_menu`, `icone_sub`, `camin
 (2, 'LISTAR', 1, '', 'listar.php'),
 (3, 'ATENDIMENTOS', 2, '', 'atendimentos.php'),
 (4, 'SATISFAÇÃO', 2, '', 'satisfacao.php'),
-(5, 'USUÁRIOS', 3, 'uil uil-users-alt', 'cad-usuarios.php'),
-(6, 'COOPERATIVAS', 3, 'uil uil-sitemap', 'cad-cooperativas.php'),
+(5, 'USUÁRIOS', 3, 'bi bi-people', 'cad-usuarios.php'),
+(6, 'COOPERATIVAS', 3, 'bi bi-ubuntu', 'cad-cooperativas.php'),
 (7, 'GERENCIAMENTO DE RISCOS', 2, '', 'GRS'),
 (8, 'CANAL DE INDÍCIOS DE ILICITUDE', 2, '', 'canaldenuncias'),
-(9, 'BOLETO', 4, '', 'BOLETO'),
+(9, 'INCLUIR BOLETO', 4, 'bi bi-plus-square-dotted', 'incluir-boleto.php'),
 (10, 'EXTRATO DE CAPITAL', 4, '', 'EXTRATO'),
 (11, 'BALANCETE', 4, '', 'BALANCETE'),
-(12, 'VISUALIZAR', 5, 'uil uil-file-copy-alt', 'visualizar_doc.php'),
-(13, 'INCLUIR', 5, '', 'mregulamentos'),
-(18, 'PERFIS', 6, 'uil uil-user-square', 'perfis-usuarios.php'),
-(19, 'GRUPOS', 6, '', 'grupos.php');
+(12, 'VISUALIZAR', 5, 'bi bi-file-text', 'visualizar_doc.php'),
+(13, 'INCLUIR', 5, 'bi bi-file-earmark-plus', 'incluir-doc.php'),
+(18, 'PERFIS', 6, 'bi bi-person-vcard', 'perfis-usuarios.php'),
+(19, 'GRUPOS', 6, '', 'grupos.php'),
+(20, 'MEUS BOLETOS', 4, 'bi bi-upc-scan', 'meus-boletos.php');
 
 -- --------------------------------------------------------
 
@@ -534,13 +559,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nome`, `sobrenome`, `email`, `usuario`, `senha`, `user_coop`, `user_nivel`, `u_status`, `data_cadastro`) VALUES
-(1, 'Moises', 'Pequeno do Rosário', 'moiseskm09@gmail.com', 'moises', '5a07992136c4e91e5cc618f4020dfa90', 34, 1, 1, '2022-12-16'),
+(1, 'Moises', 'Pequeno do Rosário', 'moiseskm09@gmail.com', 'moises', '5a07992136c4e91e5cc618f4020dfa90', 1, 1, 1, '2022-12-16'),
 (2, 'Karina', 'Pequeno', 'nina.rocha91@gmail.com', 'karina', '64df84fb0c1de0070b106566b3bf70b6', 57, 1, 1, '2022-12-16'),
 (3, 'Emanuelle', 'Pequeno', 'emanuelle@gmail.com', 'emanuelle', '90f80b22f53a5d4d72f7b126ef4b1f44', 57, 1, 1, '2022-12-16'),
 (5, 'Adriana', 'Caldeira', 'moiseskm09@gmail.com', 'adriana', '90f80b22f53a5d4d72f7b126ef4b1f44', 57, 1, 0, '2022-12-17'),
 (6, 'bruna', 'msis', 'bemktech1217@gmail.com', 'bru', '90f80b22f53a5d4d72f7b126ef4b1f44', 57, 2, 0, '2022-12-17'),
 (7, 'elvis', 'card', 'emanuelle@gmail.com', 'elvis', '90f80b22f53a5d4d72f7b126ef4b1f44', 1, 1, 0, '2022-12-17'),
-(8, 'Benício', 'Rocha Pequeno', 'benicio@bemktech.com.br', 'benicio', '90f80b22f53a5d4d72f7b126ef4b1f44', 58, 3, 1, '2023-01-06');
+(8, 'Benício', 'Rocha Pequeno', 'benicio@bemktech.com.br', 'benicio', '90f80b22f53a5d4d72f7b126ef4b1f44', 58, 1, 1, '2023-01-06');
 
 --
 -- Restrições para tabelas despejadas

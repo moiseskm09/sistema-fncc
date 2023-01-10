@@ -6,8 +6,8 @@ require_once '../config/config_geral.php';
 
 if($_GET['titulo_doc']){
      $titulo_doc = $_GET['titulo_doc'];
-    $sql_buscaDocs = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria WHERE titulo_documento LIKE '%$titulo_doc%'");
-    $numeroLinhas = mysqli_num_rows($sql_buscaDocs);
+    $sql_buscaBols = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria WHERE titulo_documento LIKE '%$titulo_doc%'");
+    $numeroLinhas = mysqli_num_rows($sql_buscaBols);
     $filtroON = 1;
        
 }else{
@@ -26,8 +26,8 @@ if($_GET['titulo_doc']){
     
     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
 
-    $sql_buscaDocs = mysqli_query($conexao, "SELECT * FROM modelos_de_documentos INNER JOIN categoria_documentos ON categoria_documento = cod_categoria LIMIT $inicio, $itens_por_pagina ");
-    $numeroLinhas = mysqli_num_rows($sql_buscaDocs);
+    $sql_buscaBols = mysqli_query($conexao, "SELECT * FROM boletos LIMIT $inicio, $itens_por_pagina ");
+    $numeroLinhas = mysqli_num_rows($sql_buscaBols);
     $filtroON = 0;
 }
 ?>
@@ -71,12 +71,11 @@ if($_GET['titulo_doc']){
                     <div class="container-fluid">
                        <!--conteudo da tela aqui!-->
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
-                            <h5 class="titulo">Inclusão de Documentos</h5>
+                            <h5 class="titulo">Inclusão de Boletos</h5>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning mb-1" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
-                                    <a class="btn btn-sm btn-success mb-1" href="#addDocumento" data-toggle="modal" data-target="#addDocumento"><i class="uil uil-plus"></i> Adicionar Documento</a>
-                                    <a class="text-white btn btn-sm btn-info mb-1" href="#addCategoria" data-toggle="modal" data-target="#addCategoria"><i class="uil uil-plus"></i> Adicionar Categoria</a>
+                                    <a class="btn btn-sm btn-success mb-1" href="#addDocumento" data-toggle="modal" data-target="#addDocumento"><i class="uil uil-plus"></i> Adicionar Boleto</a>
                                     <?php if($filtroON === 1){ ?>
                                     <a class="btn btn-sm btn-dark mb-1" href="incluir-doc.php"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
                                     <?php } ?>
@@ -89,23 +88,25 @@ if($_GET['titulo_doc']){
                             <table class="table table-borderless table-sm" style= "white-space: nowrap;">
                                 <thead class="border thead-tabela">
                                     <tr>
-                                        <th>Código</th>
-                                        <th>Título</th>
-                                        <th>Categoria</th>
+                                        <th>Mês Competência</th>
+                                        <th>Vencimento</th>
+                                        <th>Cooperativa</th>
+                                        <th>Situação</th>
                                         <th class="text-center">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody class="border bg-white">
                                     <?php
                                     if ($numeroLinhas > 0) {
-                                        while ($resultadoDoc = mysqli_fetch_assoc($sql_buscaDocs)) {
+                                        while ($resultadoBol = mysqli_fetch_assoc($sql_buscaBols)) {
                                             ?>
                                             <tr class="linha-hover">
-                                                <td><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoDoc['cod_documento']; ?></span></td>
-                                                <td style="font-size:15px;"><?php echo ucwords(strtolower($resultadoDoc['titulo_documento']));?></td>
-                                                <td style="font-size:15px;"><?php echo $resultadoDoc['categoria'];?></td>
+                                                <td style="font-size:15px;"><?php echo $resultadoBol['bol_competencia']; ?></td>
+                                                <td style="font-size:15px;"><?php echo $resultadoBol['bol_vencimento'];?></td>
+                                                <td style="font-size:15px;"><?php echo $resultadoBol['categoria'];?></td>
+                                                <td style="font-size:15px;"><span class="badge badge-info rounded-pill d-inline"><?php echo $resultadoBol['cod_documento']; ?></span></td>
                                                 <td class="text-center">
-                                                <a title="Apagar Documento" href="../ferramentas/deleta-doc.php?cod_categoria=<?php echo $resultadoDoc['categoria_documento']; ?>&cod_doc=<?php echo $resultadoDoc['cod_documento']; ?>&nome_doc=<?php echo $resultadoDoc['nome_documento']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-trash text-white btn-sm btn-danger"></i></a>
+                                                <a title="Apagar Documento" href="../ferramentas/deleta-doc.php?cod_categoria=<?php echo $resultadoBol['categoria_documento']; ?>&cod_doc=<?php echo $resultadoBol['cod_documento']; ?>&nome_doc=<?php echo $resultadoBol['nome_documento']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-trash text-white btn-sm btn-danger"></i></a>
                                                 </td> 
                                             </tr>
                                             <?php
