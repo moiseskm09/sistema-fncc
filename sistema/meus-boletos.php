@@ -4,10 +4,10 @@ require_once '../config/conexao.php';
 require_once '../config/config_geral.php';
 
 
-if(isset($_GET['titulo_doc'] , $_GET['cod_categoria_doc'])){
-$titulo_doc = $_GET['titulo_doc'];
-    $categoria_documento = $_GET['cod_categoria_doc'];
-    $sql_buscaBols = mysqli_query($conexao, "SELECT * FROM boletos INNER JOIN boleto_situacao ON bol_situacao = cod_bol_s WHERE bol_coop = '$COOPERATIVA' and bol_competencia = '%$titulo_doc%");
+if(isset($_GET['data_vencimento'], $_GET["competencia"])){
+    $data_vencimento = $_GET['data_vencimento'];
+    $competencia = $_GET['competencia'];
+    $sql_buscaBols = mysqli_query($conexao, "SELECT * FROM boletos INNER JOIN boleto_situacao ON bol_situacao = cod_bol_s WHERE bol_coop = '$COOPERATIVA' and bol_vencimento like '%$data_vencimento%' and bol_competencia like '%$competencia%'");
     $numeroLinhas = mysqli_num_rows($sql_buscaBols);
     $filtroON = 1;
     
@@ -77,7 +77,7 @@ $titulo_doc = $_GET['titulo_doc'];
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
                                     <?php if($filtroON === 1){ ?>
-                                    <a class="btn btn-sm btn-dark" href="docs_visualizacao.php?id=<?php echo $categoria_documento; ?>"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
+                                    <a class="btn btn-sm btn-dark" href="meus-boletos.php"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
                                     <?php } ?>
                                     <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro"><i class="uil uil-filter"></i> Filtrar</a>
                                 </div>
@@ -107,7 +107,7 @@ $titulo_doc = $_GET['titulo_doc'];
                                                   if($resultadoBol['situacao'] == "CONFIRMANDO PAGAMENTO"){
                                                       echo '<span class="badge badge-success rounded-pill d-inline">'.$resultadoBol['situacao'].'</span>';
                                                   }elseif($resultadoBol['situacao'] == "PAGAMENTO CONFIRMADO"){
-                                                     echo '<span class="badge badge-success rounded-pill d-inline">'.$resultadoBol['situacao'].'</span>'; 
+                                                     echo '<span class="badge badge-dark rounded-pill d-inline">'.$resultadoBol['situacao'].'</span>'; 
                                                   }elseif($resultadoBol['situacao'] == "AGUARDANDO PAGAMENTO"){
                                                      echo '<span class="badge badge-warning rounded-pill d-inline">'.$resultadoBol['situacao'].'</span>'; 
                                                   }elseif($resultadoBol['situacao'] == "VENCIDO"){
@@ -118,8 +118,8 @@ $titulo_doc = $_GET['titulo_doc'];
                                                 </td>
                                                 <td class="text-center">
                                                 <a title="Fazer Download" href="../ferramentas/download-boleto.php?cod_coop=<?php echo $resultadoBol['bol_coop']; ?>&nome_doc=<?php echo $resultadoBol['arquivo']; ?>" data-confirm="Tem certeza de que deseja o item selecionado?"><i class="uil uil-import text-dark btn-sm btn-info"></i></a>
-                                                <?php if($resultadoBol['situacao'] == "CONFIRMANDO PAGAMENTO" OR $resultadoBol['situacao'] == "PAGAMENTO CONFIRMANDO" ){ }else{?>
-                                                <a title="Marcar Como Pago" href="../ferramentas/download_documento.php?cod_coop=<?php echo $resultadoBol['bol_coop']; ?>&nome_doc=<?php echo $resultadoBol['arquivo']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-bill text-white btn-sm btn-success"></i></a>
+                                                <?php if($resultadoBol['situacao'] == "CONFIRMANDO PAGAMENTO" OR $resultadoBol['situacao'] == "PAGAMENTO CONFIRMADO" ){ }else{?>
+                                                <a title="Marcar Como Pago" href="../ferramentas/atualiza-pag-boleto.php?cod_coop=<?php echo $resultadoBol['bol_coop']; ?>&cod_boleto=<?php echo $resultadoBol['cod_boleto']; ?>" bol-confirm="Marcar boleto como pago?"><i class="uil uil-bill text-white btn-sm btn-success"></i></a>
                                                 <?php }?>
                                                     </td> 
                                             </tr>
@@ -179,14 +179,47 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
       </div>
       <div class="modal-body card-fundo-body">
           <form action="" method="GET">
+            <?php 
+   
+            ?>
             <div class="row">
-              <input type="hidden" name="cod_categoria_doc" id="cod_categoria_doc" class="form-control digitacao" value="<?php echo $categoria_documento;?>">
                 <div class="col-lg-12 col-md-12 col-12">
                           <div class="form-floating mb-3">
-                            <input type="text" name="titulo_doc" id="titulo_doc" class="form-control" placeholder="Insira o título do documento" autocomplete="off" required>
-                            <label for="nome">Título do Documento</label>
+                            <input type="date" name="data_vencimento" id="data_vencimento" class="form-control" placeholder="Insira a data do vencimento" autocomplete="off">
+                            <label for="nome">Data de Vencimento</label>
                           </div>  
                         </div>
+              <div class="col-lg-12 col-md-12 col-12">
+    <div class="form-floating mb-3">
+      <select class="form-select pesquisa-select" id="competencia" name="competencia">
+        <option value="" selected>Selecione um Mês</option>
+        <option value="JANEIRO/<?php echo date("Y")?>">JANEIRO/<?php echo date("Y")?></option>
+        <option value="FEVEREIRO/<?php echo date("Y")?>">FEVEREIRO/<?php echo date("Y")?></option>
+        <option value="MARÇO/<?php echo date("Y")?>">MARÇO/<?php echo date("Y")?></option>
+        <option value="ABRIL/<?php echo date("Y")?>">ABRIL/<?php echo date("Y")?></option>
+        <option value="MAIO/<?php echo date("Y")?>">MAIO/<?php echo date("Y")?></option>
+        <option value="JUNHO/<?php echo date("Y")?>">JUNHO/<?php echo date("Y")?></option>
+        <option value="JULHO/<?php echo date("Y")?>">JULHO/<?php echo date("Y")?></option>
+        <option value="AGOSTO/<?php echo date("Y")?>">AGOSTO/<?php echo date("Y")?></option>
+        <option value="SETEMBRO/<?php echo date("Y")?>">SETEMBRO/<?php echo date("Y")?></option>
+        <option value="OUTUBRO/<?php echo date("Y")?>">OUTUBRO/<?php echo date("Y")?></option>
+        <option value="NOVEMBRO/<?php echo date("Y")?>">NOVEMBRO/<?php echo date("Y")?></option>
+        <option value="DEZEMBRO/<?php echo date("Y")?>">DEZEMBRO/<?php echo date("Y")?></option>
+        
+                                                                <?php
+/*//setlocale (LC_ALL, 'ptb');
+        $startDate = strtotime(date("Y-01-01"));
+        $endDate = strtotime(date("Y-12-01"));
+        $currentDate = $endDate;
+        while ($currentDate >= $startDate) {
+            echo "<option value='".utf8_encode(strtoupper(strftime('%B/%Y', $currentDate)))."'>" . utf8_encode(strtoupper(strftime('%B/%Y', $currentDate))) . "</option>";
+            $currentDate = strtotime(date('Y/m/01/', $currentDate) . ' -1 month');
+        }*/
+        ?>
+      </select>
+      <label for="competencia">Competência</label>
+    </div>
+  </div>
             </div>
       </div>
       <div class="modal-footer card-fundo-body p-1">
@@ -216,29 +249,35 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body" style="background-color: #a3cfbb; color: #1c1d3c;"">
-                    <span> Usuário criado com sucesso!</span>
-                </div>
-            </div>
-        </div>';
-                            }else if($sucesso === 2){
-                                echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
-                <div class="toast-header border-light" style="background-color: #fff3cd; color: #1c1d3c;">
-                    <strong class="me-auto">FNCC AVISA</strong>
-                    <small>Agora</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body" style="background-color: #fff3cd; color: #1c1d3c;"">
-                    <span> Usuário desativado com sucesso!</span>
+                    <span>Boleto pago! Aguardando confirmação!</span>
                 </div>
             </div>
         </div>';
                             }
+                            
+                            
+                            if(isset($_GET["erro"])){
+                $erro = (int) $_GET["erro"];
+                if($erro === 1){
+                   echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000">
+                <div class="toast-header border-light" style="background-color: #f5c2c7; color: #1c1d3c;">
+                    <strong class="me-auto">FNCC AVISA</strong>
+                    <small>Agora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" style="background-color: #f5c2c7; color: #1c1d3c;"">
+                    <span>Pagamento não realizado! Tente Novamente!</span>
+                </div>
+            </div>
+        </div>'; 
+                }
+            }
                             ?>
         </div>
         <script>
 $( '.pesquisa-select' ).select2( {
-    theme: 'bootstrap-5'
+    theme: 'bootstrap-5';
 } );
         </script>  
 <script src="../js/toast.js"></script>
@@ -250,5 +289,6 @@ $( '.pesquisa-select' ).select2( {
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
 <script src="../js/boletos.js"></script>
+<script src="../js/confirmacao_pag.js"></script>
     </body>
 </html>
