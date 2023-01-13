@@ -12,7 +12,7 @@ $(document).ready(function(){
 Tem certeza que deseja fazer o download do boleto?<br>\n\
 <div class="modal-footer card-fundo-body p-0 border-0">\n\
 <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="uil uil-times"></i> Não</button>\n\
-<a class=" btn btn-sm btn-success text-white custom-close" id="dataComfirmOK"><i class="uil uil-check"></i> Sim</a>\n\
+<a class=" btn btn-sm btn-success text-white custom-close btnexecutafunc" id="dataComfirmOK"><i class="uil uil-check"></i> Sim</a>\n\
 </div></div></div></div>');
 		}
 		$('#dataComfirmOK').attr('href', href);

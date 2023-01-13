@@ -464,5 +464,11 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
         $(this).mask('00 0 0000-0000', {reverse: true});
     });
 </script>
+<script>
+$(".nav .nav-link").on("click", function(){
+   $(".nav").find(".menu-ativo").removeClass("menu-ativo");
+   $(this).addClass("menu-ativo");
+});
+</script>
 </body>
 </html>

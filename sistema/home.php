@@ -35,144 +35,32 @@ require_once '../config/config_geral.php';
                            </div>
 
                        </div>
-                       <div class="form-row">
+                       <div class="row mt-2">
                            <div class="col-md-12">
-                               <h4 class="blockquote-footer" style="font-size: 20px;">Dashboard</h4>
-                           </div>
-                           
-                       </div>
-                       <div class="form-row">
-                           <?php 
-                           //$sqlCredenciados = mysqli_query($conexao, "SELECT cred_id FROM credenciados WHERE cred_status = '1'");
-    //$CredCadastrados = mysqli_num_rows($sqlCredenciados);
-                           ?>
-                           <div class="col-md-3 col-4">
-                               <a href="cad-credenciados.php" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title"><?php echo "50";?> <i class="uil uil-users-alt icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">CREDENCIADOS</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <div class="col-md-3 col-4">
-                               <a href="cad-usuarios.php" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title">50 <i class="uil uil-user-plus icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">CLIENTES</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <?php 
-                           //$sql = mysqli_query($conexao, "SELECT id_usuario FROM usuarios WHERE u_status != '0'");
-    //$userCadastrados = mysqli_num_rows($sql);
-                           ?>
-                           <div class="col-md-3 col-4">
-                               <a href="cad-usuarios.php" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title"><?php echo "50";?> <i class="uil uil-user-check icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">USUÁRIOS</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <div class="col-md-3 col-4">
-                               <a href="<?php echo $acessoRapido['caminho'];?>" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title">50 <i class="uil uil-file-search-alt icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">EM ANÁLISE TÉCNICA</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <div class="col-md-3 col-4">
-                               <a href="<?php echo $acessoRapido['caminho'];?>" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title">50 <i class="uil uil-calendar-alt icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">VISTORIA AGENDADAS</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <div class="col-md-3 col-4">
-                               <a href="<?php echo $acessoRapido['caminho'];?>" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title">50 <i class="uil uil-file-exclamation-alt icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">EM ANÁLISE PARCIAL</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <div class="col-md-3 col-4">
-                               <a href="<?php echo $acessoRapido['caminho'];?>" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title">50 <i class="uil uil-receipt icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">EM ANÁLISE FINANCEIRA</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <div class="col-md-3 col-4">
-                               <a href="<?php echo $acessoRapido['caminho'];?>" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title">50 <i class="uil uil-archive-alt icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">FATURADAS</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <div class="col-md-3 col-4">
-                               <a href="<?php echo $acessoRapido['caminho'];?>" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title">50 <i class="uil uil-multiply icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">REJEITADAS</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <div class="col-md-3 col-4">
-                               <a href="<?php echo $acessoRapido['caminho'];?>" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title">50 <i class="uil uil-map icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">MAPA GERAL</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <div class="col-md-3 col-4">
-                               <a href="<?php echo $acessoRapido['caminho'];?>" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title">50 <i class="uil uil-file-alt icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">RELATÓRIOS</h6>
-  </div>
-</div>
-                               </a>
-                           </div>
-                           <div class="col-md-3 col-4">
-                               <a href="<?php echo $acessoRapido['caminho'];?>" class="link-acesso">
-                               <div class="card border-0 mb-1 mt-1">
-  <div class="card-body acesso-rapido p-1">
-      <h5 class="card-title">50 <i class="uil uil-chart-line icone-acesso"></i></h5>
-      <h6 class="card-text texto-acessorapido">GRÁFICOS</h6>
-  </div>
-</div>
-                               </a>
+                               <h4 class="blockquote-footer" style="font-size: 20px;">Acesso Rápido</h4>
                            </div>
                        </div>
-                       
-                     
+                       <div class="row">
+                           <?php 
+                           $buscaSubmenu = mysqli_query($conexao, "SELECT submenu, icone_sub, caminho FROM submenu INNER JOIN nivel_acesso ON cod_submenu = codSubmenu WHERE cod_perfil = 1 and marcado = 1 ORDER BY RAND() LIMIT 12");
+        while ($resultadoAcessoRapido = mysqli_fetch_assoc($buscaSubmenu)) {
+            ?>
+
+
+                           <div class="col-lg-2 col-md-2 col-6">
+                               <a href="<?php echo $resultadoAcessoRapido['caminho']; ?>" class="link-rapido">
+                                   <div class="card mb-2 border-0" style="border-radius:15px;">
+  <div class="card-body text-center card-acesso-rapido p-1">
+      <h5><i class="<?php echo $resultadoAcessoRapido['icone_sub']; ?>"></i></h5>
+      <h6><?php echo substr($resultadoAcessoRapido['submenu'], 0, 18); ?></h6>
+  </div>
+</div>
+                               </a>
+                           </div>
+                                       <?php
+        }
+                           ?>
+                       </div>
                        <!--fim conteudo da tela aqui!-->
                     </div>
                 </main>
@@ -184,5 +72,11 @@ require_once '../config/config_geral.php';
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>    
+<script>
+$(".nav .nav-link").on("click", function(){
+   $(".nav").find(".menu-ativo").removeClass("menu-ativo");
+   $(this).addClass("menu-ativo");
+});
+</script>
     </body>
 </html>

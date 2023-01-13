@@ -29,7 +29,7 @@
                                 while ($resultado_submenu = mysqli_fetch_assoc($seleciona_submenu)) {
                                     ?>
                                     <a class="nav-link link-submenu" href="<?php echo $resultado_submenu['caminho']; ?>">
-                                        <div class="sb-nav-link-icon ml-4"><i class="<?php echo $resultado_submenu['icone_sub']; ?> tamanho-icone"></i></div>
+                                        <div class="sb-nav-link-icon"><i class="<?php echo $resultado_submenu['icone_sub']; ?> tamanho-icone"></i></div>
                                     <?php echo $resultado_submenu['submenu']; ?></a>
         <?php } ?> 
                             </nav>

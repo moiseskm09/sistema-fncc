@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/01/2023 às 21:47
--- Versão do servidor: 10.4.24-MariaDB
--- Versão do PHP: 8.1.6
+-- Tempo de geração: 14/01/2023 às 00:54
+-- Versão do servidor: 10.4.22-MariaDB
+-- Versão do PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,22 +34,20 @@ CREATE TABLE IF NOT EXISTS `boletos` (
   `cod_boleto` int(255) NOT NULL AUTO_INCREMENT,
   `bol_competencia` varchar(15) NOT NULL,
   `bol_vencimento` date NOT NULL,
-  `arquivo` varchar(100) NOT NULL,
+  `arquivo` varchar(150) NOT NULL,
   `bol_situacao` char(30) NOT NULL DEFAULT 'AGUARDANDO PAGAMENTO',
   `bol_coop` int(255) NOT NULL,
   PRIMARY KEY (`cod_boleto`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `boletos`
 --
 
 INSERT INTO `boletos` (`cod_boleto`, `bol_competencia`, `bol_vencimento`, `arquivo`, `bol_situacao`, `bol_coop`) VALUES
-(1, 'JANEIRO/2023', '2023-01-31', 'boleto_teste_janeiro_2023.pdf', '1', 1),
+(1, 'JANEIRO/2023', '2023-01-31', 'boleto_teste_janeiro_2023.pdf', '4', 1),
 (2, 'FEVEREIRO/2023', '2023-02-28', 'boleto_teste_janeiro_2023.pdf', '2', 1),
-(3, 'MARÇO/2023', '2023-03-30', 'boleto_teste_janeiro_2023.pdf', '3', 1),
-(4, 'JANEIRO/2023', '2023-01-31', 'boleto_teste_janeiro_2023.pdf', '2', 57),
-(5, 'JANEIRO/2023', '2023-01-05', 'boleto_teste_janeiro_2023.pdf', '4', 1);
+(5, 'JANEIRO/2023', '2023-01-05', 'boleto_teste_janeiro_2023.pdf', '3', 1);
 
 -- --------------------------------------------------------
 
@@ -108,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `categoria_documentos` (
   `cod_categoria` int(10) NOT NULL AUTO_INCREMENT,
   `categoria` char(50) NOT NULL,
   PRIMARY KEY (`cod_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `categoria_documentos`
@@ -121,7 +119,11 @@ INSERT INTO `categoria_documentos` (`cod_categoria`, `categoria`) VALUES
 (4, 'Manuais / Regulamentos'),
 (5, 'Políticas / Código de Ética e Conduta'),
 (6, 'Relatórios'),
-(7, 'Teste');
+(7, 'Teste'),
+(8, 'Teste1'),
+(9, 'teste2'),
+(10, 'teste3'),
+(11, 'Teste Loading');
 
 -- --------------------------------------------------------
 
@@ -277,6 +279,32 @@ CREATE TABLE IF NOT EXISTS `diretoria_conselhoadm` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `extrato_de_capital`
+--
+
+DROP TABLE IF EXISTS `extrato_de_capital`;
+CREATE TABLE IF NOT EXISTS `extrato_de_capital` (
+  `cod_ext_capital` int(255) NOT NULL AUTO_INCREMENT,
+  `ext_acumulado` date NOT NULL,
+  `ext_remuneracao_juros` varchar(4) NOT NULL,
+  `ext_coop` int(255) NOT NULL,
+  `ext_arquivo` varchar(150) NOT NULL,
+  `ext_obs` text DEFAULT NULL,
+  PRIMARY KEY (`cod_ext_capital`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `extrato_de_capital`
+--
+
+INSERT INTO `extrato_de_capital` (`cod_ext_capital`, `ext_acumulado`, `ext_remuneracao_juros`, `ext_coop`, `ext_arquivo`, `ext_obs`) VALUES
+(1, '2022-12-31', '12%', 1, '2022-12-31_12%_1_125132.pdf', 'A base de cálculo para remuneração de juros ao Capital foi de 12 % a.a., conforme parágrafo 7º, do artigo 14, capítulo V do nosso Estatuto Social:<br>\n\n§ 7º – Dependendo do resultado econômico-financeiro, a sociedade poderá pagar juros ao capital integralizado pelas cooperativas associadas até o limite de 12% ao ano, mediante decisão da Diretoria, nos termos do art. 24, § 3º da Lei Federal n. 5.764/71.'),
+(3, '2022-12-31', '12%', 46, '2022-12-31_12%_46_203519.pdf', 'Informo que a base de cálculo para remuneração de juros ao Capital foi de 12 % a.a., conforme parágrafo 7º, do artigo 14, capítulo V do nosso Estatuto Social: <br>\r\n§ 7º – Dependendo do resultado econômico-financeiro, a sociedade poderá pagar juros ao capital integralizado pelas cooperativas associadas até o limite de 12% ao ano, mediante decisão da Diretoria, nos termos do art. 24, § 3º da Lei Federal n. 5.764/71.'),
+(4, '2022-12-31', '12%', 2, '2022-12-31_12%_2_203644.pdf', 'Informo que a base de cálculo para remuneração de juros ao Capital foi de 12 % a.a., conforme parágrafo 7º, do artigo 14, capítulo V do nosso Estatuto Social:<br>\r\n\r\n \r\n\r\n§ 7º – Dependendo do resultado econômico-financeiro, a sociedade poderá pagar juros ao capital integralizado pelas cooperativas associadas até o limite de 12% ao ano, mediante decisão da Diretoria, nos termos do art. 24, § 3º da Lei Federal n. 5.764/71.');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `menu`
 --
 
@@ -316,7 +344,7 @@ CREATE TABLE IF NOT EXISTS `modelos_de_documentos` (
   `nome_documento` varchar(100) NOT NULL,
   PRIMARY KEY (`cod_documento`),
   KEY `categoria_documento` (`categoria_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `modelos_de_documentos`
@@ -381,8 +409,7 @@ INSERT INTO `nivel_acesso` (`cod_perfil`, `codMenu`, `codSubmenu`, `marcado`) VA
 (1, 2, 7, 0),
 (1, 2, 8, 0),
 (1, 4, 9, 1),
-(1, 4, 10, 0),
-(1, 4, 11, 0),
+(1, 4, 10, 1),
 (1, 5, 12, 1),
 (1, 5, 13, 1),
 (1, 5, 14, 0),
@@ -467,7 +494,10 @@ INSERT INTO `nivel_acesso` (`cod_perfil`, `codMenu`, `codSubmenu`, `marcado`) VA
 (5, 5, 17, 1),
 (5, 6, 18, 0),
 (5, 6, 19, 0),
-(1, 4, 20, 1);
+(1, 4, 20, 1),
+(1, 4, 21, 1),
+(1, 4, 11, 1),
+(1, 4, 22, 1);
 
 -- --------------------------------------------------------
 
@@ -508,7 +538,7 @@ CREATE TABLE IF NOT EXISTS `submenu` (
   `caminho` varchar(50) NOT NULL,
   PRIMARY KEY (`cod_submenu`),
   KEY `cod_menu` (`cod_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `submenu`
@@ -524,13 +554,15 @@ INSERT INTO `submenu` (`cod_submenu`, `submenu`, `cod_menu`, `icone_sub`, `camin
 (7, 'GERENCIAMENTO DE RISCOS', 2, '', 'GRS'),
 (8, 'CANAL DE INDÍCIOS DE ILICITUDE', 2, '', 'canaldenuncias'),
 (9, 'INCLUIR BOLETO', 4, 'bi bi-plus-square-dotted', 'incluir-boleto.php'),
-(10, 'EXTRATO DE CAPITAL', 4, '', 'EXTRATO'),
-(11, 'BALANCETE', 4, '', 'BALANCETE'),
-(12, 'VISUALIZAR', 5, 'bi bi-file-text', 'visualizar_doc.php'),
-(13, 'INCLUIR', 5, 'bi bi-file-earmark-plus', 'incluir-doc.php'),
+(10, 'INCLUIR EXTRATO', 4, 'bi bi-journal-plus', 'incluir-extrato-capital.php'),
+(11, 'BALANCETE', 4, 'uil uil-balance-scale', 'balancete.php'),
+(12, 'LISTAR DOCUMENTOS', 5, 'bi bi-file-text', 'visualizar_doc.php'),
+(13, 'INCLUIR DOCUMENTOS', 5, 'bi bi-file-earmark-plus', 'incluir-doc.php'),
 (18, 'PERFIS', 6, 'bi bi-person-vcard', 'perfis-usuarios.php'),
 (19, 'GRUPOS', 6, '', 'grupos.php'),
-(20, 'MEUS BOLETOS', 4, 'bi bi-upc-scan', 'meus-boletos.php');
+(20, 'MEUS BOLETOS', 4, 'bi bi-upc-scan', 'meus-boletos.php'),
+(21, 'EXTRATO DE CAPITAL', 4, 'bi bi-receipt-cutoff', 'extrato-capital.php'),
+(22, 'LISTAR BALANCETE', 4, 'bi bi-list-nested', 'listar-balancete.php');
 
 -- --------------------------------------------------------
 

@@ -86,7 +86,7 @@ if (isset($_GET['nome'])) {
 
             <div class="table-responsive">
               <table class="table table-borderless table-sm bg-white">
-                <thead class="thead-tabela">
+                <thead class="theadN">
                   <tr>
                     <th>Mátricula</th>
                     <th>Cooperativa</th>
@@ -112,8 +112,8 @@ if (isset($_GET['nome'])) {
                         echo '<span class="badge badge-danger rounded-pill d-inline">Inativo</span>';
                     } ?></td>
                             <td class="text-center">
-                              <a href="editar-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>"><i class="uil uil-edit text-white btn-sm btn-primary"></i></a>
-                              <a href="../ferramentas/desativa-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-trash text-white btn-sm btn-danger"></i></a>
+                              <a href="editar-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>"><i class="bi bi-pencil-square text-dark btn-sm btn-warning"></i></a>
+                              <a href="../ferramentas/desativa-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>" desativar-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="bi bi-trash text-white btn-sm btn-danger"></i></a>
                             </td> 
                           </tr>
         <?php
@@ -311,5 +311,11 @@ if (isset($_GET['nome'])) {
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
     <script src="../js/desativar.js"></script>
+    <script>
+$(".nav .nav-link").on("click", function(){
+   $(".nav").find(".menu-ativo").removeClass("menu-ativo");
+   $(this).addClass("menu-ativo");
+});
+</script>
   </body>
 </html>

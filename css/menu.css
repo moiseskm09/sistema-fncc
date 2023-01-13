@@ -17,7 +17,7 @@ and open the template in the editor.
  background-color: #1c1d3c;
 }
 .fundo-submenu {
-    background-color: #e7f1ff;
+    background-color: #5283fe40;
 }
 .link-menu {
     color:#1c1d3c !important;
@@ -25,7 +25,6 @@ and open the template in the editor.
     font-weight: 500;
     text-transform: uppercase;
     border-bottom: 1px solid #785aa240 !important;
-    
 }
 
 .link-menu:hover{
@@ -34,6 +33,11 @@ and open the template in the editor.
     background-color: #1c1d3c;
 }
 
+.menu-ativo{
+    color:#FFD70F !important;
+    font-weight: 500;
+    background-color: #1c1d3c;
+}
 .link-submenu {
     color:#1c1d3c !important;
     font-size: 16px;

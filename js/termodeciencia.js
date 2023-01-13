@@ -16,7 +16,7 @@ $(document).ready(function(){
 5. Declaro ainda que aceito e concordo o teor deste Termo de Ciência e Concordância e comprometo a avaliar qualquer modelo de documento e adaptá-lo de acordo com a Cooperativa.</div>\n\
 <div class="modal-footer card-fundo-body p-1">\n\
 <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="uil uil-times"></i> Não Concordo</button>\n\
-<a class=" btn btn-sm btn-success text-white custom-close" id="dataComfirmOK"><i class="uil uil-check"></i> Estou de Acordo</a>\n\
+<a class=" btn btn-sm btn-success text-white custom-close btnexecutafunc" id="dataComfirmOK"><i class="uil uil-check"></i> Estou de Acordo</a>\n\
 </div></div></div></div>');
 		}
 		$('#dataComfirmOK').attr('href', href);

@@ -10,7 +10,6 @@ if(isset($_GET['data_vencimento'], $_GET["competencia"])){
     $sql_buscaBols = mysqli_query($conexao, "SELECT * FROM boletos INNER JOIN boleto_situacao ON bol_situacao = cod_bol_s WHERE bol_coop = '$COOPERATIVA' and bol_vencimento like '%$data_vencimento%' and bol_competencia like '%$competencia%'");
     $numeroLinhas = mysqli_num_rows($sql_buscaBols);
     $filtroON = 1;
-    
 }else{
     //verifica a página atual caso seja informada na URL, senão atribui como 1ª página 
     $pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1; 
@@ -179,9 +178,6 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
       </div>
       <div class="modal-body card-fundo-body">
           <form action="" method="GET">
-            <?php 
-   
-            ?>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12">
                           <div class="form-floating mb-3">
@@ -290,5 +286,11 @@ $( '.pesquisa-select' ).select2( {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
 <script src="../js/boletos.js"></script>
 <script src="../js/confirmacao_pag.js"></script>
+<script>
+$(".nav .nav-link").on("click", function(){
+   $(".nav").find(".menu-ativo").removeClass("menu-ativo");
+   $(this).addClass("menu-ativo");
+});
+</script>
     </body>
 </html>

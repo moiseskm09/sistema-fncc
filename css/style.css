@@ -125,14 +125,17 @@ nav > div a.nav-item.nav-link:focus
 
 
 .form-floating textarea{
-  border: 0;
-  border-bottom: 2px solid lightgrey;
+  border: 1px solid #785aa240;
+  color:#432874;
+  font-weight: 500;
 }
 
 .form-floating textarea:focus{
 outline: none; 
 box-shadow: 0 0 5px 0 #ffffff;
-border-bottom: 1px solid #6f42c1;
+border: 1px dashed #785aa2;
+color:#785aa2;
+font-weight: 600;
                 
 }
 .form-floating input{
@@ -154,55 +157,6 @@ font-weight: 600;
                 outline: none; 
                 border-bottom: 2px solid #dc3545;
             }
-
-            .labelInput{
-                color: #6f42c1;
-            }
-.tamanhoInput{
-                padding:10px 10px 10px 15px;
-                height: 40px;
-                color: #01004c;
-                font-weight: 600;
-                border-radius: 10px;
-                border: none;
-                width: 100%;
-                font-weight: 400;
-                border: none;
-                background: #f8f9fa;
-            }
-            .tamanhoInput:focus{ 
-                outline: none; 
-                box-shadow: 0 0 5px 0 #ff7f50;
-                border: 1px solid #ff7f50;
-            }
-            
-            .tamanhoInput:invalid{ 
-                outline: none; 
-                box-shadow: 0 0 5px 0 #dc3545;
-                border: 1px solid #ff7f50;
-            }
-            .tamanhoInput:valid{ 
-                outline: none; 
-                box-shadow: 0 0 5px 0 #6c757d;
-                
-            }
-            .tamanhotextarea{
-                 padding:10px 10px 10px 15px;
-                color: #084d6e;
-                font-weight: 600;
-                border-radius: 10px;
-                border: none;
-                width: 100%;
-                font-weight: 400;
-                background: #f8f9fa;
-            }
-            
-            .tamanhotextarea:focus{ 
-                outline:none; 
-                box-shadow: 0 -5px 10px -5px #ff7f50;
-            }
-            
-            
             .modalTitulo{
                 background:#3d0a91;
                 color: #ffffff;
@@ -224,20 +178,6 @@ font-weight: 600;
             
             .maiusculas {
                 text-transform: capitalize;
-            }
-            
-            .card-rapido{
-                height: 80px;
-                border-radius: 20px;
-        
-            }
-            
-            .card-rapido:hover{
-                height: 80px;
-                border-radius: 20px; 
-            }
-            .card-rapido-body{
-                border-radius: 15px;
             }
 .header-filtro{
     background-color: #785aa2;
@@ -308,7 +248,17 @@ font-weight: 600;
             
     .files input {
     border: 2px solid #785aa240;
-    outline: 2px dashed #785aa2;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 60px 0px 100px 10%;
+    text-align: left !important;
+    margin: 0;
+    width: 100% !important;
+}
+
+.files input:focus {
+    border: 1px solid #785aa240;
+    outline: 1px dashed #785aa2;
     outline-offset: -10px;
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
     transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -317,6 +267,18 @@ font-weight: 600;
     margin: 0;
     width: 100% !important;
 }
+.files input:invalid {
+    border-bottom: 2px solid #dc3545;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 60px 0px 100px 10%;
+    text-align: left !important;
+    margin: 0;
+    width: 100% !important;
+}
+
+
 
 .files:before {
     position: absolute;
@@ -337,4 +299,33 @@ font-weight: 600;
 .theadN{
     background-color: #e7f1ff;
     color: #785aa2;
+}
+
+.card-acesso-rapido{
+    border-radius: 15px;
+    background-color: #ffffff;
+    text-decoration: none;
+    border:none;
+}
+.card-acesso-rapido:hover{
+    border-radius: 15px;
+    background-color: #785aa240;
+    text-decoration: none;
+    border:none;
+}
+
+.link-rapido{
+    text-decoration: none;
+}
+.link-rapido:hover{
+    text-decoration: none;
+}
+
+.card-acesso-rapido i{
+font-size: 30px;
+color: #785aa2;
+}
+.card-acesso-rapido h6{
+color: #785aa2;
+font-size: 12px;
 }

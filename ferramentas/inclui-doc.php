@@ -1,5 +1,6 @@
 <?php
 include_once '../config/conexao.php';
+
 if (isset($_POST["categoriaDocN"], $_POST["tituloDocN"], $_FILES["arquivoN"])) {
     $categoria = $_POST["categoriaDocN"];
     $tituloDoc = str_replace('/', '_', $_POST["tituloDocN"]);

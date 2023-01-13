@@ -1,6 +1,5 @@
 <?php
 include_once '../config/conexao.php';
-
 if (isset($_POST['nomeCategoriaN'])) {
     $nomeCategoriaN = $_POST['nomeCategoriaN'];
     $query = "INSERT INTO categoria_documentos(categoria) VALUES ('$nomeCategoriaN')";
