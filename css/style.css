@@ -309,7 +309,7 @@ font-weight: 600;
 }
 .card-acesso-rapido:hover{
     border-radius: 15px;
-    background-color: #785aa240;
+    background-color: #01004c;
     text-decoration: none;
     border:none;
 }
@@ -328,4 +328,8 @@ color: #785aa2;
 .card-acesso-rapido h6{
 color: #785aa2;
 font-size: 12px;
+}
+
+.card-acesso-rapido:hover i, .card-acesso-rapido:hover h6{
+color: #FFD70F;
 }
