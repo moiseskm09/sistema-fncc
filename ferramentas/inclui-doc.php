@@ -13,6 +13,8 @@ if (isset($_POST["categoriaDocN"], $_POST["tituloDocN"], $_FILES["arquivoN"])) {
     if (move_uploaded_file($arquivo["tmp_name"], "$dir/" . $nomeFinal)) {
         $queryDoc = "INSERT INTO modelos_de_documentos (categoria_documento, titulo_documento, nome_documento) VALUES ('$categoria', '$tituloDoc', '$nomeFinal')";
         $executaQuery = mysqli_query($conexao, $queryDoc);
+        $queryAviso = "INSERT INTO avisos (coop_aviso, aviso, data_aviso, link_aviso) VALUES ('0', 'Novo Modelo Doc', NOW(), 'visualizar_doc.php')";
+        $executaAviso = mysqli_query($conexao, $queryAviso);
         //echo $queryDoc;
         //echo "Arquivo enviado com sucesso!";
         header("location: ../sistema/incluir-doc.php?sucesso=1");

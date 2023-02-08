@@ -10,7 +10,7 @@ and open the template in the editor.
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 .fundo_tela {
-    background-color: #f5f5f5 !important;
+    background-color: #e9ecef;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -153,7 +153,7 @@ color:#785aa2;
 font-weight: 600;              
 }
 
-.form-floating input:invalid{ 
+.form-floating input:invalid, .form-floating textarea:invalid{ 
                 outline: none; 
                 border-bottom: 2px solid #dc3545;
             }
@@ -279,7 +279,6 @@ font-weight: 600;
 }
 
 
-
 .files:before {
     position: absolute;
     bottom: 10px;
@@ -306,12 +305,14 @@ font-weight: 600;
     background-color: #ffffff;
     text-decoration: none;
     border:none;
+    box-shadow: 0px 2px 5px 0px #e7f1ff;
 }
 .card-acesso-rapido:hover{
     border-radius: 15px;
     background-color: #01004c;
     text-decoration: none;
     border:none;
+    box-shadow: 0px 2px 5px 0px #e7f1ff;
 }
 
 .link-rapido{
@@ -332,4 +333,156 @@ font-size: 12px;
 
 .card-acesso-rapido:hover i, .card-acesso-rapido:hover h6{
 color: #FFD70F;
+}
+
+.card-aviso{
+    border-radius:15px;
+    height: 240px;
+}
+
+@media (max-width: 768px) {
+.card-aviso{
+    border-radius:15px;
+    height: 100%;
+    font-size: 14px;
+}
+}
+    .atendimentofiles input {
+    border: 2px solid #785aa240;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 20px 0px 80px 25%;
+    text-align: left !important;
+    margin: 0;
+    width: 100% !important;
+}
+
+.atendimentofiles input:focus {
+    border: 1px solid #785aa240;
+    outline: 1px dashed #785aa2;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 20px 0px 80px 25%;
+    text-align: left !important;
+    margin: 0;
+    width: 100% !important;
+}
+.atendimentofiles input:invalid {
+    border-bottom: 2px solid #dc3545;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 20px 0px 80px 25%;
+    text-align: left !important;
+    margin: 0;
+    width: 100% !important;
+}
+
+
+.atendimentofiles:before {
+    position: absolute;
+    bottom: 10px;
+    left: 0;  pointer-events: none;
+    width: 100%;
+    right: 0;
+    height: 57px;
+    content: " Ou arraste e solte aqui. ";
+    display: block;
+    margin: 0 auto;
+    color: #2ea591;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.btn-bs-file input[type="file"]{
+                position: absolute;
+                filter: alpha(opacity=0);
+                opacity: 0;
+                width:0;
+                height:0;
+                outline: none;
+                cursor: inherit;
+            }
+            
+            .nav-pills .nav-link {
+                font-weight: 600;
+                color: #785aa2;
+                background-color: #ffffff;
+            }
+            .nav-pills .nav-item{
+                padding: 2px;
+            }
+            .nav-pills .nav-link:active {
+                color: #FFD70F;
+                background-color: #01004c;
+            }
+            
+            .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+                color: #FFD70F;
+                background-color: #01004c;
+            }
+            .tab-content{
+                margin: 2px;
+                padding: 0;
+                background-color: transparent;
+                border:none;
+            }
+            .dataTables_wrapper .dataTables_filter input{
+                border-radius: 5px;
+                background-color: #ffffff;
+                color: #785aa2;
+                font-weight: 600;  
+                border: 1px solid #785aa2;
+            }
+            .dataTables_wrapper .dataTables_filter input:focus{
+                border-radius: 5px;
+                background-color: #ffffff;
+                color: #785aa2;
+                font-weight: 600; 
+                border: 1px dashed #785aa2;
+                outline: none;
+            }
+            .dataTables_wrapper .dataTables_filter label{
+                color:#785aa2;
+                font-weight: 600;
+            }
+            
+            
+            .dataTables_wrapper .dataTables_paginate .paginate_button {
+                padding: 0.25rem 0.5rem;
+                font-size: .875rem;
+                background-color: #ffffff;
+                color:#0d6efd !important;
+            }
+            
+            .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active{
+                padding: 0.25rem 0.5rem;
+                font-size: .875rem;
+                background-color: #ffffff;
+                color:#0d6efd !important;
+            }
+            
+
+            .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+                color:#ffffff !important;
+                background-color: #0d6efd;
+                border-color: #0d6efd;
+            }
+            .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+            color:#785aa2;
+            }
+            
+            @media only screen and (max-width: 768px) {
+    /* esconde o elemento de controlo caso em Mobile */
+    #imprimirpdf, #imprimirexcel{ 
+    font-size: 15px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    /* esconde o elemento de controlo caso em Mobile */
+    #imprimirtela{ 
+    visibility:  hidden;
+    }
 }

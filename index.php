@@ -1,3 +1,14 @@
+<?php 
+session_start();
+session_regenerate_id();
+if (!isset($_SESSION["email"]) || !isset ($_SESSION["nome"]) || !isset ($_SESSION["user_nivel"])) {
+} else {
+    if(isset($_GET["cce"])){
+        $cce = $_GET["cce"];
+            header("Location: sistema/edicao-consulta.php?cod_consulta=$cce");
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -7,43 +18,53 @@
         <link rel="icon" type="image/png" sizes="512x512" href="img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="32x32" href="img/fncc-logotipo-colorido.png">
+        <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <link href="css/login.css" rel="stylesheet" />
         <link rel="manifest" href="manifest.json">
     </head>
     <body>
-
         <div class="container">
-            <div class="row align-items-center text-center" style="height: 100vh;">
-                <div class="col-lg-6 col-md-6 col-12 mx-auto">
+            <div class="row align-items-center text-center" style="height: 100vh;">                   
+                <div class="col-lg-8 col-md-8 col-12 mx-auto">
                     <div class="card text-center">
-                        <div class="card-header">
-                            <img class="logo-login mb-2" src="img/logocompleto.png" alt="logo fncc" title="Logo FNCC"/>
-
-                        </div>
                         <div class="card-body">
-                            <h6 class="mb-3">Utilize os campos abaixo para entrar no sistema.</h6>
+                            <div class="row align-items-center text-center">
+                                <div class="col-md-6 col-12">
+                                    <img class="logo-login mb-2" src="img/AVATAR-02.png" alt="logo fncc" title="Logo FNCC"/></div>
+                                    <div class="col-md-6 col-12">
+                                <h6 class="mb-2 text-white">Utilize os campos abaixo para entrar no sistema.</h6>
                             <form action="ferramentas/login.php" method="POST">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><i class="uil uil-user"></i></span>
-                                    <input type="text" name="usuario" class="form-control digitacao" placeholder="Seu Usuário" aria-label="email" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><i class="uil uil-key-skeleton-alt"></i></span>
-                                    <input type="password" name="senha" class="form-control digitacao" placeholder="Sua Senha" aria-label="senha" aria-describedby="basic-addon1" required>
-                                </div>
+                                <div class="form-floating mb-3">
+                <input type="text" name="usuario" class="form-control digitacao" id="usuario" placeholder="Seu Usuário" required>
+                <label for="usuario"><i class="uil uil-user"></i> Usuário</label>
+              </div>
+                                
+                                <div class="form-floating mb-3">
+                <input type="password" name="senha" class="form-control digitacao" id="senha" placeholder="Sua Senha" required>
+                <label for="senha"><i class="bi bi-key"></i> Senha</label>
+              </div>
+                                <!-- cod-consulta caso tenha-->
+                                <?php 
+                                if(isset($_GET["cce"])){
+                                    ?>
+                                <input type="hidden" name="cce" class="form-control digitacao" value="<?php echo $_GET["cce"];?>">
+                                <?php
+                                }
+                                ?>
+                                <!-- cod-consulta caso tenha-->
                                 <button type="submit" class="btn btn-entrar">Entrar</button>
                             </form>
-                        </div>
-                        <div class="card-footer text-muted">
-                            <button type="button" class="recupera-senha" data-bs-toggle="modal" data-bs-target="#esquecisenha">Esqueci Minha Senha</button>
-                        </div>
+                                <button type="button" class="recupera-senha mt-2 mb-2 text-white" data-bs-toggle="modal" data-bs-target="#esquecisenha">Esqueceu a senha? Clique aqui!</button>
+                            </div>
+                                </div>
+                            
+                            </div>
                     </div>
                 </div>
-            </div>
-            
             <footer class="py-1 mt-auto rodape fixed-bottom ">
                 <div class="container-fluid">
                     <div class="text-center small">
@@ -64,17 +85,16 @@
                         <a href="" data-dismiss="modal" aria-label="Fechar"><i class="fas fa-times text-white"></i></a>
                         </button>
                     </div>
-                    <form action="" method="POST">
+                    <form action="ferramentas/esqueceu-senha.php" method="POST">
                         <div class="modal-body">
-                            <p>Por favor, informe abaixo o e-mail cadastrado no sistema, para que possamos enviar uma nova senha de acesso!</p>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="uil uil-envelope-alt"></i></span>
-                                <input type="email" name="email_senha" class="form-control digitacao" placeholder="Seu E-mail" aria-label="email" aria-describedby="basic-addon1" required>
-                            </div>
-
+                            <p>Por favor, informe abaixo o usuário cadastrado no sistema, para que possamos enviar uma nova senha de acesso!</p>
+                            <div class="form-floating mb-1">
+                <input type="text" name="usuario_senha" class="form-control digitacao" id="usuario_senha" placeholder="Seu Usuário" required>
+                <label for="usuario_senha"><i class="uil uil-user"></i> Seu Usuário</label>
+              </div>
                         </div>
                         <div class="modal-footer border-0">
-                            <button type="submit" class="btn-entrar btn btn-sm">Confirmar</button>
+                            <button type="submit" class="btn-entrar btn btn-sm btnalterasenha">Confirmar</button>
 
                         </div>
                     </form>
@@ -82,11 +102,14 @@
             </div>
         </div>
         <!-- Modal esqueci senha fim --> 
+        
+        <?php include_once "ferramentas/modal_loading.php"; ?>
+        
+        
 
         <?php
-                    ini_set('display_errors', 0);
-                    error_reporting(0);
-                    $erro = (int) $_GET["erro"];
+        if(isset($_GET["erro"])){            
+        $erro = (int) $_GET["erro"];
                                         if ($erro === 1) {
                         echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
             <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -100,7 +123,39 @@
                 </div>
             </div>
         </div>'; 
+                    }elseif($erro === 2){
+                        echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header border-light" style="background-color: #f5c2c7; color: #1c1d3c;">
+                    <strong class="me-auto">FNCC AVISA</strong>
+                    <small>Agora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" style="background-color: #f5c2c7; color: #1c1d3c;"">
+                    <span>Não foi possível alterar a senha!</span>
+                </div>
+            </div>
+        </div>'; 
                     }
+        }
+        
+        if(isset($_GET["sucesso"])){            
+        $sucesso = (int) $_GET["sucesso"];
+                                        if ($sucesso === 1) {
+                       echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000">
+                <div class="toast-header border-light" style="background-color: #a3cfbb; color: #1c1d3c;">
+                    <strong class="me-auto">FNCC AVISA</strong>
+                    <small>Agora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" style="background-color: #a3cfbb; color: #1c1d3c;"">
+                    <span>Senha enviada para o email de cadastro!</span>
+                </div>
+            </div>
+        </div>';
+                    }
+        }
                     ?>
         
         
@@ -120,5 +175,6 @@ window.onload = (event) => {
   }
 };
 </script>
+<script src="js/loading.js"></script>
     </body>
 </html>

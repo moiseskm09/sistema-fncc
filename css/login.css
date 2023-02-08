@@ -6,10 +6,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 16 de dez. de 2022, 11:40:55
     Author     : BEMK
 */
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body{
-    background-color: #1c1d3c;
+background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(120,90,162,1) 35%, rgba(0,212,255,1) 100%);
+font-family: 'Poppins', sans-serif;
 }
 
 .rodape{
@@ -18,18 +20,28 @@ body{
 }
 
 .card{
-    box-shadow: 0 0 8px 3px #785aa2;
+    box-shadow: 0 0 8px 1px #FFD70F;
+    border:none;
+    border-radius: 15px;
 }
 
 .card-header, .card-body, .card-footer{
-    background-color: #ffffff;
+    background-color: #050030;
     border: none;
+    border-radius: 15px;
 }
 
 .logo-login{
-    height: 100px;
+    height: 350px;
     max-width: 100%;
 }
+@media (max-width: 768px) {
+.logo-login{
+    height: 150px;
+    max-width: 100%;
+}
+}
+
 .input-group-text{
     background-color: #785aa2;
     color: #FFD70F;
@@ -38,17 +50,16 @@ body{
     width: 45px;
 }
 
+
 .digitacao{
-    height: 45px;
-    border: 1px solid #785aa2;
+    border: 1px solid #050030;
     font-size: 18px;
     font-weight: 600;
     color: #785aa2;
 }
 
 .digitacao:focus{
-    height: 45px;
-    border: 1px dashed #785aa2;
+    border: 1px dashed #FFD70F;
     outline: 0;
     box-shadow: 0 0 0 0;
     color: #785aa2;
@@ -60,7 +71,7 @@ body{
     color: #FFD70F;
     width: 100%;
     max-width: 100%;
-    height: 45px;
+    height: 55px;
     font-size: 18px;
     font-weight: 600;
 }
@@ -92,5 +103,5 @@ body{
 }
 
 .modal-header{
-    background-color: #785aa2;
+    background-color: #050030;
 }

@@ -7,7 +7,7 @@
                         <span class="sr-only">Loading...</span>
                     </div>
                     <div class="text-center">
-                        <div class="loader" id="loader"></div><br>
+                        <div class="loader" id="loader"></div>
                         <h6 id="loadingModal_content"></h6>
                     </div>
                 </div>

@@ -279,7 +279,7 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
                         </div>
                 <div class="col-lg-12 col-md-21 col-12">
                   <div class="form-floating mb-3">
-                      <textarea class="form-control" name="obsExtCN" id="obsExtCN" placeholder="Adicione uma observação se necessário" style="height: 100px" maxlength="1000"></textarea>
+                      <textarea class="form-control" name="obsExtCN" id="obsExtCN" placeholder="Adicione uma observação se necessário" style="height: 100px" maxlength="1000" required></textarea>
   <label for="obsExtCN">Observação</label>
 </div>  
                 </div>

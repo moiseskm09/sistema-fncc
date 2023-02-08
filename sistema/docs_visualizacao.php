@@ -104,7 +104,7 @@ if($_GET['id']){
                                                 <td style="font-size:15px;"><?php echo ucwords(strtolower($resultadoDoc['titulo_documento']));?></td>
                                                 <td style="font-size:15px;"><?php echo $resultadoDoc['categoria'];?></td>
                                                 <td class="text-center">
-                                                <a title="Fazer Download" href="../ferramentas/download_documento.php?cod_categoria=<?php echo $resultadoDoc['categoria_documento']; ?>&nome_doc=<?php echo $resultadoDoc['nome_documento']; ?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-import text-dark btn-sm btn-info"></i></a>
+                                                <a title="Fazer Download" href="../ferramentas/download_documento.php?cod_categoria=<?php echo $resultadoDoc['categoria_documento']; ?>&nome_doc=<?php echo $resultadoDoc['nome_documento'];?>&cod_doc=<?php echo $resultadoDoc['cod_documento'];?>&cod_user=<?php echo $CODIGOUSUARIO;?>" data-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="uil uil-import text-dark btn-sm btn-info"></i></a>
                                                 </td> 
                                             </tr>
                                             <?php

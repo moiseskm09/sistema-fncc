@@ -1,0 +1,45 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2 de fev. de 2023, 14:05:55
+    Author     : BEMK
+*/
+
+#grafico {
+    width: 100%;
+    height: 300px;
+    margin: 0;
+    padding: 0;
+}
+.anychart-credits-logo , .anychart-credits-text{
+    visibility: hidden;
+}
+.card{
+    border:none;
+}
+.card-relatendimento {
+    border:none;
+    border-radius: 10px;
+}
+
+.card-relatendimento span{
+    font-size: 14px;
+}
+.card-relatendimento h6{
+    font-size: 18px;
+}
+
+.dataTables_info{
+    visibility: hidden;
+}
+#table_id_paginate{
+    visibility: hidden;
+}
+.dataTables_wrapper.no-footer .dataTables_scrollBody{
+    border: none;
+}
+.dataTables_scrollHeadInner{
+    height: 0;
+}

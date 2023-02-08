@@ -18,6 +18,8 @@ if (isset($_POST["cooperativaBolN"], $_POST["competenciaBolN"], $_POST["dataVenc
     if (move_uploaded_file($bolN["tmp_name"], "$dir/" . $nomeFinal)) {
         $queryDoc = "INSERT INTO boletos (bol_competencia, bol_vencimento, arquivo, bol_situacao, bol_coop) VALUES ('$competenciaBolN', '$dataVencimentoBolN', '$nomeFinal', '3', '$cooperativaBolN')";
         $executaQuery = mysqli_query($conexao, $queryDoc);
+        $queryAviso = "INSERT INTO avisos (coop_aviso, aviso, data_aviso, link_aviso) VALUES ('$cooperativaBolN', 'Novo boleto', NOW(), 'meus-boletos.php')";
+        $executaAviso = mysqli_query($conexao, $queryAviso);
         header("location: ../sistema/incluir-boleto.php?sucesso=2");
     } else {
         header("location: ../sistema/incluir-boleto.php?erro=2");

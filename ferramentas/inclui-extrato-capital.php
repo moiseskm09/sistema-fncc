@@ -20,6 +20,8 @@ if (isset($_POST["cooperativaExtCN"], $_POST["acumuladoExtCN"], $_POST["jurosCap
     if (move_uploaded_file($arquivoExtCN["tmp_name"], "$dir/" . $nomeFinal)) {
         $queryExtC = "INSERT INTO extrato_de_capital (ext_acumulado, ext_remuneracao_juros, ext_coop, ext_arquivo, ext_obs) VALUES ('$acumuladoExtCN', '$jurosCapitalExtCN', '$cooperativaExtCN', '$nomeFinal', '$obsExtCN')";
         $executaQuery = mysqli_query($conexao, $queryExtC);
+        $queryAviso = "INSERT INTO avisos (coop_aviso, aviso, data_aviso, link_aviso) VALUES ('$cooperativaExtCN', 'Novo Ext. Capital', NOW(), 'extrato-capital.php')";
+        $executaAviso = mysqli_query($conexao, $queryAviso);
         header("location: ../sistema/incluir-extrato-capital.php?sucesso=2");
     } else {
         header("location: ../sistema/incluir-extrato-capital.php?erro=2");
