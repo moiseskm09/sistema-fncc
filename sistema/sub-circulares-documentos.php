@@ -5,7 +5,7 @@ require_once '../config/conexao.php';
 
 if (isset($_GET['id'])) {
     $cat_id = $_GET['id'];
-    $sql_buscaSubCat = mysqli_query($conexao, "SELECT cod_subcategoria, subcategoria, COUNT(cod_docc) AS qtd_arquivos FROM subcategoria_circulares INNER JOIN documentos_circulares ON cod_subcategoria = docc_subcategoria WHERE id_categoria = '$cat_id' GROUP BY subcategoria ORDER BY subcategoria");
+    $sql_buscaSubCat = mysqli_query($conexao, "SELECT cod_subcategoria, subcategoria, COUNT(cod_docc) AS qtd_arquivos FROM subcategoria_circulares LEFT JOIN documentos_circulares ON cod_subcategoria = docc_subcategoria WHERE id_categoria = '$cat_id' GROUP BY subcategoria ORDER BY subcategoria");
 } else {
 header("location: ../sistema/circulares-documentos.php");
 }
@@ -51,7 +51,11 @@ header("location: ../sistema/circulares-documentos.php");
                     <div class="container-fluid">
                         <!--conteudo da tela aqui!-->
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h5 class="titulo">Subcategoria Circulares e Documentos</h5>
+                            <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
+                      <span class="breadcrumb-item text-primary">Circular</span>
+                      <span class="breadcrumb-item text-primary">Categoria Circular</span>
+                      <span class="breadcrumb-item active text-success">Subcategoria Circulares e Documentos</span>
+                  </div>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a> 

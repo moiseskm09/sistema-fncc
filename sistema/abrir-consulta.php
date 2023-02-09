@@ -52,7 +52,7 @@ require_once '../config/config_geral.php';
             <form action="../ferramentas/abrir-consulta.php" method="POST" enctype="multipart/form-data">
             <div class="row">
                 
-              <div class="col-md-4">
+              <div class="col-md-4 mb-2">
                 <div class="accordion" id="accordionExample" style="height:100%; max-height: 100%;">
                   <div class="accordion-item" style="height:100%; max-height: 100%;">
                     <h2 class="accordion-header" id="headingOne">
@@ -121,7 +121,7 @@ require_once '../config/config_geral.php';
                   </div>
                 </div>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-8 mb-2">
                 <div class="accordion" id="accordionExample" style="height:100%; max-height: 100%;">
                   <div class="accordion-item" style="height:100%; max-height: 100%;">
                     <h2 class="accordion-header" id="headingOne">

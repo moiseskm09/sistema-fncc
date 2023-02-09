@@ -1,0 +1,41 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 8 de fev. de 2023, 13:07:32
+    Author     : BEMK
+*/
+
+@media only screen and (max-width: 768px) {
+.info-usuario{
+    text-align: center;
+}
+}
+.horas{
+    font-size: 25px;
+}
+.texto-horas{
+   font-size: 15px;
+}
+
+.borda{
+    border-right: 3px solid #f7f7f7;
+    border-left: 3px solid #f7f7f7;
+}
+
+.theadPonto{
+    background-color: #e7f1ff;
+    color: #785aa2;
+}
+
+.cab-info{
+    font-size: 14px;
+    text-align: center;
+}
+.info-td{
+    vertical-align:middle !important;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+}

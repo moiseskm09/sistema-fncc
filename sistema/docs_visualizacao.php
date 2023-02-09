@@ -39,6 +39,10 @@ if($_GET['id']){
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Documentos</title>
+        <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
+        <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
         <link href="../css/menu.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -72,7 +76,10 @@ if($_GET['id']){
                     <div class="container-fluid">
                        <!--conteudo da tela aqui!-->
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
-                            <h5 class="titulo">Documentos</h5>
+                            <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
+                      <span class="breadcrumb-item text-primary">Modelos de Documentos</span>
+                      <span class="breadcrumb-item active text-success">Documentos </span>
+                  </div>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>

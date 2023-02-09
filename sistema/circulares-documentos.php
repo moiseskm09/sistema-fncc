@@ -5,10 +5,10 @@ require_once '../config/conexao.php';
 
 if (isset($_GET['titulo_cat'])) {
     $titulo_cat = $_GET['titulo_cat'];
-    $sql_buscaCat = mysqli_query($conexao, "SELECT cod_categoria, categoria, COUNT(cod_subcategoria) AS qtd_subcategoria, cod_subcategoria FROM categoria_circulares INNER JOIN subcategoria_circulares ON cod_categoria = id_categoria WHERE categoria LIKE '%$titulo_cat%' GROUP BY cod_categoria ORDER BY categoria");
+    $sql_buscaCat = mysqli_query($conexao, "SELECT cod_categoria, categoria, COUNT(cod_subcategoria) AS qtd_subcategoria, cod_subcategoria FROM categoria_circulares LEFT JOIN subcategoria_circulares ON cod_categoria = id_categoria WHERE categoria LIKE '%$titulo_cat%' GROUP BY cod_categoria ORDER BY categoria");
     $filtroON = 1;
 } else {
-    $sql_buscaCat = mysqli_query($conexao, "SELECT cod_categoria, categoria, COUNT(cod_subcategoria) AS qtd_subcategoria, cod_subcategoria FROM categoria_circulares INNER JOIN subcategoria_circulares ON cod_categoria = id_categoria GROUP BY cod_categoria ORDER BY categoria");
+    $sql_buscaCat = mysqli_query($conexao, "SELECT cod_categoria, categoria, COUNT(cod_subcategoria) AS qtd_subcategoria, cod_subcategoria FROM categoria_circulares LEFT JOIN subcategoria_circulares ON cod_categoria = id_categoria GROUP BY cod_categoria ORDER BY categoria");
     $filtroON = 0;
 }
 ?>
@@ -53,7 +53,10 @@ if (isset($_GET['titulo_cat'])) {
                     <div class="container-fluid">
                         <!--conteudo da tela aqui!-->
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h5 class="titulo">Circulares e Documentos</h5>
+                            <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
+                      <span class="breadcrumb-item text-primary">Circulares</span>
+                      <span class="breadcrumb-item active text-success">Circulares e Documentos</span>
+                  </div>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
