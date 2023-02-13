@@ -48,7 +48,6 @@ if (isset($_GET['nome'])) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
         <!-- Styles -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
         <!-- Or for RTL support -->
@@ -65,7 +64,7 @@ if (isset($_GET['nome'])) {
                 <main>
                     <div class="container-fluid">
                         <!--conteudo da tela aqui!-->
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-1 mb-2 border-bottom">
                             <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                       <span class="breadcrumb-item text-primary">Cadastro</span>
                       <span class="breadcrumb-item active text-success">Usuários</span>
@@ -81,9 +80,11 @@ if (isset($_GET['nome'])) {
                                 </div>
                             </div>
                         </div>
-
+                        
+                        <div class="card mb-3" style="border-radius: 15px;">
+                        <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table table-borderless table-sm bg-white">
+                            <table class="table table-borderless table-sm">
                                 <thead class="theadN">
                                     <tr>
                                         <th>Código</th>
@@ -159,7 +160,8 @@ if (isset($_GET['nome'])) {
 
                             </table>
                         </div>
-
+                        </div>
+                        </div>
                         <!-- Modal -->
                         <div class="modal fade" id="filtro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">

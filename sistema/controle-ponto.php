@@ -13,6 +13,8 @@ $ResultadoHorasTrabalhadas = mysqli_fetch_assoc($buscaHorasTrabalhadas);
 $buscaUsuario = mysqli_query($conexao, "SELECT nome, sobrenome FROM usuarios WHERE id_usuario = '$CODIGOUSUARIO' LIMIT 1");
 $ResultadoUsuario = mysqli_fetch_assoc($buscaUsuario);
 
+$buscaBancodeHoras = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( bh_horas ) ) ),'%H:%i') as SaldoBancoMes FROM banco_de_horas WHERE bh_dia >= '$primeiroDia' and bh_dia <= '$UltimodiaDia' and bh_user = '$CODIGOUSUARIO'");
+$ResultadoBancoTotal = mysqli_fetch_assoc($buscaBancodeHoras);
 
 // busca para o grafico de circulo
 $totalPontoMes = 0; $totalNoHorario = 0; $totalAtraso = 0; $totalFalta = 0;
@@ -105,11 +107,13 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                             </div>
                                             <div class="col-md-3 col-12 text-center mb-2 my-2">
                                                 <p class="texto-horas text-muted">Horas Trabalhadas</p>
-                                                <h6 class="horas text-muted fw-bold"><span class="text-primary"><?php if($ResultadoHorasTrabalhadas["HorasTrabalhadas"] == null){ echo "0"; }else{ echo $ResultadoHorasTrabalhadas["HorasTrabalhadas"];}?>h</span> / 220h</h6>
+                                                <h6 class="horas text-muted fw-bold" style="margin-top: -15px;"><span class="text-primary"><?php if($ResultadoHorasTrabalhadas["HorasTrabalhadas"] == null){ echo "0"; }else{ echo $ResultadoHorasTrabalhadas["HorasTrabalhadas"];}?>h</span> / 220h</h6>
+                                                <p class="texto-horas text-muted" style="font-size: 12px;">Horas Extras Mês</p>
+                                                <h6 class="horas text-muted fw-bold" style="font-size: 12px; margin-top: -15px;"><span class="text-primary"><?php if($ResultadoBancoTotal["SaldoBancoMes"] == null){ echo "0"; }else{ echo strftime('%H h %M m', strtotime($ResultadoBancoTotal["SaldoBancoMes"]));}?></span></h6>
                                             </div>
-                                            <div class="col-md-5 text-center borda mb-2">
+                                            <div class="col-md-5 text-center borda mb-2 ">
                                                 <!-- inicio grafico circulo -->
-                                                <div class="row">
+                                                <div class="row my-3">
                                                     <div class="col-md-4 col-lg-4 col-4">
                                                         <!-- Progress bar 1 -->
                                                         <div class="progress mx-auto" data-value='<?php echo $percentualNohorario;?>'>
@@ -183,6 +187,7 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                         <th>Horas Executadas</th>
                                                         <th>Horas Atraso</th>
                                                         <th>Horas Extra</th>
+                                                        <th>Justificado</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="">
@@ -202,7 +207,7 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                                     }
                                                                     ?>
                                                                 </td>
-                                                                <td class="info-td"><?php echo utf8_encode(strftime('%d/%b - %a', strtotime($resultadoPonto["ponto_dia"]))); ?></td>
+                                                                <td class="info-td fw-bold cor-primaria"><?php echo utf8_encode(strftime('%d/%b - %a', strtotime($resultadoPonto["ponto_dia"]))); ?></td>
                                                                 <td class="info-td text-success fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_entrada"])); ?></td>
                                                                 <td class="info-td"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_intervalo_um"])); ?></td>
                                                                 <td class="info-td"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_intervalo_dois"])); ?></td>
@@ -211,6 +216,14 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                                 <td class="info-td text-primary fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_executada"])); ?></td>
                                                                 <td class="info-td text-danger fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_atraso"])); ?></td>
                                                                 <td class="info-td text-success fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_extra"])); ?></td>
+                                                                <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_justificado"] == 1){
+         echo '<i title="Justificado" class="btn btn-sm btn-outline-warning rounded bi bi-emoji-neutral"></i>';                                                           
+                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == "00:00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00:00"){
+                                           echo '<i title="Tudo OK" class="btn btn-sm btn-outline-success rounded bi bi-emoji-smile"></i>';                         
+                                                                }else{
+                                                                  echo '<i title="Não Justificado" class="btn btn-sm btn-outline-danger rounded bi bi-emoji-frown"></i>';  
+                                                                }
+?></td>
                                                             </tr>
                                                             <?php
                                                         }
@@ -291,7 +304,7 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                             while($resultadoJustificativa = mysqli_fetch_assoc($buscaPontoJustificativa)){
                                                                 if($resultadoJustificativa["just_dia"] == null){    
                                                             ?>
-                                                                <option value="<?php echo date("Y-m-d", strtotime($resultadoJustificativa["ponto_dia"])); ?>"><?php echo date("d/m/Y", strtotime($resultadoJustificativa["ponto_dia"])); if($resultadoJustificativa["ponto_hora_extra"] != "00:00:00"){ echo "- Hora Extra";}elseif($resultadoJustificativa["ponto_hora_atraso"] != "00:00:00"){echo "- Hora Atraso";}elseif($resultadoJustificativa["ponto_situacao"] == "2"){echo "- Ausência";}?></option>
+                                                                <option value="<?php echo date("Y-m-d", strtotime($resultadoJustificativa["ponto_dia"])); ?>"><?php echo date("d/m/Y", strtotime($resultadoJustificativa["ponto_dia"])); if($resultadoJustificativa["ponto_hora_extra"] != "00:00:00"){ echo "- Hora Extra";}elseif($resultadoJustificativa["ponto_hora_atraso"] != "00:00:00"){echo "- Atraso";}elseif($resultadoJustificativa["ponto_situacao"] == "2"){echo "- Ausência";}?></option>
                                                             <?php } } ?>
                                                         </select>
                                                         <label for="dataJustificativa">Dia Justificativa</label>

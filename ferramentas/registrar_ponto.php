@@ -116,6 +116,9 @@ if (isset($_POST["opcaoPonto"])) {
                 $MinutosExecutados = $diff->i;
                 $HorasExecutadas = $horasExecutadas . ":" . $MinutosExecutados;
                 $inseresaida = mysqli_query($conexao, "UPDATE controle_de_ponto SET ponto_saida = '$horaAtual', ponto_hora_extra = '$HoraExtra', ponto_hora_executada = '$HorasExecutadas' WHERE ponto_dia = '$dataAtual' and ponto_user = '$CODIGOUSUARIO'");
+                if($HoraExtra != "00:00:00"){
+                $atualizaBancodeHoras = mysqli_query($conexao, "INSERT INTO banco_de_horas (bh_dia, bh_horas, bh_user) VALUES('$dataAtual', '$HoraExtra', '$CODIGOUSUARIO')");
+                }
                 if ($inseresaida == 1) {
                     header("location: ../sistema/controle-ponto.php?sucesso=4");
                 } else {

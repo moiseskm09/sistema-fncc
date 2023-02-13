@@ -119,8 +119,9 @@ nav > div a.nav-item.nav-link:focus
 }
 
 .form-select{
-  border: 0;
-  border-bottom: 2px solid lightgrey;
+  border: 1px solid #785aa240;
+  font-weight: 500;
+  color:#432874;
 }
 
 
@@ -484,5 +485,15 @@ color: #FFD70F;
     /* esconde o elemento de controlo caso em Mobile */
     #imprimirtela{ 
     visibility:  hidden;
+    }
+}
+
+.botaoRefresh{
+     visibility:  hidden;
+}
+@media only screen and (max-width: 768px) {
+    /* esconde o elemento de controlo caso em Mobile */
+    .botaoRefresh{ 
+    visibility: visible;
     }
 }

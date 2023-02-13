@@ -43,3 +43,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .dataTables_scrollHeadInner{
     height: 0;
 }
+
+.card-relbancodehoras {
+    border:none;
+    border-radius: 10px;
+}
+
+.card-relbancodehoras span{
+    font-size: 12px;
+}
+.card-relbancodehoras h6{
+    font-size: 20px;
+}

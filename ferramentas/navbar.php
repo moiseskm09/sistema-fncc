@@ -2,7 +2,7 @@
     <a class="navbar-brand" href="home.php" style="color: #ffffff; margin-left: -10px; max-width: 100%;"><img class="" src="../img/logofncc.png" height="45px;"></a>
     <button class="order-1 order-lg-0 menu-mobile" id="sidebarToggle" href="#"><i class="uil uil-list-ul" style="font-size:20px;"></i></button>
     <!-- Navbar Search-->
-
+    <i class="mx-auto bi bi-arrow-repeat botaoRefresh rounded-circle fw-bold text-white" onClick="window.location.reload()" style="font-size: 30px;"></i>
     <!-- Navbar-->
     <ul class="navbar-nav d-md-inline-block form-inline ml-auto">
         <li class="nav-item dropdown">

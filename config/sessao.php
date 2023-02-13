@@ -15,6 +15,7 @@ $CODIGOUSUARIO = $_SESSION['CodUser'];
 $LOGO_COOP = $_SESSION['logo_coop'];
 $COOPERATIVA = $_SESSION['user_coop'];
 $USERGRUPO = $_SESSION['user_grupo'];
+$SUPERVISOR = $_SESSION['user_supervisor'];
 
 if (!isset($EMAIL) || !isset ($NOME) || !isset ($NIVEL)) {
 	header("Location: ../index.php");
