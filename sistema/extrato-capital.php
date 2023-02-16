@@ -7,6 +7,9 @@ require_once '../config/config_geral.php';
 if(isset($_GET["acumuladoAte"])){
     $acumuladoAte = $_GET['acumuladoAte'];
     $sql_buscaExts = mysqli_query($conexao, "SELECT * FROM extrato_de_capital INNER JOIN cooperativas ON  ext_coop = cod_coop WHERE ext_acumulado like '%$acumuladoAte%' and ext_coop = '$COOPERATIVA'");
+    
+    $sql_buscaObs = mysqli_query($conexao, "SELECT * FROM extrato_de_capital INNER JOIN cooperativas ON  ext_coop = cod_coop WHERE ext_acumulado like '%$acumuladoAte%' and ext_coop = '$COOPERATIVA'");
+    
     $numeroLinhas = mysqli_num_rows($sql_buscaExts);
     $filtroON = 1;   
 }else{
@@ -25,6 +28,9 @@ if(isset($_GET["acumuladoAte"])){
     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
 
     $sql_buscaExts = mysqli_query($conexao, "SELECT cod_ext_capital, ext_acumulado, ext_remuneracao_juros, ext_obs, ext_coop, ext_arquivo, cooperativa FROM extrato_de_capital INNER JOIN cooperativas ON  ext_coop = cod_coop WHERE ext_coop = '$COOPERATIVA' LIMIT $inicio, $itens_por_pagina ");
+    
+    $sql_buscaObs = mysqli_query($conexao, "SELECT cod_ext_capital, ext_acumulado, ext_remuneracao_juros, ext_obs, ext_coop, ext_arquivo, cooperativa FROM extrato_de_capital INNER JOIN cooperativas ON  ext_coop = cod_coop WHERE ext_coop = '$COOPERATIVA'");
+    
     $numeroLinhas = mysqli_num_rows($sql_buscaExts);
     $filtroON = 0;
 }
@@ -36,6 +42,10 @@ if(isset($_GET["acumuladoAte"])){
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Meus Extratos</title>
+        <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
+        <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
         <link href="../css/menu.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -43,7 +53,6 @@ if(isset($_GET["acumuladoAte"])){
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <!-- Styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 <!-- Or for RTL support -->
@@ -69,7 +78,10 @@ if(isset($_GET["acumuladoAte"])){
                     <div class="container-fluid">
                        <!--conteudo da tela aqui!-->
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
-                            <h5 class="titulo">Meus Extratos</h5>
+                            <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
+                      <span class="breadcrumb-item text-primary">Financeiro</span>
+                      <span class="breadcrumb-item active text-success">Meus Extratos</span>
+                  </div>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
@@ -110,34 +122,6 @@ if(isset($_GET["acumuladoAte"])){
                                                     </td> 
                                             </tr>
                                             <?php
-                                            if($resultadoExts['ext_obs'] != null){
-                                              ?>
-                                            <!-- Modal obs-->
-<div class="modal fade" id="obsExtrato<?php echo $resultadoExts['cod_ext_capital'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header header-filtro">
-        <h5 class="modal-title" id="exampleModalLabel">Observações do Extrato</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body card-fundo-body">
-            <div class="row">
-                <div class="col-12">
-                    <?php echo $resultadoExts['ext_obs'];?>
-                </div>
-            </div>
-      </div>
-      <div class="modal-footer card-fundo-body p-1">
-        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Fechar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- fim modal obs -->
-                                            <?php
-                                        }
                                         }
                                     } else {
                                         ?>
@@ -212,6 +196,49 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
   </div>
 </div>
 <!-- fim modal filtro -->
+
+
+
+<!-- modal obs -->
+<?php
+if ($numeroLinhas > 0) {
+while ($resultadoObs = mysqli_fetch_assoc($sql_buscaObs)) {
+if($resultadoObs['ext_obs'] != null){
+                                              ?>
+                                            <!-- Modal obs-->
+<div class="modal fade" id="obsExtrato<?php echo $resultadoObs['cod_ext_capital'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header header-filtro">
+        <h5 class="modal-title" id="exampleModalLabel">Observações do Extrato</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body card-fundo-body">
+            <div class="row">
+                <div class="col-12">
+                    <?php echo $resultadoObs['ext_obs'];?>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer card-fundo-body p-1">
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php 
+}else{
+    //echo "nada a ser feito";
+}
+}
+}else{
+    //echo "nada a ser feito 2";
+}
+?>
+                                                                               
+<!-- fim modal obs -->
                        <!--fim conteudo da tela aqui!-->
                     </div>
                 </main>

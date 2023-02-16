@@ -1,0 +1,100 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 16 de dez. de 2022, 11:40:55
+    Author     : BEMK
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body{
+background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(120,90,162,1) 35%, rgba(0,212,255,1) 100%);
+font-family: 'Poppins', sans-serif;
+}
+
+.rodape{
+    background-color: #f7f7f7;
+    box-shadow: 0 -2px 10px -2px #785aa2;
+}
+
+.card{
+    box-shadow: 0 0 8px 1px #FFD70F;
+    border:none;
+    border-radius: 15px;
+}
+
+.card-header, .card-body, .card-footer{
+    background-color: #050030;
+    border: none;
+    border-radius: 15px;
+}
+
+.logo-login{
+    height: 350px;
+    max-width: 100%;
+}
+.input-group-text{
+    background-color: #785aa2;
+    color: #FFD70F;
+    font-size: 18px;
+    height: 45px;
+    width: 45px;
+}
+
+
+.digitacao{
+    border: 1px solid #050030;
+    font-size: 18px;
+    font-weight: 600;
+    color: #785aa2;
+}
+
+.digitacao:focus{
+    border: 1px dashed #FFD70F;
+    outline: 0;
+    box-shadow: 0 0 0 0;
+    color: #785aa2;
+    
+}
+
+.btn-entrar{
+    background-color: #785aa2;
+    color: #FFD70F;
+    width: 100%;
+    max-width: 100%;
+    height: 55px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+.btn-entrar:focus{
+    background-color: #FFD70F;
+    color: #785aa2;
+}
+
+.btn-entrar:hover{
+    background-color: #FFD70F;
+    color: #785aa2;
+}
+
+.recupera-senha{
+    color:#1c1d3c;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: transparent;
+    border:none;
+}
+.recupera-senha:hover{
+    color:#785aa2;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: transparent;
+    border:none;
+}
+
+.modal-header{
+    background-color: #050030;
+}

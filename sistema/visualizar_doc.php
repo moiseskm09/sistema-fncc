@@ -37,6 +37,10 @@ if (isset($_GET['titulo_cat'])) {
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Categoria de Documentos</title>
+        <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
+        <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
         <link href="../css/menu.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -44,7 +48,6 @@ if (isset($_GET['titulo_cat'])) {
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <!-- Styles -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
         <!-- Or for RTL support -->
@@ -92,8 +95,8 @@ if (isset($_GET['titulo_cat'])) {
                                     ?>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <a href="docs_visualizacao.php?id=<?php echo $categorias["cod_categoria"]; ?>" class="link-acesso">
-                                            <div class="card border-0 mb-1 mt-1">
-                                                <div class="card-body acesso-rapido p-1">
+                                            <div class="card border-0 acesso-rapido mb-1 mt-1">
+                                                <div class="card-body  p-1">
                                                     <h5 class="card-title titulo-acesso-rapido"><?php echo $categorias["categoria"]; ?></h5>
                                                     <h6 class="card-text texto-acessorapido"><span class="badge rounded-pill text-bg-light"><?php echo $categorias["qtd_arquivos"]; ?> DOCUMENTOS</span></span></h6>
                                                 </div>

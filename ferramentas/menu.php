@@ -2,6 +2,10 @@
     <nav class="sb-sidenav accordion fundo-menu" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
+                <a class="nav-link link-menu" href="home.php">
+                        <div class="sb-nav-link-icon"><i class="bi bi-house-door tamanho-icone"></i></div>
+                        TELA PRINCIPAL  
+                    </a> 
                 <?php
                 $seleciona_menu = mysqli_query($conexao, "SELECT * FROM nivel_acesso
                                                     INNER JOIN menu ON codMenu = id_menu

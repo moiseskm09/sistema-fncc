@@ -16,6 +16,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .acesso-rapido:hover{
+    border-radius: 8px;
     background-color: #785aa240;
     
     

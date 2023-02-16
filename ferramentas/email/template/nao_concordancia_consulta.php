@@ -1,0 +1,4 @@
+<?php
+    $mail->Subject = 'A Consulta (Nº #'.str_pad($cod_consultaNaoEstouAcordo, 6, '0', STR_PAD_LEFT).') foi reaberta!';
+    $mail->Body = '<p>A consulta (Nº #'.str_pad($cod_consultaNaoEstouAcordo, 6, '0', STR_PAD_LEFT).') foi reaberta pelo usuário: <strong>'.$nomeUserResponsavel.'</strong>. O Status foi alterado para <strong>PENDENTE</strong></p><p>Clique no link abaixo para abrir o sistema e visualizar os detalhes da consulta<br>https://bemktech.com.br/sistema-fncc/?cce='.$cod_consultaNaoEstouAcordo.'</p><p>Essa é uma mensagem automática do sistema, por favor não responda!<br> <strong>FNCC</strong></p>';
+?>

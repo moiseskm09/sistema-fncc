@@ -65,3 +65,26 @@
 }
 
 
+.home-dashboard{
+    border-radius:15px;
+    min-height: 240px;
+    max-height: 100%;
+}
+@media only screen and (max-width: 768px) {
+    /* esconde o elemento de controlo caso em Mobile */
+    .texto-acessorapido { 
+    border-radius:15px;
+    height: 100%;
+    }
+}
+
+.botaoRefresh{
+     visibility:  hidden;
+}
+
+@media only screen and (max-width: 768px) {
+    /* esconde o elemento de controlo caso em Mobile */
+    .botaoRefresh{ 
+    visibility: visible;
+    }
+}

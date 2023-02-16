@@ -19,6 +19,10 @@ if (isset($_GET['id'])) {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Perfis de Acesso</title>
+        <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
+        <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
     <link href="../css/menu.css" rel="stylesheet" />
     <link href="../css/perfis.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -27,15 +31,12 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <!-- Or for RTL support -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link href="../css/style.css" rel="stylesheet" />
   </head>
@@ -48,7 +49,10 @@ if (isset($_GET['id'])) {
           <div class="container-fluid">
             <!--conteudo da tela aqui!-->
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
-              <h5 class="titulo">Perfis de acesso</h5>
+              <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
+                      <span class="breadcrumb-item text-primary">Configurações</span>
+                      <span class="breadcrumb-item active text-success">Perfis de Usuário</span>
+                  </div>
               <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="mr-2">
                   <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
@@ -111,7 +115,7 @@ if (isset($_GET['id'])) {
                 <div class="accordion" id="accordionExample">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDois" aria-expanded="true" aria-controls="collapseDois">
                         <span class="destaque fw-bold">Permissões do Perfil <?php
                             if (isset($perfil_option)) {
                                 echo "<span style='color: #dc3545'>" . $perfil_option . "</span>";
@@ -121,7 +125,7 @@ if (isset($_GET['id'])) {
                             ?></span>
                       </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapseDois" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#collapseDois">
                       <div class="accordion-body" style="max-height: 420px; overflow-y: scroll;">
                         <div class="">
                             <?php

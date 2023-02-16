@@ -5,7 +5,7 @@ require_once '../config/config_geral.php';
 
 $usuario = $_GET['id'];
 
-$sqlBuscaInfo = mysqli_query($conexao, "SELECT * FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop INNER JOIN perfis_usuarios ON user_nivel = p_cod WHERE id_usuario = '$usuario'");
+$sqlBuscaInfo = mysqli_query($conexao, "SELECT * FROM usuarios INNER JOIN cooperativas ON user_coop = cod_coop INNER JOIN perfis_usuarios ON user_nivel = p_cod INNER JOIN grupos_usuarios ON user_grupo = cod_grupo WHERE id_usuario = '$usuario'");
 $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
 ?>
 
@@ -15,6 +15,10 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Edição Usuários</title>
+        <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
+        <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
         <link href="../css/menu.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -34,7 +38,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
         <script src="../js/loading.js"></script>
         <link href="../css/style.css" rel="stylesheet" />
     </head>
-    <body class="sb-nav-fixed">
+    <body class="sb-nav-fixed fundo_tela">
         <?php include_once "../ferramentas/navbar.php"; ?>
         <div id="layoutSidenav">
             <?php include_once "../ferramentas/menu.php"; ?>
@@ -75,13 +79,13 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                             <label for="sobrenome">Sobrenome</label>
                           </div>  
                         </div>
-          <div class="col-lg-6 col-md-6 col-12">
+          <div class="col-lg-4 col-md-4 col-12">
                               <div class="form-floating mb-3">
                                 <input type="email" name="email" class="form-control" id="email"  value="<?php echo $resultadoBuscaInfo['email']; ?>"placeholder="E-mail" autocomplete="off" required>
                                 <label for="email">E-mail</label>
                               </div>  
                             </div>
-          <div class="col-lg-6 col-md-6 col-12">
+          <div class="col-lg-4 col-md-4 col-12">
     <div class="form-floating mb-3">
       <select class="form-select pesquisa-select" id="cooperativa" name="cooperativa" required>
         <option value="<?php echo $resultadoBuscaInfo['cod_coop']; ?>"><?php echo $resultadoBuscaInfo['cooperativa']; ?></option>
@@ -116,10 +120,25 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                                                                 }
                                                                 ?>
       </select>
-      <label for="floatingSelect">Perfil de Acesso</label>
+      <label for="floatingSelect">Nível de Acesso</label>
     </div>
   </div>
-          
+          <div class="col-lg-4 col-md-4 col-12">
+    <div class="form-floating mb-3">
+      <select class="form-select pesquisa-select" id="grupo" name="grupo" required>
+          <option value="<?php echo $resultadoBuscaInfo['cod_grupo']; ?>"><?php echo $resultadoBuscaInfo['grupo']; ?></option>
+        <?php
+        $buscaGrupo = mysqli_query($conexao, "SELECT * FROM grupos_usuarios WHERE cod_grupo !=".$resultadoBuscaInfo['cod_grupo']."");
+        while ($resultadoGrupo = mysqli_fetch_assoc($buscaGrupo)) {
+            ?>
+            <option value="<?php echo $resultadoGrupo['cod_grupo'] ?>"><?php echo $resultadoGrupo['grupo'] ?></option>
+            <?php
+        }
+        ?> 
+      </select>
+      <label for="grupo">Grupo</label>
+    </div>
+  </div>
           <div class="col-lg-4 col-md-4 col-12">
     <div class="form-floating mb-3">
       <select class="form-select pesquisa-select" id="status" name="status" required>
@@ -173,11 +192,12 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
         $sobrenome = $_POST['sobrenome'];
         $email = $_POST['email'];
         $nivel = $_POST['nivel'];
+        $grupo = $_POST['grupo'];
         $cooperativa = $_POST['cooperativa'];
         $usuario = $_POST['usuario'];
         $status = $_POST['status'];
-        if (isset($nome, $sobrenome, $email, $nivel, $cooperativa, $usuario)) {
-            $sqlAtualizaInformacoes = mysqli_query($conexao, "UPDATE usuarios SET nome = '$nome', sobrenome = '$sobrenome', email = '$email', user_nivel = '$nivel', user_coop = '$cooperativa', usuario = '$usuario', u_status = '$status' WHERE id_usuario = '$idUsuario'");
+        if (isset($nome, $sobrenome, $email, $nivel, $cooperativa, $usuario, $grupo)) {
+            $sqlAtualizaInformacoes = mysqli_query($conexao, "UPDATE usuarios SET nome = '$nome', sobrenome = '$sobrenome', email = '$email', user_nivel = '$nivel', user_grupo = '$grupo', user_coop = '$cooperativa', usuario = '$usuario', u_status = '$status' WHERE id_usuario = '$idUsuario'");
 
             echo "<meta http-equiv='refresh' content='0;url=editar-usuario.php?id=$idUsuario&sucesso=1' />";
         }

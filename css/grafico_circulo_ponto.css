@@ -1,0 +1,118 @@
+/* *
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+* */
+
+.progress {
+  width: 84px;
+  height: 84px;
+  background: none;
+  position: relative;
+}
+@media only screen and (max-width: 768px) {
+.progress {
+  width: 80px;
+  height: 80px;
+  background: none;
+  position: relative;
+}
+}
+
+.progress::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 5px solid #eee;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress > span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.progress .progress-left {
+  left: 0;
+}
+
+.progress .progress-bar {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border-width: 5px;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+}
+
+.progress .progress-left .progress-bar {
+  left: 100%;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-left: 0;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+}
+
+.progress .progress-right {
+  right: 0;
+}
+
+.progress .progress-right .progress-bar {
+  left: -100%;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-right: 0;
+  -webkit-transform-origin: center right;
+  transform-origin: center right;
+}
+
+.progress .progress-value {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cor-primaria {
+  color: #1d4289;
+}
+
+.nohorario{
+    border-color: #00e396;
+}
+
+.atraso{
+    border-color: #feb019;
+}
+
+.faltas{
+    border-color: #ff4560;
+}
+
+.justificada{
+    border-color: #775dd0;
+}
+
+@media only screen and (max-width: 768px) {
+.h5-progress-ponto{
+    font-size: 14px;
+}
+}
+
+.desc-progress-ponto{
+    font-size: 11px;
+}
+
+@media only screen and (max-width: 768px) {
+.desc-progress-ponto{
+    font-size: 9px;
+}
+}

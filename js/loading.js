@@ -1,15 +1,17 @@
 $(function () {
     //Comportamento do botao de disparo
     $('.loading').click(function () {
-        if (nomeCategoriaN.value === '') {
+        if (descricaoAtend.value === '' || assuntoAtend.value === '' || areaAtendimento.value === '') {
         } else {
             getResponse();
-        }
-        if (tituloDocN.value === '' || arquivoN.value === '' || categoriaDocN.value === '') {
-        } else {
-            getResponse();
-        }
-        if (cod_categoria_doc.value === '' || titulo_doc.value === '') {
+        }       
+    });
+});
+
+$(function () {
+    //Comportamento do botao de disparo
+    $('.btnexecutafunc').click(function () {
+            if (respostaConsulta.value === '') {
         } else {
             getResponse();
         }
@@ -18,10 +20,35 @@ $(function () {
 
 $(function () {
     //Comportamento do botao de disparo
-    $('.btnexecutafunc').click(function () {
+    $('.btnexecutafuncNC').click(function () {
+        if (respostaNaoEstouAcordo.value === '') {
+        } else {
             getResponse();
+        }
     });
 });
+
+$(function () {
+    //Comportamento do botao de disparo
+    $('.btnalterasenha').click(function () {
+        if (usuario_senha.value === '') {
+        } else {
+            getResponse();
+        }
+    });
+});
+
+$(function () {
+    //Comportamento do botao de disparo
+    $('.btncaduser').click(function () {
+        if (nome.value === '' || sobrenome.value === '' || cooperativa.value === '' || email.value === '' || usuario.value === '' || nivel.value === '' || grupo.value === '') {
+        } else {
+            getResponse();
+        }
+    });
+});
+
+
 /**
  * Dispara o modal e espera a resposta do script 'testing.resp.php'
  * @returns {void}
