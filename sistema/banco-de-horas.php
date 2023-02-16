@@ -28,7 +28,7 @@ UNION
 SELECT 0 as SaldoBancoMes, time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoNJustificadoMes FROM controle_de_ponto WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user like '%$pessoa%' and ponto_justificativa_aprovada = '0') AS qb");
 $ResultadoSaldoHorasTotal = mysqli_fetch_assoc($buscaSaldoDeHoras);       
         
-$buscaPonto = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_user like '%$pessoa%' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso != '00:00:00' OR ponto_user like '%$pessoa%' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_extra != '00:00:00' ORDER BY ponto_dia DESC");
+$buscaPonto = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_user like '%$pessoa%' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso != '00:00' OR ponto_user like '%$pessoa%' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_extra != '00:00' ORDER BY ponto_dia DESC");
     
 }else{
  
@@ -53,7 +53,7 @@ UNION
 SELECT 0 as SaldoBancoMes, time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoNJustificadoMes FROM controle_de_ponto WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user = '$CODIGOUSUARIO' and ponto_justificativa_aprovada = '0') AS qb");
 $ResultadoSaldoHorasTotal = mysqli_fetch_assoc($buscaSaldoDeHoras);       
         
-$buscaPonto = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso != '00:00:00' OR ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_extra != '00:00:00' ORDER BY ponto_dia DESC");
+$buscaPonto = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso != '00:00' OR ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_extra != '00:00' ORDER BY ponto_dia DESC");
 
 $pessoa = $CODIGOUSUARIO;
 }
@@ -194,14 +194,14 @@ $pessoa = $CODIGOUSUARIO;
                                                 <div class="row">
                                                     
                                                 <?php
-                                                if($ResultadoBancoTotal["SaldoBancoMes"] != "00:00:00"){ ?>
+                                                if($ResultadoBancoTotal["SaldoBancoMes"] != "00:00"){ ?>
                                                     <div class="col-md-12 col-12 mb-3">
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="card mb-2">
   <div class="card-body text-center card-relbancodehoras" style="border: 1px solid rgba(0,143,251,0.85); border-radius: 10px; box-shadow: 0 0px 4px 0px rgba(0,143,251,0.85);">
       <span>Horas Extras</span>
-      <h6><?php if($ResultadoBancoTotal["SaldoBancoMes"] != "00:00:00" && $ResultadoBancoTotal["SaldoBancoMes"] != null){ echo $ResultadoBancoTotal["SaldoBancoMes"]; }else { echo "00:00";} ?></h6>
+      <h6><?php if($ResultadoBancoTotal["SaldoBancoMes"] != "00:00" && $ResultadoBancoTotal["SaldoBancoMes"] != null){ echo $ResultadoBancoTotal["SaldoBancoMes"]; }else { echo "00:00";} ?></h6>
   </div>
 </div>
                                                                 
@@ -210,7 +210,7 @@ $pessoa = $CODIGOUSUARIO;
                                                                 <div class="card mb-2">
   <div class="card-body text-center card-relbancodehoras" style="border: 1px solid rgba(255,69,96,0.85); border-radius: 10px; box-shadow: 0 0px 4px 0px rgba(255,69,96,0.85);">
       <span>Horas Atraso</span>
-      <h6><?php if($ResultadoAtrasoTotal["SaldoAtrasoMes"] != "00:00:00" && $ResultadoAtrasoTotal["SaldoAtrasoMes"] != null){ echo $ResultadoAtrasoTotal["SaldoAtrasoMes"]; }else { echo "00:00";} ?></h6>
+      <h6><?php if($ResultadoAtrasoTotal["SaldoAtrasoMes"] != "00:00" && $ResultadoAtrasoTotal["SaldoAtrasoMes"] != null){ echo $ResultadoAtrasoTotal["SaldoAtrasoMes"]; }else { echo "00:00";} ?></h6>
   </div>
 </div>
                                                             </div>
@@ -219,7 +219,7 @@ $pessoa = $CODIGOUSUARIO;
                                                                 <div class="card mb-2">
   <div class="card-body text-center card-relbancodehoras" style="border: 1px solid rgba(254,176,25,0.85); border-radius: 10px; box-shadow: 0 0px 3px 0px rgba(254,176,25,0.85);">
       <span>Atraso Justificado</span>
-      <h6><?php if($ResultadoAtrasoJustificadoTotal["SaldoJustificadoMes"] != "00:00:00" && $ResultadoAtrasoJustificadoTotal["SaldoJustificadoMes"] != null ){ echo $ResultadoAtrasoJustificadoTotal["SaldoJustificadoMes"]; }else { echo "00:00";} ?></h6>
+      <h6><?php if($ResultadoAtrasoJustificadoTotal["SaldoJustificadoMes"] != "00:00" && $ResultadoAtrasoJustificadoTotal["SaldoJustificadoMes"] != null ){ echo $ResultadoAtrasoJustificadoTotal["SaldoJustificadoMes"]; }else { echo "00:00";} ?></h6>
   </div>
 </div>
                                                             </div>
@@ -228,7 +228,7 @@ $pessoa = $CODIGOUSUARIO;
                                                                 <div class="card mb-2">
   <div class="card-body text-center card-relbancodehoras" style="border: 1px solid rgba(119,93,208,0.85); border-radius: 10px; box-shadow: 0 0px 4px 0px rgba(119,93,208,0.85);">
       <span>Atraso Não Justificado</span>
-      <h6><?php if($ResultadoAtrasoNJustificadoTotal["SaldoNJustificadoMes"] != "00:00:00" && $ResultadoAtrasoNJustificadoTotal["SaldoNJustificadoMes"] != null){ echo $ResultadoAtrasoNJustificadoTotal["SaldoNJustificadoMes"]; }else { echo "00:00";} ?></h6>
+      <h6><?php if($ResultadoAtrasoNJustificadoTotal["SaldoNJustificadoMes"] != "00:00" && $ResultadoAtrasoNJustificadoTotal["SaldoNJustificadoMes"] != null){ echo $ResultadoAtrasoNJustificadoTotal["SaldoNJustificadoMes"]; }else { echo "00:00";} ?></h6>
   </div>
 </div>
                                                             </div>
@@ -237,7 +237,7 @@ $pessoa = $CODIGOUSUARIO;
                                                                 <div class="card mb-2">
   <div class="card-body text-center card-relbancodehoras" style="border: 1px solid rgba(0,227,150,0.85); border-radius: 10px; box-shadow: 0 0px 4px 0px rgba(0,227,150,0.85);">
       <span>Saldo de Horas</span>
-      <h6><?php if($ResultadoSaldoHorasTotal["saldo_de_horas"] != "00:00:00"){ echo $ResultadoSaldoHorasTotal["saldo_de_horas"]; }else { echo "00:00";} ?></h6>
+      <h6><?php if($ResultadoSaldoHorasTotal["saldo_de_horas"] != "00:00"){ echo $ResultadoSaldoHorasTotal["saldo_de_horas"]; }else { echo "00:00";} ?></h6>
   </div>
 </div>
                                                             </div>
@@ -262,11 +262,11 @@ $pessoa = $CODIGOUSUARIO;
                                                             <tr class="linha-hover info-td">
                                                                 <td class="info-td">
                                                                     <?php
-                                                                    if($resultadoPonto["ponto_hora_atraso"] != "00:00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00:00"){
+                                                                    if($resultadoPonto["ponto_hora_atraso"] != "00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00"){
                                                                         echo '<i title="Atraso" class="btn btn-sm btn-outline-danger rounded bi bi-exclamation-circle"></i>'; 
-                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] == "00:00:00" && $resultadoPonto["ponto_hora_extra"] != "00:00:00"){
+                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] == "00:00" && $resultadoPonto["ponto_hora_extra"] != "00:00"){
                                                   echo '<i title="Extra" class="btn btn-sm btn-outline-success rounded bi bi-check-circle"></i>';                       
-                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] != "00:00:00" && $resultadoPonto["ponto_hora_extra"] != "00:00:00"){
+                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] != "00:00" && $resultadoPonto["ponto_hora_extra"] != "00:00"){
                                                   echo '<i title="Compensação / Extra" class="btn btn-sm btn-outline-primary rounded bi bi-hourglass-split"></i>';                       
                                                                     }
                                                                     ?>
@@ -277,7 +277,7 @@ $pessoa = $CODIGOUSUARIO;
                                                                 <td class="info-td text-success fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_extra"])); ?></td>
                                                                 <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_justificado"] == 1){
          echo '<i title="Justificado" class="btn btn-sm btn-outline-warning rounded bi bi-emoji-neutral"></i>';                                                           
-                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == "00:00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00:00"){
+                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == "00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00"){
                                            echo '<i title="Tudo OK" class="btn btn-sm btn-outline-success rounded bi bi-emoji-smile"></i>';                         
                                                                 }else{
                                                                   echo '<i title="Não Justificado" class="btn btn-sm btn-outline-danger rounded bi bi-emoji-frown"></i>';  

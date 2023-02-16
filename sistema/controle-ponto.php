@@ -23,12 +23,12 @@ $resultadoTotalPontoMes = mysqli_fetch_assoc($buscaTotalPonto);
 $totalPontoMes = $resultadoTotalPontoMes["total_ponto"];
 
 if($totalPontoMes > 0 ){
-$buscaNohorario = mysqli_query($conexao, "SELECT count(cod_ponto) as total_ponto FROM  controle_de_ponto WHERE ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso = '00:00:00' and ponto_situacao = '1'");
+$buscaNohorario = mysqli_query($conexao, "SELECT count(cod_ponto) as total_ponto FROM  controle_de_ponto WHERE ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso = '00:00' and ponto_situacao = '1'");
 $resultadototalNoHorario = mysqli_fetch_assoc($buscaNohorario);
 $totalNoHorario = $resultadototalNoHorario["total_ponto"];
 $percentualNohorario = number_format($totalNoHorario / $totalPontoMes * 100, 0, '.', '');
 
-$buscaAtraso = mysqli_query($conexao, "SELECT count(cod_ponto) as total_ponto FROM  controle_de_ponto WHERE ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso != '00:00:00' and ponto_situacao = '1'");
+$buscaAtraso = mysqli_query($conexao, "SELECT count(cod_ponto) as total_ponto FROM  controle_de_ponto WHERE ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso != '00:00' and ponto_situacao = '1'");
 $resultadototalAtraso = mysqli_fetch_assoc($buscaAtraso);
 $totalAtraso = $resultadototalAtraso["total_ponto"];
 $percentualAtraso = number_format($totalAtraso / $totalPontoMes * 100, 0, '.', '');
@@ -198,9 +198,9 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                             <tr class="linha-hover info-td">
                                                                 <td class="info-td">
                                                                     <?php
-                                                                    if($resultadoPonto["ponto_situacao"] == 1 && $resultadoPonto["ponto_hora_atraso"] == "00:00:00"){
+                                                                    if($resultadoPonto["ponto_situacao"] == 1 && $resultadoPonto["ponto_hora_atraso"] == "00:00"){
                                                                         echo '<i title="Tudo Certo" class="btn btn-sm btn-outline-success rounded bi bi-check-circle"></i>';
-                                                                    }elseif($resultadoPonto["ponto_situacao"] == 1 && $resultadoPonto["ponto_hora_atraso"] != "00:00:00"){
+                                                                    }elseif($resultadoPonto["ponto_situacao"] == 1 && $resultadoPonto["ponto_hora_atraso"] != "00:00"){
                                                   echo '<i title="Atraso" class="btn btn-sm btn-outline-warning rounded bi bi-exclamation-circle"></i>';                       
                                                                     }elseif($resultadoPonto["ponto_situacao"] == 2){
                                                   echo '<i title="Ausência" class="btn btn-sm btn-outline-danger rounded bi bi-x-circle"></i>';                       
@@ -218,7 +218,7 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                                 <td class="info-td text-success fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_extra"])); ?></td>
                                                                 <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_justificado"] == 1){
          echo '<i title="Justificado" class="btn btn-sm btn-outline-warning rounded bi bi-emoji-neutral"></i>';                                                           
-                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == "00:00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00:00"){
+                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == "00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00"){
                                            echo '<i title="Tudo OK" class="btn btn-sm btn-outline-success rounded bi bi-emoji-smile"></i>';                         
                                                                 }else{
                                                                   echo '<i title="Não Justificado" class="btn btn-sm btn-outline-danger rounded bi bi-emoji-frown"></i>';  
@@ -293,7 +293,7 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                             <div class="row">
                                                 
                                                     <?php 
-                                                    $buscaPontoJustificativa = mysqli_query($conexao, "SELECT * FROM controle_de_ponto LEFT JOIN justificativa_ponto ON ponto_dia = just_dia and ponto_user = just_user WHERE ponto_hora_atraso != '00:00:00' and ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' OR ponto_situacao = '2' and ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' OR ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' and ponto_hora_extra != '00:00:00'");
+                                                    $buscaPontoJustificativa = mysqli_query($conexao, "SELECT * FROM controle_de_ponto LEFT JOIN justificativa_ponto ON ponto_dia = just_dia and ponto_user = just_user WHERE ponto_hora_atraso != '00:00' and ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' OR ponto_situacao = '2' and ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' OR ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' and ponto_hora_extra != '00:00'");
                                                     if(mysqli_num_rows($buscaPontoJustificativa) > 0){                    
                                                     ?>
                                                 <div class="col-lg-12 col-md-12 col-12">
@@ -304,7 +304,7 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                             while($resultadoJustificativa = mysqli_fetch_assoc($buscaPontoJustificativa)){
                                                                 if($resultadoJustificativa["just_dia"] == null){    
                                                             ?>
-                                                                <option value="<?php echo date("Y-m-d", strtotime($resultadoJustificativa["ponto_dia"])); ?>"><?php echo date("d/m/Y", strtotime($resultadoJustificativa["ponto_dia"])); if($resultadoJustificativa["ponto_hora_extra"] != "00:00:00"){ echo "- Hora Extra";}elseif($resultadoJustificativa["ponto_hora_atraso"] != "00:00:00"){echo "- Atraso";}elseif($resultadoJustificativa["ponto_situacao"] == "2"){echo "- Ausência";}?></option>
+                                                                <option value="<?php echo date("Y-m-d", strtotime($resultadoJustificativa["ponto_dia"])); ?>"><?php echo date("d/m/Y", strtotime($resultadoJustificativa["ponto_dia"])); if($resultadoJustificativa["ponto_hora_extra"] != "00:00"){ echo "- Hora Extra";}elseif($resultadoJustificativa["ponto_hora_atraso"] != "00:00"){echo "- Atraso";}elseif($resultadoJustificativa["ponto_situacao"] == "2"){echo "- Ausência";}?></option>
                                                             <?php } } ?>
                                                         </select>
                                                         <label for="dataJustificativa">Dia Justificativa</label>
