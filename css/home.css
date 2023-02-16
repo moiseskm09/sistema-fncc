@@ -78,4 +78,13 @@
     }
 }
 
+.botaoRefresh{
+     visibility:  hidden;
+}
 
+@media only screen and (max-width: 768px) {
+    /* esconde o elemento de controlo caso em Mobile */
+    .botaoRefresh{ 
+    visibility: visible;
+    }
+}
