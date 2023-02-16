@@ -52,13 +52,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .card-relbancodehoras span{
     font-size: 12px;
 }
-
-@media only screen and (max-width: 768px) {
-.card-relbancodehoras span{
-    font-size: 10px;
-}
-}
-
 .card-relbancodehoras h6{
     font-size: 20px;
 }

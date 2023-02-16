@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/01/2023 às 00:54
+-- Tempo de geração: 13/02/2023 às 10:31
 -- Versão do servidor: 10.4.22-MariaDB
 -- Versão do PHP: 8.1.2
 
@@ -26,6 +26,113 @@ USE `sistema_fncc`;
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `arquivos_consultas`
+--
+
+DROP TABLE IF EXISTS `arquivos_consultas`;
+CREATE TABLE IF NOT EXISTS `arquivos_consultas` (
+  `cod_arquivo` bigint(255) NOT NULL AUTO_INCREMENT,
+  `arq_nome` varchar(150) NOT NULL,
+  `arq_consulta` bigint(255) NOT NULL,
+  `arq_data` datetime NOT NULL,
+  PRIMARY KEY (`cod_arquivo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `avaliacao_consulta`
+--
+
+DROP TABLE IF EXISTS `avaliacao_consulta`;
+CREATE TABLE IF NOT EXISTS `avaliacao_consulta` (
+  `cod_avaliacao` bigint(255) NOT NULL AUTO_INCREMENT,
+  `aval_consulta` bigint(255) NOT NULL,
+  `aval_avaliacao` char(8) NOT NULL,
+  `aval_data` datetime NOT NULL,
+  PRIMARY KEY (`cod_avaliacao`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `avisos`
+--
+
+DROP TABLE IF EXISTS `avisos`;
+CREATE TABLE IF NOT EXISTS `avisos` (
+  `cod_aviso` int(255) NOT NULL AUTO_INCREMENT,
+  `coop_aviso` int(255) NOT NULL DEFAULT 0 COMMENT '0 = Todas as Coop',
+  `aviso` text NOT NULL,
+  `data_aviso` date NOT NULL,
+  `link_aviso` varchar(50) NOT NULL,
+  PRIMARY KEY (`cod_aviso`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `avisos`
+--
+
+INSERT INTO `avisos` (`cod_aviso`, `coop_aviso`, `aviso`, `data_aviso`, `link_aviso`) VALUES
+(1, 0, 'Nova Circular', '2023-02-07', 'circulares-documentos.php'),
+(2, 0, 'Nova Circular', '2023-02-07', 'circulares-documentos.php'),
+(3, 57, 'Novo Ext. Capital', '2023-02-08', 'extrato-capital.php'),
+(4, 57, 'Novo Ext. Capital', '2023-02-08', 'extrato-capital.php'),
+(5, 57, 'Novo Balancete', '2023-02-08', 'listar-balancete.php'),
+(6, 57, 'RELATÓRIO GRS', '2023-02-08', 'rel-gerenciamento-de-riscos.php');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `balancete`
+--
+
+DROP TABLE IF EXISTS `balancete`;
+CREATE TABLE IF NOT EXISTS `balancete` (
+  `cod_balancete` int(255) NOT NULL AUTO_INCREMENT,
+  `bal_ref_inicial` date NOT NULL,
+  `bal_ref_final` date NOT NULL,
+  `bal_arquivo` varchar(100) NOT NULL,
+  `bal_coop` int(255) NOT NULL,
+  `bal_situacao` int(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`cod_balancete`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `balancete`
+--
+
+INSERT INTO `balancete` (`cod_balancete`, `bal_ref_inicial`, `bal_ref_final`, `bal_arquivo`, `bal_coop`, `bal_situacao`) VALUES
+(1, '2023-02-01', '2023-02-01', '2023-02-01_2023-02-01_57_154255.docx', 57, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `banco_de_horas`
+--
+
+DROP TABLE IF EXISTS `banco_de_horas`;
+CREATE TABLE IF NOT EXISTS `banco_de_horas` (
+  `cod_bh` bigint(255) NOT NULL AUTO_INCREMENT,
+  `bh_dia` date NOT NULL,
+  `bh_horas` time NOT NULL,
+  `bh_user` bigint(255) NOT NULL,
+  PRIMARY KEY (`cod_bh`),
+  UNIQUE KEY `bh_dia` (`bh_dia`,`bh_horas`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `banco_de_horas`
+--
+
+INSERT INTO `banco_de_horas` (`cod_bh`, `bh_dia`, `bh_horas`, `bh_user`) VALUES
+(1, '2023-02-09', '04:47:00', 1),
+(3, '2023-02-09', '01:00:00', 2),
+(4, '2023-02-11', '00:10:00', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `boletos`
 --
 
@@ -38,16 +145,7 @@ CREATE TABLE IF NOT EXISTS `boletos` (
   `bol_situacao` char(30) NOT NULL DEFAULT 'AGUARDANDO PAGAMENTO',
   `bol_coop` int(255) NOT NULL,
   PRIMARY KEY (`cod_boleto`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `boletos`
---
-
-INSERT INTO `boletos` (`cod_boleto`, `bol_competencia`, `bol_vencimento`, `arquivo`, `bol_situacao`, `bol_coop`) VALUES
-(1, 'JANEIRO/2023', '2023-01-31', 'boleto_teste_janeiro_2023.pdf', '4', 1),
-(2, 'FEVEREIRO/2023', '2023-02-28', 'boleto_teste_janeiro_2023.pdf', '2', 1),
-(5, 'JANEIRO/2023', '2023-01-05', 'boleto_teste_janeiro_2023.pdf', '3', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -71,6 +169,30 @@ INSERT INTO `boleto_situacao` (`cod_bol_s`, `situacao`) VALUES
 (2, 'CONFIRMANDO PAGAMENTO'),
 (3, 'AGUARDANDO PAGAMENTO'),
 (4, 'VENCIDO');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `categoria_circulares`
+--
+
+DROP TABLE IF EXISTS `categoria_circulares`;
+CREATE TABLE IF NOT EXISTS `categoria_circulares` (
+  `cod_categoria` int(255) NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(100) NOT NULL,
+  PRIMARY KEY (`cod_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `categoria_circulares`
+--
+
+INSERT INTO `categoria_circulares` (`cod_categoria`, `categoria`) VALUES
+(1, 'CONSULTORIA JURÍDICA'),
+(2, 'CONSULTORIA TÉCNICA'),
+(3, 'DOCUMENTOS GOVERNAÇA'),
+(4, 'NORMATIVOS INTERNOS'),
+(5, 'PUBLICAÇÕES FNCC');
 
 -- --------------------------------------------------------
 
@@ -118,12 +240,7 @@ INSERT INTO `categoria_documentos` (`cod_categoria`, `categoria`) VALUES
 (3, 'Estatuto Social'),
 (4, 'Manuais / Regulamentos'),
 (5, 'Políticas / Código de Ética e Conduta'),
-(6, 'Relatórios'),
-(7, 'Teste'),
-(8, 'Teste1'),
-(9, 'teste2'),
-(10, 'teste3'),
-(11, 'Teste Loading');
+(6, 'Relatórios');
 
 -- --------------------------------------------------------
 
@@ -162,6 +279,85 @@ CREATE TABLE IF NOT EXISTS `conselho_fiscal` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `consultas`
+--
+
+DROP TABLE IF EXISTS `consultas`;
+CREATE TABLE IF NOT EXISTS `consultas` (
+  `cod_consulta` bigint(255) NOT NULL AUTO_INCREMENT,
+  `cons_coop` int(255) NOT NULL,
+  `cons_user` int(255) NOT NULL,
+  `cons_grupo` int(10) NOT NULL,
+  `cons_urgencia` varchar(12) NOT NULL,
+  `cons_visibilidade` varchar(20) NOT NULL,
+  `cons_assunto` varchar(70) NOT NULL,
+  `cons_desc_principal` text NOT NULL,
+  `data_consulta` datetime NOT NULL,
+  `cons_situacao` int(2) NOT NULL,
+  `user_responsavel` int(255) DEFAULT NULL,
+  `data_previsao` datetime DEFAULT NULL,
+  `data_conclusao` datetime DEFAULT NULL,
+  PRIMARY KEY (`cod_consulta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `consulta_interacoes`
+--
+
+DROP TABLE IF EXISTS `consulta_interacoes`;
+CREATE TABLE IF NOT EXISTS `consulta_interacoes` (
+  `cod_interacao` bigint(255) NOT NULL AUTO_INCREMENT,
+  `inter_user` int(255) NOT NULL,
+  `inter_cons` bigint(255) NOT NULL,
+  `inter_descricao` text NOT NULL,
+  `inter_data` datetime NOT NULL,
+  PRIMARY KEY (`cod_interacao`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `controle_de_ponto`
+--
+
+DROP TABLE IF EXISTS `controle_de_ponto`;
+CREATE TABLE IF NOT EXISTS `controle_de_ponto` (
+  `cod_ponto` bigint(255) NOT NULL AUTO_INCREMENT,
+  `ponto_user` bigint(255) NOT NULL,
+  `ponto_dia` date NOT NULL,
+  `ponto_entrada` time NOT NULL DEFAULT '00:00:00',
+  `ponto_intervalo_um` time NOT NULL DEFAULT '00:00:00',
+  `ponto_intervalo_dois` time NOT NULL DEFAULT '00:00:00',
+  `ponto_saida` time NOT NULL DEFAULT '00:00:00',
+  `ponto_hora_prevista` time NOT NULL DEFAULT '09:00:00',
+  `ponto_hora_executada` time NOT NULL DEFAULT '00:00:00',
+  `ponto_hora_atraso` time NOT NULL DEFAULT '00:00:00',
+  `ponto_hora_extra` time NOT NULL DEFAULT '00:00:00',
+  `ponto_situacao` int(2) NOT NULL DEFAULT 1,
+  `ponto_justificado` int(1) NOT NULL DEFAULT 0,
+  `ponto_justificativa_aprovada` int(11) NOT NULL,
+  PRIMARY KEY (`cod_ponto`),
+  UNIQUE KEY `ponto_user` (`ponto_user`,`ponto_dia`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `controle_de_ponto`
+--
+
+INSERT INTO `controle_de_ponto` (`cod_ponto`, `ponto_user`, `ponto_dia`, `ponto_entrada`, `ponto_intervalo_um`, `ponto_intervalo_dois`, `ponto_saida`, `ponto_hora_prevista`, `ponto_hora_executada`, `ponto_hora_atraso`, `ponto_hora_extra`, `ponto_situacao`, `ponto_justificado`, `ponto_justificativa_aprovada`) VALUES
+(1, 1, '2023-02-09', '10:28:15', '12:10:56', '12:46:10', '21:47:29', '09:00:00', '11:19:00', '02:28:00', '04:47:00', 1, 1, 0),
+(2, 1, '2023-02-08', '08:00:00', '12:10:56', '13:10:10', '17:00:00', '09:00:00', '09:00:00', '00:00:00', '00:00:00', 1, 0, 0),
+(3, 1, '2023-02-07', '10:28:15', '12:10:56', '12:46:10', '17:00:00', '09:00:00', '07:12:00', '02:28:00', '00:00:00', 1, 1, 1),
+(4, 1, '2023-02-10', '09:22:08', '12:51:52', '00:00:00', '00:00:00', '09:00:00', '00:00:00', '01:22:00', '00:00:00', 1, 1, 1),
+(5, 2, '2023-02-10', '08:00:00', '14:34:20', '14:34:32', '00:00:00', '09:00:00', '00:00:00', '00:00:00', '00:00:00', 1, 0, 0),
+(6, 2, '2023-02-09', '08:00:00', '12:00:00', '13:00:00', '18:00:00', '09:00:00', '10:00:00', '00:00:00', '01:00:00', 1, 1, 0),
+(7, 1, '2023-02-11', '17:09:46', '00:00:00', '00:00:00', '17:10:44', '09:00:00', '00:00:00', '09:09:00', '00:10:00', 1, 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `cooperativas`
 --
 
@@ -192,7 +388,7 @@ CREATE TABLE IF NOT EXISTS `cooperativas` (
   `coop_data_cadastro` date NOT NULL DEFAULT '2022-12-22',
   `coop_dados_atualizados` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`cod_coop`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `cooperativas`
@@ -255,8 +451,7 @@ INSERT INTO `cooperativas` (`cod_coop`, `coop_matricula`, `coop_razao`, `coopera
 (54, '57-4', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS FUNCIONARIOS DA VILLARES METALS', 'VILLARES METALS', '53.846.242/0001-67', '3', '35400001941', '000.000.000.000', '13178-021', '', 0, NULL, '', 'Sumaré', 'SP', '(19) 3303-8254', '(00) 0 0000-0000', 'Creditovm.gil@uol.com.br', 'Fácil', '1984-07-03', 'logo_fncc.png', 1, '2022-12-22', 0),
 (55, '58-2', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DA POLÍCIA MILITAR DO ESTADO DE SÃO PAULO  DA REGIÃO CENTRO OESTE PAULISTA', 'CREDMIL', '04.152.107/0001-06', '2', '3500063912', '000.000.000.000', '17015-311', '', 0, NULL, '', 'Bauru', 'SP', '(14) 3879-1151', '(00) 0 0000-0000', 'GER.ADMINISTRATIVO@CREDMIL.ORG', 'Fácil', '2000-05-02', 'logo_fncc.png', 1, '2022-12-22', 0),
 (56, '59-0', 'COOPERATIVA DE CRÉDITO MÚTUO DE SERVIDORES DO ESTADO DE SÃO PAULO', 'CREDIFISCO', '04.546.162/0001-80', '2', '35400067896', '000.000.000.000', '01017-000', '', 0, NULL, '', 'São Paulo', 'SP', '(11) 3106-1529', '(00) 0 0000-0000', 'valeria.abitte@credifisco.com.', 'Prodaf', '2001-06-19', 'logo_fncc.png', 1, '2022-12-22', 0),
-(57, '0', 'FNCC', 'FNCC', '20.151.021/0001-15', '4', '000.000.000.000', '000.000.000.000', '02010-000', '', 0, NULL, '', 'São Paulo', 'SP', '(11) 0000-0000', '(00) 0 0000-0000', 'fncc@fncc.com.br', 'Prodaf', '2014-10-03', 'logo_fncc.png', 1, '2022-12-22', 0),
-(58, '0001-01', 'Bemk Tech', 'beMK', '37.296.586/0001-93', 'Desenvolvimento', '000.000.000.000', '000.000.000.000', '07631-350', 'Rua José Joaquim de Freitas Jd A Coimbra', 435, 'Chácara', 'Rio Acima', 'Mairiporã', 'SP', '(11) 6303-3778', '(11) 9 6303-3778', 'moises@bemktech.com.br', 'Próprio', '2022-12-22', 'logo_fncc.png', 1, '2023-01-06', 0);
+(57, '0', 'FNCC', 'FNCC', '20.151.021/0001-15', '4', '000.000.000.000', '000.000.000.000', '02010-000', '', 0, NULL, '', 'São Paulo', 'SP', '(11) 0000-0000', '(00) 0 0000-0000', 'fncc@fncc.com.br', 'Prodaf', '2014-10-03', 'logo_fncc.png', 1, '2022-12-22', 0);
 
 -- --------------------------------------------------------
 
@@ -279,6 +474,70 @@ CREATE TABLE IF NOT EXISTS `diretoria_conselhoadm` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `documentos_circulares`
+--
+
+DROP TABLE IF EXISTS `documentos_circulares`;
+CREATE TABLE IF NOT EXISTS `documentos_circulares` (
+  `cod_docc` int(255) NOT NULL AUTO_INCREMENT,
+  `docc_categoria` int(255) NOT NULL,
+  `docc_subcategoria` int(255) NOT NULL,
+  `docc_titulo` varchar(100) NOT NULL,
+  `docc_arquivo` varchar(100) NOT NULL,
+  PRIMARY KEY (`cod_docc`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `documentos_circulares`
+--
+
+INSERT INTO `documentos_circulares` (`cod_docc`, `docc_categoria`, `docc_subcategoria`, `docc_titulo`, `docc_arquivo`) VALUES
+(1, 1, 11, 'TESTE', 'circulares.pdf'),
+(2, 1, 12, 'teste', 'circulares.pdf'),
+(3, 1, 13, 'teste', 'circulares.pdf'),
+(4, 1, 14, 'teste', 'circulares.pdf'),
+(5, 1, 15, 'teste', 'circulares.pdf'),
+(6, 1, 16, 'teste', 'circulares.pdf'),
+(7, 2, 1, 'teste', 'circulares.pdf'),
+(8, 2, 2, 'Sistema de Escrituração Digital das Obrigações Fiscais, Previdenciárias e Trabalhistas – eSocial', 'circulares.pdf'),
+(9, 2, 3, 'teste', 'circulares.pdf'),
+(10, 2, 4, 'teste', 'circulares.pdf'),
+(11, 2, 5, 'teste', 'circulares.pdf'),
+(12, 2, 6, 'teste', 'circulares.pdf'),
+(13, 3, 7, 'teste', 'circulares.pdf'),
+(14, 3, 8, 'teste', 'circulares.pdf'),
+(16, 4, 10, 'teste', 'circulares.pdf'),
+(17, 5, 9, 'COM 002-2023 – Divulga informações sobre as mensalidades da FNCC', 'circulares.pdf'),
+(18, 5, 9, 'Teste Inclusão de Documento Circular', 'Teste_Inclusão_de_Documento_Circular.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `download_termo_aceito`
+--
+
+DROP TABLE IF EXISTS `download_termo_aceito`;
+CREATE TABLE IF NOT EXISTS `download_termo_aceito` (
+  `cod_dta` bigint(255) NOT NULL AUTO_INCREMENT,
+  `dta_user` bigint(255) NOT NULL,
+  `dta_arquivo` varchar(100) NOT NULL,
+  `dta_cod_arquivo` bigint(255) NOT NULL,
+  `dta_data` date NOT NULL,
+  PRIMARY KEY (`cod_dta`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `download_termo_aceito`
+--
+
+INSERT INTO `download_termo_aceito` (`cod_dta`, `dta_user`, `dta_arquivo`, `dta_cod_arquivo`, `dta_data`) VALUES
+(2, 1, 'Ata-de-Assembleia-Geral-Ordinária-2.docx', 1, '2023-02-07'),
+(3, 1, 'Relatório-de-Controles-Internos.docx', 22, '2023-02-07'),
+(4, 1, 'Ata-de-Assembleia-Geral-Ordinária-2.docx', 1, '2023-02-08');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `extrato_de_capital`
 --
 
@@ -286,21 +545,95 @@ DROP TABLE IF EXISTS `extrato_de_capital`;
 CREATE TABLE IF NOT EXISTS `extrato_de_capital` (
   `cod_ext_capital` int(255) NOT NULL AUTO_INCREMENT,
   `ext_acumulado` date NOT NULL,
-  `ext_remuneracao_juros` varchar(4) NOT NULL,
+  `ext_remuneracao_juros` varchar(6) NOT NULL,
   `ext_coop` int(255) NOT NULL,
   `ext_arquivo` varchar(150) NOT NULL,
   `ext_obs` text DEFAULT NULL,
   PRIMARY KEY (`cod_ext_capital`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `extrato_de_capital`
 --
 
 INSERT INTO `extrato_de_capital` (`cod_ext_capital`, `ext_acumulado`, `ext_remuneracao_juros`, `ext_coop`, `ext_arquivo`, `ext_obs`) VALUES
-(1, '2022-12-31', '12%', 1, '2022-12-31_12%_1_125132.pdf', 'A base de cálculo para remuneração de juros ao Capital foi de 12 % a.a., conforme parágrafo 7º, do artigo 14, capítulo V do nosso Estatuto Social:<br>\n\n§ 7º – Dependendo do resultado econômico-financeiro, a sociedade poderá pagar juros ao capital integralizado pelas cooperativas associadas até o limite de 12% ao ano, mediante decisão da Diretoria, nos termos do art. 24, § 3º da Lei Federal n. 5.764/71.'),
-(3, '2022-12-31', '12%', 46, '2022-12-31_12%_46_203519.pdf', 'Informo que a base de cálculo para remuneração de juros ao Capital foi de 12 % a.a., conforme parágrafo 7º, do artigo 14, capítulo V do nosso Estatuto Social: <br>\r\n§ 7º – Dependendo do resultado econômico-financeiro, a sociedade poderá pagar juros ao capital integralizado pelas cooperativas associadas até o limite de 12% ao ano, mediante decisão da Diretoria, nos termos do art. 24, § 3º da Lei Federal n. 5.764/71.'),
-(4, '2022-12-31', '12%', 2, '2022-12-31_12%_2_203644.pdf', 'Informo que a base de cálculo para remuneração de juros ao Capital foi de 12 % a.a., conforme parágrafo 7º, do artigo 14, capítulo V do nosso Estatuto Social:<br>\r\n\r\n \r\n\r\n§ 7º – Dependendo do resultado econômico-financeiro, a sociedade poderá pagar juros ao capital integralizado pelas cooperativas associadas até o limite de 12% ao ano, mediante decisão da Diretoria, nos termos do art. 24, § 3º da Lei Federal n. 5.764/71.');
+(1, '2023-02-01', '12%', 57, '2023-02-01_12%_57_104103.png', 'Teste de modal'),
+(2, '2023-01-31', '15%', 57, '2023-01-31_15%_57_110723.png', 'Teste de modal 2 ajustado');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `gerenciamento_riscos`
+--
+
+DROP TABLE IF EXISTS `gerenciamento_riscos`;
+CREATE TABLE IF NOT EXISTS `gerenciamento_riscos` (
+  `grs_cod` bigint(255) NOT NULL AUTO_INCREMENT,
+  `grs_bal` bigint(255) NOT NULL,
+  `grs_coop` bigint(255) NOT NULL,
+  `grs_data_inicial` date NOT NULL,
+  `grs_data_final` date NOT NULL,
+  `grs_arquivo` varchar(100) NOT NULL,
+  PRIMARY KEY (`grs_cod`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `gerenciamento_riscos`
+--
+
+INSERT INTO `gerenciamento_riscos` (`grs_cod`, `grs_bal`, `grs_coop`, `grs_data_inicial`, `grs_data_final`, `grs_arquivo`) VALUES
+(1, 1, 57, '2023-02-01', '2023-02-01', '2023-02-01_2023-02-01_57_1_154332.docx');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `grupos_usuarios`
+--
+
+DROP TABLE IF EXISTS `grupos_usuarios`;
+CREATE TABLE IF NOT EXISTS `grupos_usuarios` (
+  `cod_grupo` int(2) NOT NULL AUTO_INCREMENT,
+  `grupo` char(30) NOT NULL,
+  PRIMARY KEY (`cod_grupo`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `grupos_usuarios`
+--
+
+INSERT INTO `grupos_usuarios` (`cod_grupo`, `grupo`) VALUES
+(1, 'Atendimento Administrativo'),
+(2, 'Consultoria Técnica'),
+(3, 'Consultoria Jurídica'),
+(4, 'Cooperativas');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `justificativa_ponto`
+--
+
+DROP TABLE IF EXISTS `justificativa_ponto`;
+CREATE TABLE IF NOT EXISTS `justificativa_ponto` (
+  `cod_just` int(11) NOT NULL AUTO_INCREMENT,
+  `just_dia` date NOT NULL,
+  `just_motivo` varchar(50) NOT NULL,
+  `just_arquivo` varchar(100) DEFAULT NULL,
+  `just_user` bigint(255) NOT NULL,
+  `just_tipo` char(10) NOT NULL,
+  `just_situacao` int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`cod_just`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `justificativa_ponto`
+--
+
+INSERT INTO `justificativa_ponto` (`cod_just`, `just_dia`, `just_motivo`, `just_arquivo`, `just_user`, `just_tipo`, `just_situacao`) VALUES
+(3, '2023-02-07', 'Atestado Médico', '2023-02-07_Atestado_Médico_203745.png', 1, 'atraso', 1),
+(4, '2023-02-10', 'Levei as crianças na escola', NULL, 1, 'atraso', 1),
+(5, '2023-02-09', 'Atestado', '2023-02-09_Atestado_130022.png', 1, 'atraso', 0),
+(6, '2023-02-09', 'Quis trabalhar mais', NULL, 2, '', 0);
 
 -- --------------------------------------------------------
 
@@ -316,19 +649,21 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `icone` varchar(30) NOT NULL,
   `caminho_submenu` varchar(40) NOT NULL,
   PRIMARY KEY (`id_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `menu`
 --
 
 INSERT INTO `menu` (`id_menu`, `menu`, `caminho_drop`, `icone`, `caminho_submenu`) VALUES
-(1, 'CHAMADOS', 'chamados', 'uil uil-ticket', ''),
-(2, 'RELATÓRIOS', 'relatorios', 'uil uil-file-info-alt', ''),
+(1, 'CONSULTAS', 'consultas', 'uil uil-ticket', ''),
+(2, 'ESTATÍSTICAS', 'relatorios', 'uil uil-file-info-alt', ''),
 (3, 'CADASTRO', 'cadastro', 'bi bi-person-vcard', ''),
 (4, 'FINANCEIRO', 'financeiro', 'bi bi-cash-coin', ''),
 (5, 'MODELOS DE DOCUMENTOS', 'modelo_documentos', 'bi bi-file-earmark-font', ''),
-(6, 'CONFIGURAÇÕES', 'configuracoes', 'bi bi-gear-wide-connected', '');
+(6, 'CONFIGURAÇÕES', 'configuracoes', 'bi bi-gear-wide-connected', ''),
+(7, 'CIRCULARES', 'circulares', 'bi bi-columns-gap', ''),
+(8, 'RECURSOS HUMANOS', 'rh', 'bi bi-person-bounding-box', '');
 
 -- --------------------------------------------------------
 
@@ -400,13 +735,13 @@ CREATE TABLE IF NOT EXISTS `nivel_acesso` (
 --
 
 INSERT INTO `nivel_acesso` (`cod_perfil`, `codMenu`, `codSubmenu`, `marcado`) VALUES
-(1, 1, 1, 0),
-(1, 1, 2, 0),
-(1, 2, 3, 0),
-(1, 2, 4, 0),
+(1, 1, 1, 1),
+(1, 1, 2, 1),
+(1, 2, 3, 1),
+(1, 2, 4, 1),
 (1, 3, 5, 1),
 (1, 3, 6, 1),
-(1, 2, 7, 0),
+(1, 2, 7, 1),
 (1, 2, 8, 0),
 (1, 4, 9, 1),
 (1, 4, 10, 1),
@@ -418,17 +753,23 @@ INSERT INTO `nivel_acesso` (`cod_perfil`, `codMenu`, `codSubmenu`, `marcado`) VA
 (1, 5, 17, 0),
 (1, 6, 18, 1),
 (1, 6, 19, 0),
+(1, 4, 20, 1),
+(1, 4, 21, 1),
+(1, 4, 11, 1),
+(1, 4, 22, 1),
+(1, 7, 23, 1),
+(1, 7, 24, 1),
+(1, 7, 25, 0),
 (2, 1, 1, 0),
 (2, 1, 2, 0),
 (2, 2, 3, 0),
 (2, 2, 4, 0),
-(2, 2, 7, 1),
-(2, 2, 8, 1),
 (2, 3, 5, 0),
 (2, 3, 6, 0),
+(2, 2, 7, 0),
+(2, 2, 8, 0),
 (2, 4, 9, 0),
-(2, 4, 10, 1),
-(2, 4, 11, 1),
+(2, 4, 10, 0),
 (2, 5, 12, 0),
 (2, 5, 13, 0),
 (2, 5, 14, 0),
@@ -437,17 +778,23 @@ INSERT INTO `nivel_acesso` (`cod_perfil`, `codMenu`, `codSubmenu`, `marcado`) VA
 (2, 5, 17, 0),
 (2, 6, 18, 0),
 (2, 6, 19, 0),
+(2, 4, 20, 0),
+(2, 4, 21, 0),
+(2, 4, 11, 0),
+(2, 4, 22, 0),
+(2, 7, 23, 0),
+(2, 7, 24, 0),
+(2, 7, 25, 0),
 (3, 1, 1, 0),
-(3, 1, 2, 1),
+(3, 1, 2, 0),
 (3, 2, 3, 0),
 (3, 2, 4, 0),
-(3, 2, 7, 0),
-(3, 2, 8, 0),
 (3, 3, 5, 0),
 (3, 3, 6, 0),
+(3, 2, 7, 0),
+(3, 2, 8, 0),
 (3, 4, 9, 0),
 (3, 4, 10, 0),
-(3, 4, 11, 0),
 (3, 5, 12, 0),
 (3, 5, 13, 0),
 (3, 5, 14, 0),
@@ -456,17 +803,23 @@ INSERT INTO `nivel_acesso` (`cod_perfil`, `codMenu`, `codSubmenu`, `marcado`) VA
 (3, 5, 17, 0),
 (3, 6, 18, 0),
 (3, 6, 19, 0),
+(3, 4, 20, 0),
+(3, 4, 21, 0),
+(3, 4, 11, 0),
+(3, 4, 22, 0),
+(3, 7, 23, 0),
+(3, 7, 24, 0),
+(3, 7, 25, 0),
 (4, 1, 1, 0),
-(4, 1, 2, 1),
+(4, 1, 2, 0),
 (4, 2, 3, 0),
 (4, 2, 4, 0),
-(4, 2, 7, 0),
-(4, 2, 8, 0),
 (4, 3, 5, 0),
 (4, 3, 6, 0),
+(4, 2, 7, 0),
+(4, 2, 8, 0),
 (4, 4, 9, 0),
 (4, 4, 10, 0),
-(4, 4, 11, 0),
 (4, 5, 12, 0),
 (4, 5, 13, 0),
 (4, 5, 14, 0),
@@ -475,29 +828,50 @@ INSERT INTO `nivel_acesso` (`cod_perfil`, `codMenu`, `codSubmenu`, `marcado`) VA
 (4, 5, 17, 0),
 (4, 6, 18, 0),
 (4, 6, 19, 0),
-(5, 1, 1, 1),
-(5, 1, 2, 1),
+(4, 4, 20, 0),
+(4, 4, 21, 0),
+(4, 4, 11, 0),
+(4, 4, 22, 0),
+(4, 7, 23, 0),
+(4, 7, 24, 0),
+(4, 7, 25, 0),
+(5, 1, 1, 0),
+(5, 1, 2, 0),
 (5, 2, 3, 0),
 (5, 2, 4, 0),
-(5, 2, 7, 0),
-(5, 2, 8, 0),
 (5, 3, 5, 0),
 (5, 3, 6, 0),
-(5, 4, 9, 1),
-(5, 4, 10, 1),
-(5, 4, 11, 1),
-(5, 5, 12, 1),
-(5, 5, 13, 1),
-(5, 5, 14, 1),
-(5, 5, 15, 1),
-(5, 5, 16, 1),
-(5, 5, 17, 1),
+(5, 2, 7, 0),
+(5, 2, 8, 0),
+(5, 4, 9, 0),
+(5, 4, 10, 0),
+(5, 5, 12, 0),
+(5, 5, 13, 0),
+(5, 5, 14, 0),
+(5, 5, 15, 0),
+(5, 5, 16, 0),
+(5, 5, 17, 0),
 (5, 6, 18, 0),
 (5, 6, 19, 0),
-(1, 4, 20, 1),
-(1, 4, 21, 1),
-(1, 4, 11, 1),
-(1, 4, 22, 1);
+(5, 4, 20, 0),
+(5, 4, 21, 0),
+(5, 4, 11, 0),
+(5, 4, 22, 0),
+(5, 7, 23, 0),
+(5, 7, 24, 0),
+(5, 7, 25, 0),
+(1, 2, 26, 1),
+(2, 2, 26, 0),
+(3, 2, 26, 0),
+(4, 2, 26, 0),
+(5, 2, 26, 0),
+(1, 8, 27, 1),
+(2, 8, 27, 1),
+(3, 8, 27, 0),
+(4, 8, 27, 0),
+(5, 8, 27, 0),
+(1, 8, 28, 1),
+(2, 8, 28, 1);
 
 -- --------------------------------------------------------
 
@@ -526,6 +900,68 @@ INSERT INTO `perfis_usuarios` (`p_cod`, `perfil`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `situacao_consultas`
+--
+
+DROP TABLE IF EXISTS `situacao_consultas`;
+CREATE TABLE IF NOT EXISTS `situacao_consultas` (
+  `cod_situacao` int(10) NOT NULL AUTO_INCREMENT,
+  `situacao` char(30) NOT NULL,
+  PRIMARY KEY (`cod_situacao`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `situacao_consultas`
+--
+
+INSERT INTO `situacao_consultas` (`cod_situacao`, `situacao`) VALUES
+(1, 'Aberto'),
+(2, 'Em Andamento'),
+(3, 'Pendente'),
+(4, 'Aguardando'),
+(5, 'Fechado'),
+(6, 'Concluído');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `subcategoria_circulares`
+--
+
+DROP TABLE IF EXISTS `subcategoria_circulares`;
+CREATE TABLE IF NOT EXISTS `subcategoria_circulares` (
+  `cod_subcategoria` int(11) NOT NULL AUTO_INCREMENT,
+  `subcategoria` varchar(100) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
+  PRIMARY KEY (`cod_subcategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `subcategoria_circulares`
+--
+
+INSERT INTO `subcategoria_circulares` (`cod_subcategoria`, `subcategoria`, `id_categoria`) VALUES
+(1, 'Calendário de Obrigações', 2),
+(2, 'Apesctos Trabalhistas', 2),
+(3, 'Aspectos Tributários', 2),
+(4, 'Contábil', 2),
+(5, 'Controles Gerais', 2),
+(6, 'Obrigações Acessórias', 2),
+(7, 'Atas de Assembleia', 3),
+(8, 'Estatuto Social', 3),
+(9, 'Divulgações', 5),
+(10, 'Políticas / Manuais', 4),
+(11, 'Calendário de Obrigações', 1),
+(12, 'Apesctos Trabalhistas', 1),
+(13, 'Aspectos Tributários', 1),
+(14, 'Contabil', 1),
+(15, 'Controles Gerais', 1),
+(16, 'Obrigações Acessórias', 1),
+(17, 'teste Nova Subcategoria', 6);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `submenu`
 --
 
@@ -538,31 +974,59 @@ CREATE TABLE IF NOT EXISTS `submenu` (
   `caminho` varchar(50) NOT NULL,
   PRIMARY KEY (`cod_submenu`),
   KEY `cod_menu` (`cod_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `submenu`
 --
 
 INSERT INTO `submenu` (`cod_submenu`, `submenu`, `cod_menu`, `icone_sub`, `caminho`) VALUES
-(1, 'NOVO', 1, '', 'abertura.php'),
-(2, 'LISTAR', 1, '', 'listar.php'),
-(3, 'ATENDIMENTOS', 2, '', 'atendimentos.php'),
-(4, 'SATISFAÇÃO', 2, '', 'satisfacao.php'),
+(1, 'ABRIR CONSULTA', 1, 'bi bi-folder-plus', 'abrir-consulta.php'),
+(2, 'LISTAR CONSULTAS', 1, 'bi bi-list-check', 'listar-consultas.php'),
+(3, 'ATENDIMENTOS', 2, 'uil uil-file-landscape-alt', 'rel-atendimentos.php'),
+(4, 'AVALIAÇÃO', 2, 'bi bi-bookmark-star', 'rel-avaliacao.php'),
 (5, 'USUÁRIOS', 3, 'bi bi-people', 'cad-usuarios.php'),
 (6, 'COOPERATIVAS', 3, 'bi bi-ubuntu', 'cad-cooperativas.php'),
-(7, 'GERENCIAMENTO DE RISCOS', 2, '', 'GRS'),
+(7, 'GERENCIAMENTO DE RISCOS', 2, 'bi bi-building-exclamation', 'rel-gerenciamento-de-riscos.php'),
 (8, 'CANAL DE INDÍCIOS DE ILICITUDE', 2, '', 'canaldenuncias'),
 (9, 'INCLUIR BOLETO', 4, 'bi bi-plus-square-dotted', 'incluir-boleto.php'),
 (10, 'INCLUIR EXTRATO', 4, 'bi bi-journal-plus', 'incluir-extrato-capital.php'),
-(11, 'BALANCETE', 4, 'uil uil-balance-scale', 'balancete.php'),
+(11, 'BALANCETE', 4, 'bi bi-bank', 'balancete.php'),
 (12, 'LISTAR DOCUMENTOS', 5, 'bi bi-file-text', 'visualizar_doc.php'),
 (13, 'INCLUIR DOCUMENTOS', 5, 'bi bi-file-earmark-plus', 'incluir-doc.php'),
 (18, 'PERFIS', 6, 'bi bi-person-vcard', 'perfis-usuarios.php'),
 (19, 'GRUPOS', 6, '', 'grupos.php'),
 (20, 'MEUS BOLETOS', 4, 'bi bi-upc-scan', 'meus-boletos.php'),
 (21, 'EXTRATO DE CAPITAL', 4, 'bi bi-receipt-cutoff', 'extrato-capital.php'),
-(22, 'LISTAR BALANCETE', 4, 'bi bi-list-nested', 'listar-balancete.php');
+(22, 'LISTAR BALANCETE', 4, 'bi bi-list-nested', 'listar-balancete.php'),
+(23, 'CIRCULARES E DOCUMENTOS', 7, 'bi bi-folder2-open', 'circulares-documentos.php'),
+(24, 'INCLUIR CIRCULAR', 7, 'bi bi-folder-plus', 'incluir-circular-documento.php'),
+(25, 'TÉCNICO', 7, 'bi bi-person-video3', ''),
+(26, 'DOWNLOADS DOCUMENTOS', 2, 'bi bi-cloud-download', 'rel-downloads-documentos.php'),
+(27, 'MARCAR PONTO', 8, 'bi bi-check2-circle', 'controle-ponto.php'),
+(28, 'BANCO DE HORAS', 8, 'bi bi-clock-history', 'banco-de-horas.php');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `urgencia`
+--
+
+DROP TABLE IF EXISTS `urgencia`;
+CREATE TABLE IF NOT EXISTS `urgencia` (
+  `cod_urgencia` int(255) NOT NULL AUTO_INCREMENT,
+  `urgencia` char(20) NOT NULL,
+  PRIMARY KEY (`cod_urgencia`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `urgencia`
+--
+
+INSERT INTO `urgencia` (`cod_urgencia`, `urgencia`) VALUES
+(1, 'alta'),
+(2, 'media'),
+(3, 'baixa');
 
 -- --------------------------------------------------------
 
@@ -580,24 +1044,45 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `senha` varchar(32) NOT NULL DEFAULT '90f80b22f53a5d4d72f7b126ef4b1f44',
   `user_coop` int(10) NOT NULL,
   `user_nivel` int(10) NOT NULL,
+  `user_grupo` int(2) NOT NULL,
   `u_status` int(1) NOT NULL DEFAULT 1 COMMENT '1-ativo 0-inativo',
+  `user_supervisor` int(1) NOT NULL DEFAULT 0,
+  `user_controla_ponto` int(1) NOT NULL DEFAULT 0,
   `data_cadastro` date NOT NULL DEFAULT '2022-12-16',
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nome`, `sobrenome`, `email`, `usuario`, `senha`, `user_coop`, `user_nivel`, `u_status`, `data_cadastro`) VALUES
-(1, 'Moises', 'Pequeno do Rosário', 'moiseskm09@gmail.com', 'moises', '5a07992136c4e91e5cc618f4020dfa90', 1, 1, 1, '2022-12-16'),
-(2, 'Karina', 'Pequeno', 'nina.rocha91@gmail.com', 'karina', '64df84fb0c1de0070b106566b3bf70b6', 57, 1, 1, '2022-12-16'),
-(3, 'Emanuelle', 'Pequeno', 'emanuelle@gmail.com', 'emanuelle', '90f80b22f53a5d4d72f7b126ef4b1f44', 57, 1, 1, '2022-12-16'),
-(5, 'Adriana', 'Caldeira', 'moiseskm09@gmail.com', 'adriana', '90f80b22f53a5d4d72f7b126ef4b1f44', 57, 1, 0, '2022-12-17'),
-(6, 'bruna', 'msis', 'bemktech1217@gmail.com', 'bru', '90f80b22f53a5d4d72f7b126ef4b1f44', 57, 2, 0, '2022-12-17'),
-(7, 'elvis', 'card', 'emanuelle@gmail.com', 'elvis', '90f80b22f53a5d4d72f7b126ef4b1f44', 1, 1, 0, '2022-12-17'),
-(8, 'Benício', 'Rocha Pequeno', 'benicio@bemktech.com.br', 'benicio', '90f80b22f53a5d4d72f7b126ef4b1f44', 58, 1, 1, '2023-01-06');
+INSERT INTO `usuarios` (`id_usuario`, `nome`, `sobrenome`, `email`, `usuario`, `senha`, `user_coop`, `user_nivel`, `user_grupo`, `u_status`, `user_supervisor`, `user_controla_ponto`, `data_cadastro`) VALUES
+(1, 'Moises', 'Pequeno do Rosário', 'bemktech1217@gmail.com', 'moises', '5a07992136c4e91e5cc618f4020dfa90', 57, 1, 1, 1, 1, 1, '2023-02-01'),
+(2, 'Karina', 'Rocha Pequeno', 'nina.rocha91@gmail.com', 'karina.pequeno', '5a07992136c4e91e5cc618f4020dfa90', 57, 2, 1, 1, 0, 1, '2023-02-01');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `visibilidade`
+--
+
+DROP TABLE IF EXISTS `visibilidade`;
+CREATE TABLE IF NOT EXISTS `visibilidade` (
+  `cod_visibilidade` int(255) NOT NULL AUTO_INCREMENT,
+  `visibilidade` char(30) NOT NULL,
+  `visibilidade_valor` varchar(30) NOT NULL,
+  PRIMARY KEY (`cod_visibilidade`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `visibilidade`
+--
+
+INSERT INTO `visibilidade` (`cod_visibilidade`, `visibilidade`, `visibilidade_valor`) VALUES
+(1, 'Só para mim', 'eu'),
+(2, 'Minha Cooperativa', 'minha_coop'),
+(3, 'Qualquer Um', 'qualquer_um');
 
 --
 -- Restrições para tabelas despejadas
