@@ -497,3 +497,23 @@ color: #FFD70F;
     visibility: visible;
     }
 }
+
+.cor-primaria {
+  color: #1d4289;
+}
+
+.botao-excluir-feriado{
+    z-index: 10;
+    position: absolute;
+    left:94%;
+    margin-top: -40px;
+}
+
+@media only screen and (max-width: 768px) {
+.botao-excluir-feriado{
+    z-index: 10;
+    position: absolute;
+    left:86%;
+    margin-top: -40px;
+}
+}

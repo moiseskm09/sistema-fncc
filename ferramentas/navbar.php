@@ -5,6 +5,7 @@
     <i class="mx-auto bi bi-arrow-repeat botaoRefresh rounded-circle fw-bold text-white" onClick="window.location.reload()" style="font-size: 30px;"></i>
     <!-- Navbar-->
     <ul class="navbar-nav d-md-inline-block form-inline ml-auto">
+        
         <li class="nav-item dropdown">
             <a class="nav-link link-menu dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="../img/foto_perfil/cooperativas/<?php echo $LOGO_COOP;?>" width="40" height="40" class="bg-white rounded-circle"> 

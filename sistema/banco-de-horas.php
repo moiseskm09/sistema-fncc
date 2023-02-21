@@ -262,11 +262,11 @@ $pessoa = $CODIGOUSUARIO;
                                                             <tr class="linha-hover info-td">
                                                                 <td class="info-td">
                                                                     <?php
-                                                                    if($resultadoPonto["ponto_hora_atraso"] != "00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00"){
+                                                                    if($resultadoPonto["ponto_hora_atraso"] != "00:00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00:00"){
                                                                         echo '<i title="Atraso" class="btn btn-sm btn-outline-danger rounded bi bi-exclamation-circle"></i>'; 
-                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] == "00:00" && $resultadoPonto["ponto_hora_extra"] != "00:00"){
+                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] == "00:00:00" && $resultadoPonto["ponto_hora_extra"] != "00:00:00"){
                                                   echo '<i title="Extra" class="btn btn-sm btn-outline-success rounded bi bi-check-circle"></i>';                       
-                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] != "00:00" && $resultadoPonto["ponto_hora_extra"] != "00:00"){
+                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] != "00:00:00" && $resultadoPonto["ponto_hora_extra"] != "00:00:00"){
                                                   echo '<i title="Compensação / Extra" class="btn btn-sm btn-outline-primary rounded bi bi-hourglass-split"></i>';                       
                                                                     }
                                                                     ?>
@@ -277,7 +277,7 @@ $pessoa = $CODIGOUSUARIO;
                                                                 <td class="info-td text-success fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_extra"])); ?></td>
                                                                 <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_justificado"] == 1){
          echo '<i title="Justificado" class="btn btn-sm btn-outline-success rounded bi bi-emoji-neutral"></i>';                                                           
-                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == "00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00"){
+                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == "00:00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00:00"){
                                            echo '<i title="Tudo OK" class="btn btn-sm btn-outline-success rounded bi bi-emoji-smile"></i>';                         
                                                                 }else{
                                                                   echo '<i title="Não Justificado" class="btn btn-sm btn-outline-danger rounded bi bi-emoji-frown"></i>';  
@@ -287,7 +287,7 @@ $pessoa = $CODIGOUSUARIO;
                                                             <?php
                                                         }
                                                     } else {
-                                                        echo '<tr><td class="text-danger text-center" colspan="10">Não há informações a serem exibidas</td></tr>';
+                                                        echo '<tr><td class="text-danger text-center" colspan="5">Não há informações a serem exibidas</td></tr>';
                                                     }
                                                     ?>
                                                 </tbody>

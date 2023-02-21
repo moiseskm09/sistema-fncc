@@ -255,7 +255,7 @@ if (!empty($_POST["cooperativa"] || $_POST["areaAtendimento"] || $_POST["dataRef
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                                <label for="areaAtendimento">Aréa de Atendimento</label>
+                                                                <label for="areaAtendimento">Área de Atendimento</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-12">

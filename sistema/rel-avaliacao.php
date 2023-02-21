@@ -271,7 +271,7 @@ $buscaTotais =  mysqli_query($conexao, "SELECT count(cod_consulta) AS total_aten
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                                <label for="areaAtendimento">Aréa de Atendimento</label>
+                                                                <label for="areaAtendimento">Área de Atendimento</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 col-md-2 col-12">

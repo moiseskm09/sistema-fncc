@@ -19,6 +19,9 @@ and open the template in the editor.
 .fundo-submenu {
     background-color: #5283fe40;
 }
+.nav-link.link-menu, .nav-link.link-submenu{
+    font-size: 16px;
+}
 .link-menu {
     color:#1c1d3c !important;
     font-size: 16px;
@@ -65,7 +68,7 @@ and open the template in the editor.
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 7px;
 }
   
 ::-webkit-scrollbar-thumb {
@@ -10271,7 +10274,7 @@ body {
 .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-sidenav-collapse-arrow {
   display: inline-block;
   margin-left: auto;
-  transition: transform 0.15s ease;
+  transition: transform 0.45s ease;
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link.collapsed .sb-sidenav-collapse-arrow {
   transform: rotate(-90deg);

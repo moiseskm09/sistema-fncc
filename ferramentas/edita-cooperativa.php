@@ -1,7 +1,7 @@
 <?php
 
 require_once '../config/conexao.php';
-//require_once '../config/config_geral.php';
+require_once '../config/config_geral.php';
 
 
 if (isset($_POST["cooperativaid"], $_POST["coop_razao"], $_POST["coop_cnpj"])) {

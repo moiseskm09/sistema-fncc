@@ -88,7 +88,7 @@ require_once '../config/config_geral.php';
             <option value="2">Consultoria Técnica</option>
             <option value="3">Consultoria Jurídica</option>
       </select>
-      <label for="areaAtendimento">Aréa de Atendimento <span class="text-danger">*</span></label>
+      <label for="areaAtendimento">Área de Atendimento <span class="text-danger">*</span></label>
     </div>
   </div>
                               <div class="col-lg-12 col-md-12 col-12">
