@@ -15,10 +15,6 @@ $pessoa = "";
 $primeiroDia = date("Y-m-01");
 $UltimodiaDia = date("Y-m-t");
 }
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -162,10 +158,10 @@ $UltimodiaDia = date("Y-m-t");
                                                                     <input type="hidden" name="ponto_dia[]" class="form-control" value="<?php echo $resultadoPontoAjuste["ponto_dia"]; ?>">
                                                                     <input type="hidden" name="cod_ponto[]" class="form-control" value="<?php echo $resultadoPontoAjuste["cod_ponto"]; ?>">
                                                                 </td>
-                                                                <td class="info-td text-success fw-bold"><input type="time" name="entrada[]" class="form-control" value="<?php echo strftime('%H:%M', strtotime($resultadoPontoAjuste["ponto_entrada"])); ?>"></td>
-                                                                <td class="info-td text-success fw-bold"><input type="time" name="intervalo[]" class="form-control" value="<?php echo strftime('%H:%M', strtotime($resultadoPontoAjuste["ponto_intervalo_um"])); ?>"></td>
-                                                                <td class="info-td text-success fw-bold"><input type="time" name="fim_intervalo[]" class="form-control" value="<?php echo strftime('%H:%M', strtotime($resultadoPontoAjuste["ponto_intervalo_dois"])); ?>"></td>
-                                                                <td class="info-td text-success fw-bold"><input type="time" name="saida[]" class="form-control" value="<?php echo strftime('%H:%M', strtotime($resultadoPontoAjuste["ponto_saida"])); ?>"></td>
+                                                                <td class="info-td text-success fw-bold"><input type="time" name="entrada[]" class="form-control" value="<?php if($resultadoPontoAjuste["ponto_entrada"] == null){ echo ""; }else{ echo strftime('%H:%M', strtotime($resultadoPontoAjuste["ponto_entrada"])); } ?>" required></td>
+                                                                <td class="info-td text-success fw-bold"><input type="time" name="intervalo[]" class="form-control" value="<?php if($resultadoPontoAjuste["ponto_intervalo_um"] == null){ echo ""; }else{ echo strftime('%H:%M', strtotime($resultadoPontoAjuste["ponto_intervalo_um"])); } ?>" required></td>
+                                                                <td class="info-td text-success fw-bold"><input type="time" name="fim_intervalo[]" class="form-control" value="<?php if($resultadoPontoAjuste["ponto_intervalo_dois"] == null){ echo ""; }else{ echo strftime('%H:%M', strtotime($resultadoPontoAjuste["ponto_intervalo_dois"]));} ?>" required></td>
+                                                                <td class="info-td text-success fw-bold"><input type="time" name="saida[]" class="form-control" value="<?php if($resultadoPontoAjuste["ponto_saida"] == null){ echo ""; }else{ echo strftime('%H:%M', strtotime($resultadoPontoAjuste["ponto_saida"]));} ?>" required></td>
                                                             </tr>
                                                             <?php
                                                         }

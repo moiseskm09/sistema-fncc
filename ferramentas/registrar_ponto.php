@@ -10,14 +10,14 @@ require_once '../config/conexao.php';
 require_once '../config/config_geral.php';
 
 if (isset($_POST["opcaoPonto"])) {
-    $diaSemana = utf8_encode(strftime("%A", strtotime("d")));
-    $buscaJornada = mysqli_query($conexao, "SELECT * FROM jornada WHERE dia = '$diaSemana'");
+    $diaSemana = utf8_encode(strftime("%a", strtotime("d")));
+    $buscaJornada = mysqli_query($conexao, "SELECT * FROM jornada WHERE dia_abreviado = '$diaSemana'");
     if (mysqli_num_rows($buscaJornada) > 0) {
         $resultadoJornada = mysqli_fetch_assoc($buscaJornada);
         $opcaoPonto = (int) $_POST["opcaoPonto"];
         $dataAtual = date("Y-m-d");
         $horaAtual = date("H:i");
-        $horaPadrao = date("0000");
+        //$horaPadrao = date("0000");
         $horadeTrabalhoInicial = date("Y-m-d " . strftime('%H:%M', strtotime($resultadoJornada["jor_entrada"])) . "");
         $horadeTrabalhoFinal = date("Y-m-d " . strftime('%H:%M', strtotime($resultadoJornada["jor_saida"])) . "");
         $tolerancia = strftime('%H:%M', strtotime($resultadoJornada["jor_tolerancia"]));
@@ -25,7 +25,7 @@ if (isset($_POST["opcaoPonto"])) {
         $ExtraInicial = "00:00";
         if ($opcaoPonto === 1) {
             //Se for entrada
-            if ($diaSemana == "sábado" && $horadeTrabalhoInicial == date("Y-m-d " . strftime('%H:%M', strtotime("00:00")) . "") || $diaSemana == "domingo" && $horadeTrabalhoInicial == date("Y-m-d " . strftime('%H:%M', strtotime("00:00")) . "")) {
+            if ($diaSemana == "sab" && $resultadoJornada["jor_entrada"] == null || $diaSemana == "dom" && $resultadoJornada["jor_entrada"] == null) {
                 $datatime1 = new DateTime($dataAtual . " " . $horaAtual);
                 $datatime2 = new DateTime($dataAtual . " " . $horaAtual);
             } else {
@@ -34,6 +34,7 @@ if (isset($_POST["opcaoPonto"])) {
             }
             $data1 = $datatime1->format('Y-m-d H:i');
             $data2 = $datatime2->format('Y-m-d H:i');
+
             if ($data2 > $data1) {
                 $diff = $datatime1->diff($datatime2);
                 $horasAtraso = $diff->h;
@@ -56,9 +57,9 @@ if (isset($_POST["opcaoPonto"])) {
                 header("location: ../sistema/controle-ponto.php?erro=3");
             } else {
                 $insereEntrada = mysqli_query($conexao, "INSERT INTO controle_de_ponto (ponto_user, ponto_dia, ponto_entrada, ponto_hora_atraso, ponto_hora_extra) VALUES ('$CODIGOUSUARIO', '$dataAtual', '$horaAtual', '$atrasoInicial', '$ExtraInicial')");
-                /*if ($ExtraInicial != "00:00") {
-                    $atualizaBancodeHoras = mysqli_query($conexao, "INSERT INTO banco_de_horas (bh_dia, bh_horas, bh_user) VALUES('$dataAtual', '$ExtraInicial', '$CODIGOUSUARIO')");
-                }*/
+                /* if ($ExtraInicial != "00:00") {
+                  $atualizaBancodeHoras = mysqli_query($conexao, "INSERT INTO banco_de_horas (bh_dia, bh_horas, bh_user) VALUES('$dataAtual', '$ExtraInicial', '$CODIGOUSUARIO')");
+                  } */
                 if ($insereEntrada == 1) {
                     header("location: ../sistema/controle-ponto.php?sucesso=1");
                 } else {
@@ -70,8 +71,9 @@ if (isset($_POST["opcaoPonto"])) {
             $buscaRegistro = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_dia = '$dataAtual' and ponto_user = '$CODIGOUSUARIO'");
             if (mysqli_num_rows($buscaRegistro) > 0) {
                 $resultado = mysqli_fetch_assoc($buscaRegistro);
-                $intervalo1 = date("Hi", strtotime($resultado["ponto_intervalo_um"]));
-                if ($intervalo1 > $horaPadrao) {
+                $intervalo1 = $resultado["ponto_intervalo_um"];
+                echo $resultado["ponto_intervalo_um"];
+                if ($intervalo1 != null) {
                     header("location: ../sistema/controle-ponto.php?erro=3");
                 } else {
                     $insereIntervalo = mysqli_query($conexao, "UPDATE controle_de_ponto SET ponto_intervalo_um = '$horaAtual' WHERE ponto_dia = '$dataAtual' and ponto_user = '$CODIGOUSUARIO'");
@@ -89,8 +91,8 @@ if (isset($_POST["opcaoPonto"])) {
             $buscaRegistro = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_dia = '$dataAtual' and ponto_user = '$CODIGOUSUARIO'");
             if (mysqli_num_rows($buscaRegistro) > 0) {
                 $resultado = mysqli_fetch_assoc($buscaRegistro);
-                $intervalo2 = date("Hi", strtotime($resultado["ponto_intervalo_dois"]));
-                if ($intervalo2 > $horaPadrao) {
+                $intervalo2 = $resultado["ponto_intervalo_dois"];
+                if ($intervalo2 != null) {
                     header("location: ../sistema/controle-ponto.php?erro=3");
                 } else {
                     $insereIntervalo = mysqli_query($conexao, "UPDATE controle_de_ponto SET ponto_intervalo_dois = '$horaAtual' WHERE ponto_dia = '$dataAtual' and ponto_user = '$CODIGOUSUARIO'");
@@ -109,30 +111,44 @@ if (isset($_POST["opcaoPonto"])) {
             if (mysqli_num_rows($buscaRegistro) > 0) {
                 $resultado = mysqli_fetch_assoc($buscaRegistro);
                 $PontoEntrada = $resultado["ponto_entrada"];
-                if ($diaSemana == "sábado" && $horadeTrabalhoFinal == date("Y-m-d " . strftime('%H:%M', strtotime("00:00")) . "") || $diaSemana == "domingo" && $horadeTrabalhoFinal == date("Y-m-d " . strftime('%H:%M', strtotime("00:00")) . "")) {
+                if ($diaSemana == "sab" && $resultadoJornada["jor_saida"] == null || $diaSemana == "dom" && $resultadoJornada["jor_saida"] == null) {
                     $datatime1 = new DateTime($dataAtual . " " . $horaAtual);
                     $datatime2 = new DateTime($dataAtual . " " . $PontoEntrada);
                 } else {
                     $datatime1 = new DateTime($horadeTrabalhoFinal);
                     $datatime2 = new DateTime($dataAtual . " " . $horaAtual);
                 }
-              
+
                 $data1 = $datatime1->format('Y-m-d H:i');
                 $data2 = $datatime2->format('Y-m-d H:i');
+
                 if ($data2 > $data1) {
                     $diff = $datatime1->diff($datatime2);
-                }else{
+                    $horasExtra = $diff->h;
+                    $MinutosExtra = $diff->i;
+                    $HoraExtra = $horasExtra . ":" . $MinutosExtra;
+                    $HoraExtraFinal = strftime('%H:%M', strtotime($HoraExtra));
+                    if ($HoraExtraFinal == $tolerancia || $HoraExtraFinal < $tolerancia) {
+                        $HoraExtra = "00:00";
+                    } else {
+                        $HoraExtra = $horasExtra . ":" . $MinutosExtra;
+                    }
+                } else {
                     $diff = $datatime2->diff($datatime1);
+                    //aqui depois eu vou adicionar a saida mais cedo como atraso
+                    $HoraExtra = "00:00";
                 }
-                $horasExtra = $diff->h;
-                $MinutosExtra = $diff->i;
-                $HoraExtra = $horasExtra . ":" . $MinutosExtra;
 
-                $saida = date("Hi", strtotime($resultado["ponto_saida"]));
-                $HoraExtraInicial = $resultado["ponto_hora_extra"];
 
-                if ($saida > $horaPadrao) {
-                   header("location: ../sistema/controle-ponto.php?erro=3");
+                $saida = $resultado["ponto_saida"];
+                if ($resultado["ponto_hora_extra"] == null) {
+                    $HoraExtraInicial = "00:00";
+                } else {
+                    $HoraExtraInicial = $resultado["ponto_hora_extra"];
+                }
+
+                if ($saida != null) {
+                    header("location: ../sistema/controle-ponto.php?erro=3");
                 } else {
                     $HoraEntrada = $resultado['ponto_entrada'];
                     $datatime4 = new DateTime($dataAtual . " " . $horaAtual);
@@ -146,33 +162,34 @@ if (isset($_POST["opcaoPonto"])) {
                     $MinutosExecutados = $diff->i;
                     $HorasExecutadas = $horasExecutadas . ":" . $MinutosExecutados;
                     //fixo diminuir hora do almoço depois do 12:00
-                    if ($horaAtual > "12:00" && $diaSemana != "sábado" && $diaSemana != "domingo") {
+                    if ($horaAtual > "12:00" && $diaSemana != "sab" && $diaSemana != "dom") {
                         $HorasExecutadasTotal = $time = date('H:i', strtotime($HorasExecutadas . '-1 hour'));
                     } else {
                         $HorasExecutadasTotal = $HorasExecutadas;
                     }
                     //fim fixo diminuir hora do almoço depois do 12:00
 
+
                     $inseresaida = mysqli_query($conexao, "UPDATE controle_de_ponto SET ponto_saida = '$horaAtual', ponto_hora_extra = ADDTIME('$HoraExtraInicial','$HoraExtra'), ponto_hora_executada = '$HorasExecutadasTotal' WHERE ponto_dia = '$dataAtual' and ponto_user = '$CODIGOUSUARIO'");
-                    if ("$HoraExtra" != "00:00" || $HoraExtraInicial != "00:00:00") {
+                    if ($HoraExtra != "00:00" || $HoraExtraInicial != "00:00" && $HoraExtraInicial != null) {
                         $consultaBancoHoras = mysqli_query($conexao, "SELECT * FROM banco_de_horas WHERE bh_user = '$CODIGOUSUARIO' and bh_dia = '$dataAtual'");
-                        if(mysqli_num_rows($consultaBancoHoras) > 0){
+                        if (mysqli_num_rows($consultaBancoHoras) > 0) {
                             $atualizaBancodeHoras = mysqli_query($conexao, "UPDATE banco_de_horas SET bh_horas = ADDTIME('$HoraExtraInicial','$HoraExtra') WHERE bh_user = '$CODIGOUSUARIO' and bh_dia = '$dataAtual'");
-                        }else{
-                        $atualizaBancodeHoras = mysqli_query($conexao, "INSERT INTO banco_de_horas (bh_dia, bh_horas, bh_user) VALUES('$dataAtual',ADDTIME('$HoraExtraInicial','$HoraExtra'), '$CODIGOUSUARIO')");
+                        } else {
+                            $atualizaBancodeHoras = mysqli_query($conexao, "INSERT INTO banco_de_horas (bh_dia, bh_horas, bh_user) VALUES('$dataAtual',ADDTIME('$HoraExtraInicial','$HoraExtra'), '$CODIGOUSUARIO')");
                         }
                     }
                     if ($inseresaida == 1) {
-                       header("location: ../sistema/controle-ponto.php?sucesso=4");
+                         header("location: ../sistema/controle-ponto.php?sucesso=4");
                     } else {
-                       header("location: ../sistema/controle-ponto.php?erro=4");
+                         header("location: ../sistema/controle-ponto.php?erro=4");
                     }
                 }
             } else {
-               header("location: ../sistema/controle-ponto.php?erro=5");
+                header("location: ../sistema/controle-ponto.php?erro=5");
             }
         } else {
-            header("location: ../sistema/controle-ponto.php?erro=2");
+             header("location: ../sistema/controle-ponto.php?erro=2");
         }
     } else {
         //sem jornda de trabalho definida

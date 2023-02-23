@@ -69,7 +69,8 @@ $buscaferiados = mysqli_query($conexao, "SELECT * FROM feriados");
                                            ?>
                                 <div class="list-group mb-2">
   <a type="button" href="#feriado<?php echo strftime('%d%b%Y', strtotime($resultadoFeriado["data"]));?>" data-toggle="modal" data-target="#feriado<?php echo strftime('%d%b%Y', strtotime($resultadoFeriado["data"]));?>" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
+   <i class="bi bi-link-45deg link-feriado"></i>
+      <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1 destaque"><?php echo $resultadoFeriado["feriado"];?></h5>
       <small class="fw-bold text-primary"><?php echo ucwords(strftime('%d - %b', strtotime($resultadoFeriado["data"]))); ?></small>
     </div>
@@ -81,7 +82,7 @@ $buscaferiados = mysqli_query($conexao, "SELECT * FROM feriados");
     
   </a>
 <small title="Excluir Feriado - <?php echo $resultadoFeriado["feriado"];?>" class="fw-bold text-danger">
-            <a href="../ferramentas/deleta-feriado.php?cod_feriado=<?php echo $resultadoFeriado["cod_feriado"]; ?>" desativar-confirm="Tem certeza de que deseja o item selecionado?" class="botao-excluir-feriado btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+            <a href="../ferramentas/deleta-feriado.php?cod_feriado=<?php echo $resultadoFeriado["cod_feriado"]; ?>" desativar-confirm="Tem certeza de que deseja o item selecionado?" class="botao-excluir-feriado btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i></a>
         </small>
 </div>     
                                <!-- Modal Feriado -->

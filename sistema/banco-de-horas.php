@@ -28,7 +28,7 @@ UNION
 SELECT 0 as SaldoBancoMes, time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoNJustificadoMes FROM controle_de_ponto WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user like '%$pessoa%' and ponto_justificativa_aprovada = '0') AS qb");
 $ResultadoSaldoHorasTotal = mysqli_fetch_assoc($buscaSaldoDeHoras);       
         
-$buscaPonto = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_user like '%$pessoa%' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso != '00:00' OR ponto_user like '%$pessoa%' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_extra != '00:00' ORDER BY ponto_dia DESC");
+$buscaPonto = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_user like '%$pessoa%' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso != '00:00' and ponto_hora_atraso != 'null' OR ponto_user like '%$pessoa%' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_extra != '00:00' and ponto_hora_extra != 'null' ORDER BY ponto_dia DESC");
     
 }else{
  
@@ -262,22 +262,22 @@ $pessoa = $CODIGOUSUARIO;
                                                             <tr class="linha-hover info-td">
                                                                 <td class="info-td">
                                                                     <?php
-                                                                    if($resultadoPonto["ponto_hora_atraso"] != "00:00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00:00"){
+                                                                    if($resultadoPonto["ponto_hora_atraso"] != null && $resultadoPonto["ponto_hora_extra"] == null){
                                                                         echo '<i title="Atraso" class="btn btn-sm btn-outline-danger rounded bi bi-exclamation-circle"></i>'; 
-                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] == "00:00:00" && $resultadoPonto["ponto_hora_extra"] != "00:00:00"){
+                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] == null && $resultadoPonto["ponto_hora_extra"] != null){
                                                   echo '<i title="Extra" class="btn btn-sm btn-outline-success rounded bi bi-check-circle"></i>';                       
-                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] != "00:00:00" && $resultadoPonto["ponto_hora_extra"] != "00:00:00"){
+                                                                    }elseif($resultadoPonto["ponto_hora_atraso"] != null && $resultadoPonto["ponto_hora_extra"] != null){
                                                   echo '<i title="Compensação / Extra" class="btn btn-sm btn-outline-primary rounded bi bi-hourglass-split"></i>';                       
                                                                     }
                                                                     ?>
                                                                 </td>
                                                                 <td class="info-td fw-bold cor-primaria"><?php echo utf8_encode(strftime('%d/%b - %a', strtotime($resultadoPonto["ponto_dia"]))); ?></td>
                                                                
-                                                                <td class="info-td text-danger fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_atraso"])); ?></td>
-                                                                <td class="info-td text-success fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_extra"])); ?></td>
+                                                                <td class="info-td text-danger fw-bold"><?php if($resultadoPonto["ponto_hora_atraso"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_atraso"]));} ?></td>
+                                                                <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_hora_extra"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_extra"]));} ?></td>
                                                                 <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_justificado"] == 1){
          echo '<i title="Justificado" class="btn btn-sm btn-outline-success rounded bi bi-emoji-neutral"></i>';                                                           
-                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == "00:00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00:00"){
+                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == null && $resultadoPonto["ponto_hora_extra"] == null){
                                            echo '<i title="Tudo OK" class="btn btn-sm btn-outline-success rounded bi bi-emoji-smile"></i>';                         
                                                                 }else{
                                                                   echo '<i title="Não Justificado" class="btn btn-sm btn-outline-danger rounded bi bi-emoji-frown"></i>';  

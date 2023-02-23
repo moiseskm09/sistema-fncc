@@ -109,7 +109,7 @@ if (isset($_POST["ponto_user"], $_POST["ponto_dia"], $_POST["cod_ponto"], $_POST
                     //fim fixo diminuir hora do almoço depois do 12:00
                     //
                 // fim horas trabalhadas
-                   $queryAtualizaPonto = "UPDATE controle_de_ponto SET ponto_entrada = '$entradaPonto', ponto_intervalo_um = '$intervaloPonto', ponto_intervalo_dois = '$fimIntervaloPonto', ponto_saida = '$saidaPonto', ponto_hora_executada = '$HorasTrabalhadasTotal', ponto_hora_atraso = '$atrasoInicial', ponto_hora_extra = ADDTIME('$ExtraInicial','$HoraExtraFinal') WHERE cod_ponto = '$codigoPonto' and ponto_dia = '$diaPonto' and ponto_user = '$usuarioPonto'";
+                   $queryAtualizaPonto = "UPDATE controle_de_ponto SET ponto_entrada = '$entradaPonto', ponto_intervalo_um = '$intervaloPonto', ponto_intervalo_dois = '$fimIntervaloPonto', ponto_saida = '$saidaPonto', ponto_hora_executada = '$HorasTrabalhadasTotal', ponto_hora_atraso = '$atrasoInicial', ponto_hora_extra = ADDTIME('$ExtraInicial','$HoraExtraFinal'), ponto_situacao = '1' WHERE cod_ponto = '$codigoPonto' and ponto_dia = '$diaPonto' and ponto_user = '$usuarioPonto'";
                    //echo $queryAtualizaPonto."<br>";
                    $atualizaPonto = mysqli_query($conexao, $queryAtualizaPonto);
                    if($atualizaPonto == 1){

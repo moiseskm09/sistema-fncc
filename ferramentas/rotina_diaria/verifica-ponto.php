@@ -22,7 +22,7 @@ if ($sabado == $diaSemana OR $domingo == $diaSemana) {
                 //echo "$id_usuario - Registrou o Ponto hoje"."<br>";
             } else {
                 //echo "$id_usuario - NÃO Registrou o Ponto hoje"."<br>";
-                $insereFalta = mysqli_query($conexao, "INSERT INTO controle_de_ponto (ponto_user, ponto_dia, ponto_entrada, ponto_hora_atraso, ponto_situacao) VALUES ('$id_usuario', '$data', '00:00:00', '08:00:00', '2')");
+                $insereFalta = mysqli_query($conexao, "INSERT INTO controle_de_ponto (ponto_user, ponto_dia, ponto_hora_atraso, ponto_situacao) VALUES ('$id_usuario', '$data', '08:00:00', '2')");
             }
         }
     }

@@ -198,27 +198,27 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                             <tr class="linha-hover info-td">
                                                                 <td class="info-td">
                                                                     <?php
-                                                                    if($resultadoPonto["ponto_situacao"] == 1 && $resultadoPonto["ponto_hora_atraso"] == "00:00:00"){
+                                                                    if($resultadoPonto["ponto_situacao"] == 1 && $resultadoPonto["ponto_hora_atraso"] == null || $resultadoPonto["ponto_situacao"] == 1 && $resultadoPonto["ponto_hora_atraso"] == "00:00:00"){
                                                                         echo '<i title="Tudo Certo" class="btn btn-sm btn-outline-success rounded bi bi-check-circle"></i>';
-                                                                    }elseif($resultadoPonto["ponto_situacao"] == 1 && $resultadoPonto["ponto_hora_atraso"] != "00:00:00"){
+                                                                    }elseif($resultadoPonto["ponto_situacao"] == 1 && $resultadoPonto["ponto_hora_atraso"] != null || $resultadoPonto["ponto_situacao"] == 1 && $resultadoPonto["ponto_hora_atraso"] != "00:00:00"){
                                                   echo '<i title="Atraso" class="btn btn-sm btn-outline-warning rounded bi bi-exclamation-circle"></i>';                       
                                                                     }elseif($resultadoPonto["ponto_situacao"] == 2){
                                                   echo '<i title="Ausência" class="btn btn-sm btn-outline-danger rounded bi bi-x-circle"></i>';                       
                                                                     }
                                                                     ?>
                                                                 </td>
-                                                                <td class="info-td fw-bold cor-primaria"><?php echo utf8_encode(strftime('%a - %d/%m', strtotime($resultadoPonto["ponto_dia"]))); ?></td>
-                                                                <td class="info-td text-success fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_entrada"])); ?></td>
-                                                                <td class="info-td"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_intervalo_um"])); ?></td>
-                                                                <td class="info-td"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_intervalo_dois"])); ?></td>
-                                                                <td class="info-td text-danger fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_saida"])); ?></td>
-                                                                <td class="info-td"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_prevista"])); ?></td>
-                                                                <td class="info-td text-primary fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_executada"])); ?></td>
-                                                                <td class="info-td text-danger fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_atraso"])); ?></td>
-                                                                <td class="info-td text-success fw-bold"><?php echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_extra"])); ?></td>
+                                                                <td class="info-td fw-bold cor-primaria"><?php if($resultadoPonto["ponto_dia"] == null){ echo "00:00"; }else{ echo utf8_encode(strftime('%a - %d/%m', strtotime($resultadoPonto["ponto_dia"]))); }  ?></td>
+                                                                <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_entrada"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_entrada"])); } ?></td>
+                                                                <td class="info-td"><?php if($resultadoPonto["ponto_intervalo_um"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_intervalo_um"])); } ?></td>
+                                                                <td class="info-td"><?php if($resultadoPonto["ponto_intervalo_dois"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_intervalo_dois"])); }?></td>
+                                                                <td class="info-td text-danger fw-bold"><?php if($resultadoPonto["ponto_saida"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_saida"]));} ?></td>
+                                                                <td class="info-td"><?php if($resultadoPonto["ponto_hora_prevista"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_prevista"]));} ?></td>
+                                                                <td class="info-td text-primary fw-bold"><?php if($resultadoPonto["ponto_hora_executada"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_executada"]));} ?></td>
+                                                                <td class="info-td text-danger fw-bold"><?php if($resultadoPonto["ponto_hora_atraso"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_atraso"]));} ?></td>
+                                                                <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_hora_extra"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_extra"]));} ?></td>
                                                                 <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_justificado"] == 1){
          echo '<i title="Justificado" class="btn btn-sm btn-outline-success rounded bi bi-emoji-neutral"></i>';                                                           
-                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == "00:00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00:00"){
+                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == null && $resultadoPonto["ponto_hora_extra"] == null){
                                            echo '<i title="Tudo OK" class="btn btn-sm btn-outline-success rounded bi bi-emoji-smile"></i>';                         
                                                                 }else{
                                                                   echo '<i title="Não Justificado" class="btn btn-sm btn-outline-danger rounded bi bi-emoji-frown"></i>';  
@@ -293,7 +293,7 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                             <div class="row">
                                                 
                                                     <?php 
-                                                    $buscaPontoJustificativa = mysqli_query($conexao, "SELECT * FROM controle_de_ponto LEFT JOIN justificativa_ponto ON ponto_dia = just_dia and ponto_user = just_user WHERE ponto_hora_atraso != '00:00' and ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' OR ponto_situacao = '2' and ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' OR ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' and ponto_hora_extra != '00:00'");
+                                                    $buscaPontoJustificativa = mysqli_query($conexao, "SELECT * FROM controle_de_ponto LEFT JOIN justificativa_ponto ON ponto_dia = just_dia and ponto_user = just_user WHERE ponto_hora_atraso != '00:00:00' and ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' OR ponto_hora_atraso != null and ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' OR ponto_situacao = '2' and ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' OR ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' and ponto_hora_extra != '00:00:00' OR ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_justificado = '0' and ponto_hora_extra != null");
                                                     if(mysqli_num_rows($buscaPontoJustificativa) > 0){                    
                                                     ?>
                                                 <div class="col-lg-12 col-md-12 col-12">
@@ -304,7 +304,7 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                             while($resultadoJustificativa = mysqli_fetch_assoc($buscaPontoJustificativa)){
                                                                 if($resultadoJustificativa["just_dia"] == null){    
                                                             ?>
-                                                                <option value="<?php echo date("Y-m-d", strtotime($resultadoJustificativa["ponto_dia"])); ?>"><?php echo date("d/m/Y", strtotime($resultadoJustificativa["ponto_dia"])); if($resultadoJustificativa["ponto_hora_extra"] != "00:00:00"){ echo "- Hora Extra";}elseif($resultadoJustificativa["ponto_hora_atraso"] != "00:00:00" && $resultadoJustificativa["ponto_situacao"] == "1" ){echo "- Atraso";}elseif($resultadoJustificativa["ponto_situacao"] == "2"){echo "- Ausência";}?></option>
+                                                                <option value="<?php echo date("Y-m-d", strtotime($resultadoJustificativa["ponto_dia"])); ?>"><?php echo date("d/m/Y", strtotime($resultadoJustificativa["ponto_dia"])); if($resultadoJustificativa["ponto_hora_extra"] != null && $resultadoJustificativa["ponto_hora_extra"] != "00:00:00"){ echo "- Hora Extra";}elseif($resultadoJustificativa["ponto_hora_atraso"] != null && $resultadoJustificativa["ponto_hora_atraso"] != "00:00:00" && $resultadoJustificativa["ponto_situacao"] == "1" ){echo "- Atraso";}elseif($resultadoJustificativa["ponto_situacao"] == "2"){echo "- Ausência";}?></option>
                                                             <?php } } ?>
                                                         </select>
                                                         <label for="dataJustificativa">Dia Justificativa</label>

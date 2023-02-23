@@ -517,3 +517,25 @@ color: #FFD70F;
     margin-top: -40px;
 }
 }
+
+.link-feriado{
+    position: absolute;
+    font-size: 40px;
+    text-align: center;
+    left: 50%;
+    color: #1d4289;
+    opacity: 0;
+    top:15px;
+}
+
+.list-group, .list-group-item{
+    border-radius: 15px;
+}
+.list-group-item:hover{
+    border-radius: 15px;
+    background-color: rgba(119, 90, 162, 0.3);
+}
+.list-group-item:hover .link-feriado{
+    opacity: 1;
+    transition: 0.5s;
+}

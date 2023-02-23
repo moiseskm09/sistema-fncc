@@ -15,11 +15,12 @@ if(isset($_POST["cod_dia"], $_POST["dia_semana"], $_POST["dia_abreviado"], $_POS
     
     
     function jornada($cod_dia, $dia_semana, $dia_abreviado, $entrada, $intervalo, $fim_intervalo, $saida, $tolerancia) {
-            return "('{$cod_dia}', '{$dia_semana}',{$dia_abreviado}','{$entrada}','{$intervalo}', '{$fim_intervalo}', '{$saida}', '{$tolerancia}')";
+            return "('{$cod_dia}', '{$dia_semana}','{$dia_abreviado}','{$entrada}','{$intervalo}', '{$fim_intervalo}', '{$saida}', '{$tolerancia}')";
         }
 
         $dados = array_map("jornada", $cod_dia, $dia_semana, $dia_abreviado, $entrada, $intervalo, $fim_intervalo, $saida, $tolerancia);
         $queryJornada = sprintf("REPLACE INTO jornada (cod_jornada, dia, dia_abreviado, jor_entrada, jor_intervalo, jor_fim_intervalo, jor_saida, jor_tolerancia) VALUES %s", join(', ', $dados));
+       echo $queryJornada."<br>";
         $executaJornada = mysqli_query($conexao, $queryJornada);
         
          if($executaJornada == 1){
