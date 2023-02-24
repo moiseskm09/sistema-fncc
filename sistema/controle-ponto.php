@@ -302,9 +302,10 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                             <option value="" selected>Selecione</option>
                                                             <?php
                                                             while($resultadoJustificativa = mysqli_fetch_assoc($buscaPontoJustificativa)){
-                                                                if($resultadoJustificativa["just_dia"] == null){    
+                                                                if($resultadoJustificativa["just_dia"] == null){  
+                                                                    
                                                             ?>
-                                                                <option value="<?php echo date("Y-m-d", strtotime($resultadoJustificativa["ponto_dia"])); ?>"><?php echo date("d/m/Y", strtotime($resultadoJustificativa["ponto_dia"])); if($resultadoJustificativa["ponto_hora_extra"] != null && $resultadoJustificativa["ponto_hora_extra"] != "00:00:00"){ echo "- Hora Extra";}elseif($resultadoJustificativa["ponto_hora_atraso"] != null && $resultadoJustificativa["ponto_hora_atraso"] != "00:00:00" && $resultadoJustificativa["ponto_situacao"] == "1" ){echo "- Atraso";}elseif($resultadoJustificativa["ponto_situacao"] == "2"){echo "- Ausência";}?></option>
+                                                                <option value="<?php echo date("Y-m-d", strtotime($resultadoJustificativa["ponto_dia"])); ?>"><?php echo date("d/m/Y", strtotime($resultadoJustificativa["ponto_dia"])); if($resultadoJustificativa["ponto_hora_extra"] != null && $resultadoJustificativa["ponto_hora_extra"] != "00:00:00"){ echo "- Hora Extra";}elseif($resultadoJustificativa["ponto_hora_atraso"] != null && $resultadoJustificativa["ponto_hora_atraso"] != "00:00:00" && $resultadoJustificativa["ponto_situacao"] == "1" ){echo "- Atraso";}elseif($resultadoJustificativa["ponto_situacao"] == "2"){echo "- Ausência";}?></option>     
                                                             <?php } } ?>
                                                         </select>
                                                         <label for="dataJustificativa">Dia Justificativa</label>

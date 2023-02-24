@@ -3,15 +3,18 @@
 include_once '../../config/conexao.php';
 include_once '../../config/config_geral.php';
 
-chdir('/home/u596471878/domains/bemktech.com.br/public_html/sistema-fncc/ferramentas/rotina_diaria/');
+chdir('/home/u596471878/domains/bemktech.com.br/public_html/sistema-fncc/ferramentas/rotina-diaria/');
 
-$sabado = "sábado";
-$domingo = "domingo";
-$diaSemana = utf8_encode(strftime("%A", strtotime("d")));
+$sabado = "sab";
+$domingo = "dom";
+$dataAtual = date("Y-m-d");
+$diaSemana = utf8_encode(strftime("%a", strtotime("d")));
+$buscaFeriado = mysqli_query($conexao, "SELECT * FROM feriados WHERE data = '$dataAtual'");
+if(mysqli_num_rows($buscaFeriado) > 0 ){ $feriado = "1"; }else{ $feriado = "0"; }
 
-if ($sabado == $diaSemana OR $domingo == $diaSemana) {
+if ($sabado == $diaSemana || $domingo == $diaSemana || $feriado == "1") { 
     
-} else {
+}else {
     $buscaUsuariosPonto = mysqli_query($conexao, "SELECT id_usuario FROM usuarios WHERE user_controla_ponto = '1'");
     if (mysqli_num_rows($buscaUsuariosPonto) > 0) {
         while ($resultadoUsuarioPonto = mysqli_fetch_assoc($buscaUsuariosPonto)) {

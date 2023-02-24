@@ -18,6 +18,13 @@ if (isset($_POST["opcaoPonto"])) {
         $dataAtual = date("Y-m-d");
         $horaAtual = date("H:i");
         //$horaPadrao = date("0000");
+        $buscaFeriado = mysqli_query($conexao, "SELECT * FROM feriados WHERE data = '$dataAtual'");
+        if (mysqli_num_rows($buscaFeriado) > 0) {
+            $resultadoFeriado = mysqli_fetch_assoc($buscaFeriado);
+            $facultativo = $resultadoFeriado["facultativo"];
+        } else {
+            $facultativo = "";
+        }
         $horadeTrabalhoInicial = date("Y-m-d " . strftime('%H:%M', strtotime($resultadoJornada["jor_entrada"])) . "");
         $horadeTrabalhoFinal = date("Y-m-d " . strftime('%H:%M', strtotime($resultadoJornada["jor_saida"])) . "");
         $tolerancia = strftime('%H:%M', strtotime($resultadoJornada["jor_tolerancia"]));
@@ -25,7 +32,7 @@ if (isset($_POST["opcaoPonto"])) {
         $ExtraInicial = "00:00";
         if ($opcaoPonto === 1) {
             //Se for entrada
-            if ($diaSemana == "sab" && $resultadoJornada["jor_entrada"] == null || $diaSemana == "dom" && $resultadoJornada["jor_entrada"] == null) {
+            if ($facultativo == "0" || $diaSemana == "sab" && $resultadoJornada["jor_entrada"] == null || $diaSemana == "sab" && $resultadoJornada["jor_entrada"] == "00:00:00" || $diaSemana == "dom" && $resultadoJornada["jor_entrada"] == null || $diaSemana == "dom" && $resultadoJornada["jor_entrada"] == "00:00:00") {
                 $datatime1 = new DateTime($dataAtual . " " . $horaAtual);
                 $datatime2 = new DateTime($dataAtual . " " . $horaAtual);
             } else {
@@ -50,6 +57,11 @@ if (isset($_POST["opcaoPonto"])) {
                 $horasExtra = $diff->h;
                 $MinutosExtra = $diff->i;
                 $ExtraInicial = $horasExtra . ":" . $MinutosExtra;
+                if ($ExtraInicial == $tolerancia || $ExtraInicial < $tolerancia) {
+                    $ExtraInicial = "00:00";
+                } else {
+                    $ExtraInicial = $horasExtra . ":" . $MinutosExtra;
+                }
             }
 
             $buscaRegistro = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_dia = '$dataAtual' and ponto_user = '$CODIGOUSUARIO'");
@@ -111,7 +123,7 @@ if (isset($_POST["opcaoPonto"])) {
             if (mysqli_num_rows($buscaRegistro) > 0) {
                 $resultado = mysqli_fetch_assoc($buscaRegistro);
                 $PontoEntrada = $resultado["ponto_entrada"];
-                if ($diaSemana == "sab" && $resultadoJornada["jor_saida"] == null || $diaSemana == "dom" && $resultadoJornada["jor_saida"] == null) {
+                if ($facultativo == "0" || $diaSemana == "sab" && $resultadoJornada["jor_saida"] == null || $diaSemana == "sab" && $resultadoJornada["jor_saida"] == "00:00:00" || $diaSemana == "dom" && $resultadoJornada["jor_saida"] == null || $diaSemana == "dom" && $resultadoJornada["jor_saida"] == "00:00:00") {
                     $datatime1 = new DateTime($dataAtual . " " . $horaAtual);
                     $datatime2 = new DateTime($dataAtual . " " . $PontoEntrada);
                 } else {
@@ -180,16 +192,16 @@ if (isset($_POST["opcaoPonto"])) {
                         }
                     }
                     if ($inseresaida == 1) {
-                         header("location: ../sistema/controle-ponto.php?sucesso=4");
+                        header("location: ../sistema/controle-ponto.php?sucesso=4");
                     } else {
-                         header("location: ../sistema/controle-ponto.php?erro=4");
+                        header("location: ../sistema/controle-ponto.php?erro=4");
                     }
                 }
             } else {
                 header("location: ../sistema/controle-ponto.php?erro=5");
             }
         } else {
-             header("location: ../sistema/controle-ponto.php?erro=2");
+            header("location: ../sistema/controle-ponto.php?erro=2");
         }
     } else {
         //sem jornda de trabalho definida
