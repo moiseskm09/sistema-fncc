@@ -8,13 +8,14 @@ require_once '../config/config_geral.php';
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <title>Abrir Consulta</title>
         <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
     <link href="../css/menu.css" rel="stylesheet" />
     <link href="../css/perfis.css" rel="stylesheet" />
+    <link rel="manifest" href="../manifest.json">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
@@ -43,7 +44,7 @@ require_once '../config/config_geral.php';
               <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="mr-2">
                   <a class="btn btn-sm btn-warning mb-1" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
-                  <a class="btn btn-sm btn-primary mb-1" href="#ajuda" data-toggle="modal" data-target="#ajuda"><i class="bi bi-question"></i> Ajuda</a>
+                  <a class="btn btn-sm botaoAjuda mb-1" href="#ajuda" data-toggle="modal" data-target="#ajuda"><i class="bi bi-info-circle"></i> Ajuda</a>
                 </div>
               </div>
 
@@ -112,7 +113,7 @@ require_once '../config/config_geral.php';
     </div>
   </div>
                                <div class="col-lg-4 col-md-4 col-4">
-                                   <a title="Sobre a visibilidade" class="btn btn-lg btn-info" href="#infoVisibilidade" data-toggle="modal" data-target="#infoVisibilidade" style="width:100%; height: 58px;"><i class="bi bi-patch-question" style="font-size: 28px;"></i></a>
+                                   <a title="Sobre a visibilidade" class="btn btn-lg botaoAjuda" href="#infoVisibilidade" data-toggle="modal" data-target="#infoVisibilidade" style="width:100%; height: 58px;"><i class="bi bi-info-circle" style="font-size: 28px;"></i></a>
                                </div>
                           </div>
                       </div>

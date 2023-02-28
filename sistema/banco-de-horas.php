@@ -10,22 +10,29 @@ $UltimodiaDia = $_POST["dataRefFinalF"];
 $pessoa = $_POST["pessoa"];
 
 
-$buscaBancodeHoras = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( bh_horas ) ) ),'%H:%i') as SaldoBancoMes FROM banco_de_horas WHERE bh_dia >= '$primeiroDia' and bh_dia <= '$UltimodiaDia' and bh_user like '%$pessoa%'");
+$buscaBancodeHoras = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( bh_horas ) ) ),'%H:%i') as SaldoBancoMes FROM banco_de_horas INNER JOIN justificativa_ponto ON bh_dia = just_dia WHERE bh_dia >= '$primeiroDia' and bh_dia <= '$UltimodiaDia' and bh_user like '%$pessoa%' and just_situacao = '2'");
 $ResultadoBancoTotal = mysqli_fetch_assoc($buscaBancodeHoras);
 
 $buscaHorasAtraso = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoAtrasoMes FROM controle_de_ponto WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user like '%$pessoa%'");
 $ResultadoAtrasoTotal = mysqli_fetch_assoc($buscaHorasAtraso);
 
-$buscaHorasAtrasoJustificado = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoJustificadoMes FROM justificativa_ponto INNER JOIN controle_de_ponto on just_dia = ponto_dia and just_user = ponto_user WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user like '%$pessoa%' and just_tipo = 'atraso' and just_situacao = '1' and ponto_justificativa_aprovada = '1'");
+$buscaHorasAtrasoJustificado = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoJustificadoMes FROM controle_de_ponto INNER JOIN justificativa_ponto on just_dia = ponto_dia and just_user = ponto_user WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user like '%$pessoa%' and just_situacao = '2' and ponto_justificativa_aprovada = '1'");
 $ResultadoAtrasoJustificadoTotal = mysqli_fetch_assoc($buscaHorasAtrasoJustificado);
 
 $buscaHorasAtrasoNJustificado = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoNJustificadoMes FROM controle_de_ponto WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user like '%$pessoa%' and ponto_justificativa_aprovada = '0'");
 $ResultadoAtrasoNJustificadoTotal = mysqli_fetch_assoc($buscaHorasAtrasoNJustificado);
 
-$buscaSaldoDeHoras = mysqli_query($conexao, "SELECT TIME_FORMAT(TIMEDIFF(time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( qb.SaldoBancoMes ) ) ),'%H:%i'), time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( qb.SaldoNJustificadoMes ) ) ),'%H:%i')) ,'%H:%i')AS saldo_de_horas FROM (
-SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( bh_horas ) ) ),'%H:%i') as SaldoBancoMes, 0  as SaldoNJustificadoMes FROM banco_de_horas WHERE bh_dia >= '$primeiroDia' and bh_dia <= '$UltimodiaDia' and bh_user like '%$pessoa%'
-UNION
-SELECT 0 as SaldoBancoMes, time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoNJustificadoMes FROM controle_de_ponto WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user like '%$pessoa%' and ponto_justificativa_aprovada = '0') AS qb");
+$buscaCompensacao = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( comp_hora ) ) ),'%H:%i') as saldoCompensadas FROM compensacao WHERE comp_user like '%$pessoa%' and comp_dia >= '$primeiroDia' and comp_dia <= '$UltimodiaDia'");
+$ResultadoSaldoHorasCompensacao = mysqli_fetch_assoc($buscaCompensacao);   
+
+$buscaSaldoDeHoras = mysqli_query($conexao, "SELECT TIME_FORMAT(TIMEDIFF(time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( SaldoBanco ) ) ),'%H:%i'), time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( SaldoDesconto ) ) ),'%H:%i')) ,'%H:%i')AS saldo_de_horas FROM ( 
+SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( bh_horas ) ) ),'%H:%i') as SaldoBanco, 0 as SaldoDesconto FROM banco_de_horas INNER JOIN controle_de_ponto on bh_dia = ponto_dia WHERE bh_user like '%$pessoa%' and ponto_justificativa_aprovada = '1' and bh_dia >= '$primeiroDia' and bh_dia <= '$UltimodiaDia' 
+UNION 
+SELECT 0 as SaldoBanco, time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( qt.saldoDesconto ) ) ),'%H:%i') as SaldoDesconto FROM (  
+SELECT SEC_TO_TIME(TIME_TO_SEC(saldoCompensadas) + TIME_TO_SEC(saldoAtraso)) as saldoDesconto FROM(
+SELECT 0 saldoAtraso, time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( comp_hora ) ) ),'%H:%i') as saldoCompensadas FROM compensacao WHERE comp_user like '%$pessoa%' and comp_dia >= '$primeiroDia' and comp_dia <= '$UltimodiaDia'
+UNION 
+SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as saldoAtraso, 0 saldoCompensadas FROM controle_de_ponto WHERE ponto_user like '%$pessoa%' and ponto_justificativa_aprovada = '0' and horas_compensadas = 0 and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia') AS qb)as qt) as qj");
 $ResultadoSaldoHorasTotal = mysqli_fetch_assoc($buscaSaldoDeHoras);       
         
 $buscaPonto = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_user like '%$pessoa%' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso != '00:00' and ponto_hora_atraso != 'null' OR ponto_user like '%$pessoa%' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_extra != '00:00' and ponto_hora_extra != 'null' ORDER BY ponto_dia DESC");
@@ -35,24 +42,31 @@ $buscaPonto = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE pont
 $primeiroDia = date("Y-m-01");
 $UltimodiaDia = date("Y-m-t");
 
-$buscaBancodeHoras = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( bh_horas ) ) ),'%H:%i') as SaldoBancoMes FROM banco_de_horas WHERE bh_dia >= '$primeiroDia' and bh_dia <= '$UltimodiaDia' and bh_user = '$CODIGOUSUARIO'");
+$buscaBancodeHoras = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( bh_horas ) ) ),'%H:%i') as SaldoBancoMes FROM banco_de_horas INNER JOIN justificativa_ponto ON bh_dia = just_dia WHERE bh_dia >= '$primeiroDia' and bh_dia <= '$UltimodiaDia' and bh_user = '$CODIGOUSUARIO' and just_situacao = '2'");
 $ResultadoBancoTotal = mysqli_fetch_assoc($buscaBancodeHoras);
 
 $buscaHorasAtraso = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoAtrasoMes FROM controle_de_ponto WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user = '$CODIGOUSUARIO'");
 $ResultadoAtrasoTotal = mysqli_fetch_assoc($buscaHorasAtraso);
 
-$buscaHorasAtrasoJustificado = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoJustificadoMes FROM justificativa_ponto INNER JOIN controle_de_ponto on just_dia = ponto_dia and just_user = ponto_user WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user = '$CODIGOUSUARIO' and just_tipo = 'atraso' and just_situacao = '1' and ponto_justificativa_aprovada = '1'");
+$buscaHorasAtrasoJustificado = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoJustificadoMes FROM justificativa_ponto INNER JOIN controle_de_ponto on just_dia = ponto_dia and just_user = ponto_user WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user = '$CODIGOUSUARIO' and just_situacao = '2' and ponto_justificativa_aprovada = '1'");
 $ResultadoAtrasoJustificadoTotal = mysqli_fetch_assoc($buscaHorasAtrasoJustificado);
 
 $buscaHorasAtrasoNJustificado = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoNJustificadoMes FROM controle_de_ponto WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user = '$CODIGOUSUARIO' and ponto_justificativa_aprovada = '0'");
 $ResultadoAtrasoNJustificadoTotal = mysqli_fetch_assoc($buscaHorasAtrasoNJustificado);
 
-$buscaSaldoDeHoras = mysqli_query($conexao, "SELECT TIME_FORMAT(TIMEDIFF(time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( qb.SaldoBancoMes ) ) ),'%H:%i'), time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( qb.SaldoNJustificadoMes ) ) ),'%H:%i')) ,'%H:%i')AS saldo_de_horas FROM (
-SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( bh_horas ) ) ),'%H:%i') as SaldoBancoMes, 0  as SaldoNJustificadoMes FROM banco_de_horas WHERE bh_dia >= '$primeiroDia' and bh_dia <= '$UltimodiaDia' and bh_user = '$CODIGOUSUARIO'
-UNION
-SELECT 0 as SaldoBancoMes, time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as SaldoNJustificadoMes FROM controle_de_ponto WHERE ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_user = '$CODIGOUSUARIO' and ponto_justificativa_aprovada = '0') AS qb");
+$buscaCompensacao = mysqli_query($conexao, "SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( comp_hora ) ) ),'%H:%i') as saldoCompensadas FROM compensacao WHERE comp_user = '1' and comp_dia >= '$primeiroDia' and comp_dia <= '$UltimodiaDia'");
+$ResultadoSaldoHorasCompensacao = mysqli_fetch_assoc($buscaCompensacao);   
+
+$buscaSaldoDeHoras = mysqli_query($conexao, "SELECT TIME_FORMAT(TIMEDIFF(time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( SaldoBanco ) ) ),'%H:%i'), time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( SaldoDesconto ) ) ),'%H:%i')) ,'%H:%i')AS saldo_de_horas FROM ( 
+SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( bh_horas ) ) ),'%H:%i') as SaldoBanco, 0 as SaldoDesconto FROM banco_de_horas INNER JOIN controle_de_ponto on bh_dia = ponto_dia WHERE bh_user = '$CODIGOUSUARIO' and ponto_justificativa_aprovada = '1' and bh_dia >= '$primeiroDia' and bh_dia <= '$UltimodiaDia' 
+UNION 
+SELECT 0 as SaldoBanco, time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( qt.saldoDesconto ) ) ),'%H:%i') as SaldoDesconto FROM (  
+SELECT SEC_TO_TIME(TIME_TO_SEC(saldoCompensadas) + TIME_TO_SEC(saldoAtraso)) as saldoDesconto FROM(
+SELECT 0 saldoAtraso, time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( comp_hora ) ) ),'%H:%i') as saldoCompensadas FROM compensacao WHERE comp_user = '$CODIGOUSUARIO' and comp_dia >= '$primeiroDia' and comp_dia <= '$UltimodiaDia'
+UNION 
+SELECT time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( ponto_hora_atraso ) ) ),'%H:%i') as saldoAtraso, 0 saldoCompensadas FROM controle_de_ponto WHERE ponto_user = '$CODIGOUSUARIO' and ponto_justificativa_aprovada = '0' and horas_compensadas = 0 and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia') AS qb)as qt) as qj");
 $ResultadoSaldoHorasTotal = mysqli_fetch_assoc($buscaSaldoDeHoras);       
-        
+
 $buscaPonto = mysqli_query($conexao, "SELECT * FROM controle_de_ponto WHERE ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_atraso != '00:00' OR ponto_user = '$CODIGOUSUARIO' and ponto_dia >= '$primeiroDia' and ponto_dia <= '$UltimodiaDia' and ponto_hora_extra != '00:00' ORDER BY ponto_dia DESC");
 
 $pessoa = $CODIGOUSUARIO;
@@ -64,12 +78,13 @@ $pessoa = $CODIGOUSUARIO;
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <title>Banco de Horas</title>
         <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
         <link href="../css/menu.css" rel="stylesheet" />
+        <link rel="manifest" href="../manifest.json">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
@@ -104,7 +119,7 @@ $pessoa = $CODIGOUSUARIO;
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning mb-1" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
-                                    <!--<a class="btn btn-sm btn-primary mb-1" href="#ajuda" data-toggle="modal" data-target="#ajuda"><i class="bi bi-question"></i> Ajuda</a>     -->                             
+                                    <a class="btn btn-sm botaoAjuda mb-1" href="#ajuda" data-toggle="modal" data-target="#ajuda"><i class="bi bi-info-circle"></i> Ajuda</a>                            
                                 </div>
                             </div>
 
@@ -235,9 +250,18 @@ $pessoa = $CODIGOUSUARIO;
                                                             
                                                             <div class="col">
                                                                 <div class="card mb-2">
+  <div class="card-body text-center card-relbancodehoras" style="border: 1px solid rgba(108, 117, 125,0.85); border-radius: 10px; box-shadow: 0 0px 4px 0px rgba(108, 117, 125,0.85);">
+      <span>Horas Compensadas</span>
+      <h6><?php if($ResultadoSaldoHorasCompensacao["saldoCompensadas"] != null){ echo $ResultadoSaldoHorasCompensacao["saldoCompensadas"]; }else { echo "00:00";} ?></h6>
+  </div>
+</div>
+                                                            </div>
+                                                            
+                                                <div class="col-12">
+                                                                <div class="card mb-2">
   <div class="card-body text-center card-relbancodehoras" style="border: 1px solid rgba(0,227,150,0.85); border-radius: 10px; box-shadow: 0 0px 4px 0px rgba(0,227,150,0.85);">
-      <span>Saldo de Horas</span>
-      <h6><?php if($ResultadoSaldoHorasTotal["saldo_de_horas"] != "00:00"){ echo $ResultadoSaldoHorasTotal["saldo_de_horas"]; }else { echo "00:00";} ?></h6>
+      <span>Saldo de Horas do Período</span>
+      <h3 class="cor-primaria fw-bold"><?php if($ResultadoSaldoHorasTotal["saldo_de_horas"] != "00:00"){ echo $ResultadoSaldoHorasTotal["saldo_de_horas"]; }else { echo "00:00";} ?></h3>
   </div>
 </div>
                                                             </div>
@@ -318,7 +342,7 @@ $pessoa = $CODIGOUSUARIO;
                         </div> 
                         <!-- Modal Ajuda-->
                         <div class="modal fade" id="ajuda" tabindex="-1" role="dialog" aria-labelledby="ajuda" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header bg-info text-dark p-2">
                                         <h5 class="modal-title" id="exampleModalLabel">Ajuda</h5>
@@ -329,9 +353,26 @@ $pessoa = $CODIGOUSUARIO;
                                     <div class="modal-body card-fundo-body">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h6 class="destaque">Inclusão de vários arquivos</h6>
-                                                <p>Para adicionar mais de um arquivo na consulta utilize as teclas <code>CTRL (TECLADO) + CLIQUE DO MOUSE</code> para selecionar ou se preferir selecione com o <code>MOUSE</code> e arraste para o campo.</p>
+                                                <h6 class="destaque">Horas Extras</h6>
+                                                <p>Exibe o total de horas extras realizadas no período do filtro selecionado e que foram aprovadas pelo supervisor.</p>
+                                                <h6 class="destaque">Horas Atraso</h6>
+                                                <p>Exibe o total de horas de atraso no período do filtro selecionado.<br><code class="fw-bold">SOMA DE (ATRASO JUSTIFICADO + ATRASO NÃO JUSTIFICADO).</code></p>
+                                                <h6 class="destaque">Atraso Justificado</h6>
+                                                <p>Exibe o total de horas em atraso que foram justificadas e aprovadas pelo supervisor.</p>
+                                                <h6 class="destaque">Atraso não Justificado</h6>
+                                                <p>Exibe o total de horas em atraso que não foram justificadas ou aprovados pelo supervisor  no período do filtro selecionado.</p>
+                                                <h6 class="destaque">Horas Compensadas</h6>
+                                                <p>Exibe o total de horas compensadas (PAGAS, FOLGA OU  COMPENSAÇÃO DE HORAS(ATRASO)) no período do filtro selecionado.</p>
+                                                <h6 class="destaque">Saldo de Horas do Período</h6>
+                                                <p>Exibe o saldo de horas total no período do filtro selecionado.</p>
+                                                
+                                                <h6 class="destaque">Entenda como é feito o cálculo</h6>
+                                                <p><code class="fw-bold"> HORAS EXTRAS - (ATRASO NÃO JUSTIFICADO + HORAS COMPENSADAS)</code><br> Exemplo:<br> 100 HORAS - ( 25 HORAS + 25 HORAS) = 50 HORAS</p>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer p-1 card-fundo-body">
+                                        <div class="row">
                                             <div class="col-12 text-end">
                                                 <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" aria-label="Fechar"><i class="bi bi-x"></i> Fechar</button>
                                             </div>

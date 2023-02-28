@@ -36,12 +36,13 @@ if (isset($_GET['nome'])) {
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <title>Cadastro de Cooperativas</title>
         <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
     <link href="../css/menu.css" rel="stylesheet" />
+    <link rel="manifest" href="../manifest.json">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
@@ -82,6 +83,7 @@ if (isset($_GET['nome'])) {
                 <div class="mr-2">
                   <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i>Voltar</a>
                   <a class="btn btn-sm btn-success" href="#adicionaCoop" data-toggle="modal" data-target="#adicionaCoop"><i class="uil uil-plus"></i> Adicionar</a>
+                  <a class="btn btn-sm btn-secondary" title="Solicitar Atualização Cadastral das Cooperativas" href="../ferramentas/solicitar-atualizacao-cadastral.php"><i class="bi bi-building-fill-gear"></i> Atualização Cadastral</a>
                   <?php if ($filtroON === 1) { ?>
                       <a class="btn btn-sm btn-dark" href="cad-cooperativas.php"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
                   <?php } ?>
@@ -300,7 +302,40 @@ if (isset($_GET['nome'])) {
                 </div>
             </div>
         </div>';
+      }else if ($sucesso === 3) {
+          echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+                <div class="toast-header border-light" style="background-color: #a3cfbb; color: #1c1d3c;">
+                    <strong class="me-auto">FNCC AVISA</strong>
+                    <small>Agora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" style="background-color: #a3cfbb; color: #1c1d3c;">
+                    <span> Atualização Cadastral solicitada!</span>
+                </div>
+            </div>
+        </div>';
       }
+      
+      
+      if (isset($_GET["erro"])) {
+                            $erro = (int) $_GET["erro"];
+            if($erro === 1){
+             
+           echo '<div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000">
+                <div class="toast-header border-light" style="background-color: #f5c2c7; color: #1c1d3c;">
+                    <strong class="me-auto">FNCC AVISA</strong>
+                    <small>Agora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" style="background-color: #f5c2c7; color: #1c1d3c;"">
+                    <span>Erro ao solicitar Atualização! Tente novamente!</span>
+                </div>
+            </div>
+        </div>'; 
+        }
+                        }
       ?>
     </div>
     <script>

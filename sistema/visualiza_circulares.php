@@ -38,12 +38,13 @@ if($_GET['id']){
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <title>Documentos</title>
         <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
         <link href="../css/menu.css" rel="stylesheet" />
+        <link rel="manifest" href="../manifest.json">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
        <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>

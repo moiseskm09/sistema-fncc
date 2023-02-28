@@ -25,7 +25,7 @@ if (isset($_POST["cooperativaid"], $_POST["coop_razao"], $_POST["coop_cnpj"])) {
     $coop_email = $_POST["coop_email"];
     $coop_sistema = $_POST["coop_sistema"];
 
-    $queryAtualizaDadosPrincipais = "UPDATE cooperativas SET coop_razao = '$coop_razao', cooperativa = '$coop_fantasia', coop_cnpj = '$coop_cnpj', coop_categoria = '$coop_categoria', coop_nire = '$coop_nire', coop_im = '$coop_im', coop_cep = '$coop_cep', coop_endereco = '$coop_endereco', coop_numero_casa = '$coop_numero_casa', coop_complemento = '$coop_complemento', coop_bairro = '$coop_bairro', coop_cidade = '$coop_cidade', coop_estado = '$coop_estado', coop_telefone = '$coop_telefone' , coop_whatsapp = '$coop_whatsapp', coop_email = '$coop_email', coop_sistema = '$coop_sistema'  WHERE cod_coop = '$cooperativa'";
+    $queryAtualizaDadosPrincipais = "UPDATE cooperativas SET coop_razao = '$coop_razao', cooperativa = '$coop_fantasia', coop_cnpj = '$coop_cnpj', coop_categoria = '$coop_categoria', coop_nire = '$coop_nire', coop_im = '$coop_im', coop_cep = '$coop_cep', coop_endereco = '$coop_endereco', coop_numero_casa = '$coop_numero_casa', coop_complemento = '$coop_complemento', coop_bairro = '$coop_bairro', coop_cidade = '$coop_cidade', coop_estado = '$coop_estado', coop_telefone = '$coop_telefone' , coop_whatsapp = '$coop_whatsapp', coop_email = '$coop_email', coop_sistema = '$coop_sistema', coop_dados_atualizados = '1'  WHERE cod_coop = '$cooperativa'";
     $atualizaDadosPrincipais = mysqli_query($conexao, $queryAtualizaDadosPrincipais);
 
     $coopArray = array($_POST["cooperativaid"]);

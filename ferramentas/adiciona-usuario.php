@@ -8,6 +8,8 @@ $usuario = $_POST['usuario'];
 $nivel = $_POST['nivel'];
 $grupo = $_POST['grupo'];
 $dataCadastro = date("Y-m-d");
+$supervisor = $_POST['supervisor'];
+$controlaPonto = $_POST['controlaPonto'];
 $senha = "FNCC@FNCC#123";
 $senhaCrip = md5("FNCC@FNCC#123");
 
@@ -16,7 +18,7 @@ if(isset ($nome, $sobrenome, $cooperativa, $email, $usuario, $nivel, $grupo)){
     if(mysqli_num_rows($buscaUser) > 0 ){
         header("location: ../sistema/cad-usuarios.php?erro=2");
     }else{
-    $query = "INSERT INTO usuarios(nome, sobrenome, email, usuario, senha, user_coop, user_nivel, user_grupo, u_status, data_cadastro) VALUES ('$nome', '$sobrenome', '$email', '$usuario', '$senhaCrip', '$cooperativa', '$nivel', '$grupo' ,'1', '$dataCadastro')";
+    $query = "INSERT INTO usuarios(nome, sobrenome, email, usuario, senha, user_coop, user_nivel, user_grupo, u_status, user_supervisor, user_controla_ponto, data_cadastro) VALUES ('$nome', '$sobrenome', '$email', '$usuario', '$senhaCrip', '$cooperativa', '$nivel', '$grupo' ,'1', '$supervisor' ,'$controlaPonto' ,'$dataCadastro')";
     $insereUsuario = mysqli_query($conexao, $query);
 if($insereUsuario == 1){
      /* Envia email para os responsaveis da area depois da abertura da consulta */

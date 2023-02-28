@@ -1,7 +1,7 @@
 <?php
 require_once '../config/conexao.php';
 require_once '../config/sessao.php';
-//require_once '../config/config_geral.php';
+require_once '../config/config_geral.php';
 require_once 'sql-grafico-circulo-home.php';
 
 function saudacao() {
@@ -20,7 +20,7 @@ function saudacao() {
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <title>Tela Principal</title>
         <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
@@ -211,6 +211,23 @@ function saudacao() {
 
                             </div>
                         </div>
+                        
+                        
+                        <!-- Modal atualiza cadastro-->
+            <div class="modal fade" id="atualizaCadastroCoop" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered" >
+      <div class="modal-content border-0" style="box-shadow: 0 0 2px 1px #FFD70F;">
+      <div class="modal-body p-2">
+          <p style="font-size:18px;" class="cor-primaria">Olá <strong class="destaque"><?php echo $NOME; ?></strong>.<br> Os dados cadastrais da sua Cooperativa estão desatualizados!<br>Gostaria de atualizá-los agora?</p>
+      </div>
+      <div class="modal-footer p-0 border-0">
+        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal"><i class="bi bi-emoji-frown"></i> NÃO</button>
+        <a type="button" href="editar-cooperativa.php?id=<?php echo $COOPERATIVA;?>" class="btn btn-lg btn-success"><i class="bi bi-emoji-smile"></i> SIM</a>
+      </div>
+    </div>
+  </div>
+</div>
+                        <!-- modal atualiza cadastro -->
                         <!--fim conteudo da tela aqui!-->
                     </div>
                 </main>
@@ -229,5 +246,27 @@ function saudacao() {
             });
         </script>
         <script src="../js/grafico_circulo_home.js"></script>
+        
+        
+        <?php
+        if($NIVEL == 3 || $NIVEL == 4){  
+        }else{
+        $ConsultaCoopCadastro = mysqli_query($conexao, "SELECT coop_dados_atualizados FROM cooperativas WHERE cod_coop = '$COOPERATIVA'");
+        if(mysqli_num_rows($ConsultaCoopCadastro) > 0 ){
+            $resultadoCadastroCoop = mysqli_fetch_assoc($ConsultaCoopCadastro);
+            $coopDadosAtualizado = $resultadoCadastroCoop["coop_dados_atualizados"];
+            if($coopDadosAtualizado == 1){
+            }else{
+               echo '<script type="text/javascript">
+    $(window).on("load",function(){
+    $("#atualizaCadastroCoop").modal("show"); });
+</script>'; 
+            }
+        }
+        }
+        ?>
+
+
+
     </body>
 </html>

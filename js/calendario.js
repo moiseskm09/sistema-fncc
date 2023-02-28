@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     locale: 'pt-br',
-                    plugins: ['interaction', 'dayGrid'],
+                    plugins: ['multiMonthPlugin'],
+                    initialView: 'multiMonthYear',
                     selectable: true,
                     editable: true,
                     eventLimit: true,

@@ -14,12 +14,13 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <title>Meus Dados</title>
         <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
         <link href="../css/menu.css" rel="stylesheet" />
+        <link rel="manifest" href="../manifest.json">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
@@ -188,21 +189,37 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                     </div>
                     <form action="" method="POST" id="FormSenha" name="FormSenha">
                         <div class="modal-body card-fundo-body">
+                            <div class="row">
+                                <div class="col-12">
                             <p>Por favor, informe abaixo a sua nova senha!</p>
                             <p>Lembre-se, ela precisa conter uma letra <span class="destaque fw-bold">MAIÚSCULA</span>, uma letra <span class="destaque fw-bold">MINÚSCULA</span>, um <span class="destaque fw-bold">NÚMERO</span>, um <span class="destaque fw-bold">CARACTER ESPECIAL</span> e pelo menos <span class="destaque fw-bold">8 DIGÍTOS</span>.</p>
                             <p>Exemplo de Senha: <span class="destaque fw-bold">Fncc@2022</span></p>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="uil uil-key-skeleton-alt"></i></span>
-                                <input type="password" name="senha_nova" id="senha_nova" class="form-control digitacao" placeholder="Nova Senha" aria-label="senha" aria-describedby="basic-addon1" minlength="8" maxlength="12" onKeyUp="verificaForcaSenha();" required>
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="uil uil-key-skeleton-alt"></i></span>
-                                <input type="password" name="senha_nova_confirma" id="senha_nova_confirma" class="form-control digitacao" placeholder="Confirme a Senha" aria-label="senha_nova_confirma" aria-describedby="basic-addon1" required>
-                            </div>
-                            <span id="password-status"></span>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-12">
+                          <div class="form-floating mb-3">
+                            <input type="password" name="senha_nova" id="senha_nova" class="form-control" placeholder="Insira uma senha" autocomplete="off" minlength="8" maxlength="12" onKeyUp="verificaForcaSenha();" required>
+                            <label for="senha_nova"><i class="uil uil-key-skeleton-alt"></i> Nova Senha</label>
+                          </div>  
                         </div>
-                        <div class="modal-footer border-0">
-                            <button type="button" class="btn-success btn btn-sm" onClick="validarSenha()">Confirmar</button>
+                                <div class="col-lg-12 col-md-12 col-12">
+                          <div class="form-floating mb-3">
+                            <input type="password" name="senha_nova_confirma" id="senha_nova_confirma" class="form-control" placeholder="Confirme a senha" autocomplete="off" minlength="8" maxlength="12" required>
+                            <label for="senha_nova_confirma"><i class="uil uil-key-skeleton-alt"></i> Confirme a Nova Senha</label>
+                          </div>  
+                        </div>
+                                <div class="col-12 mb-1 mt-1">
+                                    <span id="password-status"></span>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                 <button type="button" class="btn-success btn btn-md" onClick="validarSenha()">Confirmar</button>   
+                                </div>
+                            </div>
+                            
 
                         </div>
                     </form>
@@ -251,6 +268,8 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                 CNovaSenha = document.getElementById('senha_nova_confirma').value;
                 if (NovaSenha != CNovaSenha) {
                     alert("As senhas digitadas não coincidem!\nPor favor, verifique e tente novamente!");
+                }else if (NovaSenha == "" && CNovaSenha == "" || NovaSenha != "" && CNovaSenha == ""){
+                    alert("Você precisa digitar uma senha para continuar!");
                 } else {
                     document.FormSenha.submit();
                 }

@@ -47,13 +47,14 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <title>Controle de Ponto</title>
         <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
         <link href="../css/menu.css" rel="stylesheet" />
         <link href="../css/perfis.css" rel="stylesheet" />
+        <link rel="manifest" href="../manifest.json">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
@@ -218,7 +219,7 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                                 <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_hora_extra"] == null){ echo "00:00"; }else{ echo strftime('%H:%M', strtotime($resultadoPonto["ponto_hora_extra"]));} ?></td>
                                                                 <td class="info-td text-success fw-bold"><?php if($resultadoPonto["ponto_justificado"] == 1){
          echo '<i title="Justificado" class="btn btn-sm btn-outline-success rounded bi bi-emoji-neutral"></i>';                                                           
-                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == null && $resultadoPonto["ponto_hora_extra"] == null){
+                                                                }elseif($resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == null && $resultadoPonto["ponto_hora_extra"] == null || $resultadoPonto["ponto_justificado"] == 0 && $resultadoPonto["ponto_hora_atraso"] == "00:00:00" && $resultadoPonto["ponto_hora_extra"] == "00:00:00"){
                                            echo '<i title="Tudo OK" class="btn btn-sm btn-outline-success rounded bi bi-emoji-smile"></i>';                         
                                                                 }else{
                                                                   echo '<i title="Não Justificado" class="btn btn-sm btn-outline-danger rounded bi bi-emoji-frown"></i>';  

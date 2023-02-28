@@ -10,7 +10,7 @@ and open the template in the editor.
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 .fundo_tela {
-    background-color: #e9ecef;
+    background-color: #ecf0f4;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -538,4 +538,20 @@ color: #FFD70F;
 .list-group-item:hover .link-feriado{
     opacity: 1;
     transition: 0.5s;
+}
+
+.botaoAjuda{
+    background-color: #785aa2E6;
+    color: #ffffff;
+}
+
+.botaoAjuda:hover{
+    background-color: #785aa2;
+    color: #ffffff;
+}
+
+.botaoAjuda:focus{
+    background-color: #785aa2;
+    color: #ffffff;
+    border: none;
 }

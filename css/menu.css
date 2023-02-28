@@ -85,19 +85,24 @@ and open the template in the editor.
     border: none;
 }
 
-.menu_perfil{
-    width:380px;
-    background-color: #f4f5f7;
-    box-shadow: 0 0px 8px 0px #01004c;
-    border-radius: 15px;
+
+#menu_perfil{
+    margin-top: 10px;
+    margin-right: 10px;
+    width:200px;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px 1px #785aa299;
+    border-radius: 10px;
 }
 
 @media (max-width: 768px) {
-  .menu_perfil{
-    width:300px;
-    background-color: #f4f5f7;
-    box-shadow: 0 0px 8px 0px #01004c;
-    border-radius: 15px;
+  #menu_perfil{
+      margin-top: 10px;
+    margin-right: 0;
+    width:200px;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px 1px #785aa299;
+    border-radius: 10px;
 }
 }
 

@@ -36,7 +36,7 @@ if (isset($_GET['nome'])) {
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <title>Cadastro de Usuários</title>
         <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
@@ -55,6 +55,7 @@ if (isset($_GET['nome'])) {
         <script src="../js/mask.js"></script>
         <script src="../js/busca-cep.js"></script>
         <link href="../css/style.css" rel="stylesheet" />
+        <link rel="manifest" href="../manifest.json">
     </head>
     <body class="sb-nav-fixed fundo_tela">
         <?php include_once "../ferramentas/navbar.php"; ?>
@@ -70,13 +71,14 @@ if (isset($_GET['nome'])) {
                       <span class="breadcrumb-item active text-success">Usuários</span>
                   </div>
                             <div class="btn-toolbar mb-2 mb-md-0">
-                                <div class="mr-2">
-                                    <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
-                                    <a class="btn btn-sm btn-success" href="#adicionaUsuario" data-toggle="modal" data-target="#adicionaUsuario"><i class="uil uil-plus"></i> Adicionar</a>
+                                <div class="mr-1">
+                                    <a class="btn btn-sm btn-warning mb-1" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
+                                    <a class="btn btn-sm btn-success mb-1" href="#adicionaUsuario" data-toggle="modal" data-target="#adicionaUsuario"><i class="uil uil-plus"></i> Adicionar</a>                         
                                     <?php if ($filtroON === 1) { ?>
-                                        <a class="btn btn-sm btn-dark" href="cad-usuarios.php"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
+                                        <a class="btn btn-sm btn-dark mb-1" href="cad-usuarios.php"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
                                     <?php } ?>
-                                    <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro"><i class="uil uil-filter"></i> Filtrar</a>
+                                    <a class="btn btn-sm btn-primary mb-1" href="#filtro" data-toggle="modal" data-target="#filtro"><i class="uil uil-filter"></i> Filtrar</a>
+                                    <a class="btn btn-sm botaoAjuda mb-1" href="#ajuda" data-toggle="modal" data-target="#ajuda"><i class="bi bi-info-circle"></i> Ajuda</a>
                                 </div>
                             </div>
                         </div>
@@ -279,6 +281,24 @@ if (isset($_GET['nome'])) {
                                                         <label for="grupo">Grupo</label>
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-6 col-md-6 col-12">
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select pesquisa-select" id="supervisor" name="supervisor" required>
+                                                            <option value="0">NÃO</option>
+                                                            <option value="1">SIM</option>
+                                                            </select>
+                                                        <label for="supervisor">SUPERVISOR (SOMENTE FNCC)</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-12">
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select pesquisa-select" id="controlaPonto" name="controlaPonto" required>
+                                                            <option value="0">NÃO</option>
+                                                            <option value="1">SIM</option>
+                                                            </select>
+                                                        <label for="controlaPonto">CONTROLA PONTO (SOMENTE FNCC)</label>
+                                                    </div>
+                                                </div>
                                                 <div class="col-12 text-left">
                                                     <button type="submit" class="btn btn-success btn-md btncaduser"><i class="uil uil-plus"></i> Adicionar</button>
                                                 </div>
@@ -363,6 +383,44 @@ if (isset($_GET['nome'])) {
                         }
                         ?>
                         <?php include_once "../ferramentas/modal_loading.php"; ?>
+                        
+                        
+                        <!-- Modal Ajuda-->
+                        <div class="modal fade" id="ajuda" tabindex="-1" role="dialog" aria-labelledby="ajuda" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-info text-dark p-2">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ajuda</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body card-fundo-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h6 class="destaque">Nível de Acesso</h6>
+                                                <p>Permissões atribuÍdas no menu CONFIGURAÇÕES - PERFIS DE ACESSO determinam o que o usuário poderá acessar dentro do sistema!</p>
+                                                <h6 class="destaque">Grupo</h6>
+                                                <p>A qual o usuário pertence! Usuários que <strong>NÃO SÃO DA FNCC</strong> deverão obrigatoriamente ser incluídos no grupo <strong>COOPERATIVAS</strong>.</p>
+                                                <h6 class="destaque">Supervisor</h6>
+                                                <p>Algumas funções do sistema só estão disponíveis para a alçada <strong>SUPERVISOR</strong>. Exemplos de telas <strong>(JUSTIFICATIVA DE PONTO, JORNADA DE TRABALHO, AJUSTE DE PONTO E COMPENSAÇÃO)</strong>. O padrão dessa opção é <strong>NÃO</strong> e deverá ser mantida assim <strong>exceto se o usuário for da FNCC e um supervisor</strong>.</p>
+                                                <h6 class="destaque">Controla Ponto</h6>
+                                                <p>Selecione <strong>SIM</strong> se o usuário for marcar e controlar seus horários pelo sistema.</p>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer p-1 card-fundo-body">
+                                        <div class="row">
+                                            <div class="col-12 text-end">
+                                                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" aria-label="Fechar"><i class="bi bi-x"></i> Fechar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal ajuda -->
                         <!--fim conteudo da tela aqui!-->
                     </div>
                 </main>

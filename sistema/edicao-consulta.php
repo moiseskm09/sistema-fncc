@@ -53,20 +53,20 @@ WHERE
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <title>Edição de Consulta</title>
         <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
         <link href="../css/menu.css" rel="stylesheet" />
         <link href="../css/perfis.css" rel="stylesheet" />
+        <link rel="manifest" href="../manifest.json">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
         <!-- Styles -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
         <!-- Or for RTL support -->
@@ -156,7 +156,7 @@ WHERE
 
                             <div class="row mt-1 mb-3">
                                 <div class="col-lg-9 col-md-9 col-12">
-                                    <div class="card">
+                                    <div class="card mb-3">
                                         <div class="card-header p-1 theadN">
                                             <div class="row">
                                                 <div class="col-lg-1 col-md-1 col-3 text-center">
@@ -204,7 +204,7 @@ WHERE
                                                 ?>
                                             </div>
                                         </div>
-                                        <div class="card-footer theadN">
+                                        <div class="card-footer theadN p-1">
                                             <div class="row">
                                                 <?php if ($resultadoCH["cons_situacao"] == 5 && $resultadoCH["cons_user"] == $CODIGOUSUARIO) {
                                                     ?>
