@@ -1,41 +1,21 @@
 <?php
-require 'vendor/autoload.php';
+$ch = curl_init();
+$paramentros = 'eyJ0eXAiOiJKV1QiLCJub25jZSI6IjlJUHRTS3g1Zk5PQmFTNUhFbGp4aGUwWW9mV2VHWDIxLWtoT29Eb3BUeGciLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85YzRlYjQ0MC1jYjE3LTQ3NjQtOTgxMi0yZjY5NDljZjY3NGYvIiwiaWF0IjoxNjc3NjkwMzYxLCJuYmYiOjE2Nzc2OTAzNjEsImV4cCI6MTY3NzY5NTAzNiwiYWNjdCI6MCwiYWNyIjoiMSIsImFpbyI6IkFUUUF5LzhUQUFBQWhydk1JV01RMGVFOXJGV0cxZkNYSlRmRnAxZWcvVk1NRkRpVit1WTVaR1duNUhvVkpoY2swbHkyWVB6L2srbTEiLCJhbXIiOlsicHdkIl0sImFwcF9kaXNwbGF5bmFtZSI6IkdyYXBoIEV4cGxvcmVyIiwiYXBwaWQiOiJkZThiYzhiNS1kOWY5LTQ4YjEtYThhZC1iNzQ4ZGE3MjUwNjQiLCJhcHBpZGFjciI6IjAiLCJmYW1pbHlfbmFtZSI6IlBlcXVlbm8gZG8gUm9zw6FyaW8iLCJnaXZlbl9uYW1lIjoiTW9pc2VzIiwiaWR0eXAiOiJ1c2VyIiwiaXBhZGRyIjoiMTkwLjExMi4xNzUuMTE1IiwibmFtZSI6Ik1vaXNlcyBSb3PDoXJpbyB8IEFSSVVTIiwib2lkIjoiMTIzN2FmMzQtNDBhMC00N2MxLWExN2QtNDU2MzA5ZmExNmY2IiwicGxhdGYiOiIzIiwicHVpZCI6IjEwMDMyMDAxMUZDM0UwRUUiLCJyaCI6IjAuQVgwQVFMUk9uQmZMWkVlWUVpOXBTYzluVHdNQUFBQUFBQUFBd0FBQUFBQUFBQUI5QUxzLiIsInNjcCI6Im9wZW5pZCBwcm9maWxlIFVzZXIuUmVhZCBlbWFpbCIsInN1YiI6IklpanJmaFBadkpCanhsaGhRSjBVcDF6MzFOWGtyd0pUMTk3SWl0UUFJeFkiLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiU0EiLCJ0aWQiOiI5YzRlYjQ0MC1jYjE3LTQ3NjQtOTgxMi0yZjY5NDljZjY3NGYiLCJ1bmlxdWVfbmFtZSI6Im1vaXNlcy5yb3NhcmlvQGFyaXVzLmNvbS5iciIsInVwbiI6Im1vaXNlcy5yb3NhcmlvQGFyaXVzLmNvbS5iciIsInV0aSI6IkFrOVo1b3djNDBHNjdlMlE0UWdxQUEiLCJ2ZXIiOiIxLjAiLCJ3aWRzIjpbImI3OWZiZjRkLTNlZjktNDY4OS04MTQzLTc2YjE5NGU4NTUwOSJdLCJ4bXNfc3QiOnsic3ViIjoiQ1ZVNjNQUWZaYVZZLXNVOWdVRjdseG9rSXV0M3hlSzFPeDJ5VDRzTVJHOCJ9LCJ4bXNfdGNkdCI6MTYxMzUwNjk3Nn0.m0PeyQ2mPpmQ6DwCIbHQsIVumyD9hCgxBaLYPjDhN6f1aocPqRSs43hROFomWvQNXU3TVhjV5nfZhaXeel6lbmHp48cwkI3l18k3F_UPkb2TC1Xh0MWDp9aY532YgJJKydQCsjTyhriR6--GOv_D7nIzyTvJ90xBcSv7MrJbdCct8TK1GVU3i6XU9OU9uLmKMpDDSaSYx8oCZMPBl0w4qV4sGJjgHIEVN_QGsN7lxZYQ1aWWv6yJIeFLbMjOsnYcVQ-hoemoUv_Spc_eKV3Lk3E7EXCLRlZcJC_Uvi_zR0xHq3ZBYSI2yLpSsTKrLzpnNsQ6KHF-xnQIFzznAJTFsQ';
+curl_setopt($ch, CURLOPT_URL, 'https://graph.microsoft.com/v1.0/me/');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $paramentros);
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+$headers = array();
+$headers[] = 'Accept: application/json';
+$headers[] = 'Authorization: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+$headers[] = 'Content-Type: application/json';
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-$spreadsheet = new Spreadsheet();
-
-
-$spreadsheet->getActiveSheet()->getHeaderFooter()
-    ->setOddHeader('RELATÓRIO DE ATENDIMENTOS');
-$spreadsheet->getActiveSheet()->getHeaderFooter()
-    ->setOddFooter('&L&B' . $spreadsheet->getProperties()->getTitle() . '&RPage &P of &N');
-
-        $spreadsheet->getActiveSheet()->setCellValue('A1', 'RELATÓRIO DE ATENDIMENTOS');
-	$spreadsheet->getActiveSheet()->mergeCells('A1:F1');
-        $spreadsheet->getActiveSheet()->mergeCells('A3:F3');
-        $spreadsheet->getActiveSheet()->setCellValue('A3', 'FILTRO APLICADO');
-        
-        $spreadsheet->getActiveSheet()->getStyle('A1')
-    ->getFill()->getStartColor()->setARGB('ffda0b0b');
-        
-        $spreadsheet->getActiveSheet()->setCellValue('A4', 'COOPERATIVA: TODAS');
-        $spreadsheet->getActiveSheet()->mergeCells('A4:A5');
-        $spreadsheet->getActiveSheet()->getStyle('A4:A5')->getAlignment()->setWrapText(true);
-        $spreadsheet->getActiveSheet()->setCellValue('B4', 'ÁREA DE ATENDIMENTO: TODAS');
-        $spreadsheet->getActiveSheet()->mergeCells('B4:B5');
-        $spreadsheet->getActiveSheet()->setCellValue('C4', 'DATA INICIAL: 04/02/2023');
-        $spreadsheet->getActiveSheet()->mergeCells('C4:C5');
-        $spreadsheet->getActiveSheet()->setCellValue('D4', 'DATA FINAL: 04/02/2023');
-        $spreadsheet->getActiveSheet()->mergeCells('D4:D5');
-        $spreadsheet->getActiveSheet()->setCellValue('E4', '#######');
-        $spreadsheet->getActiveSheet()->mergeCells('E4:F5');
-        
-        $spreadsheet->getActiveSheet()->mergeCells('A7:F7');
-        $spreadsheet->getActiveSheet()->setCellValue('A7', 'RESULTADO');
-
-
-$writer = new Xlsx($spreadsheet);
-$writer->save('hello world.xlsx');
-
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+print_r($result);
+curl_close($ch);
+?>

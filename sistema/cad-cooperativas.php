@@ -81,13 +81,13 @@ if (isset($_GET['nome'])) {
                   </div>
               <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="mr-2">
-                  <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i>Voltar</a>
-                  <a class="btn btn-sm btn-success" href="#adicionaCoop" data-toggle="modal" data-target="#adicionaCoop"><i class="uil uil-plus"></i> Adicionar</a>
-                  <a class="btn btn-sm btn-secondary" title="Solicitar Atualização Cadastral das Cooperativas" href="../ferramentas/solicitar-atualizacao-cadastral.php"><i class="bi bi-building-fill-gear"></i> Atualização Cadastral</a>
+                  <a class="btn btn-sm btn-warning mb-1" onClick="history.go(-1)"><i class="uil uil-angle-left"></i>Voltar</a>
+                  <a class="btn btn-sm btn-success mb-1" href="#adicionaCoop" data-toggle="modal" data-target="#adicionaCoop"><i class="uil uil-plus"></i> Adicionar</a>
+                  <a class="btn btn-sm btn-secondary mb-1" title="Solicitar Atualização Cadastral das Cooperativas" href="../ferramentas/solicitar-atualizacao-cadastral.php"><i class="bi bi-building-fill-gear"></i> Atualização Cadastral</a>
                   <?php if ($filtroON === 1) { ?>
-                      <a class="btn btn-sm btn-dark" href="cad-cooperativas.php"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
+                      <a class="btn btn-sm btn-dark mb-1" href="cad-cooperativas.php"><i class="uil uil-filter-slash"></i> Limpar Filtro</a>
                   <?php } ?>
-                  <a class="btn btn-sm btn-primary" href="#filtro" data-toggle="modal" data-target="#filtro"><i class="uil uil-filter"></i> Filtrar</a>
+                  <a class="btn btn-sm btn-primary mb-1" href="#filtro" data-toggle="modal" data-target="#filtro"><i class="uil uil-filter"></i> Filtrar</a>
                 </div>
               </div>
             </div>

@@ -20,19 +20,19 @@ and open the template in the editor.
     background-color: #5283fe40;
 }
 .nav-link.link-menu, .nav-link.link-submenu{
-    font-size: 16px;
+    font-size: 14px;
 }
 .link-menu {
     color:#1c1d3c !important;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
     text-transform: uppercase;
     border-bottom: 1px solid #785aa240 !important;
 }
 
 .link-menu:hover{
     color:#FFD70F !important;
-    font-weight: 500;
+    font-weight: 400;
     background-color: #1c1d3c;
 }
 
@@ -43,7 +43,7 @@ and open the template in the editor.
 }
 .link-submenu {
     color:#1c1d3c !important;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     border-bottom: 1px solid #785aa240 !important;
     
