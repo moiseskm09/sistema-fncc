@@ -173,7 +173,7 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12">
                           <div class="form-floating mb-3">
-                            <input type="text" name="periodo" id="periodo" class="form-control" placeholder="Insira o período" autocomplete="off">
+                            <input type="text" name="periodo" id="periodo" class="form-control focoInput" placeholder="Insira o período" autocomplete="off">
                             <label for="periodo">Período</label>
                           </div>  
                         </div>
@@ -196,9 +196,8 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
             </div>
       </div>
       <div class="modal-footer card-fundo-body p-1">
+          <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-filter"></i> Filtrar</button>
         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
-        <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-filter"></i> Filtrar</button>
-        
         </form>
       </div>
     </div>
@@ -253,9 +252,8 @@ for ($i = 1; $i < $numero_paginas + 1; $i++) {
             </div>
       </div>
       <div class="modal-footer card-fundo-body p-1">
+          <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-plus"></i> Adicionar</button>
         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
-        <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-plus"></i> Adicionar</button>
-        
         </form>
       </div>
     </div>
@@ -352,6 +350,11 @@ $(".nav .nav-link").on("click", function(){
    $(".nav").find(".menu-ativo").removeClass("menu-ativo");
    $(this).addClass("menu-ativo");
 });
+</script>
+<script>
+    $('#filtro').on('shown.bs.modal', function () {
+    $('.focoInput').focus();
+});  
 </script>
     </body>
 </html>

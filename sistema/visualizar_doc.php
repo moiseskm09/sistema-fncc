@@ -133,9 +133,8 @@ if (isset($_GET['titulo_cat'])) {
                                           </div>
                                     </div>
                                     <div class="modal-footer card-fundo-body p-1">
-                                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar <i class="uil uil-times"></i></button>
                                         <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-filter"></i> Filtrar</button>
-
+                                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar <i class="uil uil-times"></i></button>
                                         </form>
                                     </div>
                                 </div>

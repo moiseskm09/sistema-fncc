@@ -17,7 +17,7 @@ if (isset($_POST["ponto_user"], $_POST["ponto_dia"], $_POST["cod_ponto"], $_POST
     $linha = 0;
     for($i = 0; $i < count($cod_ponto); ++$i) {
         $atualizado = 0;
-        echo $atualizado."<br>";
+        //echo $atualizado."<br>";
         $codigoPonto = $cod_ponto[$linha]; 
         $diaPonto = $ponto_dia[$linha]; 
         $usuarioPonto = $ponto_user[$linha]; 
@@ -138,10 +138,11 @@ if (isset($_POST["ponto_user"], $_POST["ponto_dia"], $_POST["cod_ponto"], $_POST
         //ajusta ponto
         $linha ++;     
 }
-if($atualizado == 1 && $AtualizaExtra == 1){
+if($atualizado == 1 && $atualizadoExtra == 1){
     header("location: ../sistema/ajuste-de-ponto.php?sucesso=1");
 }else{
     header("location: ../sistema/ajuste-de-ponto.php?erro=1");
+   // echo $atualizado." - " .$AtualizaExtra;
 }
 }else{
     header("location: ../sistema/ajuste-de-ponto.php?erro=1");

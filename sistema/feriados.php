@@ -186,9 +186,8 @@ $buscaferiados = mysqli_query($conexao, "SELECT * FROM feriados");
   </div>
                       </div>
                       <div class="modal-footer card-fundo-body p-0 border-0">
+                          <button type="submit" class="btn btn-success loading btn-sm"><i class="bi bi-plus"></i> Adicionar Feriado</button>
                         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Fechar</button>
-                        <button type="submit" class="btn btn-success loading btn-sm"><i class="bi bi-plus"></i> Adicionar Feriado</button>
-                    
                   </div>
                         </form>
                 </div>

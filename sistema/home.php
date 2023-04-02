@@ -69,7 +69,7 @@ function saudacao() {
                                         <div class="card mb-2 border-0" style="border-radius:15px;">
                                             <div class="card-body text-center card-acesso-rapido p-1">
                                                 <h5><i class="<?php echo $resultadoAcessoRapido['icone_sub']; ?>"></i></h5>
-                                                <h6><?php echo substr($resultadoAcessoRapido['submenu'], 0, 18); ?></h6>
+                                                <h6><?php echo substr($resultadoAcessoRapido['submenu'], 0, 19); ?></h6>
                                             </div>
                                         </div>
                                     </a>

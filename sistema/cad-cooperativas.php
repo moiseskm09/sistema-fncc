@@ -183,16 +183,15 @@ if (isset($_GET['nome'])) {
                       <div class="row">
                         <div class="col-lg-12 col-md-12 col-12">
     <div class="form-floating mb-3">
-      <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" autocomplete="off" required>
+      <input type="text" name="nome" class="form-control focoInput" id="nome" placeholder="Nome" autocomplete="off" required>
       <label for="nome">Nome da Cooperativa</label>
     </div>  
   </div>                   
                       </div>
                   </div>
                   <div class="modal-footer card-fundo-body p-1">
+                      <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-filter"></i> Filtrar</button>
                     <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
-                    <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-filter"></i> Filtrar</button>
-
                     </form>
                   </div>
                 </div>
@@ -357,6 +356,11 @@ $(".nav .nav-link").on("click", function(){
    $(".nav").find(".menu-ativo").removeClass("menu-ativo");
    $(this).addClass("menu-ativo");
 });
+</script>
+<script>
+    $('#filtro').on('shown.bs.modal', function () {
+    $('.focoInput').focus();
+});  
 </script>
   </body>
 </html>

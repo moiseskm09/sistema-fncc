@@ -52,7 +52,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
               <h5 class="titulo">Cooperativa <span class="destaque"> <?php echo ucfirst($resultadoBuscaInfo["cooperativa"]); ?></span></h5>
               <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="mr-2">
-                  <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i>Voltar</a>
+                  <a class="btn btn-sm btn-warning" href="cad-cooperativas.php"><i class="uil uil-angle-left"></i>Voltar</a>
                 </div>
               </div>
             </div>
@@ -151,7 +151,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                         </div>
                         <div class="col-lg-7 col-md-7 col-12">
                           <div class="form-floating mb-3">
-                            <input type="text" name="coop_endereco" class="form-control" id="endereco" placeholder="Endereço" value="<?php echo $resultadoBuscaInfo["coop_endereco"]; ?>" readonly>
+                            <input type="text" name="coop_endereco" class="form-control" id="endereco" placeholder="Endereço" value="<?php echo $resultadoBuscaInfo["coop_endereco"]; ?>">
                             <label for="coop_endereco">Endereço</label>
                           </div>  
                         </div>
@@ -170,7 +170,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
 
                         <div class="col-lg-3 col-md-3 col-12">
                           <div class="form-floating mb-3">
-                            <input type="text" name="coop_bairro" class="form-control" id="bairro" placeholder="Bairro" value="<?php echo $resultadoBuscaInfo["coop_bairro"]; ?>" readonly>
+                            <input type="text" name="coop_bairro" class="form-control" id="bairro" placeholder="Bairro" value="<?php echo $resultadoBuscaInfo["coop_bairro"]; ?>">
                             <label for="coop_bairro">Bairro</label>
                           </div>  
                         </div>

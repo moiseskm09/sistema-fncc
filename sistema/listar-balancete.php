@@ -151,9 +151,8 @@ if (isset($_GET['dataRefIncialF'], $_GET["dataRefFinalF"])) {
                                             </div>
                                     </div>
                                     <div class="modal-footer card-fundo-body p-1">
-                                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
                                         <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-plus"></i> Adicionar</button>
-
+                                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
                                         </form>
                                     </div>
                                 </div>
@@ -204,9 +203,8 @@ if (isset($_GET['dataRefIncialF'], $_GET["dataRefFinalF"])) {
                                             </div>
                                     </div>
                                     <div class="modal-footer card-fundo-body p-1">
-                                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
                                         <button type="submit" class="btn btn-success loading btn-sm"><i class="uil uil-filter"></i> Filtrar</button>
-
+                                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
                                         </form>
                                     </div>
                                 </div>

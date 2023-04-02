@@ -51,7 +51,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                             <h4 class="titulo">Editando <span class="destaque"><?php echo $resultadoBuscaInfo['nome']; ?></span></h4>
                         <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
-                                    <a class="btn btn-sm btn-warning" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
+                                    <a class="btn btn-sm btn-warning" href="cad-usuarios.php"><i class="uil uil-angle-left"></i> Voltar</a>
                                 </div>
                             </div>
                         </div>

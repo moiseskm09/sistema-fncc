@@ -267,10 +267,9 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
 
                                                 </div>
                                             </div>
-                                            <div class="modal-footer card-fundo-body p-1">
-                                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
+                                            <div class="modal-footer card-fundo-body p-0">
                                                 <button type="submit" class="btn btn-success loading btn-sm"><i class="bi bi-check2-circle"></i> Registrar</button>
-
+                                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Cancelar</button>
                                         </form>
                                     </div>
                                 </div>
@@ -331,7 +330,6 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
 ?>
                                             </div>
                                             <div class="modal-footer card-fundo-body p-0">
-                                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Fechar</button>
                                                 <?php 
                                                 if(mysqli_num_rows($buscaPontoJustificativa) > 0){
                                                 ?>
@@ -339,6 +337,8 @@ $percentualFalta = number_format($totalFalta / $totalPontoMes * 100, 0, '.', '')
                                                 <?php
                                                 }
                                                 ?>
+                                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="uil uil-times"></i> Fechar</button>
+                                                
 
                                         
                                     </div>
