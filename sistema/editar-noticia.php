@@ -2,6 +2,18 @@
 require_once '../config/sessao.php';
 require_once '../config/conexao.php';
 require_once '../config/config_geral.php';
+
+if(isset($_GET["id"])){
+    $idNoticia = $_GET["id"];
+    $buscaNoticia = mysqli_query($conexao, "SELECT * FROM site_noticias WHERE cod_noticia = '$idNoticia' LIMIT 1");
+    if(mysqli_num_rows($buscaNoticia) > 0 ){
+        $resultadoNoticia = mysqli_fetch_assoc($buscaNoticia);
+    }else{
+       header("location: ../sistema/noticias.php"); 
+    }
+}else{
+    header("location: ../sistema/noticias.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -9,7 +21,7 @@ require_once '../config/config_geral.php';
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-        <title>Incluir Notícia</title>
+        <title>Editar Notícia</title>
         <link rel="icon" type="image/png" sizes="512x512" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="48x48" href="../img/fncc-logotipo-colorido.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../img/fncc-logotipo-colorido.png">
@@ -42,17 +54,23 @@ require_once '../config/config_geral.php';
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
                             <div class="breadcrumb mb-1 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                                 <span class="breadcrumb-item text-primary">Notícias</span>
-                                <span class="breadcrumb-item active text-success">Incluir Notícias</span>
+                                <span class="breadcrumb-item active text-success">Editar Notícia</span>
                             </div>
                             <div class="btn-toolbar mb-1 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning mb-1" href="noticias.php"><i class="uil uil-angle-left"></i> Voltar</a>
-                                   
+                                    <?php if($resultadoNoticia["publicado"] == "1"){ ?>
+                                    <a class="btn btn-sm btn-danger mb-1" href="../ferramentas/publicar-noticia.php?cod_noticia=<?php echo $resultadoNoticia["cod_noticia"]; ?>&publicar=0"><i class="bi bi-stickies"></i> Despublicar</a>
+                                    <?php }else{ ?>
+                                    <a class="btn btn-sm btn-success mb-1" href="../ferramentas/publicar-noticia.php?cod_noticia=<?php echo $resultadoNoticia["cod_noticia"];?>&publicar=1"><i class="bi bi-stickies"></i> Publicar</a>
+                                    <?php } ?>
+                                    
+                                    <a class="btn btn-sm btn-primary mb-1" href="visualizar-noticia.php?cod_noticia=<?php echo $resultadoNoticia["cod_noticia"];?>" target="blank"><i class="bi bi-eye"></i> Visualizar</a>
                                 </div>
                             </div>
 
                         </div>
-                        <form action="../ferramentas/inclui-noticia.php" method="POST" enctype="multipart/form-data">
+                        <form action="../ferramentas/editar-noticia.php" method="POST" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-12">
                                     <div class="row">
@@ -69,25 +87,28 @@ require_once '../config/config_geral.php';
                                                             <div class="row">
                                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="text" name="tituloNoticia" id="tituloNoticia" class="form-control" placeholder="Título da Notícia" autocomplete="off" maxlength="100" required>
+                                                        <input type="hidden" value="<?php echo $resultadoNoticia["cod_noticia"];?>" name="codNoticia">
+                                                        <input type="text" value="<?php echo $resultadoNoticia["titulo_noticia"];?>" name="tituloNoticia" id="tituloNoticia" class="form-control" placeholder="Título da Notícia" autocomplete="off" maxlength="100" required>
                                                         <label for="tituloNoticia">Título da Notícia <span class="text-danger">*</span></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="text" name="subtituloNoticia" id="subtituloNoticia" class="form-control" placeholder="Subtítulo da Notícia" autocomplete="off" maxlength="200" required>
+                                                        <input type="text" value="<?php echo $resultadoNoticia["subtitulo_noticia"];?>" name="subtituloNoticia" id="subtituloNoticia" class="form-control" placeholder="Subtítulo da Notícia" autocomplete="off" maxlength="100" required>
                                                         <label for="subtituloNoticia">Subtítulo da Notícia <span class="text-danger">*</span></label>
                                                     </div>
                                                 </div>
                                                                 <div class="col-12 mb-2">
                                                                   <div class="form-floating">
-                                                                    <textarea class="form-control" name="textoNoticia" placeholder="Texto da Notícia" id="textoNoticia"></textarea>
+                                                                      <textarea class="form-control" name="textoNoticia" placeholder="Texto da Notícia" id="textoNoticia">
+                                                                        <?php echo $resultadoNoticia["texto_noticia"];?>
+                                                                      </textarea>
   <label for="textoNoticia"></label>
 </div>
                                                                  
                                                                 </div>
                                                               <div class="col-12 text-end">
-                          <button type="submit" class="btn btn-md btn-success loading"><i class="bi bi-plus"></i> Incluir Notícia</button>
+                          <button type="submit" class="btn btn-md btn-success loading"><i class="bi bi-arrow-clockwise"></i> Atualizar Notícia</button>
                         </div>
                                                             </div>
                                                         </div>
@@ -113,9 +134,12 @@ require_once '../config/config_geral.php';
                                                                 <div class="col-12">
                                                     <div class="form-floating mb-3">
       <select class="form-select pesquisa-select" id="categoriaNoticia" name="categoriaNoticia" required>
-                      <option value="" selected>- Selecione -</option>
-          <option value="Express" >Express</option>
-            <option value="News">News</option>
+                      <option value="<?php echo $resultadoNoticia["categoria_noticia"];?>" selected><?php echo $resultadoNoticia["categoria_noticia"];?></option>
+                      <?php if($resultadoNoticia["categoria_noticia"] == "Express"){ ?>
+                        <option value="News">News</option>
+                      <?php }else{ ?>
+                        <option value="Express" >Express</option>
+                      <?php } ?>
       </select>
       <label for="categoriaNoticia">Categoria da Notícia <span class="text-danger">*</span></label>
     </div>
@@ -138,10 +162,37 @@ require_once '../config/config_geral.php';
                                                         <div class="accordion-body">
                                                             <div class="row">
                                                                 <div class="col-lg-12 col-md-12 col-12">
+                                                                    <?php if($resultadoNoticia["img_noticia"] == ""){ ?>
                 <div class="form-group imgNoticia">
                   <input type="file" class="form-control" name="imgNoticia" id="imgNoticia" required>
                 </div>
+                                                                    <?php }else{ ?>
+                                                                    <img src="../../site-fncc/assets/imagens/imagens_noticias/<?php echo $resultadoNoticia["img_noticia"];?>" width="100%" height="100%" alt="imagem noticia" style="border-radius: 50px 50px 50px 0px;">
+                                                                  <?php  } ?>
               </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="headingOne">
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsetree" aria-expanded="true" aria-controls="collapsetree">
+                                                            <span class="destaque fw-bold">Link Notícia</span>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapsetree" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                        <div class="accordion-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 col-md-12 col-12">
+   <div class="form-floating mb-2">
+                                                        <input type="text" value="<?php echo "https://bemktech.com.br/site-fncc/noticias/news-express/".$resultadoNoticia["slug_noticia"];?>" class="form-control" placeholder="Título da Notícia" readonly>
+                                                        <label for="tituloNoticia">Link Notícia <span class="text-danger">*</span></label>
+                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -153,23 +204,67 @@ require_once '../config/config_geral.php';
                             </div>
                         </form>
                         
-                        <?php 
-                         if (isset($_GET["erro"])) {
-                $erro = (int) $_GET["erro"];
-                if ($erro === 1) {
-                    echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000">
-                <div class="toast-header border-light" style="background-color: #f5c2c7; color: #1c1d3c;">
+                        <?php
+                        if (isset($_GET["sucesso"])) {
+                            $sucesso = (int) $_GET["sucesso"];
+                            if($sucesso === 1) {
+                                echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+                <div class="toast-header border-light" style="background-color: #a3cfbb; color: #1c1d3c;">
                     <strong class="me-auto">FNCC AVISA</strong>
                     <small>Agora</small>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body" style="background-color: #f5c2c7; color: #1c1d3c;"">
-                    <span>Você não preencheu os campos! Tente Novamente!</span>
+                <div class="toast-body" style="background-color: #a3cfbb; color: #1c1d3c;"">
+                    <span>Notícia Criada!</span>
                 </div>
             </div>
         </div>';
-            }elseif ($erro === 2) {
+                            }elseif($sucesso === 2) {
+                                echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+                <div class="toast-header border-light" style="background-color: #a3cfbb; color: #1c1d3c;">
+                    <strong class="me-auto">FNCC AVISA</strong>
+                    <small>Agora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" style="background-color: #a3cfbb; color: #1c1d3c;"">
+                    <span>Notícia Pulicada!</span>
+                </div>
+            </div>
+        </div>';
+                            }elseif($sucesso === 3) {
+                               echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+                <div class="toast-header border-light" style="background-color: #fff3cd; color: #1c1d3c;">
+                    <strong class="me-auto">FNCC AVISA</strong>
+                    <small>Agora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" style="background-color: #fff3cd; color: #1c1d3c;"">
+                    <span> Notícia Despublicada!</span>
+                </div>
+            </div>
+        </div>';
+                            }elseif($sucesso === 4) {
+                              echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+                <div class="toast-header border-light" style="background-color: #a3cfbb; color: #1c1d3c;">
+                    <strong class="me-auto">FNCC AVISA</strong>
+                    <small>Agora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" style="background-color: #a3cfbb; color: #1c1d3c;"">
+                    <span>Notícia Editada!</span>
+                </div>
+            </div>
+        </div>';
+                            }
+                        }
+                        
+                        if (isset($_GET["erro"])) {
+                $erro = (int) $_GET["erro"];
+                if ($erro === 2) {
                     echo '<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
             <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000">
                 <div class="toast-header border-light" style="background-color: #f5c2c7; color: #1c1d3c;">
@@ -178,7 +273,7 @@ require_once '../config/config_geral.php';
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body" style="background-color: #f5c2c7; color: #1c1d3c;"">
-                    <span>Não foi possível incluir! Tente Novamente!</span>
+                    <span>Não foi possível editar! Tente Novamente!</span>
                 </div>
             </div>
         </div>';

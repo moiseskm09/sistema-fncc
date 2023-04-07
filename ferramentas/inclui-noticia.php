@@ -22,13 +22,16 @@ if (isset($_POST["tituloNoticia"], $_POST["subtituloNoticia"], $_POST["textoNoti
     if (move_uploaded_file($imgNoticia["tmp_name"], "$dirImagem/" . $nomeFinalImgNoticia)) {
         $queryInsereNoticia = mysqli_query($conexao, "INSERT  site_noticias (titulo_noticia, subtitulo_noticia, texto_noticia, categoria_noticia, slug_noticia, img_noticia, publicado, data_noticia) VALUES ('$tituloNoticia', '$subtituloNoticia', '$textoNoticia', '$categoriaNoticia', '$slug', '$nomeFinalImgNoticia', 0, '$dataNoticia')");
         if($queryInsereNoticia == 1){
-            echo "Tudo certo";
+            $buscaCodNoticia = mysqli_query($conexao, "SELECT cod_noticia FROM site_noticias WHERE slug_noticia = '$slug'");
+            $resultadoCodigo = mysqli_fetch_assoc($buscaCodNoticia);
+            $codNoticia = $resultadoCodigo["cod_noticia"];
+            header("location: ../sistema/editar-noticia.php?id=$codNoticia&sucesso=1");
         }else{
-            echo "erro ao inserir";
+            header("location: ../sistema/incluir-noticia.php?erro=2");
         }
     }else{
-        echo "erro movendo";
+        header("location: ../sistema/incluir-noticia.php?erro=2");
     }
 }else{
-echo "erro nao preenchido";
+header("location: ../sistema/incluir-noticia.php?erro=1");
 }
