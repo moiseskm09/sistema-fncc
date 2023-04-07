@@ -48,13 +48,13 @@ function saudacao() {
                         <div class="form-row mt-1">
                             <div class="col-md-12">
                                 <h6><?php echo saudacao(); ?>, <span class="destaque"><?php echo ucwords($NOME); ?></span></h6>
-                                <p>Que bom te ver por aqui! <i class=" fw-bold destaque bi bi-emoji-smile"></i></p>
+                                <!--<p>Que bom te ver por aqui! <i class=" fw-bold destaque bi bi-emoji-smile"></i></p>-->
                             </div>
 
                         </div>
-                        <div class="row mt-1">
+                        <div class="row">
                             <div class="col-md-12">
-                                <h4 class="blockquote-footer" style="font-size: 20px;">Acesso Rápido</h4>
+                                <h4 class="mt-2 blockquote-footer" style="font-size: 16px;">Acesso Rápido</h4>
                             </div>
                         </div>
                         <div class="row">
@@ -64,12 +64,12 @@ function saudacao() {
                                 ?>
 
 
-                                <div class="col-lg-2 col-md-2 col-6">
+                                <div class="col-lg-2 col-md-2 col-6 mb-2">
                                     <a href="<?php echo $resultadoAcessoRapido['caminho']; ?>" class="link-rapido">
-                                        <div class="card mb-2 border-0" style="border-radius:15px;">
+                                        <div class="card h-100 border-0" style="border-radius:15px;">
                                             <div class="card-body text-center card-acesso-rapido p-1">
                                                 <h5><i class="<?php echo $resultadoAcessoRapido['icone_sub']; ?>"></i></h5>
-                                                <h6><?php echo substr($resultadoAcessoRapido['submenu'], 0, 19); ?></h6>
+                                                <h6><?php echo substr($resultadoAcessoRapido['submenu'], 0, 17); ?></h6>
                                             </div>
                                         </div>
                                     </a>
@@ -82,11 +82,11 @@ function saudacao() {
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h4 class="blockquote-footer mt-2" style="font-size: 20px;">Quadro de Avisos</h4>
+                                        <h4 class="blockquote-footer mt-2" style="font-size: 16px;">Quadro de Avisos</h4>
                                     </div>
                                     <div class="col-12">
-                                        <div class="card mb-2 border-0 card-aviso" style="border-radius:15px; height: 240px;">
-                                            <div class="card-header fw-bold" style="background-color: #e7f1ff;color: #785aa2;">
+                                        <div class="card mb-2 border-0 card-aviso" style="border-radius:15px;">
+                                            <div class="card-header fw-bold p-0" style="background-color: #e7f1ff; color: #785aa2; font-size: 14px;">
                                                 <div class="row">
                                                     <div class="col text-center" style="white-space: nowrap;">Aviso</div>
                                                     <div class="col text-center">Data</div>
@@ -129,14 +129,13 @@ function saudacao() {
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h4 class="blockquote-footer mt-2" style="font-size: 20px;">Dashboard</h4>
+                                        <h4 class="blockquote-footer mt-2" style="font-size: 16px;">Dashboard</h4>
                                     </div>
                                     <div class="col-12">
                                         <div class="card mb-2 border-0 home-dashboard">
-                                            <div class="card-header fw-bold" style="background-color: #e7f1ff;color: #785aa2;">
+                                            <div class="card-header fw-bold p-0" style="background-color: #e7f1ff;color: #785aa2;">
                                                 <div class="row">
-
-                                                    <div class="col text-center">Dashboard Consultas</div>
+                                                    <div class="col text-center" style="font-size: 14px;">Dashboard Consultas</div>
                                                 </div>
                                             </div>
                                             <div class="card-body text-center p-1 d-lg-flex justify-content-lg-center align-items-lg-center">

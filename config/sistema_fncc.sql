@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/04/2023 às 15:58
--- Versão do servidor: 10.4.24-MariaDB
--- Versão do PHP: 8.1.6
+-- Tempo de geração: 07/04/2023 às 02:40
+-- Versão do servidor: 10.4.27-MariaDB
+-- Versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,8 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `u596471878_sistema_fncc`
+-- Banco de dados: `sistema_fncc`
 --
+CREATE DATABASE IF NOT EXISTS `sistema_fncc` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `sistema_fncc`;
 
 -- --------------------------------------------------------
 
@@ -34,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `arquivos_consultas` (
   `arq_consulta` bigint(255) NOT NULL,
   `arq_data` datetime NOT NULL,
   PRIMARY KEY (`cod_arquivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `arquivos_consultas`
@@ -59,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `avaliacao_consulta` (
   `aval_avaliacao` char(8) NOT NULL,
   `aval_data` datetime NOT NULL,
   PRIMARY KEY (`cod_avaliacao`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -75,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `avisos` (
   `data_aviso` date NOT NULL,
   `link_aviso` varchar(50) NOT NULL,
   PRIMARY KEY (`cod_aviso`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `avisos`
@@ -103,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `balancete` (
   `bal_coop` int(255) NOT NULL,
   `bal_situacao` int(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`cod_balancete`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -117,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `banco_de_horas` (
   `bh_horas` time NOT NULL,
   `bh_user` bigint(255) NOT NULL,
   UNIQUE KEY `bh_dia` (`bh_dia`,`bh_user`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `banco_de_horas`
@@ -146,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `boletos` (
   `bol_situacao` char(30) NOT NULL DEFAULT 'AGUARDANDO PAGAMENTO',
   `bol_coop` int(255) NOT NULL,
   PRIMARY KEY (`cod_boleto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -159,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `boleto_situacao` (
   `cod_bol_s` int(255) NOT NULL AUTO_INCREMENT,
   `situacao` char(30) NOT NULL,
   PRIMARY KEY (`cod_bol_s`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `boleto_situacao`
@@ -184,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `canal_de_denuncias` (
   `cdd_coop` int(255) NOT NULL,
   `cdd_arquivo` varchar(150) NOT NULL,
   PRIMARY KEY (`cod_denuncia`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `canal_de_denuncias`
@@ -204,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `categoria_circulares` (
   `cod_categoria` int(255) NOT NULL AUTO_INCREMENT,
   `categoria` varchar(100) NOT NULL,
   PRIMARY KEY (`cod_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `categoria_circulares`
@@ -228,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `categoria_cooperativa` (
   `cod_categoria_coop` int(4) NOT NULL AUTO_INCREMENT,
   `categoria_coop` char(30) NOT NULL,
   PRIMARY KEY (`cod_categoria_coop`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `categoria_cooperativa`
@@ -251,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `categoria_documentos` (
   `cod_categoria` int(10) NOT NULL AUTO_INCREMENT,
   `categoria` char(50) NOT NULL,
   PRIMARY KEY (`cod_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `categoria_documentos`
@@ -279,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `colaboradores_coop` (
   `col_email` varchar(50) DEFAULT NULL,
   `col_coop` int(10) NOT NULL,
   PRIMARY KEY (`cod_col`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `colaboradores_coop`
@@ -306,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `compensacao` (
   `comp_dia` date NOT NULL,
   `comp_hora` time NOT NULL,
   `comp_user` bigint(255) NOT NULL,
-  `comp_tipo` char(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comp_tipo` char(15) NOT NULL,
   PRIMARY KEY (`cod_comp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -326,7 +328,7 @@ CREATE TABLE IF NOT EXISTS `conselho_fiscal` (
   `cf_mandato` date DEFAULT NULL,
   `cf_coop` int(10) NOT NULL,
   PRIMARY KEY (`cf_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `conselho_fiscal`
@@ -362,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `consultas` (
   `data_previsao` datetime DEFAULT NULL,
   `data_conclusao` datetime DEFAULT NULL,
   PRIMARY KEY (`cod_consulta`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `consultas`
@@ -385,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `consulta_interacoes` (
   `inter_descricao` text NOT NULL,
   `inter_data` datetime NOT NULL,
   PRIMARY KEY (`cod_interacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `consulta_interacoes`
@@ -419,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `controle_de_ponto` (
   `horas_compensadas` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`cod_ponto`),
   UNIQUE KEY `ponto_user` (`ponto_user`,`ponto_dia`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `controle_de_ponto`
@@ -482,7 +484,7 @@ CREATE TABLE IF NOT EXISTS `cooperativas` (
   `coop_data_cadastro` date NOT NULL DEFAULT '2022-12-22',
   `coop_dados_atualizados` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`cod_coop`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `cooperativas`
@@ -563,7 +565,7 @@ CREATE TABLE IF NOT EXISTS `diretoria_conselhoadm` (
   `dca_mandato` date DEFAULT NULL,
   `dca_coop` int(10) NOT NULL,
   PRIMARY KEY (`dca_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `diretoria_conselhoadm`
@@ -588,7 +590,7 @@ CREATE TABLE IF NOT EXISTS `documentos_circulares` (
   `docc_titulo` varchar(100) NOT NULL,
   `docc_arquivo` varchar(100) NOT NULL,
   PRIMARY KEY (`cod_docc`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `documentos_circulares`
@@ -611,7 +613,7 @@ CREATE TABLE IF NOT EXISTS `download_termo_aceito` (
   `dta_cod_arquivo` bigint(255) NOT NULL,
   `dta_data` date NOT NULL,
   PRIMARY KEY (`cod_dta`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `download_termo_aceito`
@@ -639,7 +641,7 @@ CREATE TABLE IF NOT EXISTS `events` (
   `end` datetime DEFAULT NULL,
   `pessoa` char(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `events`
@@ -663,7 +665,7 @@ CREATE TABLE IF NOT EXISTS `extrato_de_capital` (
   `ext_arquivo` varchar(150) NOT NULL,
   `ext_obs` text DEFAULT NULL,
   PRIMARY KEY (`cod_ext_capital`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -675,8 +677,8 @@ DROP TABLE IF EXISTS `feriados`;
 CREATE TABLE IF NOT EXISTS `feriados` (
   `cod_feriado` int(10) NOT NULL AUTO_INCREMENT,
   `data` date NOT NULL,
-  `feriado` char(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo_feriado` char(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `feriado` char(50) NOT NULL,
+  `tipo_feriado` char(25) NOT NULL,
   `facultativo` int(11) NOT NULL,
   PRIMARY KEY (`cod_feriado`),
   UNIQUE KEY `data` (`data`)
@@ -721,7 +723,7 @@ CREATE TABLE IF NOT EXISTS `gerenciamento_riscos` (
   `grs_data_final` date NOT NULL,
   `grs_arquivo` varchar(100) NOT NULL,
   PRIMARY KEY (`grs_cod`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -734,7 +736,7 @@ CREATE TABLE IF NOT EXISTS `grupos_usuarios` (
   `cod_grupo` int(2) NOT NULL AUTO_INCREMENT,
   `grupo` char(30) NOT NULL,
   PRIMARY KEY (`cod_grupo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `grupos_usuarios`
@@ -755,8 +757,8 @@ INSERT INTO `grupos_usuarios` (`cod_grupo`, `grupo`) VALUES
 DROP TABLE IF EXISTS `jornada`;
 CREATE TABLE IF NOT EXISTS `jornada` (
   `cod_jornada` int(20) NOT NULL,
-  `dia` char(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dia_abreviado` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dia` char(25) NOT NULL,
+  `dia_abreviado` char(3) NOT NULL,
   `jor_entrada` time DEFAULT NULL,
   `jor_intervalo` time DEFAULT NULL,
   `jor_fim_intervalo` time DEFAULT NULL,
@@ -794,7 +796,7 @@ CREATE TABLE IF NOT EXISTS `justificativa_ponto` (
   `just_tipo` char(10) NOT NULL,
   `just_situacao` int(1) NOT NULL DEFAULT 0 COMMENT '0 - não avaliada 1 - recusada 2- aprovada	',
   PRIMARY KEY (`cod_just`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `justificativa_ponto`
@@ -821,7 +823,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `icone` varchar(30) NOT NULL,
   `caminho_submenu` varchar(40) NOT NULL,
   PRIMARY KEY (`id_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `menu`
@@ -853,7 +855,7 @@ CREATE TABLE IF NOT EXISTS `modelos_de_documentos` (
   `nome_documento` varchar(100) NOT NULL,
   PRIMARY KEY (`cod_documento`),
   KEY `categoria_documento` (`categoria_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `modelos_de_documentos`
@@ -902,7 +904,7 @@ CREATE TABLE IF NOT EXISTS `nivel_acesso` (
   KEY `cod_perfil` (`cod_perfil`),
   KEY `codMenu` (`codMenu`),
   KEY `codSubmenu` (`codSubmenu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `nivel_acesso`
@@ -1087,7 +1089,7 @@ CREATE TABLE IF NOT EXISTS `perfis_usuarios` (
   `p_cod` int(10) NOT NULL AUTO_INCREMENT,
   `perfil` char(30) NOT NULL,
   PRIMARY KEY (`p_cod`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `perfis_usuarios`
@@ -1109,11 +1111,13 @@ INSERT INTO `perfis_usuarios` (`p_cod`, `perfil`) VALUES
 DROP TABLE IF EXISTS `site_noticias`;
 CREATE TABLE IF NOT EXISTS `site_noticias` (
   `cod_noticia` bigint(255) NOT NULL AUTO_INCREMENT,
-  `titulo_noticia` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subtitulo_noticia` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `texto_noticia` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `categoria_noticia` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug_noticia` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titulo_noticia` varchar(100) NOT NULL,
+  `subtitulo_noticia` varchar(150) NOT NULL,
+  `texto_noticia` text NOT NULL,
+  `categoria_noticia` char(10) NOT NULL,
+  `slug_noticia` varchar(150) NOT NULL,
+  `img_noticia` varchar(80) NOT NULL,
+  `publicado` int(1) NOT NULL,
   `data_noticia` date NOT NULL,
   PRIMARY KEY (`cod_noticia`),
   UNIQUE KEY `slug_noticia` (`slug_noticia`)
@@ -1123,8 +1127,8 @@ CREATE TABLE IF NOT EXISTS `site_noticias` (
 -- Despejando dados para a tabela `site_noticias`
 --
 
-INSERT INTO `site_noticias` (`cod_noticia`, `titulo_noticia`, `subtitulo_noticia`, `texto_noticia`, `categoria_noticia`, `slug_noticia`, `data_noticia`) VALUES
-(1, '30 ANOS DA COOPERCREDI GRUPO FLEURY', 'Confiança dos associados na cooperativa marcam essas três décadas de existência.', 'No dia 19 de março de 2023 a CooperCredi Grupo Fleury comemora 30 anos de história. A cooperativa, que hoje tem 2.263 associados, celebra e valoriza essa data junto aos seus associados.\r\n<br>\r\nAssim como muitas cooperativas, nos últimos anos os desafios superados foram muitos, como: manter a estabilidade econômica e operacional da cooperativa, a qualidade no atendimento durante e após o período de pandemia.\r\nCom a nova realidade, tivemos que nos reinventar, e as adaptações e implementações de tecnologias foram acontecendo, para atendimento remoto aos nossos associados.\r\n<br>\r\nA CooperCredi Grupo Fleury prioriza a qualidade no atendimento e a satisfação de seus associados, promovendo inovações, e não menos importante, a divulgação da cooperativa junto ao grande número de potencial da empresa mantenedora Fleury, com objetivo de conquistar o maior número de novos associados.\r\n<br>\r\nSomado a tudo isso, para um futuro próximo, a Diretoria da Coopercredi Fleury tem muitos desafios pela frente: ainda com o foco no crescimento do Quadro Social da Cooperativa, promover produtos, além do financeiro (empréstimos), o lazer entre outros.\r\n<br>\r\nPara a CooperCredi Grupo Fleury, a parceria junto à FNCC é de grande relevância, segundo Ana Maria G. Allegretto. A “Federação” nos assessora com direcionamento de normas, orientações jurídicas, atendimentos de exigências junto ao Banco Central, a Jucesp e demais órgãos, reuniões e treinamentos, sempre com zelo e presteza.\r\n<br>\r\nA FNCC parabeniza a cooperativa pelos 30 anos e deseja que os próximos venham com muitos desafios superados, intercooperação e metas alcançadas.', 'Express', '30-anos-da-coopercredi-grupo-fleury', '2023-03-17');
+INSERT INTO `site_noticias` (`cod_noticia`, `titulo_noticia`, `subtitulo_noticia`, `texto_noticia`, `categoria_noticia`, `slug_noticia`, `img_noticia`, `publicado`, `data_noticia`) VALUES
+(1, '30 ANOS DA COOPERCREDI GRUPO FLEURY', 'Confiança dos associados na cooperativa marcam essas três décadas de existência.', 'No dia 19 de março de 2023 a CooperCredi Grupo Fleury comemora 30 anos de história. A cooperativa, que hoje tem 2.263 associados, celebra e valoriza essa data junto aos seus associados.\r\n<br>\r\nAssim como muitas cooperativas, nos últimos anos os desafios superados foram muitos, como: manter a estabilidade econômica e operacional da cooperativa, a qualidade no atendimento durante e após o período de pandemia.\r\nCom a nova realidade, tivemos que nos reinventar, e as adaptações e implementações de tecnologias foram acontecendo, para atendimento remoto aos nossos associados.\r\n<br>\r\nA CooperCredi Grupo Fleury prioriza a qualidade no atendimento e a satisfação de seus associados, promovendo inovações, e não menos importante, a divulgação da cooperativa junto ao grande número de potencial da empresa mantenedora Fleury, com objetivo de conquistar o maior número de novos associados.\r\n<br>\r\nSomado a tudo isso, para um futuro próximo, a Diretoria da Coopercredi Fleury tem muitos desafios pela frente: ainda com o foco no crescimento do Quadro Social da Cooperativa, promover produtos, além do financeiro (empréstimos), o lazer entre outros.\r\n<br>\r\nPara a CooperCredi Grupo Fleury, a parceria junto à FNCC é de grande relevância, segundo Ana Maria G. Allegretto. A “Federação” nos assessora com direcionamento de normas, orientações jurídicas, atendimentos de exigências junto ao Banco Central, a Jucesp e demais órgãos, reuniões e treinamentos, sempre com zelo e presteza.\r\n<br>\r\nA FNCC parabeniza a cooperativa pelos 30 anos e deseja que os próximos venham com muitos desafios superados, intercooperação e metas alcançadas.', 'Express', '30-anos-da-coopercredi-grupo-fleury', '', 0, '2023-03-17');
 
 -- --------------------------------------------------------
 
@@ -1137,7 +1141,7 @@ CREATE TABLE IF NOT EXISTS `situacao_consultas` (
   `cod_situacao` int(10) NOT NULL AUTO_INCREMENT,
   `situacao` char(30) NOT NULL,
   PRIMARY KEY (`cod_situacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `situacao_consultas`
@@ -1163,7 +1167,7 @@ CREATE TABLE IF NOT EXISTS `subcategoria_circulares` (
   `subcategoria` varchar(100) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   PRIMARY KEY (`cod_subcategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `subcategoria_circulares`
@@ -1200,7 +1204,7 @@ CREATE TABLE IF NOT EXISTS `submenu` (
   `caminho` varchar(50) NOT NULL,
   PRIMARY KEY (`cod_submenu`),
   KEY `cod_menu` (`cod_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `submenu`
@@ -1249,7 +1253,7 @@ CREATE TABLE IF NOT EXISTS `urgencia` (
   `cod_urgencia` int(255) NOT NULL AUTO_INCREMENT,
   `urgencia` char(20) NOT NULL,
   PRIMARY KEY (`cod_urgencia`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `urgencia`
@@ -1283,7 +1287,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `data_cadastro` date NOT NULL DEFAULT '2022-12-16',
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `usuarios`
@@ -1306,7 +1310,7 @@ CREATE TABLE IF NOT EXISTS `visibilidade` (
   `visibilidade` char(30) NOT NULL,
   `visibilidade_valor` varchar(30) NOT NULL,
   PRIMARY KEY (`cod_visibilidade`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `visibilidade`

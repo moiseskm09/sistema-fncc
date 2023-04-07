@@ -72,10 +72,9 @@ and open the template in the editor.
 }
   
 ::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: #785aa2;
-    -webkit-box-shadow: inset 0 0 4px #785aa2; 
+
+    background: #808080;
+    -webkit-box-shadow: inset 0 0 4px #2467EC; 
 }
 
 .menu-mobile{
