@@ -559,3 +559,52 @@ color: #FFD70F;
     color: #ffffff;
     border: none;
 }
+
+ .imgNoticia input {
+    border: 2px solid #785aa240;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 20px 0px 80px 5%;
+    text-align: left !important;
+    margin: 0;
+    width: 100% !important;
+}
+
+.imgNoticia input:focus {
+    border: 1px solid #785aa240;
+    outline: 1px dashed #785aa2;
+    outline-offset: -5px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 20px 0px 80px 5%;
+    text-align: left !important;
+    margin: 0;
+    width: 100% !important;
+}
+.imgNoticia input:invalid {
+    border-bottom: 2px solid #dc3545;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 20px 0px 80px 25%;
+    text-align: left !important;
+    margin: 0;
+    width: 100% !important;
+}
+
+
+.imgNoticia:before {
+    position: absolute;
+    bottom: 5px;
+    left: 0;  pointer-events: none;
+    width: 100%;
+    right: 0;
+    height: 57px;
+    content: " Ou arraste e solte aqui. ";
+    display: block;
+    margin: 0 auto;
+    color: #2ea591;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+}

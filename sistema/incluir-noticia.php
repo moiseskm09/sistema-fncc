@@ -26,8 +26,7 @@ require_once '../config/config_geral.php';
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
         <!-- Or for RTL support -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/4b5xku1ak2vskqvjmlw1biztatmbuzqx29vn314f904u0ktu/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <link href="../css/style.css" rel="stylesheet" />
@@ -53,7 +52,7 @@ require_once '../config/config_geral.php';
                             </div>
 
                         </div>
-                        <form action="../ferramentas/abrir-consulta.php" method="POST" enctype="multipart/form-data">
+                        <form action="../ferramentas/inclui-noticia.php" method="POST" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-12">
                                     <div class="row">
@@ -80,9 +79,16 @@ require_once '../config/config_geral.php';
                                                         <label for="subtituloNoticia">Subtítulo da Notícia<span class="text-danger">*</span></label>
                                                     </div>
                                                 </div>
-                                                                <div class="col-12">
-                                                                    <div id="summernote"></div>
+                                                                <div class="col-12 mb-2">
+                                                                  <div class="form-floating">
+                                                                    <textarea class="form-control" name="textoNoticia" placeholder="Texto da Notícia" id="textoNoticia"></textarea>
+  <label for="textoNoticia"></label>
+</div>
+                                                                 
                                                                 </div>
+                                                              <div class="col-12 text-end">
+                          <button type="submit" class="btn btn-md btn-success loading"><i class="bi bi-plus"></i> Incluir Notícia</button>
+                        </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -132,8 +138,8 @@ require_once '../config/config_geral.php';
                                                         <div class="accordion-body">
                                                             <div class="row">
                                                                 <div class="col-lg-12 col-md-12 col-12">
-                <div class="form-group atendimentofiles">
-                  <input type="file" class="form-control" name="arquivoAtend[]" id="arquivoAtend" multiple>
+                <div class="form-group imgNoticia">
+                  <input type="file" class="form-control" name="imgNoticia" id="imgNoticia" required>
                 </div>
               </div>
                                                             </div>
@@ -197,12 +203,15 @@ require_once '../config/config_geral.php';
         </script>
         <script src="../js/loading.js"></script>
         <script>
-      $('#summernote').summernote({
-        placeholder: 'Texto da Notícia',
-        tabsize: 2,
-        height: 220,
-        toolbar: [        ]
-      });
-    </script>
+    tinymce.init({
+      selector: 'textarea',
+      menubar: false,
+      statusbar: false,
+      height: 230,
+      plugins: '',
+      toolbar: false
+      
+    });
+  </script>
     </body>
 </html>
