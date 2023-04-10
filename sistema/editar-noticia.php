@@ -88,13 +88,13 @@ if(isset($_GET["id"])){
                                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
                                                         <input type="hidden" value="<?php echo $resultadoNoticia["cod_noticia"];?>" name="codNoticia">
-                                                        <input type="text" value="<?php echo $resultadoNoticia["titulo_noticia"];?>" name="tituloNoticia" id="tituloNoticia" class="form-control" placeholder="Título da Notícia" autocomplete="off" maxlength="100" required>
+                                                        <input type="text" value="<?php echo $resultadoNoticia["titulo_noticia"];?>" name="tituloNoticia" id="tituloNoticia" class="form-control" placeholder="Título da Notícia" autocomplete="off" maxlength="150" required>
                                                         <label for="tituloNoticia">Título da Notícia <span class="text-danger">*</span></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="text" value="<?php echo $resultadoNoticia["subtitulo_noticia"];?>" name="subtituloNoticia" id="subtituloNoticia" class="form-control" placeholder="Subtítulo da Notícia" autocomplete="off" maxlength="100" required>
+                                                        <input type="text" value="<?php echo $resultadoNoticia["subtitulo_noticia"];?>" name="subtituloNoticia" id="subtituloNoticia" class="form-control" placeholder="Subtítulo da Notícia" autocomplete="off" maxlength="200">
                                                         <label for="subtituloNoticia">Subtítulo da Notícia <span class="text-danger">*</span></label>
                                                     </div>
                                                 </div>
@@ -309,11 +309,13 @@ if(isset($_GET["id"])){
         <script>
     tinymce.init({
       selector: 'textarea',
-      menubar: false,
+      language: 'pt_BR',
+      menubar: true,
+      removed_menuitems: 'blocks styles fontfamily',
       statusbar: false,
       height: 230,
-      plugins: '',
-      toolbar: false
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount fullscreen',
+      toolbar: 'fullscreen undo redo | fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat'
       
     });
   </script>

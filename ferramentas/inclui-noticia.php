@@ -1,6 +1,6 @@
 <?php
 include_once '../config/conexao.php';
-include_once '../config/config_geral.php';
+//include_once '../config/config_geral.php';
 include_once 'slug.php';
 
 if (isset($_POST["tituloNoticia"], $_POST["subtituloNoticia"], $_POST["textoNoticia"], $_POST["categoriaNoticia"], $_FILES['imgNoticia'])) {
