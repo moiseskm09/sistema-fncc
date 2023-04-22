@@ -64,7 +64,7 @@ if (isset($_GET['dataRefIncialF'], $_GET["dataRefFinalF"])) {
                 <main>
                     <div class="container-fluid">
                         <!--conteudo da tela aqui!-->
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
                             <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                       <span class="breadcrumb-item text-primary">Estatísticas</span>
                       <span class="breadcrumb-item active text-success">Gerenciamento de Riscos</span>
@@ -91,7 +91,7 @@ if (isset($_GET['dataRefIncialF'], $_GET["dataRefFinalF"])) {
                                         <th class="text-center">Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody class="border bg-white">
+                                <tbody class="p-0 bg-white">
 <?php
                                     if ($sql_buscaGRS > 0) {
                                         while ($resultadoGRS = mysqli_fetch_assoc($sql_buscaGRS)) {
@@ -245,7 +245,7 @@ if (isset($_GET['dataRefIncialF'], $_GET["dataRefFinalF"])) {
         $('#tabelaBalancete').DataTable({
             dom: 'Bfrtip',
             "ordering": false,
-            "filter": true,
+            "filter": false,
             "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json",
                 "oAria": {

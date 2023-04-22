@@ -57,7 +57,7 @@ require_once '../config/config_geral.php';
                   <div class="accordion-item" style="height:100%; max-height: 100%;">
                     <h2 class="accordion-header" id="headingOne">
                       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <span class="destaque fw-bold">Informações Gerais</span>
+                        <span class="fw-bold">Informações Gerais</span>
                       </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -126,7 +126,7 @@ require_once '../config/config_geral.php';
                   <div class="accordion-item" style="height:100%; max-height: 100%;">
                     <h2 class="accordion-header" id="headingOne">
                       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDois" aria-expanded="true" aria-controls="collapseDois">
-                        <span class="destaque fw-bold">Descrição</span>
+                        <span class="fw-bold">Descrição</span>
                       </button>
                     </h2>
                     <div id="collapseDois" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#collapseDois">

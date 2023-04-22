@@ -91,7 +91,7 @@ if (isset($_GET['nomeNoticia'])) {
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-borderless table-sm bg-white">
+                            <table class="table table-borderless bg-white">
                                 <thead class="theadN">
                                     <tr>
                                         <th>Título</th>

@@ -65,9 +65,9 @@
 }
 
 
-.home-dashboard{
+.home-dashboard, .card-aviso{
     border-radius:15px;
-    min-height: 220px;
+    min-height: 240px;
     max-height: 100%;
 }
 @media only screen and (max-width: 768px) {
@@ -87,4 +87,9 @@
     .botaoRefresh{ 
     visibility: visible;
     }
+}
+.card-aviso .card-header, .home-dashboard .card-header{
+    background-color: #4B49AC;
+    color: #ffffff;
+    font-size: 14px;
 }

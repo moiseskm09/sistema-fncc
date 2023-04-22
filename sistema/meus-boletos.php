@@ -74,7 +74,7 @@ if(isset($_GET['data_vencimento'], $_GET["competencia"])){
                 <main>
                     <div class="container-fluid">
                        <!--conteudo da tela aqui!-->
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
                             <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                       <span class="breadcrumb-item text-primary">Financeiro</span>
                       <span class="breadcrumb-item active text-success">Meus Boletos</span>
@@ -100,7 +100,7 @@ if(isset($_GET['data_vencimento'], $_GET["competencia"])){
                                         <th class="text-center">AÇÕES</th>
                                     </tr>
                                 </thead>
-                                <tbody class="border bg-white">
+                                <tbody class="p-0 bg-white">
                                     <?php
                                     if ($numeroLinhas > 0) {
                                         while ($resultadoBol = mysqli_fetch_assoc($sql_buscaBols)) {
@@ -134,16 +134,16 @@ if(isset($_GET['data_vencimento'], $_GET["competencia"])){
                                     } else {
                                         ?>
                                         <tr class="linha-hover">
-                                            <td colspan="5" class="text-center">Não há itens para exibir</td>
+                                            <td colspan="4" class="text-center">Não há itens para exibir</td>
                                         </tr>
                                         <?php
                                     }
                                     ?>
                                 </tbody>
-                                <tfoot>
+                                <tfoot class="p-0">
                                     <tr>
-                                        <td colspan="3"><?php echo "Mostrando ".$numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
-                                        <td colspan="4">
+                                        <td colspan="2"><?php echo "Mostrando ".$numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
+                                        <td colspan="2">
                                             <nav>
                                     <ul class="pagination pagination-sm justify-content-end">
                                         <li class="page-item ">

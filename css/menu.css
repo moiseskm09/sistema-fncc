@@ -33,7 +33,7 @@ and open the template in the editor.
 .link-menu:hover{
     color:#FFD70F !important;
     font-weight: 400;
-    background-color: #1c1d3c;
+    background-color: #4B49AC;
 }
 
 .menu-ativo{
@@ -51,15 +51,15 @@ and open the template in the editor.
 .link-submenu:hover{
     color:#ffffff !important;
     font-weight: 400;
-    background-color: #785aa2;
+    background-color: #4B49AC;
 }
 .rodape-menu{
     color:#000000;
-     box-shadow: 0 -5px 5px -5px #4682B4;
+     box-shadow: 0 -5px 5px -5px #4B49AC;
      background-color: #ffffff;
 }
 .tamanho-icone{
-    font-size: 20px;
+    font-size: 18px;
     
 }
 .usuario {
@@ -78,7 +78,7 @@ and open the template in the editor.
 }
 
 .menu-mobile{
-    color:#785aa2;
+    color:#4B49AC;
     background: #ffffff;
     border-radius: 5px;
     border: none;

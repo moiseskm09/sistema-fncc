@@ -63,7 +63,7 @@ $buscaferiados = mysqli_query($conexao, "SELECT * FROM feriados");
                         </div>
                         <!-- fim header -->
                        <!--conteudo da tela aqui!-->
-                       <div class="row">
+                       <div class="row feriadosS">
                            <div class="col-12">
                                        <?php if(mysqli_num_rows($buscaferiados) > 0 ){ 
                                            while($resultadoFeriado = mysqli_fetch_assoc($buscaferiados)){

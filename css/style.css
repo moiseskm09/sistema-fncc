@@ -41,7 +41,9 @@ and open the template in the editor.
 }
 
 .linha-hover{
-    border-bottom: 1px solid #785aa2 !important;
+
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
 }
 .linha-hover:hover{
     background-color: rgba(255, 127, 80,0.1);
@@ -181,7 +183,7 @@ font-weight: 600;
                 text-transform: capitalize;
             }
 .header-filtro{
-    background-color: #785aa2;
+    background-color: #4B49AC;
     color: #ffffff;
     text-decoration: none;
 }
@@ -236,6 +238,24 @@ font-weight: 600;
             .accordion-item{
               margin-bottom: 15px;
               border-radius: 15px;
+            }
+            .accordion-button{
+                background-color: #4B49AC;
+              color: #ffffff;
+              border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+            }
+            .accordion-button:not(.collapsed){
+              background-color: #4B49AC;
+              color: #ffffff;
+            }
+            .accordion-item:first-of-type .accordion-button {
+                background-color: #4B49AC;
+              color: #ffffff; 
+            }
+            .accordion-item:last-of-type .accordion-button.collapsed {
+             background-color: #4B49AC;
+              color: #ffffff;   
             }
             
             .accordion-body, accordion{
@@ -297,8 +317,8 @@ font-weight: 600;
 }
 
 .theadN{
-    background-color: #e7f1ff;
-    color: #785aa2;
+    background-color: #4B49AC;
+    color: #ffffff;
 }
 
 .card-acesso-rapido{
@@ -325,10 +345,10 @@ font-weight: 600;
 
 .card-acesso-rapido i{
 font-size: 30px;
-color: #785aa2;
+color: #4B49AC;
 }
 .card-acesso-rapido h6{
-color: #785aa2;
+color: #4B49AC;
 font-size: 11px;
 }
 
@@ -532,30 +552,30 @@ color: #FFD70F;
     top:15px;
 }
 
-.list-group, .list-group-item{
+.feriadosS .list-group, .feriadosS .list-group-item{
     border-radius: 15px;
 }
-.list-group-item:hover{
+.feriadosS .list-group-item:hover{
     border-radius: 15px;
     background-color: rgba(119, 90, 162, 0.3);
 }
-.list-group-item:hover .link-feriado{
+.feriadosS .list-group-item:hover .link-feriado{
     opacity: 1;
     transition: 0.5s;
 }
 
 .botaoAjuda{
-    background-color: #785aa2E6;
+    background-color: #4B49ACE6;
     color: #ffffff;
 }
 
 .botaoAjuda:hover{
-    background-color: #785aa2;
+    background-color: #4B49AC;
     color: #ffffff;
 }
 
 .botaoAjuda:focus{
-    background-color: #785aa2;
+    background-color: #4B49AC;
     color: #ffffff;
     border: none;
 }

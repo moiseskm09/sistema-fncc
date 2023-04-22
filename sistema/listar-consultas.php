@@ -130,7 +130,7 @@ if($USERGRUPO == 4){
     <?php if($filtroON == 1){ } else {?>
   <div class="tab-pane fade show active" id="ex2-pills-1" role="tabpanel" aria-labelledby="ex2-tab-1">
     <div class="table-responsive">
-                            <table class="table table-sm table-borderless order-column compact row-border tablesConsulta" style= "white-space: nowrap;">
+                            <table class="table table-borderless order-column compact row-border tablesConsulta" style= "white-space: nowrap;">
                                 <thead class="border theadN">
                                     <tr>
                                          <th>Nro | Abertura</th>
@@ -141,7 +141,7 @@ if($USERGRUPO == 4){
                                         <th class="text-center">Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody class="border bg-white">
+                                <tbody class="p-0 bg-white">
 <?php
                                     if (mysqli_num_rows($sql_buscaMinhasConsultas) > 0) {
                                         while ($resultadoMinhasConsultas = mysqli_fetch_assoc($sql_buscaMinhasConsultas)) {
@@ -207,7 +207,7 @@ if($USERGRUPO == 4){
     <?php if($filtroON == 1){?>
     <div  class="tab-pane fade show active" id="ex2-pills-5" role="tabpanel"  aria-labelledby="ex2-tab-5">
     <div class="table-responsive">
-                            <table class="table table-sm table-borderless order-column compact row-border tablesConsulta" style= "white-space: nowrap;">
+                            <table class="table table-borderless order-column compact row-border tablesConsulta" style= "white-space: nowrap;">
                                 <thead class="border theadN">
                                     <tr>
                                          <th>Nro | Abertura</th>
@@ -218,7 +218,7 @@ if($USERGRUPO == 4){
                                         <th class="text-center">Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody class="border bg-white">
+                                <tbody class="p-0 bg-white">
                                     <!-- Minhas Consultas -->
 <?php
                                     if (mysqli_num_rows($sql_buscaConsultasFiltro) > 0) {
@@ -581,7 +581,7 @@ if($USERGRUPO == 4){
         $('table.tablesConsulta').DataTable({
             dom: 'Bfrtip',
             "ordering": false,
-            "filter": true,
+            "filter": false,
             "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json",
                 "oAria": {

@@ -34,7 +34,6 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
     <script src="../js/mask.js"></script>
     <script src="../js/busca-cep.js"></script>
     <script src="../js/loading.js"></script>
@@ -48,7 +47,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
         <main>
           <div class="container-fluid">
             <!--conteudo da tela aqui!-->
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
               <h5 class="titulo">Cooperativa <span class="destaque"> <?php echo ucfirst($resultadoBuscaInfo["cooperativa"]); ?></span></h5>
               <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="mr-2">
@@ -196,10 +195,10 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          <span class="destaque fw-bold">Contato</span>
+                          <span class="fw-bold">Contato</span>
                         </button>
                       </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
                         <div class="accordion-body">
                           <div class="row">
                             <div class="col-lg-4 col-md-4 col-12">
@@ -227,10 +226,10 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          <span class="destaque fw-bold">Diretoria / Conselho Administração</span>
+                          <span class="fw-bold">Diretoria / Conselho Administração</span>
                         </button>
                       </h2>
-                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
                         <div class="accordion-body">
                           <div class="row">
                             <div class="col-12">
@@ -289,12 +288,13 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                       </div>
                     </div>
                     <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingThree">
+                        <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          <span class="destaque fw-bold">Conselho Fiscal</span>
+                          <span class="fw-bold"> Conselho Fiscal </span>
                         </button>
                       </h2>
-                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+
+                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
                         <div class="accordion-body">
                           <div class="row">
                             <div class="col-12">
@@ -355,11 +355,11 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                     </div>
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="headingFor">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFor" aria-expanded="false" aria-controls="collapseThree">
-                          <span class="destaque fw-bold"> Colaboradores </span>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFor" aria-expanded="false" aria-controls="collapseFor">
+                          <span class="fw-bold"> Colaboradores </span>
                         </button>
                       </h2>
-                      <div id="collapseFor" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                      <div id="collapseFor" class="accordion-collapse collapse" aria-labelledby="headingFor">
                         <div class="accordion-body">
                           <div class="row">
                             <div class="col-12">

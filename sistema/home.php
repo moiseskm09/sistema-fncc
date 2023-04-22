@@ -45,7 +45,7 @@ function saudacao() {
                 <main>
                     <div class="container-fluid">
                         <!--conteudo da tela aqui!-->
-                        <div class="form-row mt-1">
+                        <div class="row">
                             <div class="col-md-12">
                                 <h6><?php echo saudacao(); ?>, <span class="destaque"><?php echo ucwords($NOME); ?></span></h6>
                                 <!--<p>Que bom te ver por aqui! <i class=" fw-bold destaque bi bi-emoji-smile"></i></p>-->
@@ -85,8 +85,8 @@ function saudacao() {
                                         <h4 class="blockquote-footer mt-2" style="font-size: 16px;">Quadro de Avisos</h4>
                                     </div>
                                     <div class="col-12">
-                                        <div class="card mb-2 border-0 card-aviso" style="border-radius:15px;">
-                                            <div class="card-header fw-bold p-0" style="background-color: #e7f1ff; color: #785aa2; font-size: 14px;">
+                                        <div class="card mb-2 border-0 card-aviso">
+                                            <div class="card-header fw-bold">
                                                 <div class="row">
                                                     <div class="col text-center" style="white-space: nowrap;">Aviso</div>
                                                     <div class="col text-center">Data</div>
@@ -107,7 +107,7 @@ function saudacao() {
                                                                 <div class="row">
                                                                     <div class="col col-4" style="white-space: nowrap;"><?php echo $resultadoAviso["aviso"]; ?></div>
                                                                     <div class="col col-4"><?php echo strftime('%d.%m.%Y', strtotime($resultadoAviso["data_aviso"])); ?></div>
-                                                                    <div class="col col-4"><a class="btn btn-sm btn-outline-info" title="Visualizar" href="<?php echo $resultadoAviso["link_aviso"]; ?>">Visualizar</a></div>
+                                                                    <div class="col col-4"><a class="btn btn-sm btn-outline-primary" title="Visualizar" href="<?php echo $resultadoAviso["link_aviso"]; ?>">Visualizar</a></div>
                                                                 </div>
                                                             </li>
                                                             <?php
@@ -133,7 +133,7 @@ function saudacao() {
                                     </div>
                                     <div class="col-12">
                                         <div class="card mb-2 border-0 home-dashboard">
-                                            <div class="card-header fw-bold p-0" style="background-color: #e7f1ff;color: #785aa2;">
+                                            <div class="card-header fw-bold">
                                                 <div class="row">
                                                     <div class="col text-center" style="font-size: 14px;">Dashboard Consultas</div>
                                                 </div>

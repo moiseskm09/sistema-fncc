@@ -18,7 +18,7 @@ if (isset($_GET['nome'])) {
     $numeroTotalLinhas = mysqli_num_rows($sql);
 
     //define o numero de itens por pagina
-    $itens_por_pagina = 12;
+    $itens_por_pagina = 10;
 
     //divide o total de linhas pelo numero maximo de registro e retorna um numero inteiro
     $numero_paginas = ceil($numeroTotalLinhas / $itens_por_pagina);
@@ -74,7 +74,7 @@ if (isset($_GET['nome'])) {
         <main>
           <div class="container-fluid">
             <!--conteudo da tela aqui!-->
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-2 border-bottom">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
               <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                       <span class="breadcrumb-item text-primary">Cadastro</span>
                       <span class="breadcrumb-item active text-success">Cooperativas</span>
@@ -93,7 +93,7 @@ if (isset($_GET['nome'])) {
             </div>
 
             <div class="table-responsive">
-              <table class="table table-borderless table-sm bg-white">
+              <table class="table table-borderless bg-white">
                 <thead class="theadN">
                   <tr>
                     <th>Mátricula</th>
@@ -137,7 +137,7 @@ if (isset($_GET['nome'])) {
                 </tbody>
                 <tfoot class="p-0">
                   <tr>
-                    <td colspan="3"><?php echo "Mostrando " . $numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
+                    <td colspan="2"><?php echo "Mostrando " . $numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
                     <td colspan="4">
                       <nav>
                         <ul class="pagination pagination-sm justify-content-end">

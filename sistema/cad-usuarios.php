@@ -65,7 +65,7 @@ if (isset($_GET['nome'])) {
                 <main>
                     <div class="container-fluid">
                         <!--conteudo da tela aqui!-->
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-1 mb-2 border-bottom">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
                             <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                       <span class="breadcrumb-item text-primary">Cadastro</span>
                       <span class="breadcrumb-item active text-success">Usuários</span>
@@ -83,10 +83,9 @@ if (isset($_GET['nome'])) {
                             </div>
                         </div>
                         
-                        <div class="card mb-3" style="border-radius: 15px;">
-                        <div class="card-body p-0">
+  
                         <div class="table-responsive">
-                            <table class="table table-borderless table-sm">
+                            <table class="table table-borderless">
                                 <thead class="theadN">
                                     <tr>
                                         <th>Código</th>
@@ -130,40 +129,38 @@ if (isset($_GET['nome'])) {
 }
 ?>
                                 </tbody>
-                                <tfoot class="p-0">
-                                    <tr>
-                                        <td colspan="3"><?php echo "Mostrando " . $numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
-                                        <td colspan="4">
-                                            <nav>
-                                                <ul class="pagination pagination-sm justify-content-end">
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="?pagina=1" tabindex="-1"><span aria-hidden="true">&laquo;</span>
-                                                            <span class="sr-only">Primeira</span></a>
-                                                    </li>
-                                                    <?php
-                                                    for ($i = 1; $i < $numero_paginas + 1; $i++) {
-                                                        $estilo = "";
-                                                        if ($pagina == $i) {
-                                                            $estilo = 'active';
-                                                        }
-                                                        ?>
-                                                        <li class="page-item <?php echo $estilo; ?>"><a class="page-link" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+<tfoot class="p-0">
+                  <tr>
+                    <td colspan="3"><?php echo "Mostrando " . $numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
+                    <td colspan="4">
+                      <nav>
+                        <ul class="pagination pagination-sm justify-content-end">
+                          <li class="page-item">
+                            <a class="page-link" href="?pagina=1" tabindex="-1"><span aria-hidden="true">&laquo;</span>
+                              <span class="sr-only">Primeira</span></a>
+                          </li>
+                          <?php
+                          for ($i = 1; $i < $numero_paginas + 1; $i++) {
+                              $estilo = "";
+                              if ($pagina == $i) {
+                                  $estilo = 'active';
+                              }
+                              ?>
+                              <li class="page-item <?php echo $estilo; ?>"><a class="page-link" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a></li>
 <?php }
 ?>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="?pagina=<?php echo $numero_paginas ?>"><span aria-hidden="true">&raquo;</span>
-                                                            <span class="sr-only">Última</span></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-
+                          <li class="page-item">
+                            <a class="page-link" href="?pagina=<?php echo $numero_paginas ?>"><span aria-hidden="true">&raquo;</span>
+                              <span class="sr-only">Última</span></a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </td>
+                  </tr>
+                </tfoot>
                             </table>
                         </div>
-                        </div>
-                        </div>
+
                         <!-- Modal -->
                         <div class="modal fade" id="filtro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">

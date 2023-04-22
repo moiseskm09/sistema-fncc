@@ -207,7 +207,7 @@ $buscaTotais =  mysqli_query($conexao, "SELECT count(cod_consulta) AS total_aten
                 <main>
                     <div class="container-fluid">
                         <!--conteudo da tela aqui!-->
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
                             <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                       <span class="breadcrumb-item text-primary">Estatísticas</span>
                       <span class="breadcrumb-item active text-success">Avaliação</span>
@@ -228,7 +228,7 @@ $buscaTotais =  mysqli_query($conexao, "SELECT count(cod_consulta) AS total_aten
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingOne">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                <span class="destaque fw-bold">Filtro</span>
+                                                <span class="fw-bold">Filtro</span>
                                             </button>
                                         </h2>
                                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -323,7 +323,7 @@ $buscaTotais =  mysqli_query($conexao, "SELECT count(cod_consulta) AS total_aten
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingOne">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDois" aria-expanded="true" aria-controls="collapseDois">
-                                                <span class="destaque fw-bold">Resultado</span>
+                                                <span class="fw-bold">Resultado</span>
                                             </button>
                                         </h2>
                                         <div id="collapseDois" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#collapseDois">

@@ -43,7 +43,7 @@ $buscaJornada = mysqli_query($conexao, "SELECT * FROM jornada");
                 <main>
                     <div class="container-fluid">
                         <!-- header -->
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
                             <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                                 <span class="breadcrumb-item text-primary">Recursos Humanos</span>
                                 <span class="breadcrumb-item active text-success">Jornada de Trabalho</span>

@@ -13,7 +13,7 @@ if($_GET['id']){
     $numeroTotalLinhas = mysqli_num_rows($sql);
 
     //define o numero de itens por pagina
-    $itens_por_pagina =12;
+    $itens_por_pagina =10;
 
     //divide o total de linhas pelo numero maximo de registro e retorna um numero inteiro
     $numero_paginas = ceil($numeroTotalLinhas / $itens_por_pagina);
@@ -75,7 +75,7 @@ if($_GET['id']){
                 <main>
                     <div class="container-fluid">
                        <!--conteudo da tela aqui!-->
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
                             <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                       <span class="breadcrumb-item text-primary">Modelos de Documentos</span>
                       <span class="breadcrumb-item active text-success">Documentos </span>
@@ -92,7 +92,7 @@ if($_GET['id']){
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-borderless table-sm" style= "white-space: nowrap;">
+                            <table class="table table-borderless" style= "white-space: nowrap;">
                                 <thead class="border theadN">
                                     <tr>
                                         <th>Código</th>
@@ -101,7 +101,7 @@ if($_GET['id']){
                                         <th class="text-center">Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody class="border bg-white">
+                                <tbody class="p-0 bg-white">
                                     <?php
                                     if ($numeroLinhas > 0) {
                                         while ($resultadoDoc = mysqli_fetch_assoc($sql_buscaDocs)) {
@@ -125,7 +125,7 @@ if($_GET['id']){
                                     }
                                     ?>
                                 </tbody>
-                                <tfoot>
+                                <tfoot class="p-0">
                                     <tr>
                                         <td colspan="3"><?php echo "Mostrando ".$numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
                                         <td colspan="4">

@@ -81,8 +81,8 @@ WHERE
                 <main>
                     <div class="container-fluid">
                         <!--conteudo da tela aqui!-->
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
-                            <h5 class="titulo">Dados da consulta #<?php echo str_pad($resultadoCH["cod_consulta"], 6, '0', STR_PAD_LEFT); ?></h5>
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
+                            <h5 class="titulo">Dados da consulta <span class="destaque">#<?php echo str_pad($resultadoCH["cod_consulta"], 6, '0', STR_PAD_LEFT); ?></span></h5>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning mb-1" href="listar-consultas.php"><i class="uil uil-angle-left"></i> Voltar</a>
@@ -156,8 +156,8 @@ WHERE
 
                             <div class="row mt-1 mb-3">
                                 <div class="col-lg-9 col-md-9 col-12">
-                                    <div class="card mb-3">
-                                        <div class="card-header p-1 theadN">
+                                    <div class="card mb-3 border">
+                                        <div class="card-header p-1" style="background-color: #e7f1ff; color:#4B49AC;">
                                             <div class="row">
                                                 <div class="col-lg-1 col-md-1 col-3 text-center">
                                                     <img src="../img/foto_perfil/cooperativas/<?php echo $LOGO_COOP; ?>" width="60" height="60" class="bg-white rounded-circle"> 
@@ -175,9 +175,9 @@ WHERE
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-body" style="max-height: 350px; overflow-y: scroll;">
+                                        <div class="card-body" style="max-height: 350px; overflow-y: scroll; border-bottom: 2px solid #4B49AC;">
                                             <div class="row mb-1">
-                                                <div class="alert alert-dark" role="alert">
+                                                <div class="col-12 alert alert-dark" role="alert">
                                                     <p><?php echo $resultadoCH["cons_desc_principal"]; ?></p>
                                                     <hr>
                                                     <p class="mb-0">Por: <?php echo ucwords($resultadoCH["user_abertura"]); ?> <span class="float-end"><?php echo strftime('%d.%m.%Y às %H:%M:%S', strtotime($resultadoCH["data_consulta"])); ?></span></p>
@@ -189,9 +189,9 @@ WHERE
                                                         ?>
                                                         <div class="alert <?php
                                                         if ($resultadoInteracoes["user_grupo"] != 4) {
-                                                            echo "alert-success";
+                                                            echo "alert-success col-12";
                                                         } else {
-                                                            echo "alert-primary";
+                                                            echo "alert-primary col-12";
                                                         }
                                                         ?>" role="alert">
                                                             <p><?php echo $resultadoInteracoes["inter_descricao"]; ?></p>
@@ -204,7 +204,7 @@ WHERE
                                                 ?>
                                             </div>
                                         </div>
-                                        <div class="card-footer theadN p-1">
+                                        <div class="card-footer p-1 bg-transparent border-0">
                                             <div class="row">
                                                 <?php if ($resultadoCH["cons_situacao"] == 5 && $resultadoCH["cons_user"] == $CODIGOUSUARIO) {
                                                     ?>
@@ -266,7 +266,7 @@ WHERE
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" id="headingOne">
                                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                            <span class="destaque fw-bold">Responsável</span>
+                                                            <span class="fw-bold">Responsável</span>
                                                         </button>
                                                     </h2>
                                                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -290,7 +290,7 @@ WHERE
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" id="headingOne">
                                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnexo" aria-expanded="true" aria-controls="collapseAnexo">
-                                                            <span class="destaque fw-bold">Anexos</span>
+                                                            <span class="fw-bold">Anexos</span>
                                                         </button>
                                                     </h2>
                                                     <div id="collapseAnexo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -334,7 +334,7 @@ WHERE
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" id="headingAcao">
                                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAcao" aria-expanded="true" aria-controls="collapseAcao">
-                                                            <span class="destaque fw-bold">Info. Adicionais</span>
+                                                            <span class="fw-bold">Info. Adicionais</span>
                                                         </button>
                                                     </h2>
                                                     <div id="collapseAcao" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#collapseAcao">

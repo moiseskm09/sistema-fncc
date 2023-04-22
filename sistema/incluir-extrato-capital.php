@@ -75,7 +75,7 @@ if(isset($_GET['cooperativaExtF'], $_GET["acumuladoAte"])){
                 <main>
                     <div class="container-fluid">
                        <!--conteudo da tela aqui!-->
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
                             <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                       <span class="breadcrumb-item text-primary">Financeiro</span>
                       <span class="breadcrumb-item active text-success">Inclusão de Extrato de Capital</span>
@@ -93,7 +93,7 @@ if(isset($_GET['cooperativaExtF'], $_GET["acumuladoAte"])){
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-borderless table-sm" style= "white-space: nowrap;">
+                            <table class="table table-borderless" style= "white-space: nowrap;">
                                 <thead class="border theadN">
                                     <tr>
                                         <th>Acumulado Até</th>
@@ -102,7 +102,7 @@ if(isset($_GET['cooperativaExtF'], $_GET["acumuladoAte"])){
                                         <th class="text-center">Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody class="border bg-white">
+                                <tbody class="p-0 bg-white">
                                     <?php
                                     if ($numeroLinhas > 0) {
                                         while ($resultadoExts = mysqli_fetch_assoc($sql_buscaExts)) {
@@ -133,10 +133,10 @@ if(isset($_GET['cooperativaExtF'], $_GET["acumuladoAte"])){
                                     }
                                     ?>
                                 </tbody>
-                                <tfoot>
+                                <tfoot class="p-0">
                                     <tr>
-                                        <td colspan="3"><?php echo "Mostrando ".$numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
-                                        <td colspan="4">
+                                        <td colspan="2"><?php echo "Mostrando ".$numeroLinhas; ?> de <?php echo $numeroTotalLinhas; ?> registros</td>
+                                        <td colspan="2">
                                             <nav>
                                     <ul class="pagination pagination-sm justify-content-end">
                                         <li class="page-item ">
