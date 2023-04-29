@@ -142,9 +142,13 @@ WHERE
                                                             <option class="text-dark" value="<?php echo $situacao["cod_situacao"]; ?>" selected><?php echo ucwords($situacao["situacao"]); ?></option>  
                                                             <?php
                                                         } else {
+                                                            if($situacao["situacao"] == "Concluído"){
+                                                                
+                                                            }else{
                                                             ?>
                                                             <option class="text-dark" value="<?php echo $situacao["cod_situacao"]; ?>"><?php echo ucwords($situacao["situacao"]); ?></option>   
                                                             <?php
+                                                            }
                                                         }
                                                     }
                                                 } else {
