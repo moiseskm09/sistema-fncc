@@ -58,7 +58,7 @@ function getResponse() {
     $('#loadingModal_content').html('Processando...');
     $('#loadingModal').modal('show');
     //Envia a requisicao e espera a resposta
-    $.post("reenviar.php")
+    $.post("")
             .done(function () {
                 //Se nao houver falha na resposta, preenche o modal
                 $('#loader').removeClass('loader');
@@ -83,5 +83,5 @@ function resetModal() {
         $('#loader').addClass('loader');
         $('#loadingModal_label').html('<span class="glyphicon glyphicon-refresh"></span>Aguarde...');
         $('#loadingModal').modal('hide');
-    }, 3000);
+    }, 90000);
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/04/2023 às 12:49
+-- Tempo de geração: 29/04/2023 às 13:57
 -- Versão do servidor: 10.4.27-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `avisos` (
   `data_aviso` date NOT NULL,
   `link_aviso` varchar(50) NOT NULL,
   PRIMARY KEY (`cod_aviso`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `avisos`
@@ -88,7 +88,21 @@ INSERT INTO `avisos` (`cod_aviso`, `coop_aviso`, `aviso`, `data_aviso`, `link_av
 (2, 57, 'Nova Consulta', '2023-02-24', 'listar-consultas.php'),
 (3, 57, 'Nova Consulta', '2023-02-28', 'listar-consultas.php'),
 (4, 57, 'Rel. Denúncia', '2023-03-01', 'rel-canaldenuncias.php'),
-(5, 57, 'Nova Consulta', '2023-03-10', 'listar-consultas.php');
+(5, 57, 'Nova Consulta', '2023-03-10', 'listar-consultas.php'),
+(6, 57, 'Nova Consulta', '2023-04-27', 'listar-consultas.php'),
+(7, 57, 'Nova Consulta', '2023-04-27', 'listar-consultas.php'),
+(8, 57, 'Nova Consulta', '2023-04-27', 'listar-consultas.php'),
+(9, 57, 'Nova Consulta', '2023-04-27', 'listar-consultas.php'),
+(10, 57, 'Nova Consulta', '2023-04-27', 'listar-consultas.php'),
+(11, 57, 'Nova Consulta', '2023-04-27', 'listar-consultas.php'),
+(12, 57, 'Nova Consulta', '2023-04-27', 'listar-consultas.php'),
+(13, 57, 'Nova Consulta', '2023-04-27', 'listar-consultas.php'),
+(14, 57, 'Nova Consulta', '2023-04-28', 'listar-consultas.php'),
+(15, 57, 'Nova Consulta', '2023-04-28', 'listar-consultas.php'),
+(16, 57, 'Nova Consulta', '2023-04-28', 'listar-consultas.php'),
+(17, 57, 'Nova Consulta', '2023-04-28', 'listar-consultas.php'),
+(18, 57, 'Nova Consulta', '2023-04-28', 'listar-consultas.php'),
+(19, 57, 'Nova Consulta', '2023-04-28', 'listar-consultas.php');
 
 -- --------------------------------------------------------
 
@@ -364,14 +378,27 @@ CREATE TABLE IF NOT EXISTS `consultas` (
   `data_previsao` datetime DEFAULT NULL,
   `data_conclusao` datetime DEFAULT NULL,
   PRIMARY KEY (`cod_consulta`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `consultas`
 --
 
 INSERT INTO `consultas` (`cod_consulta`, `cons_coop`, `cons_user`, `cons_grupo`, `cons_urgencia`, `cons_visibilidade`, `cons_assunto`, `cons_desc_principal`, `data_consulta`, `cons_situacao`, `user_responsavel`, `data_previsao`, `data_conclusao`) VALUES
-(1, 57, 1, 3, 'baixa', 'eu', 'Teste', 'Teste', '2023-03-09 22:26:06', 2, 1, '2023-03-12 01:26:06', NULL);
+(1, 57, 1, 3, 'baixa', 'eu', 'Teste', 'Teste', '2023-03-09 22:26:06', 3, 1, '2023-03-12 01:26:06', NULL),
+(2, 57, 1, 3, 'baixa', 'eu', 'Teste de email', 'Teste de email', '2023-04-27 16:10:10', 2, 1, '2023-04-29 16:10:10', NULL),
+(3, 57, 1, 3, 'baixa', 'eu', 'oi oi moi', 'nijisdjisb sfjgjkbf fdsjghfdjghfd ', '2023-04-27 16:11:01', 2, 1, '2023-04-29 16:11:01', NULL),
+(4, 57, 1, 3, 'baixa', 'eu', 'dfdfd', 'dgfgdghyt', '2023-04-27 16:13:55', 4, 1, '2023-04-29 16:13:55', NULL),
+(5, 57, 1, 3, 'baixa', 'eu', 'dfdfdf', 'dtreyrt', '2023-04-27 16:14:30', 1, 0, '2023-04-29 16:14:30', NULL),
+(6, 57, 1, 3, 'baixa', 'eu', 'Teste de envio de emaukl 2', 'asdfsadv dgsfd dggfdgdfgsd', '2023-04-27 16:14:59', 1, 0, '2023-04-29 16:14:59', NULL),
+(7, 57, 1, 3, 'alta', 'minha_coop', 'Teste de envio de email pelo app', 'teste de envio de email bonito', '2023-04-27 16:16:03', 1, 0, '2023-04-29 16:16:03', NULL),
+(8, 57, 1, 3, 'baixa', 'eu', 'Teste de envio de email tabela', 'Teste de envio de email se debug', '2023-04-27 16:18:59', 1, 0, '2023-04-29 16:18:59', NULL),
+(9, 57, 1, 3, 'baixa', 'eu', 'Teste de envio de email', 'Teste de envio de email padrão', '2023-04-28 09:50:43', 1, 1, '2023-04-30 09:50:43', NULL),
+(10, 57, 1, 3, 'baixa', 'eu', 'Teste de email abertura', 'Teste de email abertura', '2023-04-28 09:53:55', 1, 0, '2023-04-30 09:53:55', NULL),
+(11, 57, 1, 3, 'baixa', 'eu', 'Teste', 'Teste', '2023-04-28 09:55:08', 1, 0, '2023-04-30 09:55:08', NULL),
+(12, 57, 1, 3, 'baixa', 'eu', 'Teste de envio de emaikl', 'teste', '2023-04-28 15:15:46', 1, 0, '2023-04-30 15:15:46', NULL),
+(13, 57, 1, 3, 'baixa', 'eu', 'ddd', 'dddd', '2023-04-28 15:16:30', 1, 0, '2023-04-30 15:16:30', NULL),
+(14, 57, 1, 3, 'baixa', 'eu', 'Teste', 'Teste', '2023-04-28 15:17:38', 1, 0, '2023-04-30 15:17:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -387,14 +414,29 @@ CREATE TABLE IF NOT EXISTS `consulta_interacoes` (
   `inter_descricao` text NOT NULL,
   `inter_data` datetime NOT NULL,
   PRIMARY KEY (`cod_interacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `consulta_interacoes`
 --
 
 INSERT INTO `consulta_interacoes` (`cod_interacao`, `inter_user`, `inter_cons`, `inter_descricao`, `inter_data`) VALUES
-(1, 1, 1, 'Teste', '2023-03-10 01:26:57');
+(1, 1, 1, 'Teste', '2023-03-10 01:26:57'),
+(2, 1, 1, 't', '2023-04-22 18:31:22'),
+(3, 1, 1, 'teste', '2023-04-22 18:32:40'),
+(4, 1, 9, 'Teste', '2023-04-28 09:56:59'),
+(5, 1, 9, 'Teste alteração', '2023-04-28 10:05:28'),
+(6, 1, 9, 'Teste alteração 2', '2023-04-28 10:06:20'),
+(7, 1, 2, 'andamento', '2023-04-28 10:11:19'),
+(8, 1, 2, 'Teste', '2023-04-28 10:12:33'),
+(9, 1, 2, 'finalizado', '2023-04-28 10:30:53'),
+(10, 1, 2, 'Não era pra ter finalizado', '2023-04-28 10:31:51'),
+(11, 1, 2, 'ddd', '2023-04-28 10:42:29'),
+(12, 1, 2, 'Teste', '2023-04-28 10:44:26'),
+(13, 1, 2, 'teste', '2023-04-28 10:48:04'),
+(14, 1, 2, 'Teste de', '2023-04-28 10:50:07'),
+(15, 1, 3, 'teste', '2023-04-28 15:14:00'),
+(16, 1, 4, 'Teste', '2023-04-28 15:18:45');
 
 -- --------------------------------------------------------
 
@@ -491,62 +533,62 @@ CREATE TABLE IF NOT EXISTS `cooperativas` (
 --
 
 INSERT INTO `cooperativas` (`cod_coop`, `coop_matricula`, `coop_razao`, `cooperativa`, `coop_cnpj`, `coop_categoria`, `coop_nire`, `coop_im`, `coop_cep`, `coop_endereco`, `coop_numero_casa`, `coop_complemento`, `coop_bairro`, `coop_cidade`, `coop_estado`, `coop_telefone`, `coop_whatsapp`, `coop_email`, `coop_sistema`, `coop_data_abertura`, `logo_coop`, `coop_status`, `coop_data_cadastro`, `coop_dados_atualizados`) VALUES
-(1, '1', 'Cooperativa De Crédito Cogem', 'COGEM', '44.401.800/0001-90', 'Capital e Empréstimo', '35400010711', '000.000.000.000', '09750-730', 'Rua José Versolato', 111, 'Torre B, salas 2607 / 2608', 'Centro', 'São Bernardo Do Campo', 'SP', '(11) 3080-3942', '(11) 9 3080-3942', 'wanderson.oliveira@cogem.com.br', 'Prodaf', '1974-09-16', 'logo_fncc.png', 1, '2022-12-22', 0),
-(2, '6', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS SERVIDORES DA FEDERACAO DO COMERCIO, SESC E SENAC DE SAO PAULO', 'COOP FECOM/ SESC/ SENAC', '62.928.320/0001-63', '3', '35400002115', '000.000.000.000', '01029-000', 'Rua Florêncio de Abreu', 305, '', 'Centro', 'São Paulo', 'SP', '(11) 3311-8746', '(00) 0 0000-0000', 'juvenal.francisco@florenciodea', 'Prodaf', '1970-10-09', 'logo_fncc.png', 1, '2022-12-22', 1),
-(3, '4', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS EMPREGADOS DO GRUPO FEMSA BRASIL', 'COOPERFEMSA', '43.488.782/0001-62', '3', '35400003987', '000.000.000.000', '04675-085', 'Avenida Engenheiro Alberto de Zagottis', 352, '', 'Jardim Taquaral', 'São Paulo', 'SP', '(11) 2102-5541', '(00) 0 0000-0000', 'silvana.breda@kof.com.mx', 'Prodaf', '1972-11-14', 'logo_fncc.png', 1, '2022-12-22', 1),
+(1, '1', 'COOPERATIVA DE CRÉDITO COGEM', 'COGEM', '44.401.800/0001-90', 'Capital e Empréstimo', '35400010711', '000.000.000.000', '09750-730', 'Rua José Versolato', 111, 'Torre B, salas 2607 / 2608', 'Centro', 'São Bernardo Do Campo', 'SP', '(11) 3080-3942', '(11) 9 3080-3942', 'wanderson.oliveira@cogem.com.br', 'Prodaf', '1974-09-16', 'cogem.webp', 1, '2022-12-22', 1),
+(2, '6', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS SERVIDORES DA FEDERACAO DO COMERCIO, SESC E SENAC DE SAO PAULO', 'COOP FECOM/ SESC/ SENAC', '62.928.320/0001-63', '3', '35400002115', '000.000.000.000', '01029-000', 'Rua Florêncio de Abreu', 305, '', 'Centro', 'São Paulo', 'SP', '(11) 3311-8746', '(00) 0 0000-0000', 'juvenal.francisco@florenciodea', 'Prodaf', '1970-10-09', 'Cooper-SESC.webp', 1, '2022-12-22', 1),
+(3, '4', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS EMPREGADOS DO GRUPO FEMSA BRASIL', 'COOPERFEMSA', '43.488.782/0001-62', '3', '35400003987', '000.000.000.000', '04675-085', 'Avenida Engenheiro Alberto de Zagottis', 352, '', 'Jardim Taquaral', 'São Paulo', 'SP', '(11) 2102-5541', '(00) 0 0000-0000', 'silvana.breda@kof.com.mx', 'Prodaf', '1972-11-14', 'cooperfemsa.webp', 1, '2022-12-22', 1),
 (4, '9', 'COOPERATIVA DE ECON E CREDITO MUTUO DOS COLAB DA SG INDÚSTRIA E COMERCIO DE MATERIAIS DE CONSTRUÇÃO, VIDROS E AFINS.', 'CREDI SG', '61.039.038/0001-62', '3', '35400021187', '000.000.000.000', '01139-000', '', 0, NULL, '', 'São Paulo', 'SP', '(11) 3392-3499', '(00) 0 0000-0000', 'paulo.dias@credisg.com.br', 'Prodaf', '1967-04-24', 'logo_fncc.png', 0, '2022-12-22', 0),
-(5, '12', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS FUNCIONARIOS DA ERICSSON', 'COOPERICSSON', '48.718.183/0001-01', '3', '35400001186', '000.000.000.000', '01140-060', 'Avenida Nicolas Boer', 399, '11º andar', 'Parque Industrial Tomas Edson', 'São Paulo', 'SP', '(11) 2224-1312', '(00) 0 0000-0000', 'andre.brone@coopericsson.com.b', 'Prodaf', '1982-02-12', 'logo_fncc.png', 1, '2022-12-22', 1),
-(6, '13', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS FUNCIONARIOS DA CARGILL', 'COOPCARGILL', '68.228.006/0001-54', '2', '000.000.000.000', '000.000.000.000', '04711-130', 'Avenida Doutor Chucri Zaidan', 1240, '6º andar', 'Vila São Francisco (Zona Sul)', 'São Paulo', 'SP', '(11) 5099-2127', '(00) 0 0000-0000', 'Eliane_Molina@cargill.com', 'Prodaf', '1992-08-06', 'logo_fncc.png', 1, '2022-12-22', 1),
-(7, '3', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS EMPREGADOS DA RECKITT BENCKISER', 'COOP RB', '44.223.196/0001-59', '3', '3540003863', '000.000.000.000', '05577-900', 'Rodovia Raposo Tavares', 8015, 'KM 18', 'Jardim Cambara', 'São Paulo', 'SP', '(11) 3783-7074', '(00) 0 0000-0000', 'rosa.storoli@reckittbenckiser', 'Prodaf', '1974-01-17', 'logo_fncc.png', 1, '2022-12-22', 1),
-(8, '8', 'COOPERATIVA DE ECON. E CREDITO MUTUO DO GRUPO BASF', 'CREDIBASF', '74.244.344/0001-82', '3', '35400024160', '000.000.000.000', '04794-000', 'Avenida das Nações Unidas', 14171, '17º andar – Torre C – Crystal ', 'Vila Gertrudes', 'São Paulo', 'SP', '(11) 4347-1185', '(00) 0 0000-0000', 'priscila.tomaz@basf.com', 'SaveMais', '1994-01-10', 'logo_fncc.png', 1, '2022-12-22', 1),
-(9, '5', 'COOPERATIVA DE CAPITAL E EMPRESTIMO COOPERMULTICRED - COOPERMC', 'COOPERMC', '51.010.858/0001-78', '3', '3500001356', '000.000.000.000', '07190-904', 'Avenida Monteiro Lobato', 3411, 'HITACHI ENERGY', 'São Roque', 'Guarulhos', 'SP', '(11) 2464-8277', '(00) 0 0000-0000', 'marcos.silva@br.abb.com', 'Prodaf', '1982-08-25', 'logo_fncc.png', 1, '2022-12-22', 1),
+(5, '12', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS FUNCIONARIOS DA ERICSSON', 'COOPERICSSON', '48.718.183/0001-01', '3', '35400001186', '000.000.000.000', '01140-060', 'Avenida Nicolas Boer', 399, '11º andar', 'Parque Industrial Tomas Edson', 'São Paulo', 'SP', '(11) 2224-1312', '(00) 0 0000-0000', 'andre.brone@coopericsson.com.b', 'Prodaf', '1982-02-12', 'cooperativa-ericsson.webp', 1, '2022-12-22', 1),
+(6, '13', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS FUNCIONARIOS DA CARGILL', 'COOPCARGILL', '68.228.006/0001-54', '2', '000.000.000.000', '000.000.000.000', '04711-130', 'Avenida Doutor Chucri Zaidan', 1240, '6º andar', 'Vila São Francisco (Zona Sul)', 'São Paulo', 'SP', '(11) 5099-2127', '(00) 0 0000-0000', 'Eliane_Molina@cargill.com', 'Prodaf', '1992-08-06', 'CoopCargill.webp', 1, '2022-12-22', 1),
+(7, '3', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS EMPREGADOS DA RECKITT BENCKISER', 'COOP RB', '44.223.196/0001-59', '3', '3540003863', '000.000.000.000', '05577-900', 'Rodovia Raposo Tavares', 8015, 'KM 18', 'Jardim Cambara', 'São Paulo', 'SP', '(11) 3783-7074', '(00) 0 0000-0000', 'rosa.storoli@reckittbenckiser', 'Prodaf', '1974-01-17', 'CoopRB.webp', 1, '2022-12-22', 1),
+(8, '8', 'COOPERATIVA DE ECON. E CREDITO MUTUO DO GRUPO BASF', 'CREDIBASF', '74.244.344/0001-82', '3', '35400024160', '000.000.000.000', '04794-000', 'Avenida das Nações Unidas', 14171, '17º andar – Torre C – Crystal ', 'Vila Gertrudes', 'São Paulo', 'SP', '(11) 4347-1185', '(00) 0 0000-0000', 'priscila.tomaz@basf.com', 'SaveMais', '1994-01-10', 'crediBasf.webp', 1, '2022-12-22', 1),
+(9, '5', 'COOPERATIVA DE CAPITAL E EMPRESTIMO COOPERMULTICRED - COOPERMC', 'COOPERMC', '51.010.858/0001-78', '3', '3500001356', '000.000.000.000', '07190-904', 'Avenida Monteiro Lobato', 3411, 'HITACHI ENERGY', 'São Roque', 'Guarulhos', 'SP', '(11) 2464-8277', '(00) 0 0000-0000', 'marcos.silva@br.abb.com', 'Prodaf', '1982-08-25', 'COOPERMC.webp', 1, '2022-12-22', 1),
 (10, '11', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS EMPREGADOS DO GRUPO SCHAEFFLER', 'COOP SCHAEFFLER', '62.284.385/0001-13', '3', '35400003529', '000.000.000.000', '18087-101', '', 0, NULL, '', 'Sorocaba', 'SP', '(15) 3335-1979', '(00) 0 0000-0000', 'eliane@coopercreds.com.br', 'Prodaf', '1968-12-06', 'logo_fncc.png', 0, '2022-12-22', 0),
-(11, '7', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS SERV. MUNICIP. DE SAO JOAO DA BOA VISTA', 'CREDIVISTA', '74.248.949/0001-41', '2', '35400024151', '000.000.000.000', '13870-020', 'Rua Senador Saraiva', 59, '', 'Centro', 'São João da Boa Vista', 'SP', '(19) 3634-6262', '(00) 0 0000-0000', 'delvo@credivista.com.br', 'Próprio', '1994-01-05', 'logo_fncc.png', 1, '2022-12-22', 1),
-(12, '10', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS DA JOHNSON & JOHNSON', 'COOPERJOHNSON', '45.691.128/0001-87', '3', '35400010371', '000.000.000.000', '12240-907', 'Rodovia Presidente Dutra', 0, 'KM 154', 'Jardim das Indústrias', 'São José dos Campos', 'SP', '(12) 3932-3299', '(00) 0 0000-0000', 'ivo.lara@cooperjohnson.com.br', 'Fácil', '1973-07-30', 'logo_fncc.png', 1, '2022-12-22', 1),
-(13, '16', 'CECM DOS FUNCIONÁRIOS DA ABRIL', 'COOPERABRIL', '43.438.662/0001-50', '3', '35400003588', '000.000.000.000', '05050-090', 'Rua Roma', 620, 'cj 182b', 'Lapa', 'São Paulo', 'SP', '(11) 3990-1753', '(00) 0 0000-0000', 'TatiMaximo@hotmail.com', 'Prodaf', '1972-10-09', 'logo_fncc.png', 1, '2022-12-22', 1),
-(14, '17', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS SERVIDORES DA UNESP', 'COOPUNESP', '69.136.075/0001-09', '2', '000.000.000.000', '000.000.000.000', '13506-900', 'Avenida 24 A', 1515, '', 'Jardim Bela Vista', 'Rio Claro', 'SP', '(19) 3523-4962', '(00) 0 0000-0000', 'coopunesp.contabilidade@gmail.com', 'Fácil', '1992-11-23', 'logo_fncc.png', 1, '2022-12-22', 1),
-(15, '18', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS FUNCIONARIOS DA OWENS CORNING FIBERGLAS AMERICA DO SUL', 'COOPOWENS', '48.172.860/0001-39', '2', '000.000.000.000', '000.000.000.000', '13505-900', 'Avenida Brasil', 2567, '', 'Distrito Industrial', 'Rio Claro', 'SP', '(19) 3535-9442', '(00) 0 0000-0000', 'cooperativa.owens@gmail.com', 'Fácil', '1976-08-25', 'logo_fncc.png', 1, '2022-12-22', 1),
-(16, '19', 'COOPERATIVA DE CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA RICLAN', 'COOPRICLAN', '06.077.760/0001-83', '3', '000.000.000.000', '000.000.000.000', '13501-900', 'Avenida Presidente Kennedy', 754, '', 'Município', 'Rio Claro', 'SP', '(19) 3526-8212', '(00) 0 0000-0000', 'contabilidade@coopriclan.com.b', 'Fácil', '2003-12-22', 'logo_fncc.png', 1, '2022-12-22', 1),
-(17, '20', 'CECM DOS SERVIDORES DA FACULDADE DE ENGENHARIA DE ILHA SOLTEIRA', 'COOPERFEIS', '96.409.263/0001-28', 'Capital e Empréstimo', '35400023201', '000.000.000.000', '15385-001', 'AVENIDA BRASIL', 56, '', 'CENTRO', 'ILHA SOLTEIRA', 'SP', '(18) 3742-3117', '(00) 0 0000-0000', 'cooper.feis@unesp.br', 'Fácil', '1995-10-31', 'logo_fncc.png', 1, '2022-12-22', 1),
-(18, '21', 'COOPERATIVA ECMFG OWENS-ILLINOIS DO BRASIL', 'COOPOIB', '43.182.278/0001-30', '3', '35400010533', '000.000.000.000', '03822-900', 'Avenida Olavo Egídio de Souza Aranha', 2270, '', 'Parque Císper', 'São Paulo', 'SP', '(11) 2542-8137', '(00) 0 0000-0000', 'cooperativa.sp@o-i.com', 'Fácil', '1972-02-07', 'logo_fncc.png', 1, '2022-12-22', 1),
-(19, '23', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA BOMBRIL', 'COOPERBOMBRIL', '57.038.408/0001-70', '3', '3540001052-5', '000.000.000.000', '09696-000', 'Via Anchieta', 0, 'AV MARGINAL DIREITA', 'Rudge Ramos', 'São Bernardo do Campo', 'SP', '(11) 4366-1394', '(00) 0 0000-0000', 'arvelina.nicodemos@cooperbombr', 'Prodaf', '1967-03-15', 'logo_fncc.png', 1, '2022-12-22', 1),
+(11, '7', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS SERV. MUNICIP. DE SAO JOAO DA BOA VISTA', 'CREDIVISTA', '74.248.949/0001-41', '2', '35400024151', '000.000.000.000', '13870-020', 'Rua Senador Saraiva', 59, '', 'Centro', 'São João da Boa Vista', 'SP', '(19) 3634-6262', '(00) 0 0000-0000', 'delvo@credivista.com.br', 'Próprio', '1994-01-05', 'cocredivista.webp', 1, '2022-12-22', 1),
+(12, '10', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS DA JOHNSON & JOHNSON', 'COOPERJOHNSON', '45.691.128/0001-87', '3', '35400010371', '000.000.000.000', '12240-907', 'Rodovia Presidente Dutra', 0, 'KM 154', 'Jardim das Indústrias', 'São José dos Campos', 'SP', '(12) 3932-3299', '(00) 0 0000-0000', 'ivo.lara@cooperjohnson.com.br', 'Fácil', '1973-07-30', 'cooperjohnson.webp', 1, '2022-12-22', 1),
+(13, '16', 'CECM DOS FUNCIONÁRIOS DA ABRIL', 'COOPERABRIL', '43.438.662/0001-50', '3', '35400003588', '000.000.000.000', '05050-090', 'Rua Roma', 620, 'cj 182b', 'Lapa', 'São Paulo', 'SP', '(11) 3990-1753', '(00) 0 0000-0000', 'TatiMaximo@hotmail.com', 'Prodaf', '1972-10-09', 'coopabril.webp', 1, '2022-12-22', 1),
+(14, '17', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS SERVIDORES DA UNESP', 'COOPUNESP', '69.136.075/0001-09', '2', '000.000.000.000', '000.000.000.000', '13506-900', 'Avenida 24 A', 1515, '', 'Jardim Bela Vista', 'Rio Claro', 'SP', '(19) 3523-4962', '(00) 0 0000-0000', 'coopunesp.contabilidade@gmail.com', 'Fácil', '1992-11-23', 'coopunesp.webp', 1, '2022-12-22', 1),
+(15, '18', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS FUNCIONARIOS DA OWENS CORNING FIBERGLAS AMERICA DO SUL', 'COOPOWENS', '48.172.860/0001-39', '2', '000.000.000.000', '000.000.000.000', '13505-900', 'Avenida Brasil', 2567, '', 'Distrito Industrial', 'Rio Claro', 'SP', '(19) 3535-9442', '(00) 0 0000-0000', 'cooperativa.owens@gmail.com', 'Fácil', '1976-08-25', 'CoopOwens.webp', 1, '2022-12-22', 1),
+(16, '19', 'COOPERATIVA DE CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA RICLAN', 'COOPRICLAN', '06.077.760/0001-83', '3', '000.000.000.000', '000.000.000.000', '13501-900', 'Avenida Presidente Kennedy', 754, '', 'Município', 'Rio Claro', 'SP', '(19) 3526-8212', '(00) 0 0000-0000', 'contabilidade@coopriclan.com.b', 'Fácil', '2003-12-22', 'CoopPRICLAN.webp', 1, '2022-12-22', 1),
+(17, '20', 'CECM DOS SERVIDORES DA FACULDADE DE ENGENHARIA DE ILHA SOLTEIRA', 'COOPERFEIS', '96.409.263/0001-28', 'Capital e Empréstimo', '35400023201', '000.000.000.000', '15385-001', 'AVENIDA BRASIL', 56, '', 'CENTRO', 'ILHA SOLTEIRA', 'SP', '(18) 3742-3117', '(00) 0 0000-0000', 'cooper.feis@unesp.br', 'Fácil', '1995-10-31', 'COOPERFEIS.webp', 1, '2022-12-22', 1),
+(18, '21', 'COOPERATIVA ECMFG OWENS-ILLINOIS DO BRASIL', 'COOPOIB', '43.182.278/0001-30', '3', '35400010533', '000.000.000.000', '03822-900', 'Avenida Olavo Egídio de Souza Aranha', 2270, '', 'Parque Císper', 'São Paulo', 'SP', '(11) 2542-8137', '(00) 0 0000-0000', 'cooperativa.sp@o-i.com', 'Fácil', '1972-02-07', 'COOP-OIB.webp', 1, '2022-12-22', 1),
+(19, '23', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA BOMBRIL', 'COOPERBOMBRIL', '57.038.408/0001-70', '3', '3540001052-5', '000.000.000.000', '09696-000', 'Via Anchieta', 0, 'AV MARGINAL DIREITA', 'Rudge Ramos', 'São Bernardo do Campo', 'SP', '(11) 4366-1394', '(00) 0 0000-0000', 'arvelina.nicodemos@cooperbombr', 'Prodaf', '1967-03-15', 'CooperBombril.webp', 1, '2022-12-22', 1),
 (20, '24', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA ASTRAZENECA DO BRASIL', 'COOPAZ', '01.288.797/0001-37', '3', '35400041072', '000.000.000.000', '06707-000', '', 0, NULL, '', 'Cotia', 'SP', '(11) 3737-4516', '(00) 0 0000-0000', 'marcia.araujofernandes@astraze', 'Prodaf', '1996-06-28', 'logo_fncc.png', 0, '2022-12-22', 0),
-(21, '25', 'COOPERATIVA DE CRÉDITO DOS FUNCIONÁRIOS DO GRUPO PPG', 'COOPERPPG', '03.657.230/0001-16', '3', '35400061651', '000.000.000.000', '13180-480', 'Rodovia Anhangüera', 0, 'KM 106,5', 'Jardim São Judas Tadeu (Nova V', 'Sumaré', 'SP', '(19) 2103-6029', '(00) 0 0000-0000', 'cooperppg2018@gmail.com', 'Fácil', '2000-02-08', 'logo_fncc.png', 1, '2022-12-22', 1),
-(22, '26', 'COOPERATIVA DE ECONOMIA E CRÉDITO MUTUO DOS EMPREGADOS DAS EMPRESAS PLASCAR', 'COOPERPLASCAR', '17.411.307/0001-88', '3', '35400075554', '000.000.000.000', '13213-000', 'Rua Wilhelm Winter', 300, '', 'Distrito Industrial', 'Jundiaí', 'SP', '(11) 2729-4219', '(00) 0 0000-0000', 'cooperplascar@gmail.com', 'Fácil', '1983-03-02', 'logo_fncc.png', 1, '2022-12-22', 1),
-(23, '27', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS PÚBLICOS MUNICIPAIS DE ITAPIRA - CREDITA', 'CREDITA', '02.115.870/0001-31', '2', '35400045957', '000.000.000.000', '13970-005', 'Praça Bernardino de Campos', 0, 'box 9', 'Centro', 'Itapira', 'SP', '(19) 3863-7594', '(00) 0 0000-0000', 'camila.silvestre@coopcredita.c', 'Prodaf', '1997-09-02', 'logo_fncc.png', 1, '2022-12-22', 1),
-(24, '28', 'Cooperativa De Crédito Dos Empregados Do Grupo Akzo Nobel Brasil', 'COOP AKZONOBEL', '57.996.878/0001-46', '3', '35400017627', '000.000.000.000', '09370-901', 'Avenida Papa João XXIII', 0, NULL, 'Vila Carlina', 'Mauá', 'SP', '(11) 2148-2238', '(00) 0 0000-0000', 'ANGELA.FARIA@AKZONOBEL.COM', 'Fácil', '1987-09-15', 'logo_fncc.png', 1, '2022-12-22', 0),
-(25, '29', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS EMPREGADOS DA JOYSON SAFETY SYSTEMS', 'COOPERJSS', '47.944.277/0001-36', '3', '35400010134', '000.000.000.000', '13212-240', 'Rodovia Dom Gabriel Paulino Bueno Couto', 0, 'km 66', 'Medeiros', 'Jundiaí', 'SP', '(11) 4585-3710', '(00) 0 0000-0000', 'cooptakatapetri@uol.com.br', 'Fácil', '1976-07-21', 'logo_fncc.png', 1, '2022-12-22', 1),
-(26, '30', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS DO GRUPO TELEFÔNICA', 'COOPERTEL', '57.598.120/0001-50', '3', '35400010592', '000.000.000.000', '01310-000', 'Avenida Paulista', 352, '2º andar - cj 21', 'Bela Vista', 'São Paulo', 'SP', '(11) 3016-9860', '(00) 0 0000-0000', 'clodoaldo@coopertel.org.br', 'Fácil', '1969-10-02', 'logo_fncc.png', 1, '2022-12-22', 1),
-(27, '31', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO ALIANÇA', 'COOPERNITRO', '52.935.442/0001-23', '3', '35400001640', '000.000.000.000', '08090-000', 'Avenida Doutor José Artur Nova', 951, '', 'Parque Paulistano', 'São Paulo', 'SP', '(11) 2246-3357', '(00) 0 0000-0000', 'claudionolasco@coopernitro.com', 'Fácil', '1983-09-28', 'logo_fncc.png', 1, '2022-12-22', 1),
-(28, '32', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA FACULDADE DE CIÊNCIAS AGRÁRIAS E VETERINÁRIAS CAMPUS JABOTICABAL/SP', 'COOPERFAC', '57.259.525/0001-63', '2', '35400017473', '000.000.000.000', '14887-232', 'Avenida Julio Cesar de Marco', 0, '', 'Jardim São Marcos II', 'Jaboticabal', 'SP', '(16) 3202-7672', '(00) 0 0000-0000', 'j.catelani@unesp.br', 'Fácil', '1987-04-01', 'logo_fncc.png', 1, '2022-12-22', 1),
-(29, '33', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA INTERNATIONAL INDÚSTRIA AUTOMOTIVA DA AMÉRICA DO SUL', 'COOP MWM', '59.620.708/0001-98', '3', '35400017899', '000.000.000.000', '04795-915', 'Avenida das Nações Unidas', 22002, '', 'Vila Almeida', 'São Paulo', 'SP', '(11) 5687-1901', '(00) 0 0000-0000', 'geani.ramos@navistar.com.br', 'Fácil', '1988-10-20', 'logo_fncc.png', 1, '2022-12-22', 1),
-(30, '34', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS COLABORADORES DA CEBRACE', 'CREDICEBRACE', '53.184.438/0001-33', '3', '000.000.000.000', '000.000.000.000', '12311-900', 'Avenida do Cristal', 540, '', 'Parque Califórnia', 'Jacareí', 'SP', '(12) 2127-9066', '(00) 0 0000-0000', 'marcos.corra@ext.cebrace.com.b', 'Fácil', '1984-01-28', 'logo_fncc.png', 1, '2022-12-22', 1),
-(31, '35', 'COOPERATIVA DE CRÉDITO MÚTUO DOS EMPREGADOS EM INSTITUIÇÕES FINANCEIRAS NAS REGIÕES DE SÃO PAULO E CAMPINAS', 'CREDISCOOP', '03.674.133/0001-31', '2', '35400061880', '000.000.000.000', '01010-010', 'Praça Antônio Prado', 33, '18º Andar conj. 1801', 'Centro', 'São Paulo', 'SP', '(11) 3242-3341', '(00) 0 0000-0000', 'luizbernardo@crediscoop.com.br', 'Fácil', '2000-02-23', 'logo_fncc.png', 1, '2022-12-22', 1),
-(32, '36', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS DA SAINT-GOBAIN DO BRASIL PRODUTOS INDUSTRIAIS E PARA CONSTRUÇÃO DIVISÃO VIDRO PLANO', 'COOPER-SEKURIT', '48.140.925/0001-64', '3', '35400002018', '000.000.000.000', '09390-000', 'Rua Rui Barbosa', 346, '', 'Centro', 'Mauá', 'SP', '(11) 4544-3161', '(00) 0 0000-0000', 'regina.martins@coopersekurit.c', 'Fácil', '1976-11-11', 'logo_fncc.png', 1, '2022-12-22', 1),
-(33, '37', 'COOPERATIVA DE CRÉDITO MÚTUO DOS SERVIDORES DA SEGURANÇA PÚBLICA DE SÃO PAULO - CREDIAFAM', 'CREDIAFAM', '04.804.353/0001-03', '3', '35300022807', '000.000.000.000', '02036-011', 'Rua Doutor Gabriel Piza', 425, '2º andar ', 'Santana', 'São Paulo', 'SP', '(11) 3328-1505', '(00) 0 0000-0000', 'aburbano@afam.com.br', 'Fácil', '2001-11-22', 'logo_fncc.png', 1, '2022-12-22', 1),
-(34, '38', 'COOPERATIVA DE CRÉDITO MÚTUO DOS SERVIDORES DA ASSEMBLEIA LEGISLATIVA DO ESTADO DE SÃO PAULO', 'COOPERALESP', '04.791.645/0001-40', '3', '35400068957', '000.000.000.000', '04097-900', 'Avenida Pedro Álvares Cabral', 201, 'Subsolo, Sala 08, Palácio 9 de', 'Parque Ibirapuera', 'São Paulo', 'SP', '(11) 3886-6212', '(00) 0 0000-0000', 'cooperalesp@al.sp.gov.br', 'Fácil', '2001-11-01', 'logo_fncc.png', 1, '2022-12-22', 1),
-(35, '39', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS DA COMPANHIA BRASILEIRA DE ALUMÍNIO', 'COOPERCRED-CBA', '54.335.401/0001-21', '3', '35400031719', '000.000.000.000', '18125-000', '', 21, '', '', 'Alumínio', 'SP', '(11) 4715-4242', '(00) 0 0000-0000', 'contato@coopercredcba.com.br', 'Prodaf', '1986-09-16', 'logo_fncc.png', 1, '2022-12-22', 1),
-(36, '40', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DO GRUPO AVIBRAS', 'COOPER AVIBRAS', '43.268.960/0001-40', '3', '35400000651', '000.000.000.000', '12315-020', 'Estrada Varadouro', 1200, 'km 14', 'Jardim Colônia', 'Jacareí', 'SP', '(12) 3955-5150', '(00) 0 0000-0000', 'cooperavibras@hotmail.com', 'Fácil', '1980-03-28', 'logo_fncc.png', 1, '2022-12-22', 1),
-(37, '41', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DAS EMPRESAS DE CERÂMICA - COOPASPACER', 'COOPASPACER', '02.541.707/0001-30', '2', '35400047771', '000.000.000.000', '13510-011', 'Rua 4', 470, '', 'Centro', 'Santa Gertrudes', 'SP', '(19) 3545-9609', '(00) 0 0000-0000', 'cooperativa@aspacer.com.br', 'Fácil', '1998-01-12', 'logo_fncc.png', 1, '2022-12-22', 1),
-(38, '42', 'COOPERATIVA DE CRÉDITO MÚTUO DOS EMPREGADOS DA FIAÇÃO ALPINA - COOPERALPINA', 'COOPERALPINA', '55.319.370/0001-88', '3', '35400017309', '000.000.000.000', '13260-000', 'Av da Saudade', 197, '', 'São Benedito', 'Morungaba', 'SP', '(11) 4014-4114', '(00) 0 0000-0000', 'alpina.cooperativa@alpinatexti', 'Fácil', '1985-05-06', 'logo_fncc.png', 1, '2022-12-22', 1),
-(39, '43', 'COOPERATIVA DE CRÉDITO MÚTUO DOS EMPREGADOS DA PILKINGTON BRASIL', 'COOPERPILKINGTON', '02.104.058/0001-00', '3', '35400045868', '000.000.000.000', '12286-160', 'Rodovia Presidente Dutra', 0, 'km 131-133', 'Vila Galvão', 'Caçapava', 'SP', '(12) 3221-2306', '(00) 0 0000-0000', 'Adriana.Santos@br.nsg.com', 'Fácil', '1997-08-25', 'logo_fncc.png', 1, '2022-12-22', 1),
-(40, '44', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁROIS DAS EMPRESAS MELHORAMENTOS DE SÃO PAULO', 'COOPERMEL', '01.504.952/0001-05', '3', '35400042109', '000.000.000.000', '05051-000', 'Rua Tito', 479, '1 andar', 'Vila Romana', 'São Paulo', 'SP', '(11) 3874-0718', '(00) 0 0000-0000', 'COOPERAT@MELHORAMENTOS.COM.BR', 'Fácil', '1996-10-04', 'logo_fncc.png', 1, '2022-12-22', 1),
-(41, '45', 'COOPERATIVA DE ECONOMIA E CRÉDITO MUTUO DOS FUNCIONÁRIOS DA USINA SANTA MARIA - PILONCRED', 'PILONCRED', '01.107.759/0001-30', '3', '35400038110', '000.000.000.000', '18527-450', 'Estrada Vicinal Octávio Pilon', 0, '', 'São Francisco', 'Cerquilho', 'SP', '(15) 3284-8041', '(00) 0 0000-0000', 'PILONCRE@FASTERNET.COM.BR', 'Fácil', '1995-10-18', 'logo_fncc.png', 1, '2022-12-22', 1),
-(42, '46', 'COOPERATIVA DE ECONOMIA E CRÉDITO MUTUO DOS EMPREGADOS DO GRUPO COLORADO', 'CREDCOL', '02.024.442/0001-01', '3', '35400045531', '000.000.000.000', '14790-000', 'FAZENDA SÃO JOSÉ DA GLÓRIA ROD SP 425', 0, 'KM 47', '', 'Guaíra', 'SP', '(17) 3330-3341', '(00) 0 0000-0000', 'jose-antonio.pimenta@colorado.com', 'Fácil', '1997-07-25', 'logo_fncc.png', 1, '2022-12-22', 1),
-(43, '47', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS EMPREGADOS DA CONFAB', 'TENARIS', '59.305.565/0001-20', '3', '35400003961', '000.000.000.000', '12414-020', 'Avenida Gastão Vidigal Neto', 475, '', 'Cidade Nova', 'Pindamonhangaba', 'SP', '(12) 3644-9465', '(00) 0 0000-0000', 'rcosta@suppliers.tenaris.com', 'Fácil', '1965-10-07', 'logo_fncc.png', 1, '2022-12-22', 1),
-(44, '48', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA TETRA PAK', 'COOPERPAK', '67.341.487/0001-47', '3', '35400022108', '000.000.000.000', '13190-000', '', 0, NULL, '', 'Monte Mor', 'SP', '(19) 3217-6781', '(00) 0 0000-0000', 'marly.santos@cooperpak.com.br', 'Fácil', '1995-11-30', 'logo_fncc.png', 1, '2022-12-22', 0),
-(45, '49', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS DA MERCK SHARP & DOHME FARMACÊUTICA', 'COOPHARMA', '02.814.832/0001-77', '3', '35400050721', '000.000.000.000', '04583-110', 'Avenida Doutor Chucri Zaidan', 296, 'TORRE Z - 13 ANDAR ', 'Vila Cordeiro', 'São Paulo', 'SP', '(11) 5189-7964', '(00) 0 0000-0000', 'vanda_santos@merck.com', 'Fácil', '1998-05-21', 'logo_fncc.png', 1, '2022-12-22', 1),
-(46, '50', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA SELENE', 'COOPSELENE', '72.952.138/0001-00', '3', '35400023856', '000.000.000.000', '18528-608', 'Rua do Velho Ramal', 490, '', 'Distrito Industrial', 'Cerquilho', 'SP', '(15) 3384-8888', '(00) 0 0000-0000', 'cooperativa@selene.com.br', 'Fácil', '1993-09-08', 'logo_fncc.png', 1, '2022-12-22', 1),
-(47, '51', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA NESTLÉ', 'CREDI NESTLÉ', '62.562.012/0001-67', '3', '35400010694', '000.000.000.000', '04730-903', 'Rua Doutor Rubens Gomes Bueno', 691, 'Conjunto 221 - Bloco A - Condo', 'Várzea de Baixo', 'São Paulo', 'SP', '(11) 5508-7695', '(00) 0 0000-0000', 'Mirella.Campos@BR.nestle.com', 'Fácil', '1969-09-08', 'logo_fncc.png', 1, '2022-12-22', 1),
-(48, '52', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS E MPREGADOS DA UNIFI - CREDIUNIFI', 'CREDIUNIFI', '03.685.335/0001-89', '3', '35400061791', '000.000.000.000', '04726-170', 'Avenida Alfredo Egídio de Souza Aranha', 177, '2º andar', 'Vila Cruzeiro', 'São Paulo', 'SP', '(35) 3299-5011', '(00) 0 0000-0000', 'CrediUnifi@unifi.com.br', 'Fácil', '1999-10-18', 'logo_fncc.png', 1, '2022-12-22', 1),
-(49, '53', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DO FLEURY', 'COOPERCREDI GRUPO FLEURY', '71.965.313/0001-22', '3', '35400023678', '000.000.000.000', '01310-905', 'Avenida Paulista', 352, '1.º ANDAR - SALA 13', 'Bela Vista', 'São Paulo', 'SP', '(11) 3285-5132', '(00) 0 0000-0000', 'anamaria.allegretto@grupofleur', 'Fácil', '1993-03-19', 'logo_fncc.png', 1, '2022-12-22', 1),
-(50, '54', 'CECMF DA FUNDAÇÃO ZERBINI E DA FUNDAÇÃO FACULDADE DE MEDICINA COOPINCOR', 'COOPINCOR', '01.997.612/0001-63', '3', '35400043890', '000.000.000.000', '05403-000', 'Avenida Doutor Enéas Carvalho de Aguiar', 44, '', 'Cerqueira César', 'São Paulo', 'SP', '(11) 2661-5584', '(00) 0 0000-0000', 'osni.merces@coopincor.com.br', 'Fácil', '1996-12-16', 'logo_fncc.png', 1, '2022-12-22', 1),
-(51, '55-8', 'COOPERATIVA DE CRÉDITO MÚTUO DOS EMPREGADOS DO MAGAZINE LUIZA EMPRESAS CONTROLADAS E COLIGADAS', 'COOPLUIZA', '02.093.154/0001-09', '3', '25600040389', '000.000.000.000', '14400-660', 'Rua do Comércio', 1924, '', 'Centro', 'Franca', 'SP', '(16) 3711-2121', '(00) 0 0000-0000', 'jcmendes@coopluiza.com.br', 'Fácil', '1997-04-09', 'logo_fncc.png', 1, '2022-12-22', 1),
-(52, '22', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS SKF E COLIGADAS', 'COOPERSKF', '49.091.119/0001-06', '3', '35400001909', '000.000.000.000', '07790-190', 'Via de Acesso Norte Km 30.5', 0, 'KM 30', 'Empresarial Itaim (Polvilho)', 'Cajamar', 'SP', '(11) 4448-8438', '(00) 0 0000-0000', 'ariela.oblasser@skf.com', 'Fácil', '1969-10-09', 'logo_fncc.png', 1, '2022-12-22', 1),
-(53, '56-6', 'COOPERATIVA DE ECONOMIA E CRéDITO MúTUO DOS TRABALHADORES DO GRUPO SãO MARTINHO', 'USICRED', '02.562.412/0001-40', '3', '35400047348', '000.000.000.000', '14850-000', 'FAZENDA SÃO MARTINHO', 0, '', 'ZONA RURAL', 'Pradópolis', 'SP', '(16) 3981-9049', '(00) 0 0000-0000', 'jose.paulo@saomartinho.com.br', 'Fácil', '1997-12-22', 'logo_fncc.png', 1, '2022-12-22', 1),
-(54, '57-4', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS FUNCIONARIOS DA VILLARES METALS', 'VILLARES METALS', '53.846.242/0001-67', '3', '35400001941', '000.000.000.000', '13178-021', 'Avenida Vereador Antônio Pereira de Camargo Neto', 770, '', 'Jardim Dall Orto', 'Sumaré', 'SP', '(19) 3303-8254', '(00) 0 0000-0000', 'Creditovm.gil@uol.com.br', 'Fácil', '1984-07-03', 'logo_fncc.png', 1, '2022-12-22', 1),
-(55, '58-2', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DA POLÍCIA MILITAR DO ESTADO DE SÃO PAULO  DA REGIÃO CENTRO OESTE PAULISTA', 'CREDMIL', '04.152.107/0001-06', '2', '3500063912', '000.000.000.000', '17015-311', '', 0, NULL, '', 'Bauru', 'SP', '(14) 3879-1151', '(00) 0 0000-0000', 'GER.ADMINISTRATIVO@CREDMIL.ORG', 'Fácil', '2000-05-02', 'logo_fncc.png', 1, '2022-12-22', 0),
-(56, '59-0', 'COOPERATIVA DE CRÉDITO MÚTUO DE SERVIDORES DO ESTADO DE SÃO PAULO', 'CREDIFISCO', '04.546.162/0001-80', '2', '35400067896', '000.000.000.000', '01017-000', 'Avenida Rangel Pestana', 203, '23 andar', 'Brás', 'São Paulo', 'SP', '(11) 3106-1529', '(00) 0 0000-0000', 'valeria.abitte@credifisco.com', 'Prodaf', '2001-06-19', 'logo_fncc.png', 1, '2022-12-22', 1),
+(21, '25', 'COOPERATIVA DE CRÉDITO DOS FUNCIONÁRIOS DO GRUPO PPG', 'COOPERPPG', '03.657.230/0001-16', '3', '35400061651', '000.000.000.000', '13180-480', 'Rodovia Anhangüera', 0, 'KM 106,5', 'Jardim São Judas Tadeu (Nova V', 'Sumaré', 'SP', '(19) 2103-6029', '(00) 0 0000-0000', 'cooperppg2018@gmail.com', 'Fácil', '2000-02-08', 'COOPERPPG.webp', 1, '2022-12-22', 1),
+(22, '26', 'COOPERATIVA DE ECONOMIA E CRÉDITO MUTUO DOS EMPREGADOS DAS EMPRESAS PLASCAR', 'COOPERPLASCAR', '17.411.307/0001-88', '3', '35400075554', '000.000.000.000', '13213-000', 'Rua Wilhelm Winter', 300, '', 'Distrito Industrial', 'Jundiaí', 'SP', '(11) 2729-4219', '(00) 0 0000-0000', 'cooperplascar@gmail.com', 'Fácil', '1983-03-02', 'COOPRLASCAR.webp', 1, '2022-12-22', 1),
+(23, '27', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS PÚBLICOS MUNICIPAIS DE ITAPIRA - CREDITA', 'CREDITA', '02.115.870/0001-31', '2', '35400045957', '000.000.000.000', '13970-005', 'Praça Bernardino de Campos', 0, 'box 9', 'Centro', 'Itapira', 'SP', '(19) 3863-7594', '(00) 0 0000-0000', 'camila.silvestre@coopcredita.c', 'Prodaf', '1997-09-02', 'CREDITA.webp', 1, '2022-12-22', 1),
+(24, '28', 'Cooperativa De Crédito Dos Empregados Do Grupo Akzo Nobel Brasil', 'COOP AKZONOBEL', '57.996.878/0001-46', '3', '35400017627', '000.000.000.000', '09370-901', 'Avenida Papa João XXIII', 0, NULL, 'Vila Carlina', 'Mauá', 'SP', '(11) 2148-2238', '(00) 0 0000-0000', 'ANGELA.FARIA@AKZONOBEL.COM', 'Fácil', '1987-09-15', 'Coop-AkzoNobel.webp', 1, '2022-12-22', 0),
+(25, '29', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS EMPREGADOS DA JOYSON SAFETY SYSTEMS', 'COOPERJSS', '47.944.277/0001-36', '3', '35400010134', '000.000.000.000', '13212-240', 'Rodovia Dom Gabriel Paulino Bueno Couto', 0, 'km 66', 'Medeiros', 'Jundiaí', 'SP', '(11) 4585-3710', '(00) 0 0000-0000', 'cooptakatapetri@uol.com.br', 'Fácil', '1976-07-21', 'CooperJSS.webp', 1, '2022-12-22', 1),
+(26, '30', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS DO GRUPO TELEFÔNICA', 'COOPERTEL', '57.598.120/0001-50', '3', '35400010592', '000.000.000.000', '01310-000', 'Avenida Paulista', 352, '2º andar - cj 21', 'Bela Vista', 'São Paulo', 'SP', '(11) 3016-9860', '(00) 0 0000-0000', 'clodoaldo@coopertel.org.br', 'Fácil', '1969-10-02', 'COOPERTEL.webp', 1, '2022-12-22', 1),
+(27, '31', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO ALIANÇA', 'COOPERNITRO', '52.935.442/0001-23', '3', '35400001640', '000.000.000.000', '08090-000', 'Avenida Doutor José Artur Nova', 951, '', 'Parque Paulistano', 'São Paulo', 'SP', '(11) 2246-3357', '(00) 0 0000-0000', 'claudionolasco@coopernitro.com', 'Fácil', '1983-09-28', 'coopernitro.webp', 1, '2022-12-22', 1),
+(28, '32', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA FACULDADE DE CIÊNCIAS AGRÁRIAS E VETERINÁRIAS CAMPUS JABOTICABAL/SP', 'COOPERFAC', '57.259.525/0001-63', '2', '35400017473', '000.000.000.000', '14887-232', 'Avenida Julio Cesar de Marco', 0, '', 'Jardim São Marcos II', 'Jaboticabal', 'SP', '(16) 3202-7672', '(00) 0 0000-0000', 'j.catelani@unesp.br', 'Fácil', '1987-04-01', 'Cooperfac.webp', 1, '2022-12-22', 1),
+(29, '33', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA INTERNATIONAL INDÚSTRIA AUTOMOTIVA DA AMÉRICA DO SUL', 'COOP MWM', '59.620.708/0001-98', '3', '35400017899', '000.000.000.000', '04795-915', 'Avenida das Nações Unidas', 22002, '', 'Vila Almeida', 'São Paulo', 'SP', '(11) 5687-1901', '(00) 0 0000-0000', 'geani.ramos@navistar.com.br', 'Fácil', '1988-10-20', 'MWM.webp', 1, '2022-12-22', 1),
+(30, '34', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS COLABORADORES DA CEBRACE', 'CREDICEBRACE', '53.184.438/0001-33', '3', '000.000.000.000', '000.000.000.000', '12311-900', 'Avenida do Cristal', 540, '', 'Parque Califórnia', 'Jacareí', 'SP', '(12) 2127-9066', '(00) 0 0000-0000', 'marcos.corra@ext.cebrace.com.b', 'Fácil', '1984-01-28', 'CrediCebrace.webp', 1, '2022-12-22', 1),
+(31, '35', 'COOPERATIVA DE CRÉDITO MÚTUO DOS EMPREGADOS EM INSTITUIÇÕES FINANCEIRAS NAS REGIÕES DE SÃO PAULO E CAMPINAS', 'CREDISCOOP', '03.674.133/0001-31', '2', '35400061880', '000.000.000.000', '01010-010', 'Praça Antônio Prado', 33, '18º Andar conj. 1801', 'Centro', 'São Paulo', 'SP', '(11) 3242-3341', '(00) 0 0000-0000', 'luizbernardo@crediscoop.com.br', 'Fácil', '2000-02-23', 'CredisCoop.webp', 1, '2022-12-22', 1),
+(32, '36', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS DA SAINT-GOBAIN DO BRASIL PRODUTOS INDUSTRIAIS E PARA CONSTRUÇÃO DIVISÃO VIDRO PLANO', 'COOPER-SEKURIT', '48.140.925/0001-64', '3', '35400002018', '000.000.000.000', '09390-000', 'Rua Rui Barbosa', 346, '', 'Centro', 'Mauá', 'SP', '(11) 4544-3161', '(00) 0 0000-0000', 'regina.martins@coopersekurit.c', 'Fácil', '1976-11-11', 'Cooper-Sekurit.webp', 1, '2022-12-22', 1),
+(33, '37', 'COOPERATIVA DE CRÉDITO MÚTUO DOS SERVIDORES DA SEGURANÇA PÚBLICA DE SÃO PAULO - CREDIAFAM', 'CREDIAFAM', '04.804.353/0001-03', '3', '35300022807', '000.000.000.000', '02036-011', 'Rua Doutor Gabriel Piza', 425, '2º andar ', 'Santana', 'São Paulo', 'SP', '(11) 3328-1505', '(00) 0 0000-0000', 'aburbano@afam.com.br', 'Fácil', '2001-11-22', 'Crediafam.webp', 1, '2022-12-22', 1),
+(34, '38', 'COOPERATIVA DE CRÉDITO MÚTUO DOS SERVIDORES DA ASSEMBLEIA LEGISLATIVA DO ESTADO DE SÃO PAULO', 'COOPERALESP', '04.791.645/0001-40', '3', '35400068957', '000.000.000.000', '04097-900', 'Avenida Pedro Álvares Cabral', 201, 'Subsolo, Sala 08, Palácio 9 de', 'Parque Ibirapuera', 'São Paulo', 'SP', '(11) 3886-6212', '(00) 0 0000-0000', 'cooperalesp@al.sp.gov.br', 'Fácil', '2001-11-01', 'cooperalesp.webp', 1, '2022-12-22', 1),
+(35, '39', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS DA COMPANHIA BRASILEIRA DE ALUMÍNIO', 'COOPERCRED-CBA', '54.335.401/0001-21', '3', '35400031719', '000.000.000.000', '18125-000', '', 21, '', '', 'Alumínio', 'SP', '(11) 4715-4242', '(00) 0 0000-0000', 'contato@coopercredcba.com.br', 'Prodaf', '1986-09-16', 'Coopercred-CBA.webp', 1, '2022-12-22', 1),
+(36, '40', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DO GRUPO AVIBRAS', 'COOPER AVIBRAS', '43.268.960/0001-40', '3', '35400000651', '000.000.000.000', '12315-020', 'Estrada Varadouro', 1200, 'km 14', 'Jardim Colônia', 'Jacareí', 'SP', '(12) 3955-5150', '(00) 0 0000-0000', 'cooperavibras@hotmail.com', 'Fácil', '1980-03-28', 'cooper-avibras.webp', 1, '2022-12-22', 1),
+(37, '41', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DAS EMPRESAS DE CERÂMICA - COOPASPACER', 'COOPASPACER', '02.541.707/0001-30', '2', '35400047771', '000.000.000.000', '13510-011', 'Rua 4', 470, '', 'Centro', 'Santa Gertrudes', 'SP', '(19) 3545-9609', '(00) 0 0000-0000', 'cooperativa@aspacer.com.br', 'Fácil', '1998-01-12', 'ASPACER.webp', 1, '2022-12-22', 1),
+(38, '42', 'COOPERATIVA DE CRÉDITO MÚTUO DOS EMPREGADOS DA FIAÇÃO ALPINA - COOPERALPINA', 'COOPERALPINA', '55.319.370/0001-88', '3', '35400017309', '000.000.000.000', '13260-000', 'Av da Saudade', 197, '', 'São Benedito', 'Morungaba', 'SP', '(11) 4014-4114', '(00) 0 0000-0000', 'alpina.cooperativa@alpinatexti', 'Fácil', '1985-05-06', 'cooperalpina.webp', 1, '2022-12-22', 1),
+(39, '43', 'COOPERATIVA DE CRÉDITO MÚTUO DOS EMPREGADOS DA PILKINGTON BRASIL', 'COOPERPILKINGTON', '02.104.058/0001-00', '3', '35400045868', '000.000.000.000', '12286-160', 'Rodovia Presidente Dutra', 0, 'km 131-133', 'Vila Galvão', 'Caçapava', 'SP', '(12) 3221-2306', '(00) 0 0000-0000', 'Adriana.Santos@br.nsg.com', 'Fácil', '1997-08-25', 'Cooper-Pilkington.webp', 1, '2022-12-22', 1),
+(40, '44', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁROIS DAS EMPRESAS MELHORAMENTOS DE SÃO PAULO', 'COOPERMEL', '01.504.952/0001-05', '3', '35400042109', '000.000.000.000', '05051-000', 'Rua Tito', 479, '1 andar', 'Vila Romana', 'São Paulo', 'SP', '(11) 3874-0718', '(00) 0 0000-0000', 'COOPERAT@MELHORAMENTOS.COM.BR', 'Fácil', '1996-10-04', 'CooperMel.webp', 1, '2022-12-22', 1),
+(41, '45', 'COOPERATIVA DE ECONOMIA E CRÉDITO MUTUO DOS FUNCIONÁRIOS DA USINA SANTA MARIA - PILONCRED', 'PILONCRED', '01.107.759/0001-30', '3', '35400038110', '000.000.000.000', '18527-450', 'Estrada Vicinal Octávio Pilon', 0, '', 'São Francisco', 'Cerquilho', 'SP', '(15) 3284-8041', '(00) 0 0000-0000', 'PILONCRE@FASTERNET.COM.BR', 'Fácil', '1995-10-18', 'PILONCRED.webp', 1, '2022-12-22', 1),
+(42, '46', 'COOPERATIVA DE ECONOMIA E CRÉDITO MUTUO DOS EMPREGADOS DO GRUPO COLORADO', 'CREDCOL', '02.024.442/0001-01', '3', '35400045531', '000.000.000.000', '14790-000', 'FAZENDA SÃO JOSÉ DA GLÓRIA ROD SP 425', 0, 'KM 47', '', 'Guaíra', 'SP', '(17) 3330-3341', '(00) 0 0000-0000', 'jose-antonio.pimenta@colorado.com', 'Fácil', '1997-07-25', 'CREDCOL.webp', 1, '2022-12-22', 1),
+(43, '47', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS EMPREGADOS DA CONFAB', 'TENARIS', '59.305.565/0001-20', '3', '35400003961', '000.000.000.000', '12414-020', 'Avenida Gastão Vidigal Neto', 475, '', 'Cidade Nova', 'Pindamonhangaba', 'SP', '(12) 3644-9465', '(00) 0 0000-0000', 'rcosta@suppliers.tenaris.com', 'Fácil', '1965-10-07', 'TENARIS.webp', 1, '2022-12-22', 1),
+(44, '48', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA TETRA PAK', 'COOPERPAK', '67.341.487/0001-47', '3', '35400022108', '000.000.000.000', '13190-000', '', 0, NULL, '', 'Monte Mor', 'SP', '(19) 3217-6781', '(00) 0 0000-0000', 'marly.santos@cooperpak.com.br', 'Fácil', '1995-11-30', 'Cooperpak.webp', 1, '2022-12-22', 0),
+(45, '49', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS DA MERCK SHARP & DOHME FARMACÊUTICA', 'COOPHARMA', '02.814.832/0001-77', '3', '35400050721', '000.000.000.000', '04583-110', 'Avenida Doutor Chucri Zaidan', 296, 'TORRE Z - 13 ANDAR ', 'Vila Cordeiro', 'São Paulo', 'SP', '(11) 5189-7964', '(00) 0 0000-0000', 'vanda_santos@merck.com', 'Fácil', '1998-05-21', 'COOPHARMA.webp', 1, '2022-12-22', 1),
+(46, '50', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA SELENE', 'COOPSELENE', '72.952.138/0001-00', '3', '35400023856', '000.000.000.000', '18528-608', 'Rua do Velho Ramal', 490, '', 'Distrito Industrial', 'Cerquilho', 'SP', '(15) 3384-8888', '(00) 0 0000-0000', 'cooperativa@selene.com.br', 'Fácil', '1993-09-08', 'COOPSELENE.webp', 1, '2022-12-22', 1),
+(47, '51', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DA NESTLÉ', 'CREDI NESTLÉ', '62.562.012/0001-67', '3', '35400010694', '000.000.000.000', '04730-903', 'Rua Doutor Rubens Gomes Bueno', 691, 'Conjunto 221 - Bloco A - Condo', 'Várzea de Baixo', 'São Paulo', 'SP', '(11) 5508-7695', '(00) 0 0000-0000', 'Mirella.Campos@BR.nestle.com', 'Fácil', '1969-09-08', 'credi-nestle.webp', 1, '2022-12-22', 1),
+(48, '52', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS E MPREGADOS DA UNIFI - CREDIUNIFI', 'CREDIUNIFI', '03.685.335/0001-89', '3', '35400061791', '000.000.000.000', '04726-170', 'Avenida Alfredo Egídio de Souza Aranha', 177, '2º andar', 'Vila Cruzeiro', 'São Paulo', 'SP', '(35) 3299-5011', '(00) 0 0000-0000', 'CrediUnifi@unifi.com.br', 'Fácil', '1999-10-18', 'CREDIUNIFI.webp', 1, '2022-12-22', 1),
+(49, '53', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FUNCIONÁRIOS DO FLEURY', 'COOPERCREDI GRUPO FLEURY', '71.965.313/0001-22', '3', '35400023678', '000.000.000.000', '01310-905', 'Avenida Paulista', 352, '1.º ANDAR - SALA 13', 'Bela Vista', 'São Paulo', 'SP', '(11) 3285-5132', '(00) 0 0000-0000', 'anamaria.allegretto@grupofleur', 'Fácil', '1993-03-19', 'FLEURY.webp', 1, '2022-12-22', 1),
+(50, '54', 'CECMF DA FUNDAÇÃO ZERBINI E DA FUNDAÇÃO FACULDADE DE MEDICINA COOPINCOR', 'COOPINCOR', '01.997.612/0001-63', '3', '35400043890', '000.000.000.000', '05403-000', 'Avenida Doutor Enéas Carvalho de Aguiar', 44, '', 'Cerqueira César', 'São Paulo', 'SP', '(11) 2661-5584', '(00) 0 0000-0000', 'osni.merces@coopincor.com.br', 'Fácil', '1996-12-16', 'coopincor.webp', 1, '2022-12-22', 1),
+(51, '55-8', 'COOPERATIVA DE CRÉDITO MÚTUO DOS EMPREGADOS DO MAGAZINE LUIZA EMPRESAS CONTROLADAS E COLIGADAS', 'COOPLUIZA', '02.093.154/0001-09', '3', '25600040389', '000.000.000.000', '14400-660', 'Rua do Comércio', 1924, '', 'Centro', 'Franca', 'SP', '(16) 3711-2121', '(00) 0 0000-0000', 'jcmendes@coopluiza.com.br', 'Fácil', '1997-04-09', 'coopluiza.webp', 1, '2022-12-22', 1),
+(52, '22', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS EMPREGADOS SKF E COLIGADAS', 'COOPERSKF', '49.091.119/0001-06', '3', '35400001909', '000.000.000.000', '07790-190', 'Via de Acesso Norte Km 30.5', 0, 'KM 30', 'Empresarial Itaim (Polvilho)', 'Cajamar', 'SP', '(11) 4448-8438', '(00) 0 0000-0000', 'ariela.oblasser@skf.com', 'Fácil', '1969-10-09', 'COOPERSKF.webp', 1, '2022-12-22', 1),
+(53, '56-6', 'COOPERATIVA DE ECONOMIA E CRéDITO MúTUO DOS TRABALHADORES DO GRUPO SãO MARTINHO', 'USICRED', '02.562.412/0001-40', '3', '35400047348', '000.000.000.000', '14850-000', 'FAZENDA SÃO MARTINHO', 0, '', 'ZONA RURAL', 'Pradópolis', 'SP', '(16) 3981-9049', '(00) 0 0000-0000', 'jose.paulo@saomartinho.com.br', 'Fácil', '1997-12-22', 'USICRED.webp', 1, '2022-12-22', 1),
+(54, '57-4', 'COOPERATIVA DE ECONOMIA E CREDITO MUTUO DOS FUNCIONARIOS DA VILLARES METALS', 'VILLARES METALS', '53.846.242/0001-67', '3', '35400001941', '000.000.000.000', '13178-021', 'Avenida Vereador Antônio Pereira de Camargo Neto', 770, '', 'Jardim Dall Orto', 'Sumaré', 'SP', '(19) 3303-8254', '(00) 0 0000-0000', 'Creditovm.gil@uol.com.br', 'Fácil', '1984-07-03', 'coop-Villares.webp', 1, '2022-12-22', 1),
+(55, '58-2', 'COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DA POLÍCIA MILITAR DO ESTADO DE SÃO PAULO  DA REGIÃO CENTRO OESTE PAULISTA', 'CREDMIL', '04.152.107/0001-06', '2', '3500063912', '000.000.000.000', '17015-311', '', 0, NULL, '', 'Bauru', 'SP', '(14) 3879-1151', '(00) 0 0000-0000', 'GER.ADMINISTRATIVO@CREDMIL.ORG', 'Fácil', '2000-05-02', 'CREDMIL.webp', 1, '2022-12-22', 0),
+(56, '59-0', 'COOPERATIVA DE CRÉDITO MÚTUO DE SERVIDORES DO ESTADO DE SÃO PAULO', 'CREDIFISCO', '04.546.162/0001-80', '2', '35400067896', '000.000.000.000', '01017-000', 'Avenida Rangel Pestana', 203, '23 andar', 'Brás', 'São Paulo', 'SP', '(11) 3106-1529', '(00) 0 0000-0000', 'valeria.abitte@credifisco.com', 'Prodaf', '2001-06-19', 'CREDIFISCO.webp', 1, '2022-12-22', 1),
 (57, '0', 'FNCC - FEDERAÇÃO NACIONAL DAS COOPERATIVAS DE CRÉDITO', 'FNCC', '20.151.021/0001-15', '', '35400169753', '51.323.842', '02010-000', 'Rua Voluntários da Pátria', 654, 'SALA 606', 'Santana', 'São Paulo', 'SP', '(11) 2089-9490', '(11) 9 3730-7909', 'fncc@fncc.com.br', 'Prodaf', '2014-10-03', 'logo_fncc.png', 1, '2022-12-22', 1);
 
 -- --------------------------------------------------------
@@ -613,7 +655,7 @@ CREATE TABLE IF NOT EXISTS `download_termo_aceito` (
   `dta_cod_arquivo` bigint(255) NOT NULL,
   `dta_data` date NOT NULL,
   PRIMARY KEY (`cod_dta`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `download_termo_aceito`
@@ -624,7 +666,8 @@ INSERT INTO `download_termo_aceito` (`cod_dta`, `dta_user`, `dta_arquivo`, `dta_
 (2, 1, 'Ata-de-Assembleia-Geral-Extraordinária-2.docx', 24, '2023-03-02'),
 (3, 1, 'Edital-de-Convocação-de-Assembleia-Geral-Ordinária-1.docx', 2, '2023-03-02'),
 (4, 1, 'Estatuto-Social.doc', 5, '2023-03-02'),
-(5, 2, 'Ata-de-Assembleia-Geral-Ordinária-2.docx', 1, '2023-03-02');
+(5, 2, 'Ata-de-Assembleia-Geral-Ordinária-2.docx', 1, '2023-03-02'),
+(6, 1, 'Politica-de-Segurança-da-Informação-5.docx', 13, '2023-04-28');
 
 -- --------------------------------------------------------
 
@@ -1076,7 +1119,8 @@ INSERT INTO `nivel_acesso` (`cod_perfil`, `codMenu`, `codSubmenu`, `marcado`) VA
 (3, 9, 33, 0),
 (4, 9, 33, 0),
 (5, 9, 33, 0),
-(1, 10, 34, 1);
+(1, 10, 34, 1),
+(1, 10, 35, 1);
 
 -- --------------------------------------------------------
 
@@ -1101,6 +1145,41 @@ INSERT INTO `perfis_usuarios` (`p_cod`, `perfil`) VALUES
 (3, 'Técnico'),
 (4, 'Jurídico'),
 (5, 'Cooperativa');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `site_editais`
+--
+
+DROP TABLE IF EXISTS `site_editais`;
+CREATE TABLE IF NOT EXISTS `site_editais` (
+  `cod_edital` bigint(255) NOT NULL AUTO_INCREMENT,
+  `edital_arquivo` varchar(200) NOT NULL,
+  `edital_data` date NOT NULL,
+  `edital_coop` bigint(255) NOT NULL,
+  PRIMARY KEY (`cod_edital`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `site_editais`
+--
+
+INSERT INTO `site_editais` (`cod_edital`, `edital_arquivo`, `edital_data`, `edital_coop`) VALUES
+(1, 'Edital_20230423_41_204645.pdf', '2023-04-23', 41),
+(2, 'Edital_20230423_17_204700.pdf', '2023-04-23', 17),
+(3, 'Edital_20230423_21_204729.pdf', '2023-04-23', 21),
+(4, 'Edital_20230423_48_204752.pdf', '2023-04-23', 48),
+(5, 'Edital_20230423_53_204829.pdf', '2023-04-23', 53),
+(6, 'Edital_20230423_46_204949.pdf', '2023-04-23', 46),
+(7, 'Edital_20230423_16_205002.pdf', '2023-04-23', 16),
+(8, 'Edital_20230423_15_205014.pdf', '2023-04-23', 15),
+(9, 'Edital_20230423_14_205026.pdf', '2023-04-23', 14),
+(10, 'Edital_20230423_36_205101.pdf', '2023-04-23', 36),
+(11, 'Edital_20230423_54_205138.pdf', '2023-04-23', 54),
+(12, 'Edital_20230423_43_205232.pdf', '2023-04-23', 43),
+(13, 'Edital_20230423_39_205250.pdf', '2023-04-23', 39),
+(14, 'Edital_20230423_25_205302.pdf', '2023-04-23', 25);
 
 -- --------------------------------------------------------
 
@@ -1226,7 +1305,7 @@ CREATE TABLE IF NOT EXISTS `submenu` (
   `caminho` varchar(50) NOT NULL,
   PRIMARY KEY (`cod_submenu`),
   KEY `cod_menu` (`cod_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `submenu`
@@ -1262,7 +1341,8 @@ INSERT INTO `submenu` (`cod_submenu`, `submenu`, `cod_menu`, `icone_sub`, `camin
 (31, 'JUSTIFICATIVA DE PONTO', 8, 'bi bi-newspaper', 'justificativa-de-ponto.php'),
 (32, 'COMPENSAÇÃO', 8, 'bi bi-hourglass', 'compensacao.php'),
 (33, 'INCLUIR REL DENÚNCIAS', 9, 'bi bi-shield-plus', 'incluir-rel-denuncias.php'),
-(34, 'NOTÍCIAS', 10, 'bi bi-newspaper', 'noticias.php');
+(34, 'NOTÍCIAS', 10, 'bi bi-newspaper', 'noticias.php'),
+(35, 'EDITAIS', 10, 'bi bi-journal-bookmark', 'editais.php');
 
 -- --------------------------------------------------------
 
@@ -1307,18 +1387,20 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `user_supervisor` int(1) NOT NULL DEFAULT 0,
   `user_controla_ponto` int(1) NOT NULL DEFAULT 0,
   `data_cadastro` date NOT NULL DEFAULT '2022-12-16',
+  `lgpd` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nome`, `sobrenome`, `email`, `usuario`, `senha`, `user_coop`, `user_nivel`, `user_grupo`, `u_status`, `user_supervisor`, `user_controla_ponto`, `data_cadastro`) VALUES
-(1, 'Moises', 'Pequeno do Rosário', 'bemktech1217@gmail.com', 'moises', '5a07992136c4e91e5cc618f4020dfa90', 57, 1, 1, 1, 1, 0, '2023-02-01'),
-(2, 'Karina', 'Rocha Pequeno', 'nina.rocha91@gmail.com', 'karina.pequeno', '5a07992136c4e91e5cc618f4020dfa90', 57, 2, 1, 1, 0, 1, '2023-02-01'),
-(4, 'CONSULTORIA', 'TÉCNICA', 'nina.rocha91@gmail.com', 'consultoria.tecnica', 'cbbe2fabcd555312827334c4596ea951', 57, 3, 2, 1, 0, 0, '2023-02-06');
+INSERT INTO `usuarios` (`id_usuario`, `nome`, `sobrenome`, `email`, `usuario`, `senha`, `user_coop`, `user_nivel`, `user_grupo`, `u_status`, `user_supervisor`, `user_controla_ponto`, `data_cadastro`, `lgpd`) VALUES
+(1, 'Moises', 'Pequeno do Rosário', 'bemktech1217@gmail.com', 'moises', '5a07992136c4e91e5cc618f4020dfa90', 57, 1, 3, 1, 1, 0, '2023-02-01', 1),
+(2, 'Karina', 'Rocha Pequeno', 'nina.rocha91@gmail.com', 'karina.pequeno', '5a07992136c4e91e5cc618f4020dfa90', 57, 2, 4, 1, 0, 1, '2023-02-01', 0),
+(4, 'CONSULTORIA', 'TÉCNICA', 'nina.rocha91@gmail.com', 'consultoria.tecnica', 'cbbe2fabcd555312827334c4596ea951', 57, 3, 2, 1, 0, 0, '2023-02-06', 0),
+(5, 'Bemk', 'Tech', 'bemktech1217@gmail.com', 'bemktech', '792dc8501fb966286e0c8794beae1677', 57, 4, 3, 1, 0, 0, '2023-04-28', 0);
 
 -- --------------------------------------------------------
 

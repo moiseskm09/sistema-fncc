@@ -61,7 +61,7 @@ require_once '../config/config_geral.php';
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" id="headingOne">
                                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                            <span class="destaque fw-bold">Dados Principais</span>
+                                                            <span class="fw-bold">Dados Principais</span>
                                                         </button>
                                                     </h2>
                                                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#DadosNoticia">
@@ -104,7 +104,7 @@ require_once '../config/config_geral.php';
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" id="headingOne">
                                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
-                                                            <span class="destaque fw-bold">Categoria Notícia</span>
+                                                            <span class="fw-bold">Categoria Notícia</span>
                                                         </button>
                                                     </h2>
                                                     <div id="collapsetwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -131,7 +131,7 @@ require_once '../config/config_geral.php';
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" id="headingOne">
                                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsetree" aria-expanded="true" aria-controls="collapsetree">
-                                                            <span class="destaque fw-bold">Imagem Notícia</span>
+                                                            <span class="fw-bold">Imagem Notícia</span>
                                                         </button>
                                                     </h2>
                                                     <div id="collapsetree" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">

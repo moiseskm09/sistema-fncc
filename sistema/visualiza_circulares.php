@@ -13,7 +13,7 @@ if($_GET['id']){
     $numeroTotalLinhas = mysqli_num_rows($sql);
 
     //define o numero de itens por pagina
-    $itens_por_pagina =12;
+    $itens_por_pagina =10;
 
     //divide o total de linhas pelo numero maximo de registro e retorna um numero inteiro
     $numero_paginas = ceil($numeroTotalLinhas / $itens_por_pagina);

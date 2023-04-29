@@ -17,9 +17,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .acesso-rapido:hover{
     border-radius: 8px;
-    background-color: #785aa240;
-    
-    
+    background-color: #4B49AC;
+}
+.acesso-rapido:hover .titulo-acesso-rapido{
+    color:#ffffff;
 }
 .link-acesso:link{
     color: #343a40 !important;
@@ -41,6 +42,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .titulo-acesso-rapido{
     font-size: 25px;
-    color: #785aa2;
+    color: #4B49AC;
     padding-left: 10px;
 }

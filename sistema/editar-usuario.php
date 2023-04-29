@@ -47,8 +47,12 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                 <main>
                     <div class="container-fluid">
                         <!--conteudo da tela aqui!-->
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h4 class="titulo">Editando <span class="destaque"><?php echo $resultadoBuscaInfo['nome']; ?></span></h4>
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
+                            <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
+                                <span class="breadcrumb-item text-primary">Cadastro</span>
+                                <span class="breadcrumb-item text-primary">Usuários</span>
+                                <span class="breadcrumb-item active text-success"><?php echo $resultadoBuscaInfo['nome']; ?></span>
+                            </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning" href="cad-usuarios.php"><i class="uil uil-angle-left"></i> Voltar</a>

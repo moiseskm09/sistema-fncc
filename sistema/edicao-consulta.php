@@ -82,7 +82,11 @@ WHERE
                     <div class="container-fluid">
                         <!--conteudo da tela aqui!-->
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
-                            <h5 class="titulo">Dados da consulta <span class="destaque">#<?php echo str_pad($resultadoCH["cod_consulta"], 6, '0', STR_PAD_LEFT); ?></span></h5>
+                            <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
+                                <span class="breadcrumb-item text-primary">Consultas</span>
+                                <span class="breadcrumb-item text-primary">Listar Consultas</span>
+                                <span class="breadcrumb-item active text-success">#<?php echo str_pad($resultadoCH["cod_consulta"], 6, '0', STR_PAD_LEFT); ?></span>
+                            </div>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="mr-2">
                                     <a class="btn btn-sm btn-warning mb-1" href="listar-consultas.php"><i class="uil uil-angle-left"></i> Voltar</a>
@@ -444,7 +448,7 @@ WHERE
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body" style="background-color: #a3cfbb; color: #1c1d3c;"">
-                    <span>Consulta Criada!</span>
+                    <span>Consulta atualizada!</span>
                 </div>
             </div>
         </div>';

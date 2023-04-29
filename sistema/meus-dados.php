@@ -66,7 +66,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                             <div class="col-lg-4 col-md-4 col-12">
                                 <div class="card mb-3" style="border-radius: 15px;">
                                     <div class="card-body text-center">
-                                        <img itle="Foto Perfil" src="../img/foto_perfil/cooperativas/<?php echo $LOGO_COOP; ?>" alt="foto perfil"
+                                        <img itle="Foto Perfil" src="../img/foto_perfil/cooperativas/<?php echo "logo_fncc.png"; ?>" alt="foto perfil"
                                              class="rounded-circle img-fluid bg-light" style="width: 165px;">
                                         <h5 class="my-3"><?php echo ucfirst($resultadoBuscaInfo["nome"]); ?></h5>
                                         <p class="text-muted mb-1"><?php echo ucfirst($resultadoBuscaInfo["sobrenome"]); ?></p>

@@ -49,7 +49,7 @@ $buscaferiados = mysqli_query($conexao, "SELECT * FROM feriados");
                 <main>
                     <div class="container-fluid">
                         <!-- header -->
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
                             <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
                                 <span class="breadcrumb-item text-primary">Configurações</span>
                                 <span class="breadcrumb-item active text-success">Feriados</span>
@@ -70,14 +70,14 @@ $buscaferiados = mysqli_query($conexao, "SELECT * FROM feriados");
                                            ?>
                                 <div class="list-group mb-2">
   <a type="button" href="#feriado<?php echo strftime('%d%b%Y', strtotime($resultadoFeriado["data"]));?>" data-toggle="modal" data-target="#feriado<?php echo strftime('%d%b%Y', strtotime($resultadoFeriado["data"]));?>" class="list-group-item list-group-item-action">
-   <i class="bi bi-link-45deg link-feriado"></i>
+   <i class="bi bi-pencil link-feriado"></i>
       <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1 destaque"><?php echo $resultadoFeriado["feriado"];?></h5>
-      <small class="fw-bold text-primary"><?php echo ucwords(strftime('%d - %b', strtotime($resultadoFeriado["data"]))); ?></small>
+      <small class="fw-bold"><?php echo ucwords(strftime('%d - %b', strtotime($resultadoFeriado["data"]))); ?></small>
     </div>
     <p class="mb-1 cor-primaria"><?php echo $resultadoFeriado["tipo_feriado"];?></p>
     <div class="d-flex w-100 justify-content-between">
-        <small class="fw-bold text-muted"><?php if ($resultadoFeriado["facultativo"] == 0){ echo "Obrigatório"; }else{ echo "Opcional";} ?></small>
+        <small class="fw-bold"><?php if ($resultadoFeriado["facultativo"] == 0){ echo "Obrigatório"; }else{ echo "Opcional";} ?></small>
         
     </div>
     

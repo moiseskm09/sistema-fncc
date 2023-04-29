@@ -7,8 +7,8 @@
     <ul class="navbar-nav d-md-inline-block form-inline ml-auto">
         
         <li class="nav-item dropdown">
-            <a class="nav-link link-menu dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="../img/foto_perfil/cooperativas/<?php echo $LOGO_COOP;?>" width="40" height="40" class="bg-white rounded-circle"> 
+            <a class="nav-link link-menu dropdown-toggle text-white border-0" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../img/foto_perfil/cooperativas/<?php echo "logo_fncc.png";?>" width="40" height="40" class="bg-white rounded-circle"> 
             </a>
             
             <div class="dropdown-menu dropdown-menu-right menu_perfil" id="menu_perfil" aria-labelledby="userDropdown">
@@ -17,7 +17,7 @@
                 <div class="row text-center align-items-center">
                     
                     <div class="col-md-12 col-12 align-items-center">
-                        <img src="../img/foto_perfil/cooperativas/<?php echo $LOGO_COOP;?>" class="rounded-circle" style="height: 50px; height: 50px;">
+                        <img src="../img/foto_perfil/cooperativas/<?php echo "logo_fncc.png";?>" class="rounded-circle" style="height: 50px; height: 50px;">
                     </div>
                     <div class="col-12">
                         <h4 class="text-primary"><?php echo ucfirst($NOME); ?></h4>

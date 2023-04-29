@@ -48,7 +48,11 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
           <div class="container-fluid">
             <!--conteudo da tela aqui!-->
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
-              <h5 class="titulo">Cooperativa <span class="destaque"> <?php echo ucfirst($resultadoBuscaInfo["cooperativa"]); ?></span></h5>
+              <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
+                                <span class="breadcrumb-item text-primary">Cadastro</span>
+                                <span class="breadcrumb-item text-primary">Cooperativas</span>
+                                <span class="breadcrumb-item active text-success"><?php echo ucfirst($resultadoBuscaInfo["cooperativa"]); ?></span>
+                            </div>
               <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="mr-2">
                   <a class="btn btn-sm btn-warning" href="cad-cooperativas.php"><i class="uil uil-angle-left"></i>Voltar</a>
@@ -60,7 +64,7 @@ $resultadoBuscaInfo = mysqli_fetch_assoc($sqlBuscaInfo);
                 <div class="col-lg-4 col-md-4 col-12 mb-3">
                   <div class="card" style="border-radius: 15px; height: 100%;">
                     <div class="card-body text-center">
-                      <img itle="Foto Perfil" src="../img/foto_perfil/cooperativas/<?php echo $LOGO_COOP; ?>" alt="foto perfil"
+                      <img itle="Foto Perfil" src="../img/foto_perfil/cooperativas/<?php echo "logo_fncc.png"; ?>" alt="foto perfil"
                            class="rounded-circle img-fluid bg-light" style="width: 165px;">
                       <h5 class="my-3">
                         <button title="<?php

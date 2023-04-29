@@ -71,9 +71,12 @@ if (isset($_POST["cod_coopUser"], $_POST["codUser"], $_POST["areaAtendimento"], 
             $mail->AddAddress($emailUserAtendimento, $nomeUserAtendimento);
         }
         $enviado = $mail->Send();
+        header("location: ../sistema/edicao-consulta.php?sucesso=1&cod_consulta=$codConsulta");
+    }else{
+        header("location: ../sistema/edicao-consulta.php?sucesso=1&cod_consulta=$codConsulta");
     }
     /* Fim Envia email para os responsaveis da area depois da abertura da consulta */
-      header("location: ../sistema/edicao-consulta.php?sucesso=1&cod_consulta=$codConsulta");
+      
     }else{
        header("location: ../sistema/abrir-consulta.php?erro=3");
     }

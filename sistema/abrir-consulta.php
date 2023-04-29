@@ -39,8 +39,11 @@ require_once '../config/config_geral.php';
         <main>
           <div class="container-fluid">
             <!--conteudo da tela aqui!-->
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
-              <h5 class="titulo">Abrir Consulta</h5>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1 border-bottom">
+              <div class="breadcrumb mb-2 mb-md-0" style="--bs-breadcrumb-divider: '>'; font-size: 16px;">
+                                <span class="breadcrumb-item text-primary">Consultas</span>
+                                <span class="breadcrumb-item active text-success">Abrir consulta</span>
+                            </div>
               <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="mr-2">
                   <a class="btn btn-sm btn-warning mb-1" onClick="history.go(-1)"><i class="uil uil-angle-left"></i> Voltar</a>
