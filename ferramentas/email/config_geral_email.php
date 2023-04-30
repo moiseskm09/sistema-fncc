@@ -11,14 +11,14 @@ require 'PHPMailer/src/SMTP.php';
 
     $mail = new PHPMailer();
     $mail->IsSMTP();
-    $mail->Host = 'smtp.hostinger.com';                     //Configura o servidor SMTP para enviar através de 
+    $mail->Host = '#####################';                     //Configura o servidor SMTP para enviar através de 
     $mail->Port = 587; 
     $mail->SMTPAuth = true;                                   //Ativar autenticação SMTP 
-    $mail->Username = 'bemk@bemktech.com.br';                     //Nome de usuário SMTP 
-    $mail->Password = 'Notificacao@bemk1217';
+    $mail->Username = '####################';                     //Nome de usuário SMTP 
+    $mail->Password = '##########################';
     $mail->SMTPOptions = array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true));
     ####$mail->SMTPDebug = 2;
-    $mail->setFrom('bemk@bemktech.com.br', "Sistema FNCC");
+    $mail->setFrom('####################', "Sistema FNCC");
     $mail->IsHTML(true);
     $mail->CharSet = 'UTF-8';
     
