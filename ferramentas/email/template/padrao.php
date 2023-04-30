@@ -6,7 +6,7 @@
 <meta name="x-apple-disable-message-reformatting">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="telephone=no" name="format-detection">
-<title>Consulta Reaberta - (Nº #'.str_pad($cod_consultaNaoEstouAcordo, 6, '0', STR_PAD_LEFT).')</title><!--[if (mso 16)]>
+<title>Um novo contato pelo site</title><!--[if (mso 16)]>
 <style type="text/css">
 a {text-decoration: none;}
 </style>
@@ -80,7 +80,7 @@ background:#56d66b!important;
 <td align="center" height="25" style="padding:0;Margin:0"></td>
 </tr>
 <tr>
-<td align="center" class="es-m-txt-c" style="padding:0;Margin:0"><h2 style="Margin:0;line-height:29px;mso-line-height-rule:exactly;font-family:lato,  helvetica, arial, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#333333">A consulta <span style="color:#4B49AC"><b>#'.str_pad($cod_consultaNaoEstouAcordo, 6, '0', STR_PAD_LEFT).'</b></span> foi reaberta</h2></td>
+<td align="center" class="es-m-txt-c" style="padding:0;Margin:0"><h2 style="Margin:0;line-height:29px;mso-line-height-rule:exactly;font-family:lato,  helvetica, arial, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#333333">Um novo contato pelo site</h2></td>
 </tr>
 <tr>
 <td align="center" height="20" style="padding:0;Margin:0"></td>
@@ -89,26 +89,39 @@ background:#56d66b!important;
 <td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Olá!</p></td>
 </tr>
 <tr>
-<td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">A consulta foi reaberta pelo(a) <span style="color:#4B49AC"><b> '.$nomeUserResponsavel.' </b></span> e o status foi alterado para <span style="color:#4B49AC"><b> pendente</b>.</span></p></td>
+<td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Você recebeu uma nova mensagem de: <span style="color:#4B49AC"><b> '.$nome.' </b></span>.</span></p></td>
 </tr>
 
 <tr>
 <td align="center" height="15" style="padding:0;Margin:0"></td>
 </tr>
 <tr>
-<td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Por favor, revise a consulta para identificar o motivo da reabertura.</p></td>
+<td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">A mensagem diz assim:</p></td>
 </tr>
 <tr>
 <td align="center" height="15" style="padding:0;Margin:0"></td>
 </tr>
 <tr>
-<td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Clique no link abaixo e tenha acesso direto aos detalhes.</p></td>
+<td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><span style="color:#4B49AC"><b>" '.$mensagem.' "</b></span></p></td>
 </tr>
 <tr>
 <td align="center" height="15" style="padding:0;Margin:0"></td>
 </tr>
 <tr>
-<td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><b>Link de acesso:</b><strong><a href="https://bemktech.com.br/sistema-fncc/?cce='.$cod_consultaNaoEstouAcordo.'" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#4b49ac;font-size:14px"> Sistema FNCC - Consulta #'.str_pad($codConsulta, 6, '0', STR_PAD_LEFT).'</a></strong></p></td>
+    <tr>
+<td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Para facilitar a comunicação entre vocês ele(a) deixou esses contatos adicionais: </p></td>
+</tr>
+<tr>
+<td align="center" height="15" style="padding:0;Margin:0"></td>
+</tr>
+<tr>
+<td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><b>E-mail:</b><strong><a href="mailto:'.$email.'" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#4b49ac;font-size:14px"> '.$email.'</a></strong></p></td>
+</tr>
+<tr>
+<td align="center" height="15" style="padding:0;Margin:0"></td>
+</tr>
+    <tr>
+<td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><b>E-mail:</b><strong><a href="tel:'.$telefone.'" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#4b49ac;font-size:14px"> '.$telefone.'</a></strong></p></td>
 </tr>
 <tr>
 <td align="center" height="60" style="padding:0;Margin:0"></td>
@@ -124,7 +137,7 @@ background:#56d66b!important;
 <td align="center" valign="top" style="padding:0;Margin:0;width:560px">
 <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
 <tr>
-<td align="center" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:17px;color:#333333;font-size:14px">Essa é uma mensagem automática do sistema, por favor não responda!</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:17px;color:#333333;font-size:14px;display:none"><br></p></td>
+<td align="center" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:17px;color:#333333;font-size:14px">Essa é uma mensagem automática enviada pelo site, para responder ao destinatário, clique em responder no seu provedor de email, inisira sua mensagem e clique em enviar!</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:17px;color:#333333;font-size:14px;display:none"><br></p></td>
 </tr>
 <tr>
 <td align="center" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:17px;color:#333333;font-size:14px">FNCC</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial,  helvetica, sans-serif;line-height:17px;color:#333333;font-size:14px;display:none"><br></p></td>
