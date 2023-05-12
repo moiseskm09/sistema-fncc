@@ -2,6 +2,7 @@
 include_once '../config/conexao.php';
 include_once '../config/config_geral.php';
 
+
 if (isset($_POST["cod_coopUser"], $_POST["codUser"], $_POST["areaAtendimento"], $_POST["prioridadeAtend"], $_POST["visibilidadeAtend"], $_POST["assuntoAtend"], $_POST["descricaoAtend"])) {
     
     $cod_coopUser = $_POST["cod_coopUser"];

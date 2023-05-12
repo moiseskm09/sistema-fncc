@@ -9,6 +9,7 @@
                     <div class="text-center">
                         <div class="loader" id="loader"></div>
                         <h6 id="loadingModal_content"></h6>
+                        <p style="font-size: 12px;">Estamos processando as informações</p>
                     </div>
                 </div>
             </div>

@@ -120,8 +120,9 @@ if (isset($_GET['nome'])) {
                         echo '<span class="badge badge-danger rounded-pill d-inline">Inativo</span>';
                     } ?></td>
                             <td class="text-center">
-                              <a href="editar-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>"><i class="bi bi-pencil-square text-dark btn-sm btn-warning"></i></a>
-                              <a href="../ferramentas/desativa-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>" desativar-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="bi bi-trash text-white btn-sm btn-danger"></i></a>
+                                <a href="../ferramentas/relatorios/rel-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>" title="Gerar PDF" target="blank"><i class="bi bi-filetype-pdf btn-sm btn-dark"></i></a>
+                              <a href="editar-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>" title="Editar Cadastro"><i class="bi bi-pencil-square text-dark btn-sm btn-warning"></i></a>
+                              <a href="../ferramentas/desativa-cooperativa.php?id=<?php echo $resultadoCoop['cod_coop']; ?>" title="Desativar Cooperativa" desativar-confirm="Tem certeza de que deseja excluir o item selecionado?"><i class="bi bi-trash text-white btn-sm btn-danger"></i></a>
                             </td> 
                           </tr>
         <?php

@@ -1,14 +1,6 @@
 <?php
-if(!empty($_GET['cooperativaAtendimento'] || $_GET['areaAtendimento'] || $_GET['dataRefIncialF'] || $_GET['dataRefFinalF'])){
-    
+  if(!empty($_GET['cooperativaAtendimento'] || $_GET['areaAtendimento'] || $_GET['dataRefIncialF'] || $_GET['dataRefFinalF'])){
 require('../fpdf/fpdf.php');
-
-class PDF extends FPDF
-{
-// Page header
-function Header()
-{
-    
 require_once '../../config/conexao.php';
 require_once '../../config/sessao.php';
 require_once '../../config/config_geral.php';
@@ -92,20 +84,24 @@ require_once '../../config/config_geral.php';
     
     $dataRefInicialExport = date("d/m/Y", strtotime($dataRefIncialF));
     $dataRefFinalExport = date("d/m/Y", strtotime($dataRefFinalF));
-
-  
-    $this->SetXY(10,10); // SetXY - DEFINE O X E O Y NA PAGINA
-        $this->Rect(10,10,190,280); // CRIA UM RET�?NGULO QUE COME�?A NO X = 10, Y = 10 E 
-                                    //TEM 190 DE LARGURA E 280 DE ALTURA. 
-                                    //NESTE CASO, �? UMA BORDA DE PÁGINA.
+    
+class PDF extends FPDF
+{
+    
+// Page header
+function Header()
+{
+    //$this->Rect(3,3,204,280);
     // Arial bold 15
     $this->SetFont('Arial','B',15);
     // Logo 
-    $this->Image('../../img/logocompleto.png',90,13,30);
-    $this->Ln(12);
+    $this->Image('../../img/timbrado.jpg',0,0,210);
+    $this->Image('../../img/logofncc.png',90,3,30);
+    $this->SetTextColor(255,255,255);
+    $this->Ln(3);
     $this->SetFont('Arial','B',13);
     $this->Cell(190, 10, utf8_decode("FEDERAÇÃO NACIONAL DAS COOPERATIVAS DE CRÉDITO"), 0, 0, "C");
-    $this->Ln(7);
+    $this->Ln(5);
     $this->SetFont('Arial','B',8);
     $this->Cell(190,10,utf8_decode("RUA: VOLUNTÁRIOS DA PÁTRIA, N°654 - SALA 606 - SANTANA"),0,0,'C');
     $this->Ln(5);
@@ -113,73 +109,10 @@ require_once '../../config/config_geral.php';
     $this->Cell(190,10,utf8_decode("CEP: 02010-000 / SÃO PAULO SP"),0,0,'C');
     $this->Ln(5);
     $this->SetFont('Arial','B',8);
-    $this->Cell(190,10,utf8_decode("TELEFONE: (11) 2089-9490 , WHATSAPP: (11) 93730-7909 , EMAIL: FNCC@FNCC.COM.BR"),0,0,'C');
+    $this->Cell(190,10,utf8_decode("TELEFONE: (11) 2089-9490 | WHATSAPP: (11) 93730-7909 | EMAIL: FNCC@FNCC.COM.BR"),0,0,'C');
     $this->Ln(15);
-
-    
-    $this->SetFillColor(227, 227, 227);
-    $this->SetFont('Arial','B',12);
-    $this->Cell(190,10,utf8_decode("RELATÓRIO DE ATENDIMENTOS"),1, 1,'C', true);
-    $this->Ln(5);
-    $this->SetFont('Arial','B',10);
-    $this->Cell(190,7,utf8_decode('FILTRO APLICADO'),0,0,'C');
-    $this->Ln(10);
-    $this->SetFont('Arial','B',8);
-    $this->Cell(60,5,utf8_decode('COOPERATIVA'),1,0,'C', true);
-    $this->Cell(60,5,utf8_decode('ÁREA DE ATENDIMENTO'),1,0,'C', true);
-    $this->Cell(35,5,utf8_decode('DATA INICIAL'),1,0,'C', true);
-    $this->Cell(35,5,utf8_decode('DATA FINAL'),1,0,'C', true);
-    $this->Ln(5);
-    $this->SetFont('Arial','',8);
-    $this->Cell(60,5,utf8_decode($coopHeaderExport),1,0,'C');
-    $this->Cell(60,5,utf8_decode($AreaHeaderExport),1,0,'C');
-    $this->Cell(35,5,utf8_decode($dataRefInicialExport),1,0,'C');
-    $this->Cell(35,5,utf8_decode($dataRefFinalExport),1,0,'C');
-    
-    
-    $this->Ln(10);
-    $this->SetFont('Arial','B',10);
-    $this->Cell(190,7,utf8_decode('RESULTADO'),0,0,'C');
-    $this->Ln(10);
-    $this->SetFillColor(227, 227, 227);
-    $this->SetFont('Arial','B',10);
-    
-    $this->Cell(64,5,utf8_decode('SITUAÇÃO'),1,0,'C', true);
-    $this->Cell(64,5,utf8_decode('QUANTIDADE'),1,0,'C', true);
-    $this->Cell(62,5,utf8_decode('PERCENTUAL'),1,0,'C', true);
-    $this->Ln(5);
-    $this->SetFont('Arial','',10);
-    $this->Cell(64,7,utf8_decode('ABERTOS'),1,0,'C');
-    $this->Cell(64,7,utf8_decode($totaldeConsultasAbertas),1,0,'C');
-    $this->Cell(62,7,utf8_decode($percentualAbertos)."%",1,0,'C');
-    $this->Ln(7);
-    $this->Cell(64,7,utf8_decode('ANDAMENTO'),1,0,'C');
-    $this->Cell(64,7,utf8_decode($totaldeConsultasEmAndamento),1,0,'C');
-    $this->Cell(62,7,utf8_decode($percentualEmAndamento)."%",1,0,'C');
-    $this->Ln(7);
-    $this->Cell(64,7,utf8_decode('AGUARDANDO'),1,0,'C');
-    $this->Cell(64,7,utf8_decode($totaldeConsultasAguardando),1,0,'C');
-    $this->Cell(62,7,utf8_decode($percentualAguardando)."%",1,0,'C');
-    $this->Ln(7);
-    $this->Cell(64,7,utf8_decode('PENDENTES'),1,0,'C');
-    $this->Cell(64,7,utf8_decode($totaldeConsultasPendente),1,0,'C');
-    $this->Cell(62,7,utf8_decode($percentualPendente)."%",1,0,'C');
-    $this->Ln(7);
-    $this->Cell(64,7,utf8_decode('FECHADOS'),1,0,'C');
-    $this->Cell(64,7,utf8_decode($totaldeConsultasFechado),1,0,'C');
-    $this->Cell(62,7,utf8_decode($percentualFechado)."%",1,0,'C');
-    $this->Ln(7);
-    $this->Cell(64,7,utf8_decode('CONCLUÍDOS'),1,0,'C');
-    $this->Cell(64,7,utf8_decode($totaldeConsultasConcluido),1,0,'C');
-    $this->Cell(62,7,utf8_decode($percentualConcluido)."%",1,0,'C');
-    $this->Ln(7);
-    
-    $this->SetFont('Arial','B',12);
-    $this->Cell(64,10,utf8_decode('TOTAL'),1,0,'C', true);
-    $this->Cell(64,10,utf8_decode($totaldeConsultas),1,0,'C', true);
-    $this->Cell(62,10,utf8_decode('100%'),1,0,'C', true);  
-
 }
+
 
 // Page footer
 function Footer()
@@ -189,8 +122,10 @@ function Footer()
     // Arial italic 8
     $this->SetFont('Arial','I',8);
     // Page number
-    $this->Cell(0,10,'Pagina '.$this->PageNo().'/{nb}',0,0,'C');
+    $this->SetTextColor(255,255,255);
     
+    $this->Image('../../img/timbrado.jpg',0,285,210);
+    $this->Cell(0,20,utf8_decode("Página ").$this->PageNo().'/{nb}',0,0,'C');
 }
 }
 
@@ -199,8 +134,69 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','',12);
+$pdf->SetFillColor(227, 227, 227);
+    $pdf->SetFont('Arial','B',12);
+    $pdf->Cell(190,10,utf8_decode("RELATÓRIO DE ATENDIMENTOS"),1, 1,'C', true);
+    $pdf->Ln(5);
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(190,7,utf8_decode('FILTRO APLICADO'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont('Arial','B',8);
+    $pdf->Cell(60,5,utf8_decode('COOPERATIVA'),1,0,'C', true);
+    $pdf->Cell(60,5,utf8_decode('ÁREA DE ATENDIMENTO'),1,0,'C', true);
+    $pdf->Cell(35,5,utf8_decode('DATA INICIAL'),1,0,'C', true);
+    $pdf->Cell(35,5,utf8_decode('DATA FINAL'),1,0,'C', true);
+    $pdf->Ln(5);
+    $pdf->SetFont('Arial','',8);
+    $pdf->Cell(60,5,utf8_decode($coopHeaderExport),1,0,'C');
+    $pdf->Cell(60,5,utf8_decode($AreaHeaderExport),1,0,'C');
+    $pdf->Cell(35,5,utf8_decode($dataRefInicialExport),1,0,'C');
+    $pdf->Cell(35,5,utf8_decode($dataRefFinalExport),1,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(190,7,utf8_decode('RESULTADO'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFillColor(227, 227, 227);
+    $pdf->SetFont('Arial','B',10);
+    
+    $pdf->Cell(64,5,utf8_decode('SITUAÇÃO'),1,0,'C', true);
+    $pdf->Cell(64,5,utf8_decode('QUANTIDADE'),1,0,'C', true);
+    $pdf->Cell(62,5,utf8_decode('PERCENTUAL'),1,0,'C', true);
+    $pdf->Ln(5);
+    $pdf->SetFont('Arial','',10);
+    $pdf->Cell(64,7,utf8_decode('ABERTOS'),1,0,'C');
+    $pdf->Cell(64,7,utf8_decode($totaldeConsultasAbertas),1,0,'C');
+    $pdf->Cell(62,7,utf8_decode($percentualAbertos)."%",1,0,'C');
+    $pdf->Ln(7);
+    $pdf->Cell(64,7,utf8_decode('ANDAMENTO'),1,0,'C');
+    $pdf->Cell(64,7,utf8_decode($totaldeConsultasEmAndamento),1,0,'C');
+    $pdf->Cell(62,7,utf8_decode($percentualEmAndamento)."%",1,0,'C');
+    $pdf->Ln(7);
+    $pdf->Cell(64,7,utf8_decode('AGUARDANDO'),1,0,'C');
+    $pdf->Cell(64,7,utf8_decode($totaldeConsultasAguardando),1,0,'C');
+    $pdf->Cell(62,7,utf8_decode($percentualAguardando)."%",1,0,'C');
+    $pdf->Ln(7);
+    $pdf->Cell(64,7,utf8_decode('PENDENTES'),1,0,'C');
+    $pdf->Cell(64,7,utf8_decode($totaldeConsultasPendente),1,0,'C');
+    $pdf->Cell(62,7,utf8_decode($percentualPendente)."%",1,0,'C');
+    $pdf->Ln(7);
+    $pdf->Cell(64,7,utf8_decode('FECHADOS'),1,0,'C');
+    $pdf->Cell(64,7,utf8_decode($totaldeConsultasFechado),1,0,'C');
+    $pdf->Cell(62,7,utf8_decode($percentualFechado)."%",1,0,'C');
+    $pdf->Ln(7);
+    $pdf->Cell(64,7,utf8_decode('CONCLUÍDOS'),1,0,'C');
+    $pdf->Cell(64,7,utf8_decode($totaldeConsultasConcluido),1,0,'C');
+    $pdf->Cell(62,7,utf8_decode($percentualConcluido)."%",1,0,'C');
+    $pdf->Ln(7);
+    
+    $pdf->SetFont('Arial','B',12);
+    $pdf->Cell(64,10,utf8_decode('TOTAL'),1,0,'C', true);
+    $pdf->Cell(64,10,utf8_decode($totaldeConsultas),1,0,'C', true);
+    $pdf->Cell(62,10,utf8_decode('100%'),1,0,'C', true);  
+    
+    
 $pdf->Output();
-}else{
+  }else{
     echo "não há informações a serem impressas";
 }
 ?>

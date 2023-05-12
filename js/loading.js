@@ -55,7 +55,7 @@ $(function () {
  */
 function getResponse() {
     //Preenche e mostra o modal
-    $('#loadingModal_content').html('Processando...');
+    $('#loadingModal_content').html('Aguarde...');
     $('#loadingModal').modal('show');
     //Envia a requisicao e espera a resposta
     $.post("")
@@ -64,7 +64,7 @@ function getResponse() {
                 $('#loader').removeClass('loader');
                 $('#loader').addClass('glyphicon glyphicon-ok');
                 $('#loadingModal_label').html('Sucesso!');
-                $('#loadingModal_content').html('<br>Processando!');
+                $('#loadingModal_content').html('Aguarde!');
                 resetModal();
             })
             .fail(function () {
@@ -72,7 +72,7 @@ function getResponse() {
                 $('#loader').removeClass('loader');
                 $('#loader').addClass('glyphicon glyphicon-remove');
                 $('#loadingModal_label').html('Falha!');
-                $('#loadingModal_content').html('<br>Processando...');
+                $('#loadingModal_content').html('Aguarde...');
                 resetModal();
             });
 }
